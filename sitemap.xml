@@ -5,27 +5,35 @@
          <lastmod>2026-01-15</lastmod>
     </url>
     <url>
-         <loc>https://shahaliyev.org/csci4701/01_backprop/</loc>
+         <loc>https://shahaliyev.org/csci4701/syllabus/</loc>
          <lastmod>2026-01-15</lastmod>
     </url>
     <url>
-         <loc>https://shahaliyev.org/csci4701/02_neural_network/</loc>
+         <loc>https://shahaliyev.org/csci4701/Main_Content/01_backprop/</loc>
          <lastmod>2026-01-15</lastmod>
     </url>
     <url>
-         <loc>https://shahaliyev.org/csci4701/03_cnn_torch/</loc>
+         <loc>https://shahaliyev.org/csci4701/Main_Content/02_neural_network/</loc>
          <lastmod>2026-01-15</lastmod>
     </url>
     <url>
-         <loc>https://shahaliyev.org/csci4701/04_regul_optim/</loc>
+         <loc>https://shahaliyev.org/csci4701/Main_Content/03_cnn_torch/</loc>
          <lastmod>2026-01-15</lastmod>
     </url>
     <url>
-         <loc>https://shahaliyev.org/csci4701/05_batchnorm_resnet/</loc>
+         <loc>https://shahaliyev.org/csci4701/Main_Content/04_regul_optim/</loc>
          <lastmod>2026-01-15</lastmod>
     </url>
     <url>
-         <loc>https://shahaliyev.org/csci4701/06_nn_ngram/</loc>
+         <loc>https://shahaliyev.org/csci4701/Main_Content/05_batchnorm_resnet/</loc>
+         <lastmod>2026-01-15</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/Main_Content/06_nn_ngram/</loc>
+         <lastmod>2026-01-15</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/Mathematics_of_Deep_Learning/la/</loc>
          <lastmod>2026-01-15</lastmod>
     </url>
 </urlset>
