@@ -8,19 +8,40 @@ theme:
     - navigation.sections
     - navigation.expand
     - search.highlight
-
-plugins:
-  - search
-  - mkdocs-jupyter
+    - navigation.top
+  palette:
+    - scheme: default
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: black
+      accent: blue
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
 
 markdown_extensions:
   - admonition
+  - pymdownx.details
   - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true
+
+plugins:
+  - search
+  - mkdocs-jupyter:
 
 extra:
   analytics:
     provider: google
     property: G-S1QRRQG9BM
+  social:
+    - icon: fontawesome/solid/circle-user
+      link: https://shahaliyev.org/
+
+repo_url: https://github.com/shahaliyev/csci4701
+repo_name: GitHub
 
