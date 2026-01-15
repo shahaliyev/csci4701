@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://shahaliyev.org/csci4701/</loc>
+         <lastmod>2026-01-15</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/01_backprop/</loc>
+         <lastmod>2026-01-15</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/02_neural_network/</loc>
+         <lastmod>2026-01-15</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/03_cnn_torch/</loc>
+         <lastmod>2026-01-15</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/04_regul_optim/</loc>
+         <lastmod>2026-01-15</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/05_batchnorm_resnet/</loc>
+         <lastmod>2026-01-15</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/06_nn_ngram/</loc>
+         <lastmod>2026-01-15</lastmod>
+    </url>
+</urlset>
