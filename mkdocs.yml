@@ -1,0 +1,26 @@
+site_name: CSCI 4701 Deep Learning
+site_url: https://shahaliyev.org/csci4701/
+
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.expand
+    - search.highlight
+
+plugins:
+  - search
+  - mkdocs-jupyter
+
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+
+extra:
+  analytics:
+    provider: google
+    property: G-S1QRRQG9BM
+
