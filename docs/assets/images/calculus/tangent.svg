@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="126.5mm" height="108mm" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 126.5 108">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:black}
+    .fil3 {fill:#009933;fill-rule:nonzero}
+    .fil1 {fill:#33CC99;fill-rule:nonzero}
+    .fil2 {fill:#BA2A28;fill-rule:nonzero}
+    .fnt0 {font-weight:normal;font-size:8;font-family:'Arial'}
+   ]]>
+  </style>
+ </defs>
+ <g id="GraficoTangente">
+  <polygon id="X_x0020_axis" class="fil0" points="1.4138,99.4969 122.677,99.4969 122.677,98.6306 126.329,99.7948 122.677,100.841 122.677,99.8914 1.4138,99.8914 "/>
+  <polygon id="Y_x0020_axis" class="fil0" points="1.388,99.894 1.388,7.8144 0.5214,7.8144 1.6882,4.1618 2.7308,7.8144 1.7812,7.8144 1.7812,99.894 "/>
+  <path id="Funcion" class="fil1" d="M11.0237 94.2393l0.0088 -0.0016c6.7754,-1.2191 13.3361,-2.7351 19.678,-4.5473 6.332,-1.8092 12.4394,-3.9144 18.3173,-6.3147l0.0005 0.0016c30.2142,-12.3395 54.3891,-32.5045 72.1597,-60.6255l0.794 0.5c-17.8775,28.2907 -42.2002,48.5779 -72.601,60.9935l0 0.0019c-5.9088,2.4128 -12.0479,4.5289 -18.4133,6.3477 -6.3555,1.8159 -12.9468,3.3381 -19.7698,4.566l-0.0088 0.0016 -0.1654 -0.9232z"/>
+  <polygon id="Tangente" class="fil2" points="25.1352,92.7513 115.057,59.1752 115.242,59.6737 25.3209,93.2497 "/>
+  <switch><text x="41.8022" y="49.8225" id="TangentText-ro" class="fil0 fnt0" systemLanguage="ro"><tspan id="trsvg1-ro">tangentă</tspan></text><text x="41.8022" y="49.8225" id="TangentText" class="fil0 fnt0"><tspan id="trsvg1">tangent</tspan></text></switch>
+  <polygon id="Arrow" class="fil0" points="88.903,66.2322 88.6146,66.6855 64.5696,50.7368 64.3108,51.1298 88.3626,67.0818 88.0434,67.5838 90.6828,68.3643 "/>
+  <path id="Coordenada" class="fil3" d="M44.2998 87.2565l-0.4706 0 0 -0.9413 0.4706 0 0 0.9413zm0 12.2406l0 -0.4743 -0.4706 0 0 0.4743 0.4706 0zm0 -0.945l-0.4706 0 0 -0.9413 0.4706 0 0 0.9413zm0 -1.412l-0.4706 0 0 -0.9413 0.4706 0 0 0.9413zm0 -1.412l-0.4706 0 0 -0.9413 0.4706 0 0 0.9413zm0 -1.4119l-0.4706 0 0 -0.9414 0.4706 0 0 0.9414zm0 -1.4117l-0.4706 0 0 -0.9414 0.4706 0 0 0.9414zm0 -1.412l-0.4706 0 0 -0.9413 0.4706 0 0 0.9413zm0 -1.412l-0.4706 0 0 -0.9413 0.4706 0 0 0.9413zm0 -1.412l-0.4706 0 0 -0.9413 0.4706 0 0 0.9413z"/>
+  <switch><text x="42.4919" y="105.384" id="a" class="fil0 fnt0"><tspan id="trsvg2">a</tspan></text></switch>
+ </g>
+</svg>

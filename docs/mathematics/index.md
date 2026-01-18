@@ -2,7 +2,7 @@
 
 <div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
   <time datetime="2026-01-18">18 Jan 2026</time> ·
-  <time datetime="PT9M">9 min</time>
+  <time datetime="PT6M">6 min</time>
 </div>
 
 Deep Learning (DL) relies on mathematics, but not on all of mathematics equally. Many topics that are common in standard mathematics curricula play little or no role in the practice of DL. The purpose of this section is to explain which parts of mathematics matter for DL and what role they play. 

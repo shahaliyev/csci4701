@@ -9,8 +9,8 @@
 **Artificial Intelligence (AI)** is the broad field concerned with building systems that perform tasks requiring intelligence. **Machine Learning (ML)** is a subfield of AI that enables systems to learn patterns and make decisions from data rather than explicit rules. **Deep Learning (DL)** is a subfield of ML that uses multi-layer neural networks to learn complex representations from large datasets.
 
 
-<div class="admonition note">
-  <p class="admonition-title">Note</p>
+<div class="admonition info">
+  <p class="admonition-title">Info</p>
   <p style="margin: 1em 0;">
     The following sources were used in preparing this text:
   </p>
