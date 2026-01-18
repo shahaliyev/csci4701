@@ -6,7 +6,7 @@
 </div>
 
 
-**Artificial Intelligence (AI)** is the broad field concerned with building systems that perform tasks requiring intelligence. **Machine Learning (ML)** is a subfield of AI that enables systems to learn patterns and make decisions from data rather than explicit rules. Deep **Learning (DL)** is a subfield of ML that uses multi-layer neural networks to learn complex representations from large datasets.
+**Artificial Intelligence (AI)** is the broad field concerned with building systems that perform tasks requiring intelligence. **Machine Learning (ML)** is a subfield of AI that enables systems to learn patterns and make decisions from data rather than explicit rules. **Deep Learning (DL)** is a subfield of ML that uses multi-layer neural networks to learn complex representations from large datasets.
 
 
 <div class="admonition note">
@@ -15,28 +15,18 @@
     The following sources were used in preparing this text:
   </p>
   <ul>
-    <li>
+    <li style="margin-bottom: 0">
       Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016).
-      <em>Deep Learning</em>. MIT Press, Chapter 1.
-      <a href="https://www.deeplearningbook.org/contents/intro.html" target="_blank" rel="noopener">
-        https://www.deeplearningbook.org/contents/intro.html
-      </a>
+      <a href="https://www.deeplearningbook.org/contents/intro.html" target="_blank" rel="noopener">Deep Learning</a>. MIT Press.   
     </li>
-    <li>
+    <li style="margin-bottom: 0">
       Schmidhuber, J. (2015).
-      <em>Deep Learning in Neural Networks: An Overview.
-      </em>Neural Networks.
-      <a href="https://people.idsia.ch/~juergen/deep-learning-history.html" target="_blank" rel="noopener">
-        https://people.idsia.ch/~juergen/deep-learning-history.html
-      </a>
+      <a href="https://people.idsia.ch/~juergen/deep-learning-history.html" target="_blank" rel="noopener">Deep Learning in Neural Networks: An Overview.
+      </a>Neural Networks.
     </li>
-    <li>
+    <li style="margin-bottom: 0">
       Zhang, A., Lipton, Z. C., Li, M., &amp; Smola, A. J.
-      <em>Dive into Deep Learning</em>. Chapter 3.1.
-      <a href="https://d2l.ai/chapter_linear-regression/linear-regression.html" target="_blank" rel="noopener">
-        https://d2l.ai/chapter_linear-regression/linear-regression.html
-      </a>
-    </li>
+     <a href="https://d2l.ai/chapter_introduction/index.html" target="_blank" rel="noopener">Dive into Deep Learning</a>. d2l.ai.
   </ul>
 </div>
 
@@ -118,7 +108,7 @@ In 2012, [AlexNet](https://proceedings.neurips.cc/paper_files/paper/2012/file/c3
 
 > As of 2016, a rough rule of thumb is that a supervised deep learning algorithm will generally achieve acceptable performance with around 5,000 labeled examples per category and will match or exceed human performance when trained with a dataset containing at least 10 million labeled examples.  
 >  
-> _[Deep Learning  (2016) Chapter I](https://shahaliyev.org/writings/intro-deep-learning) ~ Goodfellow, I., Bengio, Y., & Courville, A. MIT Press._
+> <span style="font-size: 0.8em">_[Deep Learning  (Chapter I)](https://shahaliyev.org/writings/intro-deep-learning) ~ Goodfellow, I., Bengio, Y., & Courville, A. (2016). MIT Press._</span>
 
 ## Hardware
 
