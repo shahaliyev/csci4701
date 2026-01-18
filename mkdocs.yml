@@ -4,7 +4,7 @@ site_url: https://shahaliyev.org/csci4701/
 theme:
   name: material
   features:
-    - navigation.instant
+    # - navigation.instant
     - navigation.sections
     - navigation.expand
     - navigation.top
