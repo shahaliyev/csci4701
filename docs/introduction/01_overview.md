@@ -106,6 +106,14 @@ A symbolic moment was the creation of [ImageNet](https://www.image-net.org/) (De
 
 In 2012, [AlexNet](https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) (Krizhevsky et al.) won the ImageNet competition by a large margin. The model was unusually large and computationally demanding, and training it required GPUs rather than CPUs. This detail is crucial. DL did not succeed merely because sufficient data became available, it succeeded because the models finally fit within the limits of available hardware.[^1]
 
+
+<figure>
+  <img src="../../assets/images/overview/alexnet.png" alt="AI/ML/DL relation" style="max-width: 100%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+   "Eight ILSVRC-2010 test images and the five labels considered most probable by our model. The correct label is written under each image, and the probability assigned to the correct label is also shown with a red bar (if it happens to be in the top 5)." ~ Krizhevsky, A., Sutskever, I., & Hinton, G. E. (2012). <a href='https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf'>ImageNet Classification with Deep Convolutional Neural Networks</a>. Advances in Neural Information Processing Systems (NeurIPS)  
+  </figcaption>
+</figure>
+
 > As of 2016, a rough rule of thumb is that a supervised deep learning algorithm will generally achieve acceptable performance with around 5,000 labeled examples per category and will match or exceed human performance when trained with a dataset containing at least 10 million labeled examples.  
 >  
 > <span style="font-size: 0.8em">_[Deep Learning  (Chapter I)](https://shahaliyev.org/writings/intro-deep-learning) ~ Goodfellow, I., Bengio, Y., & Courville, A. (2016). MIT Press._</span>
