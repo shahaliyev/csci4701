@@ -287,6 +287,26 @@
     
     
       <li class="md-tabs__item">
+        <a href="../../notebooks/01_backprop/" class="md-tabs__link">
+          
+  
+  
+  Notebooks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
         <a href="../../mathematics/la/" class="md-tabs__link">
           
   
@@ -771,7 +791,7 @@
   <span class="md-ellipsis">
     
   
-    Mathematics
+    Notebooks
   
 
     
@@ -784,6 +804,95 @@
         
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notebooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/01_backprop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01. From Derivatives to Backpropagation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mathematics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             
   
@@ -957,35 +1066,25 @@
   <time datetime="PT9M">9 min</time>
 </div>
 
-<p><strong>Artificial Intelligence (AI)</strong> is the broad field concerned with building systems that perform tasks requiring intelligence. <strong>Machine Learning (ML)</strong> is a subfield of AI that enables systems to learn patterns and make decisions from data rather than explicit rules. Deep <strong>Learning (DL)</strong> is a subfield of ML that uses multi-layer neural networks to learn complex representations from large datasets.</p>
+<p><strong>Artificial Intelligence (AI)</strong> is the broad field concerned with building systems that perform tasks requiring intelligence. <strong>Machine Learning (ML)</strong> is a subfield of AI that enables systems to learn patterns and make decisions from data rather than explicit rules. <strong>Deep Learning (DL)</strong> is a subfield of ML that uses multi-layer neural networks to learn complex representations from large datasets.</p>
 <div class="admonition note">
   <p class="admonition-title">Note</p>
   <p style="margin: 1em 0;">
     The following sources were used in preparing this text:
   </p>
   <ul>
-    <li>
+    <li style="margin-bottom: 0">
       Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016).
-      <em>Deep Learning</em>. MIT Press, Chapter 1.
-      <a href="https://www.deeplearningbook.org/contents/intro.html" target="_blank" rel="noopener">
-        https://www.deeplearningbook.org/contents/intro.html
-      </a>
+      <a href="https://www.deeplearningbook.org/contents/intro.html" target="_blank" rel="noopener">Deep Learning</a>. MIT Press.   
     </li>
-    <li>
+    <li style="margin-bottom: 0">
       Schmidhuber, J. (2015).
-      <em>Deep Learning in Neural Networks: An Overview.
-      </em>Neural Networks.
-      <a href="https://people.idsia.ch/~juergen/deep-learning-history.html" target="_blank" rel="noopener">
-        https://people.idsia.ch/~juergen/deep-learning-history.html
-      </a>
+      <a href="https://people.idsia.ch/~juergen/deep-learning-history.html" target="_blank" rel="noopener">Deep Learning in Neural Networks: An Overview.
+      </a>Neural Networks.
     </li>
-    <li>
+    <li style="margin-bottom: 0">
       Zhang, A., Lipton, Z. C., Li, M., &amp; Smola, A. J.
-      <em>Dive into Deep Learning</em>. Chapter 3.1.
-      <a href="https://d2l.ai/chapter_linear-regression/linear-regression.html" target="_blank" rel="noopener">
-        https://d2l.ai/chapter_linear-regression/linear-regression.html
-      </a>
-    </li>
+     <a href="https://d2l.ai/chapter_introduction/index.html" target="_blank" rel="noopener">Dive into Deep Learning</a>. d2l.ai.
   </ul>
 </div>
 
@@ -1042,7 +1141,7 @@
 <p>In 2012, <a href="https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">AlexNet</a> (Krizhevsky et al.) won the ImageNet competition by a large margin. The model was unusually large and computationally demanding, and training it required GPUs rather than CPUs. This detail is crucial. DL did not succeed merely because sufficient data became available, it succeeded because the models finally fit within the limits of available hardware.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <blockquote>
 <p>As of 2016, a rough rule of thumb is that a supervised deep learning algorithm will generally achieve acceptable performance with around 5,000 labeled examples per category and will match or exceed human performance when trained with a dataset containing at least 10 million labeled examples.  </p>
-<p><em><a href="https://shahaliyev.org/writings/intro-deep-learning">Deep Learning  (2016) Chapter I</a> ~ Goodfellow, I., Bengio, Y., &amp; Courville, A. MIT Press.</em></p>
+<p><span style="font-size: 0.8em"><em><a href="https://shahaliyev.org/writings/intro-deep-learning">Deep Learning  (Chapter I)</a> ~ Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). MIT Press.</em></span></p>
 </blockquote>
 <h2 id="hardware">Hardware</h2>
 <p>Training neural networks is dominated by large-scale numerical operations repeated many times. CPUs are optimized for general-purpose tasks and complex control flow, but they are inefficient for massive parallel arithmetic. <a href="https://www.youtube.com/watch?v=h9Z4oGN89MU">GPUs</a>, originally designed for rendering images, apply the same operation to many data points simultaneously. This made them a natural fit for neural network training.</p>
