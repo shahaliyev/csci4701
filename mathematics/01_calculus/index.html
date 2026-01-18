@@ -1,0 +1,1660 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://shahaliyev.org/csci4701/mathematics/01_calculus/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../02_linear_algebra/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Calculus - CSCI 4701 Deep Learning</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-S1QRRQG9BM"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-S1QRRQG9BM",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-S1QRRQG9BM",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#calculus" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="CSCI 4701 Deep Learning" class="md-header__button md-logo" aria-label="CSCI 4701 Deep Learning" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CSCI 4701 Deep Learning
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Calculus
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="blue"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/shahaliyev/csci4701" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../course/spring-2026/syllabus/" class="md-tabs__link">
+          
+  
+  
+  Course
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../introduction/01_overview/" class="md-tabs__link">
+          
+  
+  
+  Introduction
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../notebooks/01_backprop/" class="md-tabs__link">
+          
+  
+  
+  Notebooks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+  Mathematics
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="CSCI 4701 Deep Learning" class="md-nav__button md-logo" aria-label="CSCI 4701 Deep Learning" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CSCI 4701 Deep Learning
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/shahaliyev/csci4701" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Course
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Course
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spring 2026
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Spring 2026
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/spring-2026/syllabus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Syllabus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Introduction
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Introduction
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/01_overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deep Learning Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../introduction/02_materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Study Materials
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notebooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notebooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/01_backprop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01. From Derivatives to Backpropagation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../notebooks/02_neural_network/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02. From Neuron to Neural Network
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mathematics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Mathematics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mathematics of Deep Learning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calculus
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calculus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differentiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Differentiation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partial-derivatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial derivatives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gradients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gradients
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jacobian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jacobian
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chain-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chain Rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taylor-expansion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taylor Expansion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hessian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hessian
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minima-saddle-points-and-convexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minima, saddle points, and convexity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fundamental-theorem-of-calculus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamental Theorem of Calculus
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02_linear_algebra/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linear Algebra
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03_probability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probability Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_information/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#differentiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Differentiation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#partial-derivatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Partial derivatives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gradients" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gradients
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#jacobian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Jacobian
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#chain-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chain Rule
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#taylor-expansion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Taylor Expansion
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hessian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hessian
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minima-saddle-points-and-convexity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Minima, saddle points, and convexity
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fundamental-theorem-of-calculus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fundamental Theorem of Calculus
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="calculus">Calculus</h1>
+<div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
+  <time datetime="2026-01-18">18 Jan 2026</time> ·
+  <time datetime="PT12M">12 min</time>
+</div>
+
+<p>Calculus studies two closely related ideas: <strong>accumulation</strong> (integration) and <strong>change</strong> (differentiation). In DL, learning is defined by accumulating error across data, usually as an average loss. Training then proceeds by making small changes to model parameters in order to reduce this accumulated error. Calculus provides the language and structure for both. This section builds calculus concepts from fundamentals, with the goal of understanding how they support learning, optimization, and model behavior in deep learning.</p>
+<h2 id="functions">Functions</h2>
+<p>A <strong>function</strong> maps inputs to outputs. We write this as <span class="arithmatex">\(y = f(x)\)</span>. If the input <span class="arithmatex">\(x\)</span> changes, the output <span class="arithmatex">\(y\)</span> usually changes as well. Some functions change slowly, some change quickly, and some change differently depending on at which point of the function you are. Calculus begins by asking how these changes are related. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For example, changing the brightness of an image slightly may barely affect a model's output in one case, but cause a large change in another.</p>
+</div>
+<h2 id="integration">Integration</h2>
+<p>An <strong>integral</strong> such as <span class="arithmatex">\(\int_a^b f(x)\,dx\)</span> represents the total accumulation of the values of <span class="arithmatex">\(f(x)\)</span> as <span class="arithmatex">\(x\)</span> moves from <span class="arithmatex">\(a\)</span> to <span class="arithmatex">\(b\)</span>. It is simply the continuous analogue of a summation. You can think of an integral as summing many small contributions of <span class="arithmatex">\(f(x)\)</span> over an interval. The exact techniques for computing integrals are less important in DL than the idea they represent.</p>
+<p>Conceptually, integration means breaking an interval into many small pieces. For each piece, we take the value of <span class="arithmatex">\(f(x)\)</span> and multiply it by the width of the piece. Adding all these pieces together gives an approximation of the total accumulation. As the pieces become smaller and more numerous, this approximation approaches the integral. Mathematically, we represent this very small width as <span class="arithmatex">\(dx\)</span>.</p>
+<figure>
+  <img src="../../assets/images/calculus/integration.gif" alt="Integration" style="max-width: 100%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    Riemann Integration and Darboux Lower Sums. By <a href="//commons.wikimedia.org/wiki/User:IkamusumeFan" title="User:IkamusumeFan">IkamusumeFan</a> - <span class="int-own-work" lang="en">Own work</span><span typeof="mw:File"><a href="//commons.wikimedia.org/wiki/File:Matplotlib_icon.svg" class="mw-file-description"></a></span>&nbsp;This plot was created with <a href="https://en.wikipedia.org/wiki/en:Matplotlib" class="extiw" title="w:en:Matplotlib"><span title="comprehensive library for creating static, animated, and interactive visualizations in Python">Matplotlib</span></a>., <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=28296068">Link</a>
+  </figcaption>
+</figure>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In DL, training is never based on a single example. A model is evaluated by how it performs across many examples, so errors must be combined into one overall value. In practice, we only have access to a limited number of training examples. A common case in ML and DL is <a href='https://en.wikipedia.org/wiki/Mean_squared_error'>mean squared error (MSE)</a>, where for each training sample we compute a prediction error, square it (so negative and positive errors do not cancel, and larger mistakes are penalized), and then average these squared errors over the dataset. Conceptually, however, this dataset-level average is not the final goal. </p>
+</div>
+<p>The dataset is usually treated as a small collection of examples drawn from a much larger source of data. Ideally, we would like to measure the model’s average error over all possible data points it might encounter, not just the ones we happened to collect. The finite average used in training should therefore be understood as a practical <strong>approximation</strong> of a more general, ideal accumulated continuous quantity. For the values <span class="arithmatex">\(g(x_1), g(x_2), \dots, g(x_N)\)</span>, we can write</p>
+<div class="arithmatex">\[
+\mathbb{E}_{x \sim p}[g(x)] \approx \frac{1}{N}\sum_{i=1}^N g(x_i).
+\]</div>
+<p>Here, the right-hand side is what we compute from data, and the left-hand side represents the ideal quantity we are trying to approximate. This ideal accumulated quantity is written precisely using the concept of an <strong>expectation</strong>. When data is described by a probability distribution <span class="arithmatex">\(p(x)\)</span>, the average value of a quantity <span class="arithmatex">\(g(x)\)</span> is written as</p>
+<div class="arithmatex">\[
+\mathbb{E}_{x \sim p}[g(x)] = \int g(x)\,p(x)\,dx.
+\]</div>
+<p>You do not need a deep understanding of probability to read this expression. Conceptually, it means: consider all possible values of <span class="arithmatex">\(x\)</span>, weight each value by how common it is, and add everything up. Many DL loss functions can be understood this way, as average losses over all possible data. For discrete datasets, this expectation reduces to a finite sum, while for continuous variables it is written as an integral. The integral itself is not special—it is simply the mathematical way to express an average over all possible inputs when the space of inputs is continuous.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If the idea of expectations or probability distributions feels unfamiliar, you may want to read the page dedicated to the
+<a href="../03_probability">Probability Theory</a> alongside this section.</p>
+</div>
+<h2 id="differentiation">Differentiation</h2>
+<p>Differentiation answers the question: <em>if we change the input slightly, how much does the output change?</em>  Suppose we start at <span class="arithmatex">\(x\)</span> and then move a small step <span class="arithmatex">\(h\)</span> to <span class="arithmatex">\(x+h\)</span>. The corresponding change in the output is <span class="arithmatex">\(f(x+h) - f(x)\)</span>. By itself, this number depends on how large <span class="arithmatex">\(h\)</span> is. To describe change in a way that does not depend on the step size, we compare the output change to the input change by forming the ratio</p>
+<div class="arithmatex">\[
+\frac{f(x+h) - f(x)}{h}.
+\]</div>
+<p>This ratio is called a <em>difference quotient</em>. It describes the <strong>average rate of change</strong> of the function over the small interval from <span class="arithmatex">\(x\)</span> to <span class="arithmatex">\(x+h\)</span>. The <strong>derivative</strong> is defined as the limit of this ratio as the step size approaches zero:</p>
+<div class="arithmatex">\[
+f'(x) = \lim_{h \to 0} \frac{f(x+h) - f(x)}{h}.
+\]</div>
+<p>This definition captures the idea of an "instantaneous" rate of change. Intuitively, the derivative tells us the <strong>slope</strong> of the function at the point <span class="arithmatex">\(x\)</span>: if <span class="arithmatex">\(f'(x)\)</span> is large, a tiny change in <span class="arithmatex">\(x\)</span> causes a large change in <span class="arithmatex">\(f(x)\)</span>, if <span class="arithmatex">\(f'(x)\)</span> is close to zero, the function is locally flat. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In DL, if increasing a model weight slightly increases the loss, then the derivative of the loss with respect to that weight is positive. That means decreasing the weight slightly should reduce the loss (at least locally).</p>
+</div>
+<p>The derivative is not only a number; it also provides a practical approximation of how a function behaves near a given point. The key idea is that, over very small distances, a smooth function behaves almost like a straight line. If we start at a point <span class="arithmatex">\(x\)</span> and move a small step <span class="arithmatex">\(h\)</span>, the derivative <span class="arithmatex">\(f'(x)\)</span> tells us how steep the function is at <span class="arithmatex">\(x\)</span>. Using this slope, we can estimate how much the output will change. This leads to the approximation</p>
+<div class="arithmatex">\[
+f(x+h) \approx f(x) + f'(x)\,h.
+\]</div>
+<p>This formula should be read as a prediction: "start from the current value <span class="arithmatex">\(f(x)\)</span>, then add the change suggested by the slope times the step size." The approximation becomes more accurate as the step <span class="arithmatex">\(h\)</span> becomes smaller. Geometrically, this means that near the point <span class="arithmatex">\(x\)</span>, the function can be replaced by its tangent line. The tangent line touches the function at <span class="arithmatex">\(x\)</span> and has the same slope there. Over a very small region, the curve and the tangent line are almost indistinguishable, which is why the <a href="https://en.wikipedia.org/wiki/Linear_approximation">linear approximation</a> works.</p>
+<figure>
+  <img src="../../assets/images/calculus/tangent.svg" alt="Tangent line" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    By Chorch - Own Work, Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=926971">Link</a>
+  </figcaption>
+</figure>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In DL, training works because, at each step, we treat the loss as locally almost linear in the parameters. The gradient (see below) gives the slope of this local linear approximation. By making small parameter updates in the direction opposite to the gradient, we can reliably reduce the loss step by step, even when the overall loss function is highly complex.</p>
+</div>
+<h2 id="partial-derivatives">Partial derivatives</h2>
+<p>Deep learning models depend on many parameters at once. If the loss is written as</p>
+<div class="arithmatex">\[
+L = f(\theta_1, \theta_2, \dots, \theta_n),
+\]</div>
+<p>then each parameter has its own <strong>partial derivative</strong> <span class="arithmatex">\(\frac{\partial L}{\partial \theta_i}.\)</span> A partial derivative measures how the loss changes when one parameter is varied while all others are held fixed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For example, changing a single weight in a neural network affects the loss while all other weights remain unchanged.</p>
+</div>
+<h2 id="gradients">Gradients</h2>
+<p>The <strong>gradient</strong> collects all partial derivatives into a single vector:</p>
+<div class="arithmatex">\[
+\nabla_{\theta} L =
+\left[
+\frac{\partial L}{\partial \theta_1},
+\frac{\partial L}{\partial \theta_2},
+\dots,
+\frac{\partial L}{\partial \theta_n}
+\right].
+\]</div>
+<p>The gradient points in the direction where the loss increases most rapidly. Moving in the opposite direction locally reduces the loss. Each component of the gradient corresponds to one parameter and tells us how that parameter influences the loss. Training typically consists of repeated updates of the form</p>
+<div class="arithmatex">\[
+\theta \leftarrow \theta - \eta \nabla_{\theta} L,
+\]</div>
+<p>where <span class="arithmatex">\(\eta\)</span> is the learning rate. Each update makes a small change. Over many updates, these small changes accumulate and reduce the overall loss.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The learning rate update through backward pass is discussed in the notebook dedicated to <a href="../../notebooks/01_backprop/">backpropagation</a>.</p>
+</div>
+<h2 id="jacobian">Jacobian</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant">Jacobian</a> is the general first-order derivative for functions with vector inputs and vector outputs. If a function maps an <span class="arithmatex">\(n\)</span>-dimensional input vector to an <span class="arithmatex">\(m\)</span>-dimensional output vector, <span class="arithmatex">\(f : \mathbb{R}^n \rightarrow \mathbb{R}^m,\)</span> its Jacobian is an <span class="arithmatex">\(m \times n\)</span> matrix defined as</p>
+<div class="arithmatex">\[
+J =
+\begin{bmatrix}
+\frac{\partial f_1}{\partial x_1} &amp; \frac{\partial f_1}{\partial x_2} &amp; \dots &amp; \frac{\partial f_1}{\partial x_n} \\
+\frac{\partial f_2}{\partial x_1} &amp; \frac{\partial f_2}{\partial x_2} &amp; \dots &amp; \frac{\partial f_2}{\partial x_n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial f_m}{\partial x_1} &amp; \frac{\partial f_m}{\partial x_2} &amp; \dots &amp; \frac{\partial f_m}{\partial x_n}
+\end{bmatrix}.
+\]</div>
+<p>Each entry measures how one component of the output changes when one component of the input is varied. The Jacobian therefore captures all first-order sensitivities between inputs and outputs.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In DL, layers often map vectors to vectors. Although Jacobians are rarely written explicitly, they are the objects through which changes propagate from one layer to the next. When the output is a scalar loss, the Jacobian reduces to a row vector. Conceptually, the gradient introduced earlier is simply the Jacobian of a scalar-valued function. Backpropagation avoids forming full Jacobian matrices explicitly. Instead, it efficiently computes vector–Jacobian products, which is why gradients can be computed for models with millions of parameters at reasonable cost.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Jacobians are best understood through linear algebra. If matrices and vector transformations feel unfamiliar, you may want to read the <a href="../02_linear_algebra">Linear Algebra</a> page alongside this section.</p>
+</div>
+<h2 id="chain-rule">Chain Rule</h2>
+<p>DL models are built by <em>composing functions</em>. Instead of a single operation, a model applies many transformations one after another. Each transformation takes the output of the previous one as its input. To understand how changes propagate through such a model, consider a simple composition:</p>
+<div class="arithmatex">\[
+y = g(x), \qquad L = f(y).
+\]</div>
+<p>Here, <span class="arithmatex">\(x\)</span> influences <span class="arithmatex">\(L\)</span> indirectly, through the intermediate variable <span class="arithmatex">\(y\)</span>. If we change <span class="arithmatex">\(x\)</span> slightly, <span class="arithmatex">\(y\)</span> will change, and that change in <span class="arithmatex">\(y\)</span> will in turn affect <span class="arithmatex">\(L\)</span>. The chain rule formalizes this dependency.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Chain_rule">chain rule</a> states that the sensitivity of <span class="arithmatex">\(L\)</span> with respect to <span class="arithmatex">\(x\)</span> is the product of two sensitivities:</p>
+<div class="arithmatex">\[
+\frac{dL}{dx} = \frac{dL}{dy} \cdot \frac{dy}{dx}.
+\]</div>
+<p>This equation should be read step by step. First, <span class="arithmatex">\(\frac{dy}{dx}\)</span> tells us how a small change in <span class="arithmatex">\(x\)</span> affects <span class="arithmatex">\(y\)</span>. Second, <span class="arithmatex">\(\frac{dL}{dy}\)</span> tells us how a small change in <span class="arithmatex">\(y\)</span> affects the loss. Multiplying them gives the total effect of changing <span class="arithmatex">\(x\)</span> on <span class="arithmatex">\(L\)</span>.</p>
+<p>This idea extends naturally to longer chains. If a model applies many functions in sequence, the chain rule is applied repeatedly, multiplying together the local sensitivities at each step. Each operation contributes a small piece to the overall gradient.</p>
+<h2 id="taylor-expansion">Taylor Expansion</h2>
+<p><a href="https://en.wikipedia.org/wiki/Taylor_series">Taylor series</a> provides a systematic way to describe how a function behaves near a given point. It expresses a function as a sum of terms built from its derivatives at that point. Each term captures progressively finer details of how the function changes.</p>
+<p>For a function <span class="arithmatex">\(f(x)\)</span> expanded around a point <span class="arithmatex">\(x\)</span>, the Taylor series in one dimension is</p>
+<div class="arithmatex">\[
+f(x+h) = f(x) + f'(x)h + \tfrac{1}{2}f''(x)h^2 + \tfrac{1}{6}f'''(x)h^3 + \dots
+\]</div>
+<p>This expression says that the value of the function at <span class="arithmatex">\(x+h\)</span> can be predicted by starting from the value at <span class="arithmatex">\(x\)</span> and then adding corrections based on information about how the function changes at <span class="arithmatex">\(x\)</span>.</p>
+<p>In practice, we rarely use the full infinite series. Instead, we keep only the first few terms. This truncated version is called a <strong>Taylor expansion</strong> and is used as a local approximation.</p>
+<p>Keeping only the first-order term gives the linear approximation already used in gradient-based learning:</p>
+<div class="arithmatex">\[
+f(x+h) \approx f(x) + f'(x)h.
+\]</div>
+<p>This approximation assumes that, for small updates, the function behaves almost like a straight line near the current point. It explains why gradients provide useful guidance for optimization.</p>
+<p>This local linear approximation relies on an important assumption: the function must be <strong>smooth enough</strong> near the point of expansion. Smoothness means that small changes in the input lead to small, predictable changes in the output, and that derivatives do not change abruptly.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In DL, loss functions are often not perfectly smooth everywhere, but they are typically <strong>piecewise smooth</strong>. This is sufficient. Taylor expansions and gradient-based updates only rely on local behavior along the training trajectory, not on global smoothness of the loss surface. A common example is the <a href="../../notebooks/02_neural_network/">ReLU activation</a>, which is not differentiable at zero but is differentiable almost everywhere else. Gradient-based methods rely on this local behavior and use subgradients at nondifferentiable points.</p>
+</div>
+<p>Keeping second-order terms reveals that this linear behavior is only approximate. These higher-order terms explain why the slope itself can change as we move, motivating the need to understand second-order structure.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In DL, gradient-based learning relies on first-order Taylor approximations. Understanding why and when this approximation breaks down requires looking at second-order effects, which are captured by the Hessian.</p>
+</div>
+<h2 id="hessian">Hessian</h2>
+<p>While the Jacobian describes first-order behavior—how the loss changes under small parameter changes—the <a href="https://en.wikipedia.org/wiki/Hessian_matrix">Hessian</a> describes second-order behavior.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> It captures how these first-order sensitivities themselves change as we move in parameter space. The Hessian of <span class="arithmatex">\(L\)</span> with respect to the parameter vector <span class="arithmatex">\(\theta\)</span> is a matrix of second-order partial derivatives:</p>
+<div class="arithmatex">\[
+H =
+\begin{bmatrix}
+\frac{\partial^2 L}{\partial \theta_1^2} &amp;
+\frac{\partial^2 L}{\partial \theta_1 \partial \theta_2} &amp;
+\dots &amp;
+\frac{\partial^2 L}{\partial \theta_1 \partial \theta_n} \\[0.5em]
+\frac{\partial^2 L}{\partial \theta_2 \partial \theta_1} &amp;
+\frac{\partial^2 L}{\partial \theta_2^2} &amp;
+\dots &amp;
+\frac{\partial^2 L}{\partial \theta_2 \partial \theta_n} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial^2 L}{\partial \theta_n \partial \theta_1} &amp;
+\frac{\partial^2 L}{\partial \theta_n \partial \theta_2} &amp;
+\dots &amp;
+\frac{\partial^2 L}{\partial \theta_n^2}
+\end{bmatrix}.
+\]</div>
+<p>Each entry tells us how the sensitivity with respect to one parameter changes when another parameter is varied. In this sense, the Hessian measures <strong>curvature</strong>: how the loss surface bends in different directions. Consider a simple two-parameter loss <span class="arithmatex">\(L(\theta_1, \theta_2)\)</span>. The diagonal entries of the Hessian describe how sharply the loss curves when we move along each parameter direction individually. The off-diagonal entries describe how changes in one parameter affect the sensitivity with respect to another parameter.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In DL, this information explains important optimization behavior. Directions with strong positive curvature correspond to narrow valleys, where large updates can easily overshoot. Directions with weak curvature correspond to flat regions, where progress can be slow. Negative curvature indicates directions where the loss bends downward, which is typical near saddle points. Although full Hessians are rarely computed explicitly in DL due to their size and cost, their effects are always present. Learning rate selection, optimization stability, and the behavior of training near minima and saddle points are all influenced by second-order structure.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Like the Jacobian, the Hessian is a linear algebra object—a matrix encoding directional behavior. If matrices, eigenvalues, or curvature interpretations feel unfamiliar, you may want to read the
+<a href="../02_linear_algebra">Linear Algebra</a> page alongside this section.</p>
+</div>
+<h2 id="minima-saddle-points-and-convexity">Minima, saddle points, and convexity</h2>
+<p>A <strong>minimum</strong> is a point where small changes in any direction increase the loss. At such a point, the gradient is zero and the surrounding curvature points upward.</p>
+<p>A <strong>saddle point</strong> is also a point where the gradient is zero, but the behavior is mixed: the loss increases in some directions and decreases in others. This means the point is neither a true minimum nor a maximum. The distinction between minima and saddle points is determined by the local curvature described by the Hessian.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In high-dimensional DL models, saddle points are far more common than poor local minima. Gradient-based methods can often escape saddle points because curvature creates unstable directions, and stochastic noise from minibatches helps push parameters away from them.</p>
+</div>
+<p>In classical optimization, <strong>convex</strong> loss functions play a special role. For a convex function, any point where the gradient is zero is guaranteed to be a global minimum. There are no saddle points and no spurious local minima.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Most DL loss functions are <strong>not convex</strong>. As a result, global guarantees do not apply. Instead, training relies on local information provided by gradients and curvature. Despite the lack of convexity, gradient-based methods work well in practice due to overparameterization, stochastic gradients, and the structure induced by modern architectures, even though no global guarantees apply.</p>
+</div>
+<p>Gradient-based learning does not require global convexity. What matters is that, locally, the loss behaves smoothly enough for gradients and Taylor approximations to provide reliable guidance along the training trajectory.</p>
+<h2 id="fundamental-theorem-of-calculus">Fundamental Theorem of Calculus</h2>
+<p>The <a href="https://en.wikipedia.org/wiki/Fundamental_theorem_of_calculus">Fundamental Theorem of Calculus</a> explains the precise relationship between accumulation and change. If we define an accumulated quantity</p>
+<div class="arithmatex">\[
+F(x) = \int_a^x f(t)\,dt,
+\]</div>
+<p>then <span class="arithmatex">\(F(x)\)</span> is differentiable and</p>
+<div class="arithmatex">\[
+\frac{d}{dx} F(x) = f(x).
+\]</div>
+<p>This means that differentiation recovers the rate at which accumulation occurs. Conversely, if <span class="arithmatex">\(F(x)\)</span> is any antiderivative of <span class="arithmatex">\(f(x)\)</span>, then total accumulation over an interval can be computed as</p>
+<div class="arithmatex">\[
+\int_a^b f(x)\,dx = F(b) - F(a).
+\]</div>
+<p>Together, these statements show that local change and total accumulation are two sides of the same idea.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In DL, losses are defined as accumulated quantities, while gradients describe local change. Training works because following local gradients causes a consistent reduction in the accumulated loss over time.</p>
+</div>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>For a further DL–oriented treatment of gradients, Jacobians, Hessians, and numerical aspects of optimization, see Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). Deep Learning. MIT Press. <a href="https://www.deeplearningbook.org/contents/numerical.html">Chapter 4: Numerical Computation</a>.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Mathematics of Deep Learning">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Mathematics of Deep Learning
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../02_linear_algebra/" class="md-footer__link md-footer__link--next" aria-label="Next: Linear Algebra">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Linear Algebra
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://shahaliyev.org/" target="_blank" rel="noopener" title="shahaliyev.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M399 384.2c-22.1-38.4-63.6-64.2-111-64.2h-64c-47.4 0-88.9 25.8-111 64.2 35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8M0 256a256 256 0 1 1 512 0 256 256 0 1 1-512 0m256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/shahaliyev/csci4701" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://ada.edu.az/en/" target="_blank" rel="noopener" title="ada.edu.az" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M271.9 20.2c-9.8-5.6-21.9-5.6-31.8 0l-224 128c-12.6 7.2-18.8 22-15.1 36S17.5 208 32 208h32v208l-51.2 38.4C4.7 460.4 0 469.9 0 480c0 17.7 14.3 32 32 32h448c17.7 0 32-14.3 32-32 0-10.1-4.7-19.6-12.8-25.6L448 416V208h32c14.5 0 27.2-9.8 30.9-23.8s-2.5-28.8-15.1-36l-224-128zM400 208v208h-64V208zm-112 0v208h-64V208zm-112 0v208h-64V208zm80-112a32 32 0 1 1 0 64 32 32 0 1 1 0-64"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.tabs", "content.code.copy", "content.code.annotate", "search.highlight", "search.suggest", "content.footnote.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -17,11 +17,31 @@
          <lastmod>2026-01-18</lastmod>
     </url>
     <url>
-         <loc>https://shahaliyev.org/csci4701/mathematics/la/</loc>
+         <loc>https://shahaliyev.org/csci4701/mathematics/</loc>
+         <lastmod>2026-01-18</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/mathematics/01_calculus/</loc>
+         <lastmod>2026-01-18</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/mathematics/02_linear_algebra/</loc>
+         <lastmod>2026-01-18</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/mathematics/03_probability/</loc>
+         <lastmod>2026-01-18</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/mathematics/04_information/</loc>
          <lastmod>2026-01-18</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/notebooks/01_backprop/</loc>
+         <lastmod>2026-01-18</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/notebooks/02_neural_network/</loc>
          <lastmod>2026-01-18</lastmod>
     </url>
 </urlset>
