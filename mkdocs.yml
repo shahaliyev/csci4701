@@ -14,9 +14,8 @@ theme:
     - content.code.annotate
     - search.highlight
     - search.suggest
-    - search.share
+    - content.footnote.tooltips
 
-    
   palette:
     - scheme: default
       primary: black
@@ -37,6 +36,7 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.arithmatex:
       generic: true
+  - footnotes
 
 plugins:
   - search
@@ -60,6 +60,5 @@ extra:
 repo_url: https://github.com/shahaliyev/csci4701
 repo_name: GitHub
 
-edit_uri: edit/main/docs/
 
 

@@ -1,86 +1,151 @@
 # Deep Learning Overview
 
-Early Artificial Intelligence focused on what is often called the *knowledge-based approach*, where intelligence was treated as something that could be explicitly written down. Researchers attempted to encode reasoning as rules, symbols, and logical statements. If a human expert knew how to solve a problem, the reasoning steps would be formalized and executed by a machine. This approach worked in narrow, structured environments, but it failed when faced with the ambiguity and variability of the real world.
+<div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
+  <time datetime="2026-01-18">18 Jan 2026</time> ·
+  <time datetime="PT9M">9 min</time>
+</div>
 
-The failure was not accidental. Tasks that humans perform effortlessly, such as recognizing faces or understanding speech, are precisely the tasks that are hardest to describe step by step. Human expertise in these domains is largely implicit rather than explicit. Rule-based systems therefore became brittle, difficult to scale, and expensive to maintain. Small changes in the environment often required rewriting large portions of the system, making progress slow and fragile.
 
-Machine Learning offered a different perspective. Instead of programming intelligence directly, machines were allowed to **learn from data**. Classical machine learning algorithms such as linear models, logistic regression, naïve Bayes, and decision trees achieved real success in applications like medical decision support, spam filtering, and credit scoring. However, these methods relied heavily on *hand-crafted features*. Human designers had to decide in advance which properties of the data were relevant, and performance depended more on feature design than on the learning algorithm itself.
+**Artificial Intelligence (AI)** is the broad field concerned with building systems that perform tasks requiring intelligence. **Machine Learning (ML)** is a subfield of AI that enables systems to learn patterns and make decisions from data rather than explicit rules. Deep **Learning (DL)** is a subfield of ML that uses multi-layer neural networks to learn complex representations from large datasets.
 
-This reliance on features became a serious limitation as data grew more complex. Images, audio signals, and language live in very high-dimensional spaces. In such spaces, intuition breaks down, a phenomenon often referred to as the **curse of dimensionality**. As dimensionality increases, data becomes sparse, distances lose their meaning, and small modeling assumptions can cause large failures. Feature engineering becomes brittle and does not scale to the richness of real-world data.
 
-The natural response was **representation learning**. Instead of manually defining features, the model learns useful representations directly from raw data. This idea is old. The mathematical foundations existed long ago, and learning algorithms capable of training multi-layer systems were already known. What was missing was the environment in which these ideas could work effectively.
+<div class="admonition note">
+  <p class="admonition-title">Note</p>
+  <p style="margin: 1em 0;">
+    The following sources were used in preparing this text:
+  </p>
+  <ul>
+    <li>
+      Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016).
+      <em>Deep Learning</em>. MIT Press, Chapter 1.
+      <a href="https://www.deeplearningbook.org/contents/intro.html" target="_blank" rel="noopener">
+        https://www.deeplearningbook.org/contents/intro.html
+      </a>
+    </li>
+    <li>
+      Schmidhuber, J. (2015).
+      <em>Deep Learning in Neural Networks: An Overview.
+      </em>Neural Networks.
+      <a href="https://people.idsia.ch/~juergen/deep-learning-history.html" target="_blank" rel="noopener">
+        https://people.idsia.ch/~juergen/deep-learning-history.html
+      </a>
+    </li>
+    <li>
+      Zhang, A., Lipton, Z. C., Li, M., &amp; Smola, A. J.
+      <em>Dive into Deep Learning</em>. Chapter 3.1.
+      <a href="https://d2l.ai/chapter_linear-regression/linear-regression.html" target="_blank" rel="noopener">
+        https://d2l.ai/chapter_linear-regression/linear-regression.html
+      </a>
+    </li>
+  </ul>
+</div>
 
-This is why deep learning feels sudden, but is not sudden.
+## AI / ML / DL
 
----
+AI initially focused on what is often called the knowledge-based approach, where intelligence was treated as something that could be explicitly written down. Researchers attempted to encode reasoning as rules, symbols, and logical statements. If a human expert knew how to solve a problem, the reasoning steps would be formalized and executed by a machine.
 
-### Biological Neurons and Artificial Ones
+This approach failed when faced with the ambiguity and variability of the real world. Tasks that humans perform effortlessly, such as recognizing faces or understanding speech, are precisely the tasks that are hardest to describe step by step. Human expertise in these domains is largely implicit rather than explicit. Rule-based systems therefore became brittle, difficult to scale, and expensive to maintain. Small changes in the environment often required rewriting large portions of the system, making progress slow and fragile.
 
-Deep learning is not an attempt to simulate the brain. Artificial neural networks are inspired by biological neurons, but the resemblance is conceptual rather than literal. A biological neuron is a living cell designed for communication in a noisy, energy-constrained environment. It receives signals through dendrites, integrates them in the cell body (soma), and, if a threshold is reached, sends an electrical pulse along the axon to other neurons through synapses. Learning occurs locally by strengthening or weakening synaptic connections through repeated interaction with the environment. There is no global objective function and no centralized error signal guiding learning.
+<figure>
+  <img src="../../assets/images/overview/aimldl.png" alt="AI/ML/DL relation" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    Deep Learning and AI ~ Goodfellow, I., Bengio, Y., & Courville, A. (2016). <a href='http://www.deeplearningbook.org'>Deep Learning</a>. MIT Press. 
+  </figcaption>
+</figure>
 
-Artificial neural networks operate very differently. An artificial neuron has no physical structure, no chemistry, and no temporal signaling. It is a mathematical function that combines numerical inputs and produces a numerical output. Learning is driven by a global error signal defined by the engineer, and parameters across the entire network are adjusted in a coordinated way to reduce that error. This mechanism, while extremely effective computationally, has no known biological counterpart.
+ML offered a different perspective. Instead of programming intelligence directly, machines were allowed to **learn patterns from data**. Classical ML algorithms such as linear models, logistic regression, naïve Bayes, and decision trees achieved real success in applications like medical decision support, spam filtering, and credit scoring. However, these methods relied heavily on hand-crafted features. Human designers had to decide in advance which properties of the data were relevant, and performance depended more on feature design than on the learning algorithm itself.
 
-The success of deep learning does not come from biological realism. It comes from the ability to compose many simple mathematical operations into powerful systems that can be optimized efficiently on modern hardware.
+This reliance on features became a serious limitation as data grew more complex. Images, audio signals, and language live in very high-dimensional spaces. In such spaces, intuition breaks down, a phenomenon often referred to as the [curse of dimensionality](https://en.wikipedia.org/wiki/Curse_of_dimensionality). As dimensionality increases, data becomes sparse, distances lose their meaning, and small modeling assumptions can cause large failures. Feature engineering becomes brittle and does not scale to the richness of real-world data.
 
----
+The natural response to this problem was [representation learning](https://en.wikipedia.org/wiki/Feature_learning). Instead of manually defining features, the model learns useful representations directly from raw data. Early methods such as [Principal Component Analysis (PCA)](https://en.wikipedia.org/wiki/Principal_component_analysis), kernel methods, sparse coding, and shallow neural networks pursued this idea. They demonstrated that learning intermediate representations could significantly improve performance and reduce reliance on handcrafted features. However, these approaches were typically shallow, consisting of only one or two layers of transformation. As a result, they struggled to capture the hierarchical structure present in real-world data.
 
-### Why Depth Matters
+Many perceptual tasks are inherently *compositional*. Images are composed of edges, edges form textures and parts, parts form objects, and objects form scenes. Speech and language exhibit similar hierarchies. Shallow models can learn simple transformations, but they cannot efficiently represent such multi-level abstractions. Attempting to do so requires an exponential number of features or parameters, making learning unstable and data-inefficient. In practice, representation learning without depth hit a ceiling: it reduced feature engineering, but it could not scale to the complexity of vision, speech, and language.
 
-The defining feature of deep learning is **depth**. A deep model builds complex representations by stacking many simple transformations. Each layer converts its input into a new representation, gradually disentangling underlying factors such as lighting, position, accent, or context. Some internal units correspond loosely to meaningful patterns, while others exist primarily to stabilize computation or route information.
+DL extends representation learning by stacking many layers of nonlinear transformations. Each layer learns to represent the data at a higher level of abstraction, allowing complex structures to be built incrementally. 
 
-The idea of composing simple functions into complex ones is centuries old. The mathematical backbone of modern learning is the **chain rule**, introduced by Gottfried Wilhelm Leibniz in the seventeenth century. Without it, training deep models would be impossible. This leads to an important observation: deep learning did not fail historically because the theory was wrong. It failed because it was too expensive to implement at scale.
+At a fundamental level, both classical ML and DL do the same thing: they **learn a function from data**. The difference is not in what is learned, but in how much of the function is learned automatically. In all cases, learning amounts to selecting parameters so that a function best approximates the desired input–output relationship under a given objective.
 
----
+Interestingly, DL did not introduce fundamentally new mathematical ideas. Many concepts, such as multi-layer neural networks, backpropagation, gradient-based optimization, and even convolutional architectures were known decades earlier. 
 
-### Old Ideas, New Constraints
+## Biological and Artificial Neurons
 
-Learning from data predates computers. Linear regression, mathematically equivalent to a shallow neural network, was already used by Gauss and Legendre in the early nineteenth century. In the mid-twentieth century, researchers such as McCulloch and Pitts, Rosenblatt, and Widrow explored learning machines inspired by biology. These systems were limited, often linear, and constrained by the hardware of their time.
+DL is **not** an attempt to simulate the brain. [Artificial neural networks](https://en.wikipedia.org/wiki/Neural_network_(machine_learning)) are inspired by biological neurons, but the resemblance is conceptual rather than literal. 
 
-What is often overlooked is that **multi-layer learning systems already existed by the 1960s**. Researchers such as Ivakhnenko and Lapa trained systems with adaptive hidden layers decades before the term “deep learning” became popular. Later, gradient-based learning methods were developed that made training deep networks theoretically sound. The obstacle was never the lack of ideas. It was the cost of computation and the lack of data.
+<figure>
+  <img src="../../assets/images/overview/neuron.svg" alt="biological neuron" style="max-width: 100%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+      Structure of a typical neuron with Schwann cells in the peripheral nervous system ~ "Anatomy and Physiology" by the US National Cancer Institute's Surveillance | <a href='https://creativecommons.org/licenses/by-sa/3.0/'>CC BY-SA 3.0</a> | <a href='https://commons.wikimedia.org/wiki/File:Neuron.svg#/media/File:Neuron.svg'>Wikimedia Commons</a>
+  </figcaption>
+</figure>
 
----
 
-### When Data Stopped Being Scarce
+A [biological neuron](https://en.wikipedia.org/wiki/Neuron) is a living cell designed for communication in a noisy, energy-constrained environment. It receives signals through *dendrites*, integrates them in the *soma* (cell body), and, if a threshold is reached, sends an electrical pulse along the *axon* to other neurons through *synapses*. Learning occurs locally by strengthening or weakening synaptic connections through repeated interaction with the environment.
 
-The modern era began when data stopped being rare. This shift was driven by broader technological changes. Digital sensors replaced analog ones, smartphones placed cameras and microphones in billions of pockets, and the internet enabled continuous sharing of images, text, audio, and video. Companies began logging user interactions by default, storage became cheap, and bandwidth increased dramatically. Data was no longer collected deliberately; it was generated automatically as a byproduct of everyday life.
+<figure>
+  <img src="../../assets/images/overview/artificial_neuron.svg" alt="artificial neuron" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+      Artificial Neuron ~ Funcs, Own work | <a href='https://creativecommons.org/public-domain/cc0/'>CC0</a> | <a href='https://commons.wikimedia.org/w/index.php?curid=148910507'>Wikimedia Commons</a>
+  </figcaption>
+</figure>
 
-A symbolic moment was the creation of **ImageNet** (Deng et al.), curated by Fei-Fei Li and collaborators. ImageNet contained roughly 14 million labeled images, with about 1.2 million training images across 1,000 categories used in its main benchmark. This scale exposed the limitations of hand-crafted features. Models that performed well on small datasets failed to generalize, while systems capable of learning representations directly from data improved reliably.
+An artificial neuron is a mathematical function that combines numerical inputs and produces a numerical output. Much like how airplanes were inspired by birds but rely on entirely different aerodynamic mechanisms, the success of DL does not come from biological realism. Biological systems served primarily as inspiration.
 
-In 2012, **AlexNet** (Krizhevsky et al.) won the ImageNet competition by a large margin. The model was large and computationally demanding, requiring multiple graphics processing units to train. This detail is crucial. Deep learning did not succeed because it was elegant. It succeeded because it finally fit on available hardware.
+## Evolution of Deep Learning
 
----
+Learning from data predates computers. The mathematical backbone of modern deep learning is the [chain rule](https://en.wikipedia.org/wiki/Chain_rule), formalized by Gottfried Wilhelm Leibniz and later exploited by backpropagation algorithms. Carl Friedrich Gauss and Adrien-Marie Legendre used [linear regression](https://en.wikipedia.org/wiki/Linear_regression) in the early nineteenth century, a method mathematically equivalent to a shallow neural network. In the mid-twentieth century, researchers such as Warren McCulloch and Walter Pitts, Frank Rosenblatt, and Bernard Widrow explored learning machines inspired by biological neurons. These early systems were limited—often linear or single-layer—and constrained by the theory and hardware of their time.
 
-### Why GPUs, Software, and Python Mattered
+Multi-layer learning systems already existed by the 1960s and 1970s. Alexey Ivakhnenko and Valentin Lapa trained models with adaptive hidden layers, while Kunihiko Fukushima introduced the Neocognitron, a hierarchical, convolution-like architecture that anticipated modern convolutional networks.
 
-Training neural networks is dominated by large-scale numerical operations repeated many times. Central Processing Units (CPUs) are optimized for general-purpose tasks and complex control flow, but they are inefficient for massive parallel arithmetic. Graphics Processing Units (GPUs), originally designed for rendering images, apply the same operation to many data points simultaneously. This made them a natural fit for neural network training.
+But why did DL become popular only after the 2010s? The obstacle was never the lack of a correct algorithm. It was the lack of data and the cost of computation. DL worked because three forces aligned. Data became abundant because digital life produces it automatically. Computation became affordable because parallel hardware matured. And (less critically) software matured enough to make experimentation fast and scalable.
 
-NVIDIA became central to deep learning because it invested early in programmable GPUs and supporting software. The introduction of CUDA made GPU computing accessible to researchers, allowing models that once took weeks to train to be trained in days or hours. Later, specialized accelerators such as Tensor Processing Units (TPUs) followed the same principle: deep learning scales when hardware matches its computational structure.
+## Data
 
-Equally important was software. **Python** emerged as the dominant language for machine learning not because it is fast, but because it is expressive. Researchers could prototype ideas quickly while relying on optimized numerical libraries written in lower-level languages. Frameworks such as PyTorch and TensorFlow lowered the barrier to experimentation and accelerated progress. Deep learning advanced not only because machines became faster, but because trying new ideas became cheaper.
+The modern era began when data stopped being rare. This shift was driven by broader technological changes. Digital sensors replaced analog ones, smartphones placed cameras and microphones in billions of pockets, and the internet enabled continuous sharing of images, text, audio, and video. Companies began logging user interactions by default, storage became cheap, and bandwidth increased dramatically. Data was no longer collected deliberately, it was generated automatically as a byproduct of everyday life.
 
----
+Before large-scale datasets became feasible, progress relied on small, carefully curated benchmarks. The famous [MNIST](https://en.wikipedia.org/wiki/MNIST_database) dataset was collected by the [National Institute of Standards and Technology](https://www.nist.gov/) (NIST), and later was modified (hence the M before NIST) for simpler usage of ML algorithms[^2]. MNIST is a simple dataset of handwritten digits that allowed researchers to isolate questions about optimization, architectures, and learning dynamics without the confounding effects of scale and noise. 
 
-### Transformers and Beyond
+<figure>
+  <img src="../../assets/images/overview/mnist.png" alt="MNIST dataset" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    MNIST inputs ~ Goodfellow, I., Bengio, Y., & Courville, A. (2016). <a href='http://www.deeplearningbook.org'>Deep Learning</a>. MIT Press. 
+  </figcaption>
+</figure>
 
-While computer vision advanced through depth and scale, natural language processing followed a parallel path. A major conceptual shift occurred with the introduction of the **Transformer** architecture (Vaswani et al.), which replaced sequential processing with attention-based information routing. This design aligned well with parallel hardware and scaled effectively with data. The same architecture was later applied to images through Vision Transformers, revealing a shared computational backbone between vision and language.
+A symbolic moment was the creation of [ImageNet](https://www.image-net.org/) (Deng et al.). ImageNet contained roughly 14 million labeled images, with about 1.2 million training images across 1,000 categories used in its main benchmark. This scale exposed the limitations of hand-crafted features. Models that performed well on small datasets failed to generalize, while systems capable of learning representations directly from data improved reliably.
 
-Deep learning also extended beyond perception into decision-making. The combination of deep learning and reinforcement learning became widely visible through AlphaGo and later AlphaZero (Silver et al.), which learned complex games through self-play without human examples. These systems demonstrated that deep learning can support not only recognition, but also planning and strategy.
 
----
+In 2012, [AlexNet](https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) (Krizhevsky et al.) won the ImageNet competition by a large margin. The model was unusually large and computationally demanding, and training it required GPUs rather than CPUs. This detail is crucial. DL did not succeed merely because sufficient data became available, it succeeded because the models finally fit within the limits of available hardware.[^1]
 
-### Why Deep Learning Worked Now
+> As of 2016, a rough rule of thumb is that a supervised deep learning algorithm will generally achieve acceptable performance with around 5,000 labeled examples per category and will match or exceed human performance when trained with a dataset containing at least 10 million labeled examples.  
+>  
+> _[Deep Learning  (2016) Chapter I](https://shahaliyev.org/writings/intro-deep-learning) ~ Goodfellow, I., Bengio, Y., & Courville, A. MIT Press._
 
-Deep learning worked because three forces aligned. Data became abundant because digital life produces it automatically. Computation became affordable because parallel hardware matured. Software matured enough to make experimentation fast and scalable. The ideas were old. The environment was new.
+## Hardware
 
-Deep learning is not a theory of intelligence. It is a **scaling story**. It shows what happens when long-standing mathematical ideas finally meet sufficient data, sufficient computation, and the right tools.
+Training neural networks is dominated by large-scale numerical operations repeated many times. CPUs are optimized for general-purpose tasks and complex control flow, but they are inefficient for massive parallel arithmetic. [GPUs](https://www.youtube.com/watch?v=h9Z4oGN89MU), originally designed for rendering images, apply the same operation to many data points simultaneously. This made them a natural fit for neural network training.
 
----
+[NVIDIA](https://www.nvidia.com/en-us/) became central to DL because it invested early in programmable GPUs and the software needed to exploit them. Although originally developed for video games, GPUs are fundamentally optimized for massively parallel linear algebra, especially matrix and tensor operations. The introduction of [CUDA](https://en.wikipedia.org/wiki/CUDA) exposed this capability to researchers, making large-scale matrix multiplications—the core computational workload of neural networks—efficient and accessible. As a result, models that once took weeks to train on CPUs could be trained in days or hours. Later accelerators such as Tensor Processing Unit (TPU) followed the same principle: DL scales when hardware is designed around dense linear algebra, high memory bandwidth, and parallel computation.
 
-### References
+## Software
 
-1. Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep Learning*. MIT Press. Chapter 1.  
-2. Schmidhuber, J. (2015). “Deep Learning in Neural Networks: An Overview.” *Neural Networks*, 61, 85–117.  
-3. Deng, J., Dong, W., Socher, R., Li, L.-J., Li, K., & Fei-Fei, L. (2009). “ImageNet: A Large-Scale Hierarchical Image Database.” *CVPR*.  
-4. Krizhevsky, A., Sutskever, I., & Hinton, G. E. (2012). “ImageNet Classification with Deep Convolutional Neural Networks.” *NeurIPS*.  
-5. Vaswani, A., et al. (2017). “Attention Is All You Need.” *NeurIPS*.  
-6. Silver, D., et al. (2017). “Mastering the Game of Go without Human Knowledge.” *Nature*.  
+The relevant software emerged in parallel with hardware. [Python](https://www.python.org/) became the dominant language for ML because it allowed researchers to write clear, concise code while delegating computationally intensive operations to highly optimized numerical libraries implemented in C, C++, and CUDA. This separation between high-level model logic and low-level performance-critical kernels proved decisive. Researchers could focus on ideas rather than infrastructure, iterating rapidly while still benefiting from efficient linear algebra routines running on GPUs.
+
+Modern DL frameworks such as [PyTorch](https://pytorch.org/) and [TensorFlow](https://www.tensorflow.org/) made it possible to automate differentiation, memory management, and efficient parallel execution. As a result, experiments that once required weeks of careful implementation could be expressed in hundreds of lines of code and tested within days.
+
+PyTorch is primarily a tool for research and experimentation. It is designed to feel like ordinary Python code, which makes models easy to write, modify, and debug. Tools such as [PyTorch Lightning](https://lightning.ai/docs/pytorch/stable/) build on this flexibility by handling routine tasks like training loops and logging, allowing users to keep their focus on the model itself.
+
+TensorFlow, on the other hand, is more strongly oriented toward engineering and deployment. It was built to support large systems that need to run reliably across different machines and environments. With the addition of [Keras](https://keras.io/), TensorFlow offers a high-level interface that makes it easy to define standard models and training pipelines in a consistent way. This structure is well suited to production settings, where models must be maintained, scaled, and deployed efficiently over long periods of time.
+
+## Transformers and Beyond
+
+**Computer Vision (CV)** and **Natural Language Processing (NLP)** are the two main perception-oriented branches of modern DL. Both aim to convert raw, high-dimensional signals into structured representations that machines can reason over, but they operate on different data modalities and evolved under different constraints.
+
+CV focuses on visual data such as images and videos. Early progress was driven by convolutional neural networks (CNN). NLP deals with sequential, symbolic data such as text and speech. While early neural NLP relied on recurrent models (RNN), a major conceptual shift occurred with the introduction of the [Transformer architecture](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf) (Vaswani et al., 2017), which replaced sequential recurrence with attention-based information routing. This change enabled massive **parallelism**, better long-range dependency modeling, and effective scaling with data and compute. The same architecture was later adapted to images via [Vision Transformers](https://arxiv.org/pdf/2010.11929) (Dosovitskiy et al., 2020), revealing that vision and language could share a common computational backbone despite their different input structures.
+
+DL also extended beyond perception into decision-making. The combination of deep learning and [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) became widely visible through [AlphaGo](https://discovery.ucl.ac.uk/id/eprint/10045895/1/agz_unformatted_nature.pdf) and later [AlphaZero](https://arxiv.org/pdf/1712.01815) (Silver et al., 2016; 2018), which learned complex games through self-play without human examples.
+
+Building on the Transformer architecture, [Large Language Models](https://en.wikipedia.org/wiki/Large_language_model) (LLM) such as Generative Pre-trained Transformer (GPT) marked a shift from task-specific NLP systems to general-purpose [foundation models](https://en.wikipedia.org/wiki/Foundation_model). By training a model on massive text corpora, GPT-style models learn broad linguistic, semantic, and world-level regularities that can be reused across tasks. Their success demonstrated that scale—data, parameters, and compute—can replace handcrafted linguistic structure, and that a single architecture can support a wide range of capabilities, including translation, summarization, reasoning, and code generation, without explicit task-specific design.
+
+[^1]: Even then, [Alex Krizhevsky](https://www.cs.toronto.edu/~kriz/) had to distribute training across two NVIDIA GeForce GTX 580 GPUs, each with 3 GB of memory (best at the moment), because the network did not fit on a single GPU.
+
+[^2]: [Geoffrey Hinton](https://www.cs.toronto.edu/~hinton/) called this dataset "the drosophila of ML", a fruit fly extensively used in genetic research labs.
