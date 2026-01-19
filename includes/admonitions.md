@@ -27,7 +27,7 @@
 </div>
 
 <div class="admonition success">
-  <p class="admonition-title">Success</p>
+  <p class="admonition-title">Exercise</p>
   <p style="margin: 1em 0;">
     Your text here.
   </p>

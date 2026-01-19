@@ -1,0 +1,7 @@
+/* Center images/plots produced from converted notebooks */
+.jp-RenderedImage,
+.output_png,
+.output_svg {
+  display: flex;
+  justify-content: center;
+}
