@@ -1,5 +1,12 @@
 # Linear Algebra
 
+<div class="admonition warning">
+  <p class="admonition-title">Important</p>
+  <p style="margin: 1em 0;">
+    The page is currently under development.
+  </p>
+</div>
+
 <div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
   <time datetime="2026-01-19">19 Jan 2026</time> ·
   <time datetime="PT22M">22 min</time>
@@ -44,7 +51,7 @@ In DL, such a vector is typically understood operationally: it is stored as a co
 !!! note
     Depending on context, vectors can be visualized in different ways. In geometry and physics, they are often drawn as arrows representing magnitude and direction. In other settings, a vector can be viewed as a function that assigns a value to each index or coordinate. These visualizations are useful for building intuition, especially in low dimensions, but they do not alter the underlying algebraic definition of a vector. Linear algebra itself does not rely on geometric interpretation. It is fundamentally an algebraic theory of vector spaces and linear maps, and all definitions and results are independent of visualization. Geometry serves only as an intuitive aid not as a prerequisite. Beyond three dimensions, geometry in the literal, visual sense becomes unusable. Since most representations in DL live in very high-dimensional spaces, geometric visualization is generally not available and plays no direct role in practice. What remains meaningful are algebraic and analytical notions—such as inner products, norms, projections, and linear maps—rather than pictures or spatial intuition.
 
-
+<!-- 
 ## Matrices and Tensors
 
 A [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) is a 2D array of mathematical objects, satisfying properties of addition and multiplication (perhaps, from both DL and mathematics points of view). $A \in \mathbb{R}^{m \times n}$. Entry \(A_{i,j}\) is row \(i\), column \(j\). You’ll constantly need row/column notation:
@@ -389,4 +396,4 @@ Example identity:
 \]
 And cyclic permutation property (when shapes allow):
 \[
-\mathrm{Tr}(ABC)=\mathrm{Tr}(BCA)=\mathrm{Tr}(CAB)
+\mathrm{Tr}(ABC)=\mathrm{Tr}(BCA)=\mathrm{Tr}(CAB) -->
