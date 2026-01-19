@@ -51,6 +51,10 @@
       
     
     
+      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="../../assets/styles/extra.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -878,6 +882,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Linear Algebra
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -894,6 +916,491 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scalars-and-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scalars and Vectors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrices-and-tensors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrices and Tensors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrices and Tensors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#34-tensors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Tensors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-transpose-swapping-roles-of-rows-and-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) Transpose: swapping roles of rows and columns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-basic-operations-add-scale-and-broadcast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) Basic operations: add, scale, and broadcast
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5) Basic operations: add, scale, and broadcast">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Addition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-scalar-multiplication-and-affine-shifts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Scalar multiplication (and affine shifts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-broadcasting-common-in-dl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Broadcasting (common in DL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-matrixvector-and-matrixmatrix-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6) Matrix–vector and matrix–matrix multiplication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6) Matrix–vector and matrix–matrix multiplication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-matrixvector-linear-combination-of-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Matrix–vector: linear combination of columns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-matrixmatrix-composing-linear-maps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Matrix–matrix: composing linear maps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-not-commutative-but-associative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Not commutative (but associative)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-elementwise-hadamard-product-is-different" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Elementwise (Hadamard) product is different
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-systems-of-linear-equations-axb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7) Systems of linear equations: \(Ax=b\)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-identity-and-inverse-and-why-inversion-is-mostly-theoretical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8) Identity and inverse (and why inversion is mostly theoretical)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8) Identity and inverse (and why inversion is mostly theoretical)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-identity-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Identity matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-inverse-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Inverse matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-linear-dependence-span-and-when-solutions-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9) Linear dependence, span, and when solutions exist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9) Linear dependence, span, and when solutions exist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-linear-combination-and-span" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Linear combination and span
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-column-space-and-solvability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Column space and solvability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-linear-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Linear independence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-invertibility-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Invertibility conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-norms-measuring-size-and-why-ml-cares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10) Norms: measuring size (and why ML cares)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10) Norms: measuring size (and why ML cares)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-l_p-norms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 \(L_p\) norms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-squared-l_2-norm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Squared \(L_2\) norm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-matrix-norms-frobenius" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Matrix norms (Frobenius)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-special-vectors-and-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11) Special vectors and matrices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11) Special vectors and matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-diagonal-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Diagonal matrices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-symmetric-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Symmetric matrices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-unit-vectors-orthogonality-orthonormality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Unit vectors, orthogonality, orthonormality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-orthogonal-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 Orthogonal matrices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-eigendecomposition-directions-a-matrix-scales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12) Eigendecomposition: directions a matrix scales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12) Eigendecomposition: directions a matrix scales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-decomposition-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Decomposition form
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-symmetric-case-is-especially-clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 Symmetric case is especially clean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-positive-definiteness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 Positive definiteness
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-singular-value-decomposition-svd-the-universal-factorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13) Singular Value Decomposition (SVD): the universal factorization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-pseudoinverse-solving-when-inverse-doesnt-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14) Pseudoinverse: solving when inverse doesn’t exist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-trace-a-compact-way-to-write-sums" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15) Trace: a compact way to write sums
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -983,6 +1490,480 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#scalars-and-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scalars and Vectors
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrices-and-tensors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Matrices and Tensors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Matrices and Tensors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#34-tensors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4 Tensors
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-transpose-swapping-roles-of-rows-and-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4) Transpose: swapping roles of rows and columns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-basic-operations-add-scale-and-broadcast" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5) Basic operations: add, scale, and broadcast
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5) Basic operations: add, scale, and broadcast">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-addition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.1 Addition
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-scalar-multiplication-and-affine-shifts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.2 Scalar multiplication (and affine shifts)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-broadcasting-common-in-dl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3 Broadcasting (common in DL)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-matrixvector-and-matrixmatrix-multiplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6) Matrix–vector and matrix–matrix multiplication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6) Matrix–vector and matrix–matrix multiplication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-matrixvector-linear-combination-of-columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.1 Matrix–vector: linear combination of columns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-matrixmatrix-composing-linear-maps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.2 Matrix–matrix: composing linear maps
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#63-not-commutative-but-associative" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.3 Not commutative (but associative)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#64-elementwise-hadamard-product-is-different" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6.4 Elementwise (Hadamard) product is different
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-systems-of-linear-equations-axb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7) Systems of linear equations: \(Ax=b\)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-identity-and-inverse-and-why-inversion-is-mostly-theoretical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8) Identity and inverse (and why inversion is mostly theoretical)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8) Identity and inverse (and why inversion is mostly theoretical)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81-identity-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.1 Identity matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-inverse-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.2 Inverse matrix
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-linear-dependence-span-and-when-solutions-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9) Linear dependence, span, and when solutions exist
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9) Linear dependence, span, and when solutions exist">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#91-linear-combination-and-span" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1 Linear combination and span
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#92-column-space-and-solvability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2 Column space and solvability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#93-linear-independence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3 Linear independence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#94-invertibility-conditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4 Invertibility conditions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-norms-measuring-size-and-why-ml-cares" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10) Norms: measuring size (and why ML cares)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10) Norms: measuring size (and why ML cares)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#101-l_p-norms" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.1 \(L_p\) norms
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#102-squared-l_2-norm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.2 Squared \(L_2\) norm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#103-matrix-norms-frobenius" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10.3 Matrix norms (Frobenius)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-special-vectors-and-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11) Special vectors and matrices
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11) Special vectors and matrices">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111-diagonal-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.1 Diagonal matrices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#112-symmetric-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.2 Symmetric matrices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#113-unit-vectors-orthogonality-orthonormality" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.3 Unit vectors, orthogonality, orthonormality
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#114-orthogonal-matrices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4 Orthogonal matrices
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-eigendecomposition-directions-a-matrix-scales" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12) Eigendecomposition: directions a matrix scales
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12) Eigendecomposition: directions a matrix scales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-decomposition-form" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1 Decomposition form
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-symmetric-case-is-especially-clean" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2 Symmetric case is especially clean
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#123-positive-definiteness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3 Positive definiteness
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-singular-value-decomposition-svd-the-universal-factorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13) Singular Value Decomposition (SVD): the universal factorization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-pseudoinverse-solving-when-inverse-doesnt-exist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        14) Pseudoinverse: solving when inverse doesn’t exist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-trace-a-compact-way-to-write-sums" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        15) Trace: a compact way to write sums
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1002,6 +1983,323 @@
 
 
 <h1 id="linear-algebra">Linear Algebra</h1>
+<div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
+  <time datetime="2026-01-19">19 Jan 2026</time> ·
+  <time datetime="PT22M">22 min</time>
+</div>
+
+<p>Linear Algebra is the branch of mathematics that studies vector spaces and the linear mappings between them. In DL, almost all computation is formulated in the language of linear algebra: data, model parameters, activations, gradients are represented as vectors or matrices. A clear understanding of what these objects represent—and how they behave under linear operations—is necessary not only for correct implementation, but for reasoning about model structure, learning dynamics, and numerical behavior.</p>
+<h2 id="scalars-and-vectors">Scalars and Vectors</h2>
+<p>A <a href="https://en.wikipedia.org/wiki/Scalar_(mathematics)">scalar</a> is a single number (often real-valued). It is more challenging to define a <strong>vector</strong>. Different fields use the same object with different mental models and all are legitimate because they rely on the same linear rules.</p>
+<p>From a mathematician's point of view, a vector is an element of a <a href="https://en.wikipedia.org/wiki/Vector_space">vector space</a>: something you can <strong>add and scale while satisfying certain axioms</strong> (closure, associativity, distributivity, etc.). The axioms exist to guarantee that linear combinations behave predictably. From this requirement of <a href="https://en.wikipedia.org/wiki/Linearity">linearity</a> through addition and scalar scaling (homogeinity), you get a powerful combined statement:
+$$
+f(\alpha x + \beta y) = \alpha f(x) + \beta f(y)
+$$</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Raw audio signals satisfy the linearity properties to a very good approximation. If two sounds are played at the same time, the resulting waveform is (approximately) the sum of the individual waveforms. If the volume of a sound is increased or decreased, its waveform is scaled by a constant factor. Because audio combines by superposition and scales linearly with amplitude, it can be naturally represented as a vector and manipulated using linear algebra.</p>
+</div>
+<p>From a physicist's point of view, a vector represents a <strong>quantity with direction and magnitude</strong> (velocity, force). You add forces, scale forces, decompose into components. The vector predicts physical behavior. From a computer scientist's point of view, a vector is simply an <strong>array of numbers</strong>. It can represent pixel values of an image, coordinates of a point, words in a document, etc.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>In many ways, ML/DL borrows terminology from mathematics and uses it rather freely. Terms like <strong>vector</strong>, <strong>dimension</strong>, <strong>space</strong>, <strong>metric</strong>, <strong>manifold</strong>, and even <strong>linear</strong> are frequently misused. For example, by "dimension" one could assume "tensor axis length". This is convenient shorthand, but it can break intuition if you don't keep in mind the underlying differences between DL and mathemtics which often use the same tools for different purposes.</p>
+</div>
+<p>A vector is often written explicitly as a column of numbers. For example, a vector with <span class="arithmatex">\(n\)</span> real-valued components can be written as</p>
+<div class="arithmatex">\[
+\mathbf{v} =
+\begin{bmatrix}
+v_1 \\
+v_2 \\
+\vdots \\
+v_n
+\end{bmatrix}
+\in \mathbb{R}^n .
+\]</div>
+<p>In DL, such a vector is typically understood operationally: it is stored as a contiguous array of <span class="arithmatex">\(n\)</span> real numbers and is mathematically an element of <span class="arithmatex">\(\mathbb{R}^n\)</span>, the Cartesian product of <span class="arithmatex">\(\mathbb{R}\)</span> with itself <span class="arithmatex">\(n\)</span> times. In this context, its "dimension" refers simply to its length <span class="arithmatex">\(n\)</span>. When <span class="arithmatex">\(n = 2\)</span> or <span class="arithmatex">\(n = 3\)</span>, the vector can be visualized geometrically as a point or an arrow. When <span class="arithmatex">\(n\)</span> is large, direct visualization is no longer possible, but the same algebraic operations—addition, scalar multiplication, dot products, and linear transformations—still apply. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Depending on context, vectors can be visualized in different ways. In geometry and physics, they are often drawn as arrows representing magnitude and direction. In other settings, a vector can be viewed as a function that assigns a value to each index or coordinate. These visualizations are useful for building intuition, especially in low dimensions, but they do not alter the underlying algebraic definition of a vector. Linear algebra itself does not rely on geometric interpretation. It is fundamentally an algebraic theory of vector spaces and linear maps, and all definitions and results are independent of visualization. Geometry serves only as an intuitive aid not as a prerequisite. Beyond three dimensions, geometry in the literal, visual sense becomes unusable. Since most representations in DL live in very high-dimensional spaces, geometric visualization is generally not available and plays no direct role in practice. What remains meaningful are algebraic and analytical notions—such as inner products, norms, projections, and linear maps—rather than pictures or spatial intuition.</p>
+</div>
+<h2 id="matrices-and-tensors">Matrices and Tensors</h2>
+<p>A <a href="https://en.wikipedia.org/wiki/Matrix_(mathematics)">matrix</a> is a 2D array of mathematical objects, satisfying properties of addition and multiplication (perhaps, from both DL and mathematics points of view). <span class="arithmatex">\(A \in \mathbb{R}^{m \times n}\)</span>. Entry <span class="arithmatex">\(A_{i,j}\)</span> is row <span class="arithmatex">\(i\)</span>, column <span class="arithmatex">\(j\)</span>. You’ll constantly need row/column notation:
+- <span class="arithmatex">\(A_{i,:}\)</span> = row <span class="arithmatex">\(i\)</span>
+- <span class="arithmatex">\(A_{:,j}\)</span> = column <span class="arithmatex">\(j\)</span></p>
+<p>This row/column view becomes crucial for understanding multiplication and solving systems.</p>
+<h3 id="34-tensors">3.4 Tensors</h3>
+<p>A <strong>tensor</strong> is an array with more than 2 axes:
+[
+T \in \mathbb{R}^{d_1 \times d_2 \times \cdots \times d_k}
+]
+Deep learning frameworks are tensor-first. The underlying mathematics is still linear algebra, but expressed through tensor operations (contractions, broadcasting, reshaping).</p>
+<hr />
+<h2 id="4-transpose-swapping-roles-of-rows-and-columns">4) Transpose: swapping roles of rows and columns</h2>
+<p>The <strong>transpose</strong> flips a matrix across its diagonal:
+[
+(A^\top)<em>{i,j} = A</em>{j,i}
+]
+For vectors, transpose switches between column and row representations.</p>
+<p>Why it matters:
+- dot products are written as <span class="arithmatex">\(x^\top y\)</span>,
+- many identities become simple with transpose,
+- gradients often appear naturally as row vs column objects.</p>
+<p>This is foundational notation in ML texts :contentReference[oaicite:2]{index=2}.</p>
+<hr />
+<h2 id="5-basic-operations-add-scale-and-broadcast">5) Basic operations: add, scale, and broadcast</h2>
+<h3 id="51-addition">5.1 Addition</h3>
+<p>Matrices (or vectors) can be added if they have the same shape:
+[
+C = A + B \quad \Rightarrow \quad C_{i,j} = A_{i,j} + B_{i,j}
+]</p>
+<h3 id="52-scalar-multiplication-and-affine-shifts">5.2 Scalar multiplication (and affine shifts)</h3>
+<p>Scaling a matrix by a scalar:
+[
+D = aB \quad \Rightarrow \quad D_{i,j} = aB_{i,j}
+]
+You can also add a scalar to every entry:
+[
+D = aB + c
+]</p>
+<h3 id="53-broadcasting-common-in-dl">5.3 Broadcasting (common in DL)</h3>
+<p>In deep learning practice, we often add a vector to a matrix “by rows” without explicitly copying it:
+[
+C = A + b \quad \Rightarrow \quad C_{i,j} = A_{i,j} + b_j
+]
+This is broadcasting: implicit replication of <span class="arithmatex">\(b\)</span> across rows :contentReference[oaicite:3]{index=3}.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Broadcasting is not “new math,” it’s a notational and computational convenience. But it changes how you think about shapes, which is why shape discipline is a real skill.</p>
+</div>
+<hr />
+<h2 id="6-matrixvector-and-matrixmatrix-multiplication">6) Matrix–vector and matrix–matrix multiplication</h2>
+<p>Multiplication is where linear algebra becomes a language of transformations.</p>
+<h3 id="61-matrixvector-linear-combination-of-columns">6.1 Matrix–vector: linear combination of columns</h3>
+<p>If <span class="arithmatex">\(A \in \mathbb{R}^{m \times n}\)</span> and <span class="arithmatex">\(x \in \mathbb{R}^n\)</span>, then:
+[
+y = Ax \in \mathbb{R}^m
+]
+Component form:
+[
+y_i = \sum_{k=1}^n A_{i,k}x_k
+]
+Interpretation: <span class="arithmatex">\(Ax\)</span> is a weighted sum of the columns of <span class="arithmatex">\(A\)</span>:
+[
+Ax = \sum_{j=1}^n x_j A_{:,j}
+]
+This “weighted columns” view is essential when you interpret solutions of <span class="arithmatex">\(Ax=b\)</span> :contentReference[oaicite:4]{index=4}.</p>
+<h3 id="62-matrixmatrix-composing-linear-maps">6.2 Matrix–matrix: composing linear maps</h3>
+<p>If <span class="arithmatex">\(A \in \mathbb{R}^{m \times n}\)</span> and <span class="arithmatex">\(B \in \mathbb{R}^{n \times p}\)</span>, then:
+[
+C = AB \in \mathbb{R}^{m \times p}
+]
+with
+[
+C_{i,j} = \sum_{k=1}^n A_{i,k}B_{k,j}
+]
+Interpretation: row <span class="arithmatex">\(i\)</span> of <span class="arithmatex">\(A\)</span> dotted with column <span class="arithmatex">\(j\)</span> of <span class="arithmatex">\(B\)</span>.</p>
+<h3 id="63-not-commutative-but-associative">6.3 Not commutative (but associative)</h3>
+<p>Matrix multiplication satisfies:
+- distributive: <span class="arithmatex">\(A(B+C)=AB+AC\)</span>
+- associative: <span class="arithmatex">\(A(BC)=(AB)C\)</span>
+- generally <strong>not commutative</strong>: <span class="arithmatex">\(AB \neq BA\)</span> :contentReference[oaicite:5]{index=5}</p>
+<h3 id="64-elementwise-hadamard-product-is-different">6.4 Elementwise (Hadamard) product is different</h3>
+<p>Elementwise multiplication <span class="arithmatex">\(A \odot B\)</span> multiplies entries directly and is <em>not</em> the same as <span class="arithmatex">\(AB\)</span> :contentReference[oaicite:6]{index=6}.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In DL code, both exist everywhere. Confusing them leads to wrong models and silent bugs.</p>
+</div>
+<hr />
+<h2 id="7-systems-of-linear-equations-axb">7) Systems of linear equations: <span class="arithmatex">\(Ax=b\)</span></h2>
+<p>A compact equation:
+[
+Ax=b
+]
+represents <span class="arithmatex">\(m\)</span> equations (rows), <span class="arithmatex">\(n\)</span> unknowns (components of <span class="arithmatex">\(x\)</span>) :contentReference[oaicite:7]{index=7}.</p>
+<p>Expanded:
+[
+A_{1,:}x=b_1,\;
+A_{2,:}x=b_2,\;
+\ldots,\;
+A_{m,:}x=b_m
+]</p>
+<p>Geometric interpretation:
+- The columns of <span class="arithmatex">\(A\)</span> are directions.
+- The vector <span class="arithmatex">\(x\)</span> tells you how much of each direction you combine.
+- You reach <span class="arithmatex">\(b\)</span> if and only if <span class="arithmatex">\(b\)</span> lies in the <strong>span</strong> of those columns.</p>
+<hr />
+<h2 id="8-identity-and-inverse-and-why-inversion-is-mostly-theoretical">8) Identity and inverse (and why inversion is mostly theoretical)</h2>
+<h3 id="81-identity-matrix">8.1 Identity matrix</h3>
+<p>The identity matrix <span class="arithmatex">\(I_n\)</span> satisfies:
+[
+I_n x = x
+]
+It has 1s on the diagonal and 0 elsewhere :contentReference[oaicite:8]{index=8}.</p>
+<h3 id="82-inverse-matrix">8.2 Inverse matrix</h3>
+<p>If <span class="arithmatex">\(A\)</span> is invertible, its inverse <span class="arithmatex">\(A^{-1}\)</span> satisfies:
+[
+A^{-1}A = I
+]
+Then the solution of <span class="arithmatex">\(Ax=b\)</span> can be written:
+[
+x = A^{-1}b
+]
+But: computing or using <span class="arithmatex">\(A^{-1}\)</span> directly is usually numerically worse than solving the system with methods that avoid explicit inversion :contentReference[oaicite:9]{index=9}.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In ML, “don’t invert; solve” is the standard rule. Inversion is conceptually helpful but computationally risky.</p>
+</div>
+<hr />
+<h2 id="9-linear-dependence-span-and-when-solutions-exist">9) Linear dependence, span, and when solutions exist</h2>
+<h3 id="91-linear-combination-and-span">9.1 Linear combination and span</h3>
+<p>A linear combination:
+[
+\sum_i c_i v^{(i)}
+]
+The <strong>span</strong> is the set of all such combinations.</p>
+<h3 id="92-column-space-and-solvability">9.2 Column space and solvability</h3>
+<p>For <span class="arithmatex">\(Ax=b\)</span>, the set of all achievable <span class="arithmatex">\(b\)</span> is the <strong>column space</strong> of <span class="arithmatex">\(A\)</span> (span of columns). The equation has a solution exactly when <span class="arithmatex">\(b\)</span> lies in that span :contentReference[oaicite:10]{index=10}.</p>
+<h3 id="93-linear-independence">9.3 Linear independence</h3>
+<p>Vectors are <strong>linearly independent</strong> if none can be written as a linear combination of the others. Independence controls:
+- whether the span has “full dimension,”
+- whether solutions are unique.</p>
+<h3 id="94-invertibility-conditions">9.4 Invertibility conditions</h3>
+<p>For <span class="arithmatex">\(A^{-1}\)</span> to exist:
+- <span class="arithmatex">\(A\)</span> must be square (<span class="arithmatex">\(m=n\)</span>),
+- columns must be linearly independent.
+A square matrix with dependent columns is <strong>singular</strong> :contentReference[oaicite:11]{index=11}.</p>
+<hr />
+<h2 id="10-norms-measuring-size-and-why-ml-cares">10) Norms: measuring size (and why ML cares)</h2>
+<p>A <strong>norm</strong> is a function that measures “length” and satisfies three properties:
+1. <span class="arithmatex">\( \|x\|=0 \Rightarrow x=0 \)</span>
+2. triangle inequality
+3. scaling: <span class="arithmatex">\( \|\alpha x\| = |\alpha|\|x\| \)</span> :contentReference[oaicite:12]{index=12}</p>
+<h3 id="101-l_p-norms">10.1 <span class="arithmatex">\(L_p\)</span> norms</h3>
+<p>[
+|x|_p = \left(\sum_i |x_i|^p\right)^{1/p}, \quad p\ge 1
+]
+Common cases:
+- <span class="arithmatex">\(L_2\)</span>: Euclidean norm (default in many ML contexts)
+- <span class="arithmatex">\(L_1\)</span>: encourages sparsity / “many zeros”
+- <span class="arithmatex">\(L_\infty\)</span>: max magnitude component :contentReference[oaicite:13]{index=13}</p>
+<h3 id="102-squared-l_2-norm">10.2 Squared <span class="arithmatex">\(L_2\)</span> norm</h3>
+<p>[
+|x|_2^2 = x^\top x
+]
+Often easier for derivatives and computation :contentReference[oaicite:14]{index=14}.</p>
+<h3 id="103-matrix-norms-frobenius">10.3 Matrix norms (Frobenius)</h3>
+<p>[
+|A|<em>F = \sqrt{\sum</em>{i,j} A_{i,j}^2}
+]
+Common in ML as the matrix analogue of Euclidean length :contentReference[oaicite:15]{index=15}.</p>
+<hr />
+<h2 id="11-special-vectors-and-matrices">11) Special vectors and matrices</h2>
+<p>These show up constantly in theory and practice.</p>
+<h3 id="111-diagonal-matrices">11.1 Diagonal matrices</h3>
+<p>A diagonal matrix has nonzero entries only on the diagonal. Multiplying by it is cheap:
+[
+\mathrm{diag}(v)x = v \odot x
+]
+and inversion is cheap if all diagonal entries are nonzero :contentReference[oaicite:16]{index=16}.</p>
+<h3 id="112-symmetric-matrices">11.2 Symmetric matrices</h3>
+<p>[
+A = A^\top
+]
+Many important objects are symmetric (e.g., distance matrices, many Hessians under standard conditions) :contentReference[oaicite:17]{index=17}.</p>
+<h3 id="113-unit-vectors-orthogonality-orthonormality">11.3 Unit vectors, orthogonality, orthonormality</h3>
+<ul>
+<li>unit vector: <span class="arithmatex">\(\|x\|_2 = 1\)</span></li>
+<li>orthogonal: <span class="arithmatex">\(x^\top y = 0\)</span></li>
+<li>orthonormal: orthogonal + unit length :contentReference[oaicite:18]{index=18}</li>
+</ul>
+<h3 id="114-orthogonal-matrices">11.4 Orthogonal matrices</h3>
+<p>A matrix <span class="arithmatex">\(Q\)</span> is orthogonal if:
+[
+Q^\top Q = QQ^\top = I
+]
+Then:
+[
+Q^{-1} = Q^\top
+]
+which makes many computations stable and cheap :contentReference[oaicite:19]{index=19}.</p>
+<hr />
+<h2 id="12-eigendecomposition-directions-a-matrix-scales">12) Eigendecomposition: directions a matrix scales</h2>
+<p>An eigenvector <span class="arithmatex">\(v\neq 0\)</span> of a square matrix <span class="arithmatex">\(A\)</span> satisfies:
+[
+Av = \lambda v
+]
+where <span class="arithmatex">\(\lambda\)</span> is the eigenvalue :contentReference[oaicite:20]{index=20}.</p>
+<p>Meaning:
+- <span class="arithmatex">\(A\)</span> transforms <span class="arithmatex">\(v\)</span> by scaling (and possibly sign flip), not by changing direction.</p>
+<h3 id="121-decomposition-form">12.1 Decomposition form</h3>
+<p>If <span class="arithmatex">\(A\)</span> has a full set of independent eigenvectors:
+[
+A = V\,\mathrm{diag}(\lambda)\,V^{-1}
+]
+This reveals intrinsic structure of the transformation :contentReference[oaicite:21]{index=21}.</p>
+<h3 id="122-symmetric-case-is-especially-clean">12.2 Symmetric case is especially clean</h3>
+<p>Every real symmetric matrix has:
+[
+A = Q\Lambda Q^\top
+]
+with <span class="arithmatex">\(Q\)</span> orthogonal and <span class="arithmatex">\(\Lambda\)</span> diagonal (real eigenvalues) :contentReference[oaicite:22]{index=22}.</p>
+<h3 id="123-positive-definiteness">12.3 Positive definiteness</h3>
+<p>Eigenvalues classify curvature-like behavior:
+- <strong>positive definite</strong>: all eigenvalues <span class="arithmatex">\(&gt;0\)</span>
+- <strong>positive semidefinite</strong>: all eigenvalues <span class="arithmatex">\(\ge 0\)</span></p>
+<p>These guarantee:
+[
+x^\top A x \ge 0
+]
+(and stricter properties when definite) :contentReference[oaicite:23]{index=23}.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is one of the cleanest bridges to optimization: curvature, stability, and “how stiff” a problem is show up as eigenvalues.</p>
+</div>
+<hr />
+<h2 id="13-singular-value-decomposition-svd-the-universal-factorization">13) Singular Value Decomposition (SVD): the universal factorization</h2>
+<p>Eigenvalues require square matrices and can fail in general. SVD works for <strong>every</strong> real matrix :contentReference[oaicite:24]{index=24}.</p>
+<p>For <span class="arithmatex">\(A \in \mathbb{R}^{m\times n}\)</span>:
+[
+A = U D V^\top
+]
+- <span class="arithmatex">\(U\)</span>: orthogonal (<span class="arithmatex">\(m\times m\)</span>)
+- <span class="arithmatex">\(V\)</span>: orthogonal (<span class="arithmatex">\(n\times n\)</span>)
+- <span class="arithmatex">\(D\)</span>: diagonal-shaped (<span class="arithmatex">\(m\times n\)</span>), diagonal entries are singular values <span class="arithmatex">\(\sigma_i\)</span> :contentReference[oaicite:25]{index=25}.</p>
+<p>Interpretation (high-level):
+- <span class="arithmatex">\(V^\top\)</span>: rotate/reflect input space
+- <span class="arithmatex">\(D\)</span>: scale along principal axes (singular values)
+- <span class="arithmatex">\(U\)</span>: rotate/reflect output space</p>
+<p>Relationships:
+- right singular vectors = eigenvectors of <span class="arithmatex">\(A^\top A\)</span>
+- left singular vectors = eigenvectors of <span class="arithmatex">\(AA^\top\)</span>
+- singular values relate to eigenvalues of these symmetric matrices :contentReference[oaicite:26]{index=26}.</p>
+<hr />
+<h2 id="14-pseudoinverse-solving-when-inverse-doesnt-exist">14) Pseudoinverse: solving when inverse doesn’t exist</h2>
+<p>When <span class="arithmatex">\(A\)</span> is not square or is singular, <span class="arithmatex">\(A^{-1}\)</span> doesn’t exist. The Moore–Penrose pseudoinverse <span class="arithmatex">\(A^+\)</span> generalizes “best possible inversion” :contentReference[oaicite:27]{index=27}.</p>
+<p>Using SVD <span class="arithmatex">\(A = UDV^\top\)</span>:
+[
+A^+ = V D^+ U^\top
+]
+where <span class="arithmatex">\(D^+\)</span> inverts nonzero singular values and transposes the diagonal-shaped matrix :contentReference[oaicite:28]{index=28}.</p>
+<p>Two key regimes:</p>
+<ul>
+<li><strong>More columns than rows (underdetermined):</strong> many solutions; pseudoinverse gives the one with minimal <span class="arithmatex">\(\|x\|_2\)</span>.</li>
+<li><strong>More rows than columns (overdetermined):</strong> may be no exact solution; pseudoinverse gives the <span class="arithmatex">\(x\)</span> minimizing <span class="arithmatex">\(\|Ax-b\|_2\)</span>.</li>
+</ul>
+<p>This is the linear algebra behind least-squares behavior.</p>
+<hr />
+<h2 id="15-trace-a-compact-way-to-write-sums">15) Trace: a compact way to write sums</h2>
+<p>The trace sums diagonal entries:
+[
+\mathrm{Tr}(A)=\sum_i A_{i,i}
+]
+It is useful because it interacts nicely with products and transpose, and it lets you rewrite expressions compactly (e.g., Frobenius norm) :contentReference[oaicite:29]{index=29}.</p>
+<p>Example identity:
+[
+|A|_F = \sqrt{\mathrm{Tr}(AA^\top)}
+]
+And cyclic permutation property (when shapes allow):
+[
+\mathrm{Tr}(ABC)=\mathrm{Tr}(BCA)=\mathrm{Tr}(CAB)</p>
 
 
 
@@ -1142,7 +2440,11 @@
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../../assets/app/katex.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+      
+        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
       
     
   </body>
