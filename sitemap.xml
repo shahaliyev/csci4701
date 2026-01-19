@@ -5,6 +5,10 @@
          <lastmod>2026-01-19</lastmod>
     </url>
     <url>
+         <loc>https://shahaliyev.org/csci4701/advanced/</loc>
+         <lastmod>2026-01-19</lastmod>
+    </url>
+    <url>
          <loc>https://shahaliyev.org/csci4701/course/spring-2026/syllabus/</loc>
          <lastmod>2026-01-19</lastmod>
     </url>
@@ -42,6 +46,30 @@
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/notebooks/02_neural_network/</loc>
+         <lastmod>2026-01-19</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/notebooks/03_cnn_torch/</loc>
+         <lastmod>2026-01-19</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/notebooks/04_regul_optim/</loc>
+         <lastmod>2026-01-19</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/notebooks/05_nn_ngram/</loc>
+         <lastmod>2026-01-19</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/notebooks/06_batchnorm_resnet/</loc>
+         <lastmod>2026-01-19</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/notebooks/07_vae/</loc>
+         <lastmod>2026-01-19</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/supplementary/</loc>
          <lastmod>2026-01-19</lastmod>
     </url>
 </urlset>
