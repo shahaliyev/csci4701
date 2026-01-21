@@ -70,7 +70,7 @@ table td:first-child {
   </p>
 </div>
 
-| Week | Topic | Learning Outcomes | Assessment / Notes |
+| Class | Topic | Learning Outcomes | Assessment / Notes |
 |---|---|---|---|
 | 1 | **Deep Learning (DL) Overview / Course Structure** | Describe the scope of DL and the course syllabus. Fulfill technological requirements. | |
 | 2 | **Mathematics of DL: Linear Algebra / Calculus** | Work with vectors, matrices, and tensors; apply norms and inner products. Compute partial derivatives and apply the chain rule. Optional: intuition behind eigenvectors and SVD. | |
