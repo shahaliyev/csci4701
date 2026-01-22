@@ -9,15 +9,23 @@
          <lastmod>2026-01-22</lastmod>
     </url>
     <url>
-         <loc>https://shahaliyev.org/csci4701/course/spring-2026/syllabus/</loc>
+         <loc>https://shahaliyev.org/csci4701/course/spring-2026/01_syllabus/</loc>
          <lastmod>2026-01-22</lastmod>
     </url>
     <url>
-         <loc>https://shahaliyev.org/csci4701/introduction/01_overview/</loc>
+         <loc>https://shahaliyev.org/csci4701/course/spring-2026/02_project/</loc>
          <lastmod>2026-01-22</lastmod>
     </url>
     <url>
-         <loc>https://shahaliyev.org/csci4701/introduction/02_materials/</loc>
+         <loc>https://shahaliyev.org/csci4701/introduction/01_deep_learning/</loc>
+         <lastmod>2026-01-22</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/introduction/02_machine_learning/</loc>
+         <lastmod>2026-01-22</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/introduction/03_resources/</loc>
          <lastmod>2026-01-22</lastmod>
     </url>
     <url>
@@ -74,6 +82,10 @@
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/supplementary/</loc>
+         <lastmod>2026-01-22</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/supplementary/pca/</loc>
          <lastmod>2026-01-22</lastmod>
     </url>
 </urlset>
