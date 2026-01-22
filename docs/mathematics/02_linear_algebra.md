@@ -1,18 +1,14 @@
 # Linear Algebra
 
-<div class="admonition warning">
-  <p class="admonition-title">Important</p>
-  <p style="margin: 1em 0;">
+!!! warning "Important"
     The page is currently under development.
-  </p>
-</div>
 
 <div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
   <time datetime="2026-01-19">19 Jan 2026</time> ·
-  <time datetime="PT22M">22 min</time>
+  <!-- <time datetime="PT22M">22 min</time> -->
 </div>
 
-Linear Algebra is the branch of mathematics that studies vector spaces and the linear mappings between them. In DL, almost all computation is formulated in the language of linear algebra: data, model parameters, activations, gradients are represented as vectors or matrices. A clear understanding of what these objects represent—and how they behave under linear operations—is necessary not only for correct implementation, but for reasoning about model structure, learning dynamics, and numerical behavior.
+Linear algebra is the branch of mathematics that studies vector spaces and the linear mappings between them. In deep learning, almost all computation is formulated in the language of linear algebra: data, model parameters, activations, gradients are represented as vectors or matrices. A clear understanding of what these objects represent—and how they behave under linear operations—is necessary not only for correct implementation, but for reasoning about model structure, learning dynamics, and numerical behavior.
 
 
 ## Scalars and Vectors
@@ -30,8 +26,8 @@ $$
 
 From a physicist's point of view, a vector represents a **quantity with direction and magnitude** (velocity, force). You add forces, scale forces, decompose into components. The vector predicts physical behavior. From a computer scientist's point of view, a vector is simply an **array of numbers**. It can represent pixel values of an image, coordinates of a point, words in a document, etc.
 
-!!! warning
-     In many ways, ML/DL borrows terminology from mathematics and uses it rather freely. Terms like **vector**, **dimension**, **space**, **metric**, **manifold**, and even **linear** are frequently misused. For example, by "dimension" one could assume "tensor axis length". This is convenient shorthand, but it can break intuition if you don't keep in mind the underlying differences between DL and mathemtics which often use the same tools for different purposes.
+!!! warning "Important"
+     In many ways, machine/deep learning borrows terminology from mathematics and uses it rather freely. Terms like **vector**, **dimension**, **space**, **metric**, **manifold**, and even **linear** are frequently misused. For example, by "dimension" one could assume "tensor axis length". This is convenient shorthand, but it can break intuition if you don't keep in mind the underlying differences between deep learning and mathemtics which often use the same tools for different purposes.
 
 A vector is often written explicitly as a column of numbers. For example, a vector with \(n\) real-valued components can be written as
 
@@ -46,28 +42,52 @@ v_n
 \in \mathbb{R}^n .
 $$
 
-In DL, such a vector is typically understood operationally: it is stored as a contiguous array of \(n\) real numbers and is mathematically an element of \(\mathbb{R}^n\), the Cartesian product of \(\mathbb{R}\) with itself \(n\) times. In this context, its "dimension" refers simply to its length \(n\). When \(n = 2\) or \(n = 3\), the vector can be visualized geometrically as a point or an arrow. When \(n\) is large, direct visualization is no longer possible, but the same algebraic operations—addition, scalar multiplication, dot products, and linear transformations—still apply. 
+In deep learning, such a vector is typically understood operationally: it is stored as a contiguous array of \(n\) real numbers and is mathematically an element of \(\mathbb{R}^n\), the Cartesian product of \(\mathbb{R}\) with itself \(n\) times. In this context, its "dimension" refers simply to its length \(n\). When \(n = 2\) or \(n = 3\), the vector can be visualized geometrically as a point or an arrow. When \(n\) is large, direct visualization is no longer possible, but the same algebraic operations—addition, scalar multiplication, dot products, and linear transformations—still apply. 
 
 !!! note
-    Depending on context, vectors can be visualized in different ways. In geometry and physics, they are often drawn as arrows representing magnitude and direction. In other settings, a vector can be viewed as a function that assigns a value to each index or coordinate. These visualizations are useful for building intuition, especially in low dimensions, but they do not alter the underlying algebraic definition of a vector. Linear algebra itself does not rely on geometric interpretation. It is fundamentally an algebraic theory of vector spaces and linear maps, and all definitions and results are independent of visualization. Geometry serves only as an intuitive aid not as a prerequisite. Beyond three dimensions, geometry in the literal, visual sense becomes unusable. Since most representations in DL live in very high-dimensional spaces, geometric visualization is generally not available and plays no direct role in practice. What remains meaningful are algebraic and analytical notions—such as inner products, norms, projections, and linear maps—rather than pictures or spatial intuition.
+    Depending on context, vectors can be visualized in different ways. In geometry and physics, they are often drawn as arrows representing magnitude and direction. In other settings, a vector can be viewed as a function that assigns a value to each index or coordinate. These visualizations are useful for building intuition, especially in low dimensions, but they do not alter the underlying algebraic definition of a vector. Linear algebra itself does not rely on geometric interpretation. It is fundamentally an algebraic theory of vector spaces and linear maps, and all definitions and results are independent of visualization. Geometry serves only as an intuitive aid not as a prerequisite. Beyond three dimensions, geometry in the literal, visual sense becomes unusable. Since most representations in deep learning live in very high-dimensional spaces, geometric visualization is generally not available and plays no direct role in practice. What remains meaningful are algebraic and analytical notions—such as inner products, norms, projections, and linear maps—rather than pictures or spatial intuition.
 
-<!-- 
 ## Matrices and Tensors
 
-A [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) is a 2D array of mathematical objects, satisfying properties of addition and multiplication (perhaps, from both DL and mathematics points of view). $A \in \mathbb{R}^{m \times n}$. Entry \(A_{i,j}\) is row \(i\), column \(j\). You’ll constantly need row/column notation:
-- \(A_{i,:}\) = row \(i\)
-- \(A_{:,j}\) = column \(j\)
 
-This row/column view becomes crucial for understanding multiplication and solving systems.
+A [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) is a rectangular array of numbers arranged in rows and columns, satisfying properties of addition and multiplication (perhaps, from both deep learning and mathematics points of view). Formally, a real-valued matrix with \(m\) rows and \(n\) columns is an element of \(\mathbb{R}^{m \times n}\):
 
-### 3.4 Tensors
-A **tensor** is an array with more than 2 axes:
-\[
-T \in \mathbb{R}^{d_1 \times d_2 \times \cdots \times d_k}
-\]
-Deep learning frameworks are tensor-first. The underlying mathematics is still linear algebra, but expressed through tensor operations (contractions, broadcasting, reshaping).
+$$
+\mathbf{A} =
+\begin{bmatrix}
+a_{11} & a_{12} & \cdots & a_{1n} \\
+a_{21} & a_{22} & \cdots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{m1} & a_{m2} & \cdots & a_{mn}
+\end{bmatrix}.
+$$
 
----
+From a mathematical point of view, a matrix represents a [linear map](https://en.wikipedia.org/wiki/Linear_map) between vector spaces. Given a vector \(\mathbf{x} \in \mathbb{R}^n\), multiplication by a matrix \(\mathbf{A} \in \mathbb{R}^{m \times n}\) produces a new vector \(\mathbf{b} \in \mathbb{R}^m\): $$
+\mathbf{A}\mathbf{x} = \mathbf{b}.$$ 
+
+This operation encodes all **linear transformations**: rotations, scalings, projections, and combinations of these. The key idea is that matrices do not just store numbers; they describe how vectors are transformed. In deep learning, matrices appear everywhere. For example, in
+
+- Model parameters (weights of fully connected layers)
+- Batches of input data
+- Linear layers of the form \( \mathbf{y} = \mathbf{W}\mathbf{x} + \mathbf{b} \)
+- [Jacobians and Hessians](../01_calculus) (implicitly, through [automatic differentiation](../../notebooks/01_backprop))
+
+A matrix is stored as a 2D array in memory, but it should be understood as a single object representing a linear operation. Confusing these two viewpoints—matrix as data vs. matrix as transformation—is a common source of misunderstanding.
+
+!!! note 
+    When training neural networks, we rarely reason about individual entries of a matrix. Instead, we reason about the effect of the matrix as a whole: how it mixes input features, how it changes dimensionality, and how it interacts with nonlinearities. Frameworks exploit this by implementing matrix multiplication using highly optimized numerical kernels.
+
+A [tensor](https://en.wikipedia.org/wiki/Tensor_(machine_learning)) is a generalization of scalars, vectors, and matrices to higher dimensions. Informally: a scalar is a 0-order tensor, a matrix is a 2-order tensor, etc. In deep learning practice, a tensor is best understood as a multidimensional array of numbers with a fixed shape.
+
+!!! warning "Important"
+    In pure mathematics and physics, tensors have a precise coordinate-independent definition involving multilinear maps. In deep learning, the word *tensor* is used more loosely to mean _n_-dimensional array. This is a practical simplification, but it is important not to confuse it with the full mathematical theory of tensors.
+
+Tensor operations in deep learning are designed to preserve linear structure wherever possible. Linear operations (e.g. matrix multiplication, [convolution](../../notebooks/03_cnn_torch)) remain linear even when expressed in tensor form. Most neural network layers can be viewed as linear maps acting on tensors, followed by nonlinear functions applied elementwise. Understanding which parts of a computation are linear and which are not is essential for reasoning about optimization and numerical stability.
+
+!!! note
+    High-dimensional tensors cannot be visualized geometrically. Their meaning comes from structure and indexing, not from geometrical intuition. What matters is how dimensions correspond to data and how linear operations act along specific axes (e.g. columns, rows).
+
+<!-- 
 
 ## 4) Transpose: swapping roles of rows and columns
 
