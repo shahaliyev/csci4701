@@ -30,16 +30,15 @@ From a physicist's point of view, a vector represents a **quantity with directio
      In many ways, machine/deep learning borrows terminology from mathematics and uses it rather freely. Terms like **vector**, **dimension**, **space**, **metric**, **manifold**, and even **linear** are frequently misused. For example, by "dimension" one could assume "tensor axis length". This is convenient shorthand, but it can break intuition if you don't keep in mind the underlying differences between deep learning and mathemtics which often use the same tools for different purposes.
 
 A vector is often written explicitly as a column of numbers. For example, a vector with \(n\) real-valued components can be written as
-
 $$
 \mathbf{v} =
 \begin{bmatrix}
-v_1 \\
-v_2 \\
-\vdots \\
+v_1 \\\\
+v_2 \\\\
+\vdots \\\\
 v_n
 \end{bmatrix}
-\in \mathbb{R}^n .
+\in \mathbb{R}^n
 $$
 
 In deep learning, such a vector is typically understood operationally: it is stored as a contiguous array of \(n\) real numbers and is mathematically an element of \(\mathbb{R}^n\), the Cartesian product of \(\mathbb{R}\) with itself \(n\) times. In this context, its "dimension" refers simply to its length \(n\). When \(n = 2\) or \(n = 3\), the vector can be visualized geometrically as a point or an arrow. When \(n\) is large, direct visualization is no longer possible, but the same algebraic operations—addition, scalar multiplication, dot products, and linear transformations—still apply. 
@@ -49,21 +48,21 @@ In deep learning, such a vector is typically understood operationally: it is sto
 
 ## Matrices and Tensors
 
-
 A [matrix](https://en.wikipedia.org/wiki/Matrix_(mathematics)) is a rectangular array of numbers arranged in rows and columns, satisfying properties of addition and multiplication (perhaps, from both deep learning and mathematics points of view). Formally, a real-valued matrix with \(m\) rows and \(n\) columns is an element of \(\mathbb{R}^{m \times n}\):
-
 $$
 \mathbf{A} =
 \begin{bmatrix}
-a_{11} & a_{12} & \cdots & a_{1n} \\
-a_{21} & a_{22} & \cdots & a_{2n} \\
-\vdots & \vdots & \ddots & \vdots \\
+a_{11} & a_{12} & \cdots & a_{1n} \\\\
+a_{21} & a_{22} & \cdots & a_{2n} \\\\
+\vdots & \vdots & \ddots & \vdots \\\\
 a_{m1} & a_{m2} & \cdots & a_{mn}
-\end{bmatrix}.
+\end{bmatrix}
 $$
 
-From a mathematical point of view, a matrix represents a [linear map](https://en.wikipedia.org/wiki/Linear_map) between vector spaces. Given a vector \(\mathbf{x} \in \mathbb{R}^n\), multiplication by a matrix \(\mathbf{A} \in \mathbb{R}^{m \times n}\) produces a new vector \(\mathbf{b} \in \mathbb{R}^m\): $$
-\mathbf{A}\mathbf{x} = \mathbf{b}.$$ 
+
+
+From a mathematical point of view, a matrix represents a [linear map](https://en.wikipedia.org/wiki/Linear_map) between vector spaces. Given a vector \(\mathbf{x} \in \mathbb{R}^n\), multiplication by a matrix \(\mathbf{A} \in \mathbb{R}^{m \times n}\) produces a new vector \(\mathbf{y} \in \mathbb{R}^m\): $$
+\mathbf{A}\mathbf{x} = \mathbf{y}.$$ 
 
 This operation encodes all **linear transformations**: rotations, scalings, projections, and combinations of these. The key idea is that matrices do not just store numbers; they describe how vectors are transformed. In deep learning, matrices appear everywhere. For example, in
 
@@ -87,333 +86,150 @@ Tensor operations in deep learning are designed to preserve linear structure whe
 !!! note
     High-dimensional tensors cannot be visualized geometrically. Their meaning comes from structure and indexing, not from geometrical intuition. What matters is how dimensions correspond to data and how linear operations act along specific axes (e.g. columns, rows).
 
-<!-- 
+## Transpose, Identity, Inversion
 
-## 4) Transpose: swapping roles of rows and columns
+The **transpose** of a matrix swaps rows and columns. For a matrix $\mathbf{A}\in\mathbb{R}^{m\times n}$, its transpose $\mathbf{A}^\top\in\mathbb{R}^{n\times m}$ is defined by $\mathbf{A}^\top_{ij} = a_{ji}.$ A column vector becomes a row vector, and vice versa. Basically, transpose reflects (like a mirror) a matrix across its main diagonal. Elements on the diagonal remain fixed, off-diagonal elements are mirrored:
+$$
+\mathbf{A} =
+\left[
+\begin{array}{ccc}
+a_{11} & a_{12} & a_{13} \\\\
+a_{21} & a_{22} & a_{23}
+\end{array}
+\right]
+\quad\Rightarrow\quad
+\mathbf{A}^\top =
+\left[
+\begin{array}{cc}
+a_{11} & a_{21} \\\\
+a_{12} & a_{22} \\\\
+a_{13} & a_{23}
+\end{array}
+\right]
+$$
 
-The **transpose** flips a matrix across its diagonal:
-\[
-(A^\top)_{i,j} = A_{j,i}
-\]
-For vectors, transpose switches between column and row representations.
 
-Why it matters:
-- dot products are written as \(x^\top y\),
-- many identities become simple with transpose,
-- gradients often appear naturally as row vs column objects.
+The **identity**  matrix $\mathbf{I}\in\mathbb{R}^{n\times n}$ is defined by a matrix whose diagonal are ones with all other elements being zeros:
+$$
+\mathbf{I} =
+\left[
+\begin{array}{cccc}
+1 & 0 & 0 & 0 \\\\
+0 & 1 & 0 & 0 \\\\
+0 & 0 & \ddots & 0 \\\\
+0 & 0 & 0 & 1
+\end{array}
+\right].
+$$
 
-This is foundational notation in ML texts :contentReference[oaicite:2]{index=2}.
 
----
-
-## 5) Basic operations: add, scale, and broadcast
-
-### 5.1 Addition
-Matrices (or vectors) can be added if they have the same shape:
-\[
-C = A + B \quad \Rightarrow \quad C_{i,j} = A_{i,j} + B_{i,j}
-\]
-
-### 5.2 Scalar multiplication (and affine shifts)
-Scaling a matrix by a scalar:
-\[
-D = aB \quad \Rightarrow \quad D_{i,j} = aB_{i,j}
-\]
-You can also add a scalar to every entry:
-\[
-D = aB + c
-\]
-
-### 5.3 Broadcasting (common in DL)
-In deep learning practice, we often add a vector to a matrix “by rows” without explicitly copying it:
-\[
-C = A + b \quad \Rightarrow \quad C_{i,j} = A_{i,j} + b_j
-\]
-This is broadcasting: implicit replication of \(b\) across rows :contentReference[oaicite:3]{index=3}.
-
-!!! note
-    Broadcasting is not “new math,” it’s a notational and computational convenience. But it changes how you think about shapes, which is why shape discipline is a real skill.
-
----
-
-## 6) Matrix–vector and matrix–matrix multiplication
-
-Multiplication is where linear algebra becomes a language of transformations.
-
-### 6.1 Matrix–vector: linear combination of columns
-If \(A \in \mathbb{R}^{m \times n}\) and \(x \in \mathbb{R}^n\), then:
-\[
-y = Ax \in \mathbb{R}^m
-\]
-Component form:
-\[
-y_i = \sum_{k=1}^n A_{i,k}x_k
-\]
-Interpretation: \(Ax\) is a weighted sum of the columns of \(A\):
-\[
-Ax = \sum_{j=1}^n x_j A_{:,j}
-\]
-This “weighted columns” view is essential when you interpret solutions of \(Ax=b\) :contentReference[oaicite:4]{index=4}.
-
-### 6.2 Matrix–matrix: composing linear maps
-If \(A \in \mathbb{R}^{m \times n}\) and \(B \in \mathbb{R}^{n \times p}\), then:
-\[
-C = AB \in \mathbb{R}^{m \times p}
-\]
-with
-\[
-C_{i,j} = \sum_{k=1}^n A_{i,k}B_{k,j}
-\]
-Interpretation: row \(i\) of \(A\) dotted with column \(j\) of \(B\).
-
-### 6.3 Not commutative (but associative)
-Matrix multiplication satisfies:
-- distributive: \(A(B+C)=AB+AC\)
-- associative: \(A(BC)=(AB)C\)
-- generally **not commutative**: \(AB \neq BA\) :contentReference[oaicite:5]{index=5}
-
-### 6.4 Elementwise (Hadamard) product is different
-Elementwise multiplication \(A \odot B\) multiplies entries directly and is *not* the same as \(AB\) :contentReference[oaicite:6]{index=6}.
+The identity matrix represents the linear map that leaves every vector unchanged and acts as the same way that $1$ does in the rational numbers:
+$$
+\mathbf{I}\mathbf{x} = \mathbf{x}, \qquad
+\mathbf{A}\mathbf{I} = \mathbf{I}\mathbf{A} = \mathbf{A}.
+$$
 
 !!! note
-    In DL code, both exist everywhere. Confusing them leads to wrong models and silent bugs.
+    Identity matrices appear implicitly in [residual connections](../../notebooks/06_batchnorm_resnet) and linear solvers. Adding $\mathbf{I}$ to a matrix corresponds to biasing a transformation toward preserving information.
 
----
-
-## 7) Systems of linear equations: \(Ax=b\)
-
-A compact equation:
-\[
-Ax=b
-\]
-represents \(m\) equations (rows), \(n\) unknowns (components of \(x\)) :contentReference[oaicite:7]{index=7}.
-
-Expanded:
-\[
-A_{1,:}x=b_1,\;
-A_{2,:}x=b_2,\;
-\ldots,\;
-A_{m,:}x=b_m
-\]
-
-Geometric interpretation:
-- The columns of \(A\) are directions.
-- The vector \(x\) tells you how much of each direction you combine.
-- You reach \(b\) if and only if \(b\) lies in the **span** of those columns.
-
----
-
-## 8) Identity and inverse (and why inversion is mostly theoretical)
-
-### 8.1 Identity matrix
-The identity matrix \(I_n\) satisfies:
-\[
-I_n x = x
-\]
-It has 1s on the diagonal and 0 elsewhere :contentReference[oaicite:8]{index=8}.
-
-### 8.2 Inverse matrix
-If \(A\) is invertible, its inverse \(A^{-1}\) satisfies:
-\[
-A^{-1}A = I
-\]
-Then the solution of \(Ax=b\) can be written:
-\[
-x = A^{-1}b
-\]
-But: computing or using \(A^{-1}\) directly is usually numerically worse than solving the system with methods that avoid explicit inversion :contentReference[oaicite:9]{index=9}.
+The matrix **inversion** provides a formal way to solve linear systems of the form $\mathbf{y} = \mathbf{A}\mathbf{x}$. If the matrix $\mathbf{A}$ is square ($n \times n$) and [invertible](https://en.wikipedia.org/wiki/Invertible_matrix), there exists a matrix $\mathbf{A}^{-1}$ such that
+$\mathbf{A}^{-1}\mathbf{A} = \mathbf{I}.$
+Multiplying both sides of the equation by $\mathbf{A}^{-1}$ yields $\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}.$ 
 
 !!! note
-    In ML, “don’t invert; solve” is the standard rule. Inversion is conceptually helpful but computationally risky.
+    Matrix inversion corresponds to undoing a linear transformation: applying $\mathbf{A}^{-1}$ reverses the effect of $\mathbf{A}$. In practice, however, explicit matrix inversion is rarely used in numerical computation or deep learning. It is primarily a theoretical tool. Solving linear systems is typically done using more stable and efficient methods that avoid forming $\mathbf{A}^{-1}$ directly, especially when matrices are large or ill-conditioned.
 
----
+## Vector and Matrix Multiplications
 
-## 9) Linear dependence, span, and when solutions exist
+Linear algebra uses small set of multiplication rules which make sure that the initial axioms are followed. In deep learning, nearly every forward and backward computation reduces to combinations of the operations described here.
 
-### 9.1 Linear combination and span
-A linear combination:
-\[
-\sum_i c_i v^{(i)}
-\]
-The **span** is the set of all such combinations.
-
-### 9.2 Column space and solvability
-For \(Ax=b\), the set of all achievable \(b\) is the **column space** of \(A\) (span of columns). The equation has a solution exactly when \(b\) lies in that span :contentReference[oaicite:10]{index=10}.
-
-### 9.3 Linear independence
-Vectors are **linearly independent** if none can be written as a linear combination of the others. Independence controls:
-- whether the span has “full dimension,”
-- whether solutions are unique.
-
-### 9.4 Invertibility conditions
-For \(A^{-1}\) to exist:
-- \(A\) must be square (\(m=n\)),
-- columns must be linearly independent.
-A square matrix with dependent columns is **singular** :contentReference[oaicite:11]{index=11}.
-
----
-
-## 10) Norms: measuring size (and why ML cares)
-
-A **norm** is a function that measures “length” and satisfies three properties:
-1. \( \|x\|=0 \Rightarrow x=0 \)
-2. triangle inequality
-3. scaling: \( \|\alpha x\| = |\alpha|\|x\| \) :contentReference[oaicite:12]{index=12}
-
-### 10.1 \(L_p\) norms
-\[
-\|x\|_p = \left(\sum_i |x_i|^p\right)^{1/p}, \quad p\ge 1
-\]
-Common cases:
-- \(L_2\): Euclidean norm (default in many ML contexts)
-- \(L_1\): encourages sparsity / “many zeros”
-- \(L_\infty\): max magnitude component :contentReference[oaicite:13]{index=13}
-
-### 10.2 Squared \(L_2\) norm
-\[
-\|x\|_2^2 = x^\top x
-\]
-Often easier for derivatives and computation :contentReference[oaicite:14]{index=14}.
-
-### 10.3 Matrix norms (Frobenius)
-\[
-\|A\|_F = \sqrt{\sum_{i,j} A_{i,j}^2}
-\]
-Common in ML as the matrix analogue of Euclidean length :contentReference[oaicite:15]{index=15}.
-
----
-
-## 11) Special vectors and matrices
-
-These show up constantly in theory and practice.
-
-### 11.1 Diagonal matrices
-A diagonal matrix has nonzero entries only on the diagonal. Multiplying by it is cheap:
-\[
-\mathrm{diag}(v)x = v \odot x
-\]
-and inversion is cheap if all diagonal entries are nonzero :contentReference[oaicite:16]{index=16}.
-
-### 11.2 Symmetric matrices
-\[
-A = A^\top
-\]
-Many important objects are symmetric (e.g., distance matrices, many Hessians under standard conditions) :contentReference[oaicite:17]{index=17}.
-
-### 11.3 Unit vectors, orthogonality, orthonormality
-- unit vector: \(\|x\|_2 = 1\)
-- orthogonal: \(x^\top y = 0\)
-- orthonormal: orthogonal + unit length :contentReference[oaicite:18]{index=18}
-
-### 11.4 Orthogonal matrices
-A matrix \(Q\) is orthogonal if:
-\[
-Q^\top Q = QQ^\top = I
-\]
-Then:
-\[
-Q^{-1} = Q^\top
-\]
-which makes many computations stable and cheap :contentReference[oaicite:19]{index=19}.
-
----
-
-## 12) Eigendecomposition: directions a matrix scales
-
-An eigenvector \(v\neq 0\) of a square matrix \(A\) satisfies:
-\[
-Av = \lambda v
-\]
-where \(\lambda\) is the eigenvalue :contentReference[oaicite:20]{index=20}.
-
-Meaning:
-- \(A\) transforms \(v\) by scaling (and possibly sign flip), not by changing direction.
-
-### 12.1 Decomposition form
-If \(A\) has a full set of independent eigenvectors:
-\[
-A = V\,\mathrm{diag}(\lambda)\,V^{-1}
-\]
-This reveals intrinsic structure of the transformation :contentReference[oaicite:21]{index=21}.
-
-### 12.2 Symmetric case is especially clean
-Every real symmetric matrix has:
-\[
-A = Q\Lambda Q^\top
-\]
-with \(Q\) orthogonal and \(\Lambda\) diagonal (real eigenvalues) :contentReference[oaicite:22]{index=22}.
-
-### 12.3 Positive definiteness
-Eigenvalues classify curvature-like behavior:
-- **positive definite**: all eigenvalues \(>0\)
-- **positive semidefinite**: all eigenvalues \(\ge 0\)
-
-These guarantee:
-\[
-x^\top A x \ge 0
-\]
-(and stricter properties when definite) :contentReference[oaicite:23]{index=23}.
+**Dot (inner) product.** For $\mathbf{x},\mathbf{y}\in\mathbb{R}^n$,
+$
+\mathbf{x}\cdot\mathbf{y}=\sum_{i=1}^n x_i y_i .
+$
+The result is a scalar. Algebraically, the dot product is [bilinear](https://en.wikipedia.org/wiki/Bilinear_map): linear in each argument when the other is held fixed[^1]. This property is essential for gradient-based optimization. 
 
 !!! note
-    This is one of the cleanest bridges to optimization: curvature, stability, and “how stiff” a problem is show up as eigenvalues.
+    The dot product has several complementary interpretations. It measures how strongly $\mathbf{x}$ aligns with weights $\mathbf{y}$ by summing componentwise contributions. Geometrically (when visualization is possible), it measures alignment between vectors: large positive values indicate similar directions, values near zero indicate near-orthogonality, and negative values indicate opposing directions. In practice, it appears as neuron pre-activations, similarity scores, attention mechanisms (queries-keys), and projections.
 
----
+The dot product between vectors can also be written in matrix form as
+$\mathbf{x}\cdot\mathbf{y} = \mathbf{x}^\top \mathbf{y}$, and is commutative: $\mathbf{x}^\top \mathbf{y} = \mathbf{y}^\top \mathbf{x}.$ 
 
-## 13) Singular Value Decomposition (SVD): the universal factorization
+!!! note
+    Orientation matters. $\mathbf{x}\mathbf{y}^\top$ and $\mathbf{x}^\top\mathbf{y}$ are different objects with different meanings. Many shape errors in neural network implementations come from ignoring this distinction.
 
-Eigenvalues require square matrices and can fail in general. SVD works for **every** real matrix :contentReference[oaicite:24]{index=24}.
+**Hadamard (elementwise) product.** The Hadamard product multiplies vectors componentwise:
+$
+(\mathbf{x}\odot\mathbf{y})_i=x_i y_i .
+$
+The result is a vector in $\mathbb{R}^n$. This operation does not mix coordinates and is not a linear map. Despite this, it is occasionally used in deep learning, for example, when applying attention masks or feature-wise scaling.
 
-For \(A \in \mathbb{R}^{m\times n}\):
-\[
-A = U D V^\top
-\]
-- \(U\): orthogonal (\(m\times m\))
-- \(V\): orthogonal (\(n\times n\))
-- \(D\): diagonal-shaped (\(m\times n\)), diagonal entries are singular values \(\sigma_i\) :contentReference[oaicite:25]{index=25}.
+!!! note
+    The **cross product** known from physics curriculum is defined only in $\mathbb{R}^3$ (and, with [special constructions](https://en.wikipedia.org/wiki/Seven-dimensional_cross_product), $\mathbb{R}^7$). It produces a vector orthogonal to its inputs and relies on three-dimensional geometry. Since deep learning representations typically live in high-dimensional spaces with no notion of "orthogonal direction in space", the cross product has no general role in deep learning and is not used in standard models.
 
-Interpretation (high-level):
-- \(V^\top\): rotate/reflect input space
-- \(D\): scale along principal axes (singular values)
-- \(U\): rotate/reflect output space
+**Matrix-vector multiplication.** Let $\mathbf{A}\in\mathbb{R}^{m\times n}$ and $\mathbf{x}\in\mathbb{R}^n$. Then
+$$
+\mathbf{y}=\mathbf{A}\mathbf{x}\in\mathbb{R}^m,\qquad
+y_i=\sum_{j=1}^n a_{ij}x_j .
+$$
+Each output component is a _dot product_ between one row of $\mathbf{A}$ and $\mathbf{x}$. This is the fundamental linear operation in deep learning: rows act as learned feature detectors and dimensionality may change ($n\to m$). 
 
-Relationships:
-- right singular vectors = eigenvectors of \(A^\top A\)
-- left singular vectors = eigenvectors of \(AA^\top\)
-- singular values relate to eigenvalues of these symmetric matrices :contentReference[oaicite:26]{index=26}.
+!!! note
+    A [fully connected  layer](../../notebooks/02_neural_network) has the form $\mathbf{y}=\mathbf{W}\mathbf{x}+\mathbf{b}$. The nonlinearity that follows does not alter the linearity of this step.
 
----
+**Matrix-matrix multiplication.** For $\mathbf{A}\in\mathbb{R}^{m\times n}$ and $\mathbf{B}\in\mathbb{R}^{n\times p}$,
+$$
+\mathbf{C}=\mathbf{A}\mathbf{B}\in\mathbb{R}^{m\times p},\qquad
+c_{ij}=\sum_{k=1}^n a_{ik}b_{kj}.
+$$
+This represents composition of linear maps: applying $\mathbf{B}$ then $\mathbf{A}$ equals applying $\mathbf{A}\mathbf{B}$. Stacked linear layers, gradient propagation via transposes, and backpropagation all rely on this structure.
 
-## 14) Pseudoinverse: solving when inverse doesn’t exist
+!!! warning "Important"
+    Matrix multiplication satisfies _distributivity_ and _associativity_, but it is **not** _commutative_ $\mathbf{A}\mathbf{B}\neq\mathbf{B}\mathbf{A}$. This reflects the fact that matrix multiplication represents the composition of linear transformations. Changing the order changes which transformation is applied first, and therefore changes the result. Only in special cases—when two transformations are compatible in a specific way—does commutativity hold.
 
-When \(A\) is not square or is singular, \(A^{-1}\) doesn’t exist. The Moore–Penrose pseudoinverse \(A^+\) generalizes “best possible inversion” :contentReference[oaicite:27]{index=27}.
+Note that, for any compatible matrices:
+$(\mathbf{A}\mathbf{B})^\top = \mathbf{B}^\top \mathbf{A}^\top .$
+The order reverses because transposition swaps rows and columns, effectively reversing the sequence of linear transformations. This property is used constantly in backpropagation, where gradients are propagated through layers via transposed weight matrices.
 
-Using SVD \(A = UDV^\top\):
-\[
-A^+ = V D^+ U^\top
-\]
-where \(D^+\) inverts nonzero singular values and transposes the diagonal-shaped matrix :contentReference[oaicite:28]{index=28}.
+!!! note
+    Since a scalar is equal to its own transpose, this identity also explains why the dot product is commutative. Written in matrix form:
+    $\mathbf{x}^\top \mathbf{y} = (\mathbf{x}^\top \mathbf{y})^\top = \mathbf{y}^\top \mathbf{x}.$ What appears as a symmetry of vectors is therefore a direct consequence of more general properties of matrix transpose.
 
-Two key regimes:
+## Linear Dependence and Span
 
-- **More columns than rows (underdetermined):** many solutions; pseudoinverse gives the one with minimal \(\|x\|_2\).
-- **More rows than columns (overdetermined):** may be no exact solution; pseudoinverse gives the \(x\) minimizing \(\|Ax-b\|_2\).
+A collection of vectors is **linearly dependent** if at least one vector in the set can be written as a linear combination of the others. Formally, vectors $\mathbf{v}_1,\dots,\mathbf{v}_k$ are linearly dependent if there exist scalars $\alpha_1,\dots,\alpha_k$, not all zero, such that
+$$
+\alpha_1 \mathbf{v}_1 + \alpha_2 \mathbf{v}_2 + \cdots + \alpha_k \mathbf{v}_k = \mathbf{0}.
+$$
+Linear dependence means redundancy: some vectors do not add new directions or information. If no such non-trivial combination exists, the vectors are **linearly independent**.
 
-This is the linear algebra behind least-squares behavior.
+!!! note
+    In deep learning and applied linear algebra, linear dependence indicates unnecessary or duplicated features. Independent vectors represent genuinely distinct directions in a space.
 
----
+The **span** of a set of vectors is the collection of all vectors that can be formed by taking linear combinations of them. Given vectors $\mathbf{v}_1,\dots,\mathbf{v}_k$, their span consists of all vectors that can be written as
+$$
+\mathbf{s} = [\,\mathbf{v}_1\ \mathbf{v}_2\ \cdots\ \mathbf{v}_k\,]\boldsymbol{\alpha},
+\qquad \boldsymbol{\alpha}\in\mathbb{R}^k.
+$$
 
-## 15) Trace: a compact way to write sums
+The span describes all vectors that are reachable using those directions. If the vectors are linearly dependent, their span does not grow when all vectors are included. Dependent vectors do not expand the space.
 
-The trace sums diagonal entries:
-\[
-\mathrm{Tr}(A)=\sum_i A_{i,i}
-\]
-It is useful because it interacts nicely with products and transpose, and it lets you rewrite expressions compactly (e.g., Frobenius norm) :contentReference[oaicite:29]{index=29}.
+!!! note
+    In practice, the span corresponds to the set of outputs a linear layer can produce. Linear dependence among columns of a weight matrix limits expressiveness, while linear independence maximizes the range of representable transformations.
 
-Example identity:
-\[
-\|A\|_F = \sqrt{\mathrm{Tr}(AA^\top)}
-\]
-And cyclic permutation property (when shapes allow):
-\[
-\mathrm{Tr}(ABC)=\mathrm{Tr}(BCA)=\mathrm{Tr}(CAB) -->
+
+
+
+
+[^1]: A function $f(\mathbf{x},\mathbf{y})$ is called **bilinear** if it is linear in each argument separately when the other argument is held fixed. For the dot product $f(\mathbf{x},\mathbf{y})=\mathbf{x}\cdot\mathbf{y}$, this means:
+Holding $\mathbf{y}$ fixed, the map $\mathbf{x}\mapsto \mathbf{x}\cdot\mathbf{y}$ is linear:
+$$
+(\alpha \mathbf{x}_1+\beta \mathbf{x}_2)\cdot\mathbf{y}
+= \alpha(\mathbf{x}_1\cdot\mathbf{y})+\beta(\mathbf{x}_2\cdot\mathbf{y}).
+$$
+Holding $\mathbf{x}$ fixed, the map $\mathbf{y}\mapsto \mathbf{x}\cdot\mathbf{y}$ is also linear:
+$$
+\mathbf{x}\cdot(\alpha \mathbf{y}_1+\beta \mathbf{y}_2)
+= \alpha(\mathbf{x}\cdot\mathbf{y}_1)+\beta(\mathbf{x}\cdot\mathbf{y}_2).
+$$
+Bilinearity does not mean the function is linear in both arguments at once. It means that if one vector is treated as constant, the dot product behaves exactly like a linear function of the other. This property is what allows dot products to distribute over sums and pull out scalar factors, and it is why gradients propagate cleanly through linear layers in deep learning.

@@ -1,4 +1,4 @@
-# Deep Learning Overview
+# Deep Learning
 
 <div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
   <time datetime="2026-01-18">18 Jan 2026</time> ·

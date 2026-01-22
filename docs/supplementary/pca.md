@@ -1,4 +1,4 @@
-# Study Materials
+# Principal Component Analysis
 
 <div class="admonition warning">
   <p class="admonition-title">Important</p>
