@@ -8,31 +8,31 @@
       
       
       
-        <link rel="canonical" href="https://shahaliyev.org/csci4701/course/spring-2026/02_project/">
+        <link rel="canonical" href="https://shahaliyev.org/csci4701/supplementary/svd/">
       
       
-        <link rel="prev" href="../01_syllabus/">
+        <link rel="prev" href="../pca/">
       
       
-        <link rel="next" href="../../../introduction/01_deep_learning/">
+        <link rel="next" href="../../advanced/">
       
       
         
       
       
-      <link rel="icon" href="../../../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
     
     
       
-        <title>Project - CSCI 4701 Deep Learning</title>
+        <title>Singular Value Decomposition - CSCI 4701 Deep Learning</title>
       
     
     
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
       
         
-        <link rel="stylesheet" href="../../../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +53,9 @@
     
       <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
     
-      <link rel="stylesheet" href="../../../assets/styles/extra.css">
+      <link rel="stylesheet" href="../../assets/styles/extra.css">
     
-    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
   
@@ -90,7 +90,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#project" class="md-skip">
+        <a href="#singular-value-decomposition" class="md-skip">
           Skip to content
         </a>
       
@@ -104,7 +104,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../.." title="CSCI 4701 Deep Learning" class="md-header__button md-logo" aria-label="CSCI 4701 Deep Learning" data-md-component="logo">
+    <a href="../.." title="CSCI 4701 Deep Learning" class="md-header__button md-logo" aria-label="CSCI 4701 Deep Learning" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -124,7 +124,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Project
+              Singular Value Decomposition
             
           </span>
         </div>
@@ -235,8 +235,6 @@
   
   
   
-    
-  
   
     
     
@@ -244,13 +242,11 @@
   
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../01_syllabus/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../course/spring-2026/01_syllabus/" class="md-tabs__link">
           
   
   
@@ -273,7 +269,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../introduction/01_deep_learning/" class="md-tabs__link">
+        <a href="../../introduction/01_deep_learning/" class="md-tabs__link">
           
   
   
@@ -293,7 +289,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../notebooks/" class="md-tabs__link">
+        <a href="../../notebooks/" class="md-tabs__link">
           
   
   
@@ -313,7 +309,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../mathematics/" class="md-tabs__link">
+        <a href="../../mathematics/" class="md-tabs__link">
           
   
   
@@ -329,11 +325,13 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../../supplementary/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   
@@ -353,7 +351,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../advanced/" class="md-tabs__link">
+        <a href="../../advanced/" class="md-tabs__link">
           
   
   
@@ -387,7 +385,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../.." title="CSCI 4701 Deep Learning" class="md-nav__button md-logo" aria-label="CSCI 4701 Deep Learning" data-md-component="logo">
+    <a href="../.." title="CSCI 4701 Deep Learning" class="md-nav__button md-logo" aria-label="CSCI 4701 Deep Learning" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -414,31 +412,28 @@
       
   
   
-    
   
   
-  
     
     
     
     
-      
-        
-        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
         
           
-          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
             
   
   
@@ -456,7 +451,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -471,31 +466,28 @@
                 
   
   
-    
   
   
-  
     
     
     
     
       
       
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
         
           
-          
         
-      
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1" checked>
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1_1" >
         
           
-          <label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="">
+          <label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="0">
             
   
   
@@ -513,7 +505,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1_1">
             <span class="md-nav__icon md-icon"></span>
             
@@ -531,7 +523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../01_syllabus/" class="md-nav__link">
+      <a href="../../course/spring-2026/01_syllabus/" class="md-nav__link">
         
   
   
@@ -556,19 +548,38 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/spring-2026/02_assesments/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
     
   
+    Assessments
+  
+
+    
+  </span>
   
   
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/spring-2026/03_project/" class="md-nav__link">
         
   
   
@@ -584,7 +595,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -666,7 +676,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../introduction/01_deep_learning/" class="md-nav__link">
+      <a href="../../introduction/01_deep_learning/" class="md-nav__link">
         
   
   
@@ -694,7 +704,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../introduction/02_machine_learning/" class="md-nav__link">
+      <a href="../../introduction/02_machine_learning/" class="md-nav__link">
         
   
   
@@ -722,7 +732,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../introduction/03_resources/" class="md-nav__link">
+      <a href="../../introduction/03_resources/" class="md-nav__link">
         
   
   
@@ -811,7 +821,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/" class="md-nav__link">
+      <a href="../../notebooks/" class="md-nav__link">
         
   
   
@@ -839,7 +849,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/01_backprop/" class="md-nav__link">
+      <a href="../../notebooks/01_backprop/" class="md-nav__link">
         
   
   
@@ -867,7 +877,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/02_neural_network/" class="md-nav__link">
+      <a href="../../notebooks/02_neural_network/" class="md-nav__link">
         
   
   
@@ -895,7 +905,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/03_cnn_torch/" class="md-nav__link">
+      <a href="../../notebooks/03_cnn_torch/" class="md-nav__link">
         
   
   
@@ -923,7 +933,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/04_regul_optim/" class="md-nav__link">
+      <a href="../../notebooks/04_regul_optim/" class="md-nav__link">
         
   
   
@@ -951,7 +961,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/05_nn_ngram/" class="md-nav__link">
+      <a href="../../notebooks/05_nn_ngram/" class="md-nav__link">
         
   
   
@@ -979,7 +989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/06_batchnorm_resnet/" class="md-nav__link">
+      <a href="../../notebooks/06_batchnorm_resnet/" class="md-nav__link">
         
   
   
@@ -1007,7 +1017,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/07_vae/" class="md-nav__link">
+      <a href="../../notebooks/07_vae/" class="md-nav__link">
         
   
   
@@ -1096,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../mathematics/" class="md-nav__link">
+      <a href="../../mathematics/" class="md-nav__link">
         
   
   
@@ -1124,7 +1134,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../mathematics/01_calculus/" class="md-nav__link">
+      <a href="../../mathematics/01_calculus/" class="md-nav__link">
         
   
   
@@ -1152,7 +1162,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../mathematics/02_linear_algebra/" class="md-nav__link">
+      <a href="../../mathematics/02_linear_algebra/" class="md-nav__link">
         
   
   
@@ -1180,7 +1190,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../mathematics/03_probability/" class="md-nav__link">
+      <a href="../../mathematics/03_probability/" class="md-nav__link">
         
   
   
@@ -1208,7 +1218,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../mathematics/04_information/" class="md-nav__link">
+      <a href="../../mathematics/04_information/" class="md-nav__link">
         
   
   
@@ -1240,28 +1250,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   
@@ -1279,7 +1292,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             
@@ -1297,7 +1310,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../supplementary/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -1325,7 +1338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../supplementary/pca/" class="md-nav__link">
+      <a href="../pca/" class="md-nav__link">
         
   
   
@@ -1341,6 +1354,103 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Singular Value Decomposition
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Singular Value Decomposition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#eigendecomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eigendecomposition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#singular-value-decomposition_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Singular Value Decomposition
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1414,7 +1524,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../advanced/" class="md-nav__link">
+      <a href="../../advanced/" class="md-nav__link">
         
   
   
@@ -1462,6 +1572,36 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#eigendecomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Eigendecomposition
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#singular-value-decomposition_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Singular Value Decomposition
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1480,7 +1620,55 @@
   
 
 
-<h1 id="project">Project</h1>
+<h1 id="singular-value-decomposition">Singular Value Decomposition</h1>
+<div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
+  <time datetime="2025-10-16">16 Oct 2025</time>
+</div>
+
+<p>Presented below is an important concept of the introductory <a href="../../mathematics/02_linear_algebra">linear algebra</a> called <strong>singular value decomposition</strong>, frequently implemented in machine/deep learning frameworks for optimizing calculations. It is the engine of <a href="../pca">Principal Component Analysis</a> and is used for obtaining <a href="https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse">pseudoinverse</a>. Below, I tried to build the understanding gradually by providing necessary background and quick proofs. The text presumes prior knowledge on <a href="https://en.wikipedia.org/wiki/Eigenvalues_and_eigenvectors">eigenvalues and eigenvectors</a>.  </p>
+<h2 id="eigendecomposition">Eigendecomposition</h2>
+<p>By definition, multiplying a matrix <span class="arithmatex">\(A\)</span> by one of its eigenvectors scales that eigenvector by the corresponding eigenvalue. Hence, <span class="arithmatex">\(AQ = Q\Lambda\)</span>, where <span class="arithmatex">\(Q\)</span> is the matrix whose columns are the linearly independent eigenvectors of <span class="arithmatex">\(A\)</span> (if such a full set exists, <span class="arithmatex">\(Q\)</span> forms an <strong>eigenbasis</strong>), and <span class="arithmatex">\(\Lambda\)</span> is a diagonal matrix whose diagonal entries are the eigenvalues of <span class="arithmatex">\(A\)</span>. If <span class="arithmatex">\(Q\)</span> is invertible, we can write: 
+$$
+A Q Q^{-1} = Q \Lambda Q^{-1} \quad \Rightarrow \quad A = Q \Lambda Q^{-1}.
+$$
+As a result, applying <span class="arithmatex">\(A\)</span> to any vector <span class="arithmatex">\(v\)</span> is equivalent to applying <span class="arithmatex">\(Q \Lambda Q^{-1}\)</span> to <span class="arithmatex">\(v\)</span>, since both represent the same linear transformation. Geometrically, the coordinates of <span class="arithmatex">\(v\)</span> are first expressed in the eigenbasis via <span class="arithmatex">\(Q^{-1}\)</span>, then scaled by the eigenvalues via <span class="arithmatex">\(\Lambda\)</span>, and finally transformed back to the original standard basis (e.g. <span class="arithmatex">\(\hat{\imath}, \hat{\jmath}\)</span>) via <span class="arithmatex">\(Q\)</span>.</p>
+<p>For a <strong>symmetric matrix</strong>, eigenvectors corresponding to distinct eigenvalues are orthogonal. If <span class="arithmatex">\(A\mathbf{v}_1 = \lambda_1 \mathbf{v}_1\)</span> and <span class="arithmatex">\(A\mathbf{v}_2 = \lambda_2 \mathbf{v}_2\)</span>, then $ \mathbf{v}_1^T A \mathbf{v}_2 = \lambda_2 \mathbf{v}_1^T \mathbf{v}_2 $. Because <span class="arithmatex">\(A^T = A\)</span> and <span class="arithmatex">\((XY)^T = Y^T X^T\)</span>, we can write $ \mathbf{v}_1^T A \mathbf{v}_2 = (A^T \mathbf{v}_1)^T \mathbf{v}_2 = (A \mathbf{v}_1)^T \mathbf{v}_2 = \lambda_1 \mathbf{v}_1^T \mathbf{v}_2$. Combining both gives <span class="arithmatex">\((\lambda_1 - \lambda_2)\mathbf{v}_1^T \mathbf{v}_2 = 0\)</span>, and since <span class="arithmatex">\(\lambda_1 \neq \lambda_2\)</span>, it follows that $\mathbf{v}_1^T \mathbf{v}_2 = 0 $.</p>
+<p>Thus, the eigenvectors can be chosen <strong>orthonormal</strong>, and <span class="arithmatex">\(Q\)</span> is orthogonal with <span class="arithmatex">\(Q^{-1} = Q^T\)</span>. The diagonalization becomes 
+$$
+A = Q \Lambda Q^T.
+$$
+Geometrically, orthogonal <span class="arithmatex">\(Q\)</span> represents a rotation or reflection, which preserves inner products and thus lengths and angles. This means orthogonal transformations preserve the geometric structure of space: 
+$$ 
+| Q\mathbf{v} |^2 = (Q\mathbf{v})^T (Q\mathbf{v}) = \mathbf{v}^T Q^T Q \mathbf{v} = \mathbf{v}^T \mathbf{v} = | \mathbf{v} |^2,
+$$ 
+showing that the squared length remains unchanged. Consequently, a symmetric matrix scales space only along mutually perpendicular eigenvector directions without introducing shear or non-uniform angular distortion.</p>
+<h2 id="singular-value-decomposition_1">Singular Value Decomposition</h2>
+<p><em>Eigendecomposition</em> described above is a powerful tool, but it has two major limitations: it only applies to square matrices, and even then, not every square matrix is diagonalizable (some lack a full set of linearly independent eigenvectors). In practical applications we usually deal with rectangular matrices or non-diagonalizable ones.</p>
+<p><em>Quadratic form</em> is an expression of the type $ \mathbf{x}^T A \mathbf{x} $, where <span class="arithmatex">\(A\)</span> is a square matrix and <span class="arithmatex">\(\mathbf{x} \in \mathbb{R}^n\)</span>. It arises naturally when measuring the squared length of a vector after a linear transformation.
+If we first transform <span class="arithmatex">\(\mathbf{x}\)</span> by a matrix <span class="arithmatex">\(A\)</span>, the squared length becomes
+$$
+|A\mathbf{x}|^2 = (A\mathbf{x})^T (A\mathbf{x}) = \mathbf{x}^T A^T A \mathbf{x}.
+$$
+Quadratic form shows how <span class="arithmatex">\(A\)</span> scales or distorts space along different directions. Let $ \mathbf{y} = A \mathbf{x} $, then <span class="arithmatex">\(\mathbf{x}^T A \mathbf{x} = \mathbf{x}^T (A \mathbf{x}) = \mathbf{x}^T \mathbf{y}\)</span> is the dot product between the original vector $ \mathbf{x} $ and its transformed version $ A\mathbf{x} $. If $ \mathbf{x}^T A \mathbf{x} $ is large and positive, then $ A $ stretches $ \mathbf{x} $ strongly in roughly the same direction. If $ \mathbf{x}^T A \mathbf{x} = 0 $, then $ A $ sends $ \mathbf{x} $ to a vector orthogonal to itself -- a pure rotation-like behavior. If $ \mathbf{x}^T A \mathbf{x} $ is negative, then $ A $ flips $ \mathbf{x} $ in the opposite direction to its original orientation.</p>
+<p>Both <span class="arithmatex">\(A^T A\)</span> (size <span class="arithmatex">\(n \times n\)</span>) and <span class="arithmatex">\(A A^T\)</span> (size <span class="arithmatex">\(m \times m\)</span>) are always symmetric. This is because <span class="arithmatex">\((A^T A)^T = A^T (A^T)^T = A^T A\)</span>, and similarly <span class="arithmatex">\((A A^T)^T = (A^T)^T A^T = A A^T\)</span>. They are also positive semidefinite: for any nonzero vector <span class="arithmatex">\(\mathbf{x}\)</span>, we have quadratic form
+$ \mathbf{x}^T (A^T A) \mathbf{x} = (A \mathbf{x})^T (A \mathbf{x}) = | A \mathbf{x} |^2 \geq 0 $, and  $ \mathbf{y}^T (A A^T) \mathbf{y} = (A^T \mathbf{y})^T (A^T \mathbf{y}) = | A^T \mathbf{y} |^2 \geq 0 $. Because they are symmetric, both matrices are diagonalizable with orthogonal eigenvectors. </p>
+<p>Let <span class="arithmatex">\(A^T A \mathbf{v}_i = \sigma_i^2 \mathbf{v}_i\)</span>, where <span class="arithmatex">\(\mathbf{v}_i\)</span> are orthonormal eigenvectors and <span class="arithmatex">\(\sigma_i^2\)</span> are the eigenvalues of <span class="arithmatex">\(A^T A\)</span>. Then:
+$$
+|A \mathbf{v}_i|^2 = \mathbf{v}_i^T A^T A \mathbf{v}_i = \sigma_i^2 \mathbf{v}_i^T \mathbf{v}_i = \sigma_i^2
+$$
+implies that <span class="arithmatex">\(\sigma_i^2\)</span> is the squared length of the transformed unit vector. Because <span class="arithmatex">\(A^T A\)</span> is positive semidefinite, we define <span class="arithmatex">\(\sigma_i = \sqrt{\sigma_i^2} \ge 0\)</span> as the <em>singular values</em> of <span class="arithmatex">\(A\)</span>. The new vector <span class="arithmatex">\(A\mathbf{v}_i\)</span> has length <span class="arithmatex">\(\sigma_i\)</span>, hence the matrix <span class="arithmatex">\(A\)</span> transforms the eigenvectors of <span class="arithmatex">\(A^T A\)</span> by scaling their lengths by the square roots of the eigenvalues (singular values) of <span class="arithmatex">\(A^T A\)</span>. The eigenvectors themselves indicate the directions along which <span class="arithmatex">\(A\)</span> changes length by exactly <span class="arithmatex">\(\sigma_i\)</span>.</p>
+<p>We define the <em>Singular Value Decomposition (SVD)</em> of <span class="arithmatex">\(A\)</span> as:
+$$
+A = U \Sigma V^T.
+$$
+Here <span class="arithmatex">\(V\)</span> is an <span class="arithmatex">\(n \times n\)</span> orthogonal matrix whose columns <span class="arithmatex">\(\mathbf{v}_i\)</span> are eigenvectors of <span class="arithmatex">\(A^T A\)</span> (<em>right singular vectors</em>), <span class="arithmatex">\(\Sigma\)</span> is an <span class="arithmatex">\(m \times n\)</span> diagonal matrix whose diagonal entries <span class="arithmatex">\(\sigma_i\)</span> are the singular values of <span class="arithmatex">\(A\)</span>, and <span class="arithmatex">\(U\)</span> is an <span class="arithmatex">\(m \times m\)</span> orthogonal matrix whose columns <span class="arithmatex">\(\mathbf{u}_i\)</span> are eigenvectors of <span class="arithmatex">\(A A^T\)</span> (<em>left singular vectors</em>).</p>
+<p>The columns of <span class="arithmatex">\(U\)</span> arise similarly from the eigendecomposition of <span class="arithmatex">\(A A^T\)</span>. If <span class="arithmatex">\(A A^T \mathbf{u}_i = \sigma_i^2 \mathbf{u}_i,\)</span> then <span class="arithmatex">\(\mathbf{u}_i\)</span> is a unit eigenvector of <span class="arithmatex">\(A A^T\)</span>, and <span class="arithmatex">\(\sigma_i^2\)</span> is the same eigenvalue as before. Since <span class="arithmatex">\(A A^T\)</span> is <span class="arithmatex">\(m \times m\)</span> and symmetric, it is diagonalizable with an orthonormal set of eigenvectors forming the columns of <span class="arithmatex">\(U\)</span>.</p>
+<p>Once we have computed the eigenvalues and right singular vectors of <span class="arithmatex">\(A^T A\)</span>, we can obtain the left singular vectors directly from them. Multiplying both sides of <span class="arithmatex">\(A^T A \mathbf{v}_i = \sigma_i^2 \mathbf{v}_i\)</span> by <span class="arithmatex">\(A\)</span> gives
+$ (A A^T)(A \mathbf{v}_i) = \sigma_i^2 (A \mathbf{v}_i) $, 
+so <span class="arithmatex">\(A \mathbf{v}_i\)</span> is an eigenvector of <span class="arithmatex">\(A A^T\)</span> with eigenvalue <span class="arithmatex">\(\sigma_i^2\)</span>. To achieve orthonormal basis, we normalize <span class="arithmatex">\(A \mathbf{v}_i\)</span> to unit length. Having <span class="arithmatex">\(\|A \mathbf{v}_i\| = \sigma_i\)</span> leads to <span class="arithmatex">\(\mathbf{u}_i = \sigma_i^{-1} A \mathbf{v}_i.\)</span> Multiplying $ A \mathbf{v}_i = \sigma_i \mathbf{u}_i $ by <span class="arithmatex">\(A^T\)</span> on the left yields $ A^T \mathbf{u}_i = \sigma_i \mathbf{v}_i $. These equations guarantee that SVD formula is consistent: multiplying both sides on the right by <span class="arithmatex">\(V\)</span> gives <span class="arithmatex">\(A V = U \Sigma\)</span>, and multiplying on the left by <span class="arithmatex">\(U^T\)</span> gives <span class="arithmatex">\(U^T A = \Sigma V^T\)</span>.</p>
+<p>Geometrically, <span class="arithmatex">\(A\)</span> takes the unit vector in the direction of $ \mathbf{v}_i $ in the input space, rotates (or reflects) it into the new orthogonal direction $ \mathbf{u}_i $ in the output space, and stretches it by a factor of $ \sigma_i $. Similarly, <span class="arithmatex">\(A^T\)</span> takes the unit vector in the direction of $ \mathbf{u}_i $ in the output space, maps it back into the corresponding direction $ \mathbf{v}_i $ in the input space, and scales it by the same factor $ \sigma_i $. Hence, <span class="arithmatex">\(A\)</span> can be understood as a composition of three transformations: a rotation or reflection by <span class="arithmatex">\(V^T\)</span>, a scaling along orthogonal axes by <span class="arithmatex">\(\Sigma\)</span>, and a rotation or reflection by <span class="arithmatex">\(U\)</span>. For any vector <span class="arithmatex">\(\mathbf{v}\)</span>,
+$ A\mathbf{v} = U \Sigma V^T \mathbf{v} $, 
+so <span class="arithmatex">\(\mathbf{v}\)</span> is first expressed in the basis of right singular vectors by <span class="arithmatex">\(V^T\)</span>, then scaled by singular values by <span class="arithmatex">\(\Sigma\)</span>, and finally mapped into the new space in the basis of left singular vectors by <span class="arithmatex">\(U\)</span>. Thus, we extend the concept of eigendecomposition to all real matrices.</p>
 
 
 
@@ -1518,7 +1706,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../01_syllabus/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Syllabus">
+          <a href="../pca/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Principal Component Analysis">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -1528,20 +1716,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Syllabus
+                Principal Component Analysis
               </div>
             </div>
           </a>
         
         
           
-          <a href="../../../introduction/01_deep_learning/" class="md-footer__link md-footer__link--next" aria-label="Next: Deep Learning">
+          <a href="../../advanced/" class="md-footer__link md-footer__link--next" aria-label="Next: Advanced Material">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Deep Learning
+                Advanced Material
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -1616,12 +1804,12 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.instant", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.tabs", "content.code.copy", "content.code.annotate", "search.highlight", "search.suggest", "content.footnote.tooltips"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.tabs", "content.code.copy", "content.code.annotate", "search.highlight", "search.suggest", "content.footnote.tooltips"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
       
-        <script src="../../../assets/app/katex.js"></script>
+        <script src="../../assets/app/katex.js"></script>
       
         <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
       
