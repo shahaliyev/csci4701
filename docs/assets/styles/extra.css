@@ -1,4 +1,17 @@
-Center images/plots produced from converted notebooks
+/* Center images / plots produced from converted notebooks */
+.md-typeset img.jp-RenderedImage,
+.md-typeset img.output_png,
+.md-typeset img.output_svg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.md-typeset .output_png,
+.md-typeset .output_svg {
+  text-align: center;
+}
+
 .jp-RenderedImage,
 .output_png,
 .output_svg {
@@ -10,9 +23,3 @@ Center images/plots produced from converted notebooks
 .md-typeset ol li {
   margin-bottom: 0;
 }
-
-.md-typeset ul,
-.md-typeset ol {
-  margin-bottom: 0;
-}
-
