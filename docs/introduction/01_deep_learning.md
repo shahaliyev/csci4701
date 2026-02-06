@@ -2,7 +2,7 @@
 
 <div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
   <time datetime="2026-01-18">18 Jan 2026</time>
-</div>s
+</div>
 
 **Artificial Intelligence (AI)** is the broad field concerned with building systems that perform tasks requiring intelligence. **Machine Learning** is a subfield of AI that enables systems to learn patterns and make decisions from data rather than explicit rules. **Deep Learning** is a subfield of machine learning that uses multi-layer neural networks to learn complex representations from large datasets.
 
