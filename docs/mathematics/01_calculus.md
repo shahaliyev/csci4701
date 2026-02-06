@@ -5,7 +5,7 @@
   <time datetime="PT12M">12 min</time>
 </div>
 
-Calculus studies two closely related ideas: **accumulation** (integration) and **change** (differentiation). In DL, learning is defined by accumulating error across data, usually as an average loss. Training then proceeds by making small changes to model parameters in order to reduce this accumulated error. Calculus provides the language and structure for both. This section builds calculus concepts from fundamentals, with the goal of understanding how they support learning, optimization, and model behavior in deep learning.
+Calculus studies two closely related ideas: **accumulation** (integration) and **change** (differentiation). Indeep learning, learning is defined by accumulating error across data, usually as an average loss. Training then proceeds by making small changes to model parameters in order to reduce this accumulated error. Calculus provides the language and structure for both. This section builds calculus concepts from fundamentals, with the goal of understanding how they support learning, optimization, and model behavior in deep learning.
 
 ## Functions
 
@@ -17,7 +17,7 @@ A **function** maps inputs to outputs. We write this as $y = f(x)$. If the input
 
 ## Integration
 
-An **integral** such as $\int_a^b f(x)\,dx$ represents the total accumulation of the values of $f(x)$ as $x$ moves from $a$ to $b$. It is simply the continuous analogue of a summation. You can think of an integral as summing many small contributions of $f(x)$ over an interval. The exact techniques for computing integrals are less important in DL than the idea they represent.
+An **integral** such as $\int_a^b f(x)\,dx$ represents the total accumulation of the values of $f(x)$ as $x$ moves from $a$ to $b$. It is simply the continuous analogue of a summation. You can think of an integral as summing many small contributions of $f(x)$ over an interval. The exact techniques for computing integrals are less important in deep learning than the idea they represent.
 
 Conceptually, integration means breaking an interval into many small pieces. For each piece, we take the value of $f(x)$ and multiply it by the width of the piece. Adding all these pieces together gives an approximation of the total accumulation. As the pieces become smaller and more numerous, this approximation approaches the integral. Mathematically, we represent this very small width as $dx$.
 
@@ -31,7 +31,7 @@ Conceptually, integration means breaking an interval into many small pieces. For
 
 
 !!! note
-    In DL, training is never based on a single example. A model is evaluated by how it performs across many examples, so errors must be combined into one overall value. In practice, we only have access to a limited number of training examples. A common case in ML and DL is <a href='https://en.wikipedia.org/wiki/Mean_squared_error'>mean squared error (MSE)</a>, where for each training sample we compute a prediction error, square it (so negative and positive errors do not cancel, and larger mistakes are penalized), and then average these squared errors over the dataset. Conceptually, however, this dataset-level average is not the final goal. 
+    In deep learning, training is never based on a single example. A model is evaluated by how it performs across many examples, so errors must be combined into one overall value. In practice, we only have access to a limited number of training examples. A common case in machine and deep learning is <a href='https://en.wikipedia.org/wiki/Mean_squared_error'>mean squared error (MSE)</a>, where for each training sample we compute a prediction error, square it (so negative and positive errors do not cancel, and larger mistakes are penalized), and then average these squared errors over the dataset. Conceptually, however, this dataset-level average is not the final goal. 
 
 The dataset is usually treated as a small collection of examples drawn from a much larger source of data. Ideally, we would like to measure the model’s average error over all possible data points it might encounter, not just the ones we happened to collect. The finite average used in training should therefore be understood as a practical **approximation** of a more general, ideal accumulated continuous quantity. For the values $g(x_1), g(x_2), \dots, g(x_N)$, we can write
 
@@ -45,7 +45,7 @@ $$
 \mathbb{E}_{x \sim p}[g(x)] = \int g(x)\,p(x)\,dx.
 $$
 
-You do not need a deep understanding of probability to read this expression. Conceptually, it means: consider all possible values of $x$, weight each value by how common it is, and add everything up. Many DL loss functions can be understood this way, as average losses over all possible data. For discrete datasets, this expectation reduces to a finite sum, while for continuous variables it is written as an integral. The integral itself is not special—it is simply the mathematical way to express an average over all possible inputs when the space of inputs is continuous.
+You do not need a deep understanding of probability to read this expression. Conceptually, it means: consider all possible values of $x$, weight each value by how common it is, and add everything up. Many deep learning loss functions can be understood this way, as average losses over all possible data. For discrete datasets, this expectation reduces to a finite sum, while for continuous variables it is written as an integral. The integral itself is not special—it is simply the mathematical way to express an average over all possible inputs when the space of inputs is continuous.
 
 !!! tip
     If the idea of expectations or probability distributions feels unfamiliar, you may want to read the page dedicated to the
@@ -69,7 +69,7 @@ This definition captures the idea of an "instantaneous" rate of change. Intuitiv
 
 
 !!! note
-    In DL, if increasing a model weight slightly increases the loss, then the derivative of the loss with respect to that weight is positive. That means decreasing the weight slightly should reduce the loss (at least locally).
+    Indeep learning, if increasing a model weight slightly increases the loss, then the derivative of the loss with respect to that weight is positive. That means decreasing the weight slightly should reduce the loss (at least locally).
 
 The derivative is not only a number; it also provides a practical approximation of how a function behaves near a given point. The key idea is that, over very small distances, a smooth function behaves almost like a straight line. If we start at a point $x$ and move a small step $h$, the derivative $f'(x)$ tells us how steep the function is at $x$. Using this slope, we can estimate how much the output will change. This leads to the approximation
 
@@ -87,7 +87,7 @@ This formula should be read as a prediction: "start from the current value $f(x)
 </figure>
 
 !!! note
-    In DL, training works because, at each step, we treat the loss as locally almost linear in the parameters. The gradient (see below) gives the slope of this local linear approximation. By making small parameter updates in the direction opposite to the gradient, we can reliably reduce the loss step by step, even when the overall loss function is highly complex.
+    Indeep learning, training works because, at each step, we treat the loss as locally almost linear in the parameters. The gradient (see below) gives the slope of this local linear approximation. By making small parameter updates in the direction opposite to the gradient, we can reliably reduce the loss step by step, even when the overall loss function is highly complex.
 
 
 ## Partial derivatives
@@ -145,7 +145,7 @@ $$
 Each entry measures how one component of the output changes when one component of the input is varied. The Jacobian therefore captures all first-order sensitivities between inputs and outputs.
 
 !!! note
-    In DL, layers often map vectors to vectors. Although Jacobians are rarely written explicitly, they are the objects through which changes propagate from one layer to the next. When the output is a scalar loss, the Jacobian reduces to a row vector. Conceptually, the gradient introduced earlier is simply the Jacobian of a scalar-valued function. Backpropagation avoids forming full Jacobian matrices explicitly. Instead, it efficiently computes vector–Jacobian products, which is why gradients can be computed for models with millions of parameters at reasonable cost.
+    Indeep learning, layers often map vectors to vectors. Although Jacobians are rarely written explicitly, they are the objects through which changes propagate from one layer to the next. When the output is a scalar loss, the Jacobian reduces to a row vector. Conceptually, the gradient introduced earlier is simply the Jacobian of a scalar-valued function. Backpropagation avoids forming full Jacobian matrices explicitly. Instead, it efficiently computes vector–Jacobian products, which is why gradients can be computed for models with millions of parameters at reasonable cost.
 
 !!! tip
     Jacobians are best understood through linear algebra. If matrices and vector transformations feel unfamiliar, you may want to read the <a href="../02_linear_algebra">Linear Algebra</a> page alongside this section.
@@ -153,7 +153,7 @@ Each entry measures how one component of the output changes when one component o
 
 ## Chain Rule
 
-DL models are built by *composing functions*. Instead of a single operation, a model applies many transformations one after another. Each transformation takes the output of the previous one as its input. To understand how changes propagate through such a model, consider a simple composition:
+deep learning models are built by *composing functions*. Instead of a single operation, a model applies many transformations one after another. Each transformation takes the output of the previous one as its input. To understand how changes propagate through such a model, consider a simple composition:
 
 $$
 y = g(x), \qquad L = f(y).
@@ -196,12 +196,12 @@ This approximation assumes that, for small updates, the function behaves almost 
 This local linear approximation relies on an important assumption: the function must be **smooth enough** near the point of expansion. Smoothness means that small changes in the input lead to small, predictable changes in the output, and that derivatives do not change abruptly.
 
 !!! note
-    In DL, loss functions are often not perfectly smooth everywhere, but they are typically **piecewise smooth**. This is sufficient. Taylor expansions and gradient-based updates only rely on local behavior along the training trajectory, not on global smoothness of the loss surface. A common example is the [ReLU activation](../notebooks/02_neural_network.ipynb), which is not differentiable at zero but is differentiable almost everywhere else. Gradient-based methods rely on this local behavior and use subgradients at nondifferentiable points.
+    Indeep learning, loss functions are often not perfectly smooth everywhere, but they are typically **piecewise smooth**. This is sufficient. Taylor expansions and gradient-based updates only rely on local behavior along the training trajectory, not on global smoothness of the loss surface. A common example is the [ReLU activation](../notebooks/02_neural_network.ipynb), which is not differentiable at zero but is differentiable almost everywhere else. Gradient-based methods rely on this local behavior and use subgradients at nondifferentiable points.
 
 Keeping second-order terms reveals that this linear behavior is only approximate. These higher-order terms explain why the slope itself can change as we move, motivating the need to understand second-order structure.
 
 !!! note
-    In DL, gradient-based learning relies on first-order Taylor approximations. Understanding why and when this approximation breaks down requires looking at second-order effects, which are captured by the Hessian.
+    Indeep learning, gradient-based learning relies on first-order Taylor approximations. Understanding why and when this approximation breaks down requires looking at second-order effects, which are captured by the Hessian.
 
 ## Hessian
 
@@ -229,7 +229,7 @@ $$
 Each entry tells us how the sensitivity with respect to one parameter changes when another parameter is varied. In this sense, the Hessian measures **curvature**: how the loss surface bends in different directions. Consider a simple two-parameter loss $L(\theta_1, \theta_2)$. The diagonal entries of the Hessian describe how sharply the loss curves when we move along each parameter direction individually. The off-diagonal entries describe how changes in one parameter affect the sensitivity with respect to another parameter.
 
 !!! note
-    In DL, this information explains important optimization behavior. Directions with strong positive curvature correspond to narrow valleys, where large updates can easily overshoot. Directions with weak curvature correspond to flat regions, where progress can be slow. Negative curvature indicates directions where the loss bends downward, which is typical near saddle points. Although full Hessians are rarely computed explicitly in DL due to their size and cost, their effects are always present. Learning rate selection, optimization stability, and the behavior of training near minima and saddle points are all influenced by second-order structure.
+    Indeep learning, this information explains important optimization behavior. Directions with strong positive curvature correspond to narrow valleys, where large updates can easily overshoot. Directions with weak curvature correspond to flat regions, where progress can be slow. Negative curvature indicates directions where the loss bends downward, which is typical near saddle points. Although full Hessians are rarely computed explicitly in deep learning due to their size and cost, their effects are always present. Learning rate selection, optimization stability, and the behavior of training near minima and saddle points are all influenced by second-order structure.
 
 !!! tip
     Like the Jacobian, the Hessian is a linear algebra object—a matrix encoding directional behavior. If matrices, eigenvalues, or curvature interpretations feel unfamiliar, you may want to read the
@@ -243,12 +243,12 @@ A **minimum** is a point where small changes in any direction increase the loss.
 A **saddle point** is also a point where the gradient is zero, but the behavior is mixed: the loss increases in some directions and decreases in others. This means the point is neither a true minimum nor a maximum. The distinction between minima and saddle points is determined by the local curvature described by the Hessian.
 
 !!! note
-    In high-dimensional DL models, saddle points are far more common than poor local minima. Gradient-based methods can often escape saddle points because curvature creates unstable directions, and stochastic noise from minibatches helps push parameters away from them.
+    In high-dimensional deep learning models, saddle points are far more common than poor local minima. Gradient-based methods can often escape saddle points because curvature creates unstable directions, and stochastic noise from minibatches helps push parameters away from them.
 
 In classical optimization, **convex** loss functions play a special role. For a convex function, any point where the gradient is zero is guaranteed to be a global minimum. There are no saddle points and no spurious local minima.
 
 !!! note
-    Most DL loss functions are **not convex**. As a result, global guarantees do not apply. Instead, training relies on local information provided by gradients and curvature. Despite the lack of convexity, gradient-based methods work well in practice due to overparameterization, stochastic gradients, and the structure induced by modern architectures, even though no global guarantees apply.
+    Most deep learning loss functions are **not convex**. As a result, global guarantees do not apply. Instead, training relies on local information provided by gradients and curvature. Despite the lack of convexity, gradient-based methods work well in practice due to overparameterization, stochastic gradients, and the structure induced by modern architectures, even though no global guarantees apply.
 
 Gradient-based learning does not require global convexity. What matters is that, locally, the loss behaves smoothly enough for gradients and Taylor approximations to provide reliable guidance along the training trajectory.
 
@@ -275,6 +275,6 @@ $$
 Together, these statements show that local change and total accumulation are two sides of the same idea.
 
 !!! note
-    In DL, losses are defined as accumulated quantities, while gradients describe local change. Training works because following local gradients causes a consistent reduction in the accumulated loss over time.
+    Indeep learning, losses are defined as accumulated quantities, while gradients describe local change. Training works because following local gradients causes a consistent reduction in the accumulated loss over time.
 
 [^1]: For a further DL–oriented treatment of gradients, Jacobians, Hessians, and numerical aspects of optimization, see Goodfellow, I., Bengio, Y., & Courville, A. (2016). Deep Learning. MIT Press. [Chapter 4: Numerical Computation](https://www.deeplearningbook.org/contents/numerical.html).

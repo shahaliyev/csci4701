@@ -72,7 +72,7 @@ table td:first-child {
 
 | Class | Topic | Learning Outcomes | Assessment | Materials |
 |---|---|---|---|---|
-| 1 | **Deep Learning (DL) Overview / Course Structure** | Describe the scope of DL and the course syllabus. Fulfill technological requirements. | | [introduction/01_deep_learning](../../../introduction/01_deep_learning) |
+| 1 | **Deep Learning (DL) Overview / Course Structure** | Describe the scope of deep learning and the course syllabus. Fulfill technological requirements. | | [introduction/01_deep_learning](../../../introduction/01_deep_learning) |
 | 2 | **Mathematics of DL: Calculus / Linear Algebra** |  Compute partial derivatives and apply the chain rule. Work with vectors, matrices, and tensors; apply norms and inner products. Understand intuition behind eigenvectors and SVD. | | [mathematics/01_calculus](../../../mathematics/01_calculus) <br> [mathematics/02_linear_algebra](../../../mathematics/02_linear_algebra) <br> [supplementary/svd](../../../supplementary/svd) |
 | 3 | **Gradient Descent / Backpropagation I** | Compute gradients on computational graphs. Perform forward and backward passes. Understand gradient descent updates and automatic differentiation (PyTorch autograd, micrograd). | | [notebooks/01_backprop](../../../notebooks/01_backprop) |
 | 4 | **Gradient Descent / Backpropagation II** | Implement full backpropagation. | **Feb 3:** Quiz 1 \[1–3\]<br>Last day to submit team member details | [notebooks/01_backprop](../../../notebooks/01_backprop) | 

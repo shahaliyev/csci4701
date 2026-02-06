@@ -51,15 +51,15 @@ The natural response to this problem was [representation learning](https://en.wi
 
 Many perceptual tasks are inherently *compositional*. Images are composed of edges, edges form textures and parts, parts form objects, and objects form scenes. Speech and language exhibit similar hierarchies. Shallow models can learn simple transformations, but they cannot efficiently represent such multi-level abstractions. Attempting to do so requires an exponential number of features or parameters, making learning unstable and data-inefficient. In practice, representation learning without depth hit a ceiling: it reduced feature engineering, but it could not scale to the complexity of vision, speech, and language.
 
-DL extends representation learning by stacking many layers of nonlinear transformations. Each layer learns to represent the data at a higher level of abstraction, allowing complex structures to be built incrementally. 
+deep learning extends representation learning by stacking many layers of nonlinear transformations. Each layer learns to represent the data at a higher level of abstraction, allowing complex structures to be built incrementally. 
 
-At a fundamental level, both classical ML and DL do the same thing: they **learn a function from data**. The difference is not in what is learned, but in how much of the function is learned automatically. In all cases, learning amounts to selecting parameters so that a function best approximates the desired input–output relationship under a given objective.
+At a fundamental level, both classical ML and deep learning do the same thing: they **learn a function from data**. The difference is not in what is learned, but in how much of the function is learned automatically. In all cases, learning amounts to selecting parameters so that a function best approximates the desired input–output relationship under a given objective.
 
-Interestingly, DL did not introduce fundamentally new mathematical ideas. Many concepts, such as multi-layer neural networks, backpropagation, gradient-based optimization, and even convolutional architectures were known decades earlier. 
+Interestingly, deep learning did not introduce fundamentally new mathematical ideas. Many concepts, such as multi-layer neural networks, backpropagation, gradient-based optimization, and even convolutional architectures were known decades earlier. 
 
 ## Biological and Artificial Neurons
 
-DL is **not** an attempt to simulate the brain. [Artificial neural networks](https://en.wikipedia.org/wiki/Neural_network_(machine_learning)) are inspired by biological neurons, but the resemblance is conceptual rather than literal. 
+deep learning is **not** an attempt to simulate the brain. [Artificial neural networks](https://en.wikipedia.org/wiki/Neural_network_(machine_learning)) are inspired by biological neurons, but the resemblance is conceptual rather than literal. 
 
 <figure>
   <img src="../../assets/images/overview/neuron.svg" alt="biological neuron" style="max-width: 100%; height: auto;">
@@ -78,7 +78,7 @@ A [biological neuron](https://en.wikipedia.org/wiki/Neuron) is a living cell des
   </figcaption>
 </figure>
 
-An artificial neuron is a mathematical function that combines numerical inputs and produces a numerical output. Much like how airplanes were inspired by birds but rely on entirely different aerodynamic mechanisms, the success of DL does not come from biological realism. Biological systems served primarily as inspiration.
+An artificial neuron is a mathematical function that combines numerical inputs and produces a numerical output. Much like how airplanes were inspired by birds but rely on entirely different aerodynamic mechanisms, the success of deep learning does not come from biological realism. Biological systems served primarily as inspiration.
 
 ## Evolution of Deep Learning
 
@@ -86,7 +86,7 @@ Learning from data predates computers. The mathematical backbone of modern deep 
 
 Multi-layer learning systems already existed by the 1960s and 1970s. Alexey Ivakhnenko and Valentin Lapa trained models with adaptive hidden layers, while Kunihiko Fukushima introduced the Neocognitron, a hierarchical, convolution-like architecture that anticipated modern convolutional networks.
 
-But why did DL become popular only after the 2010s? The obstacle was never the lack of a correct algorithm. It was the lack of data and the cost of computation. DL worked because three forces aligned. Data became abundant because digital life produces it automatically. Computation became affordable because parallel hardware matured. And (less critically) software matured enough to make experimentation fast and scalable.
+But why did deep learning become popular only after the 2010s? The obstacle was never the lack of a correct algorithm. It was the lack of data and the cost of computationDeep learning worked because three forces aligned. Data became abundant because digital life produces it automatically. Computation became affordable because parallel hardware matured. And (less critically) software matured enough to make experimentation fast and scalable.
 
 ## Data
 
@@ -104,7 +104,7 @@ Before large-scale datasets became feasible, progress relied on small, carefully
 A symbolic moment was the creation of [ImageNet](https://www.image-net.org/) (Deng et al.). ImageNet contained roughly 14 million labeled images, with about 1.2 million training images across 1,000 categories used in its main benchmark. This scale exposed the limitations of hand-crafted features. Models that performed well on small datasets failed to generalize, while systems capable of learning representations directly from data improved reliably.
 
 
-In 2012, [AlexNet](https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) (Krizhevsky et al.) won the ImageNet competition by a large margin. The model was unusually large and computationally demanding, and training it required GPUs rather than CPUs. This detail is crucial. DL did not succeed merely because sufficient data became available, it succeeded because the models finally fit within the limits of available hardware.[^1]
+In 2012, [AlexNet](https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf) (Krizhevsky et al.) won the ImageNet competition by a large margin. The model was unusually large and computationally demanding, and training it required GPUs rather than CPUs. This detail is crucialDeep learning did not succeed merely because sufficient data became available, it succeeded because the models finally fit within the limits of available hardware.[^1]
 
 
 <figure>
@@ -122,13 +122,13 @@ In 2012, [AlexNet](https://proceedings.neurips.cc/paper_files/paper/2012/file/c3
 
 Training neural networks is dominated by large-scale numerical operations repeated many times. CPUs are optimized for general-purpose tasks and complex control flow, but they are inefficient for massive parallel arithmetic. [GPUs](https://www.youtube.com/watch?v=h9Z4oGN89MU), originally designed for rendering images, apply the same operation to many data points simultaneously. This made them a natural fit for neural network training.
 
-[NVIDIA](https://www.nvidia.com/en-us/) became central to DL because it invested early in programmable GPUs and the software needed to exploit them. Although originally developed for video games, GPUs are fundamentally optimized for massively parallel linear algebra, especially matrix and tensor operations. The introduction of [CUDA](https://en.wikipedia.org/wiki/CUDA) exposed this capability to researchers, making large-scale matrix multiplications—the core computational workload of neural networks—efficient and accessible. As a result, models that once took weeks to train on CPUs could be trained in days or hours. Later accelerators such as Tensor Processing Unit (TPU) followed the same principle: DL scales when hardware is designed around dense linear algebra, high memory bandwidth, and parallel computation.
+[NVIDIA](https://www.nvidia.com/en-us/) became central to deep learning because it invested early in programmable GPUs and the software needed to exploit them. Although originally developed for video games, GPUs are fundamentally optimized for massively parallel linear algebra, especially matrix and tensor operations. The introduction of [CUDA](https://en.wikipedia.org/wiki/CUDA) exposed this capability to researchers, making large-scale matrix multiplications—the core computational workload of neural networks—efficient and accessible. As a result, models that once took weeks to train on CPUs could be trained in days or hours. Later accelerators such as Tensor Processing Unit (TPU) followed the same principle: deep learning scales when hardware is designed around dense linear algebra, high memory bandwidth, and parallel computation.
 
 ## Software
 
 The relevant software emerged in parallel with hardware. [Python](https://www.python.org/) became the dominant language for ML because it allowed researchers to write clear, concise code while delegating computationally intensive operations to highly optimized numerical libraries implemented in C, C++, and CUDA. This separation between high-level model logic and low-level performance-critical kernels proved decisive. Researchers could focus on ideas rather than infrastructure, iterating rapidly while still benefiting from efficient linear algebra routines running on GPUs.
 
-Modern DL frameworks such as [PyTorch](https://pytorch.org/) and [TensorFlow](https://www.tensorflow.org/) made it possible to automate differentiation, memory management, and efficient parallel execution. As a result, experiments that once required weeks of careful implementation could be expressed in hundreds of lines of code and tested within days.
+Modern deep learning frameworks such as [PyTorch](https://pytorch.org/) and [TensorFlow](https://www.tensorflow.org/) made it possible to automate differentiation, memory management, and efficient parallel execution. As a result, experiments that once required weeks of careful implementation could be expressed in hundreds of lines of code and tested within days.
 
 PyTorch is primarily a tool for research and experimentation. It is designed to feel like ordinary Python code, which makes models easy to write, modify, and debug. Tools such as [PyTorch Lightning](https://lightning.ai/docs/pytorch/stable/) build on this flexibility by handling routine tasks like training loops and logging, allowing users to keep their focus on the model itself.
 
@@ -140,7 +140,7 @@ TensorFlow, on the other hand, is more strongly oriented toward engineering and 
 
 CV focuses on visual data such as images and videos. Early progress was driven by convolutional neural networks (CNN). NLP deals with sequential, symbolic data such as text and speech. While early neural NLP relied on recurrent models (RNN), a major conceptual shift occurred with the introduction of the [Transformer architecture](https://proceedings.neurips.cc/paper_files/paper/2017/file/3f5ee243547dee91fbd053c1c4a845aa-Paper.pdf) (Vaswani et al., 2017), which replaced sequential recurrence with attention-based information routing. This change enabled massive **parallelism**, better long-range dependency modeling, and effective scaling with data and compute. The same architecture was later adapted to images via [Vision Transformers](https://arxiv.org/pdf/2010.11929) (Dosovitskiy et al., 2020), revealing that vision and language could share a common computational backbone despite their different input structures.
 
-DL also extended beyond perception into decision-making. The combination of deep learning and [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) became widely visible through [AlphaGo](https://discovery.ucl.ac.uk/id/eprint/10045895/1/agz_unformatted_nature.pdf) and later [AlphaZero](https://arxiv.org/pdf/1712.01815) (Silver et al., 2016; 2018), which learned complex games through self-play without human examples.
+deep learning also extended beyond perception into decision-making. The combination of deep learning and [reinforcement learning](https://en.wikipedia.org/wiki/Reinforcement_learning) became widely visible through [AlphaGo](https://discovery.ucl.ac.uk/id/eprint/10045895/1/agz_unformatted_nature.pdf) and later [AlphaZero](https://arxiv.org/pdf/1712.01815) (Silver et al., 2016; 2018), which learned complex games through self-play without human examples.
 
 Building on the Transformer architecture, [Large Language Models](https://en.wikipedia.org/wiki/Large_language_model) (LLM) such as Generative Pre-trained Transformer (GPT) marked a shift from task-specific NLP systems to general-purpose [foundation models](https://en.wikipedia.org/wiki/Foundation_model). By training a model on massive text corpora, GPT-style models learn broad linguistic, semantic, and world-level regularities that can be reused across tasks. Their success demonstrated that scale—data, parameters, and compute—can replace handcrafted linguistic structure, and that a single architecture can support a wide range of capabilities, including translation, summarization, reasoning, and code generation, without explicit task-specific design.
 
