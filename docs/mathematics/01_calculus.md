@@ -1,8 +1,7 @@
 # Calculus
 
 <div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
-  <time datetime="2026-01-18">18 Jan 2026</time> ·
-  <time datetime="PT12M">12 min</time>
+  <time datetime="2026-01-18">18 Jan 2026</time>
 </div>
 
 Calculus studies two closely related ideas: **accumulation** (integration) and **change** (differentiation). Indeep learning, learning is defined by accumulating error across data, usually as an average loss. Training then proceeds by making small changes to model parameters in order to reduce this accumulated error. Calculus provides the language and structure for both. This section builds calculus concepts from fundamentals, with the goal of understanding how they support learning, optimization, and model behavior in deep learning.

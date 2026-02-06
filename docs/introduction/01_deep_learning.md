@@ -1,12 +1,10 @@
 # Deep Learning
 
 <div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
-  <time datetime="2026-01-18">18 Jan 2026</time> ·
-  <time datetime="PT9M">9 min</time>
-</div>
+  <time datetime="2026-01-18">18 Jan 2026</time>
+</div>s
 
-
-**Artificial Intelligence (AI)** is the broad field concerned with building systems that perform tasks requiring intelligence. **Machine Learning (ML)** is a subfield of AI that enables systems to learn patterns and make decisions from data rather than explicit rules. **Deep Learning (DL)** is a subfield of ML that uses multi-layer neural networks to learn complex representations from large datasets.
+**Artificial Intelligence (AI)** is the broad field concerned with building systems that perform tasks requiring intelligence. **Machine Learning** is a subfield of AI that enables systems to learn patterns and make decisions from data rather than explicit rules. **Deep Learning** is a subfield of machine learning that uses multi-layer neural networks to learn complex representations from large datasets.
 
 
 <div class="admonition info">
@@ -43,7 +41,7 @@ This approach failed when faced with the ambiguity and variability of the real w
   </figcaption>
 </figure>
 
-ML offered a different perspective. Instead of programming intelligence directly, machines were allowed to **learn patterns from data**. Classical ML algorithms such as linear models, logistic regression, naïve Bayes, and decision trees achieved real success in applications like medical decision support, spam filtering, and credit scoring. However, these methods relied heavily on hand-crafted features. Human designers had to decide in advance which properties of the data were relevant, and performance depended more on feature design than on the learning algorithm itself.
+Machine learning offered a different perspective. Instead of programming intelligence directly, machines were allowed to **learn patterns from data**. Classical machine learning algorithms such as linear models, logistic regression, naïve Bayes, and decision trees achieved real success in applications like medical decision support, spam filtering, and credit scoring. However, these methods relied heavily on hand-crafted features. Human designers had to decide in advance which properties of the data were relevant, and performance depended more on feature design than on the learning algorithm itself.
 
 This reliance on features became a serious limitation as data grew more complex. Images, audio signals, and language live in very high-dimensional spaces. In such spaces, intuition breaks down, a phenomenon often referred to as the [curse of dimensionality](https://en.wikipedia.org/wiki/Curse_of_dimensionality). As dimensionality increases, data becomes sparse, distances lose their meaning, and small modeling assumptions can cause large failures. Feature engineering becomes brittle and does not scale to the richness of real-world data.
 
@@ -53,7 +51,7 @@ Many perceptual tasks are inherently *compositional*. Images are composed of edg
 
 deep learning extends representation learning by stacking many layers of nonlinear transformations. Each layer learns to represent the data at a higher level of abstraction, allowing complex structures to be built incrementally. 
 
-At a fundamental level, both classical ML and deep learning do the same thing: they **learn a function from data**. The difference is not in what is learned, but in how much of the function is learned automatically. In all cases, learning amounts to selecting parameters so that a function best approximates the desired input–output relationship under a given objective.
+At a fundamental level, both classical machine and deep learning do the same thing: they **learn a function from data**. The difference is not in what is learned, but in how much of the function is learned automatically. In all cases, learning amounts to selecting parameters so that a function best approximates the desired input–output relationship under a given objective.
 
 Interestingly, deep learning did not introduce fundamentally new mathematical ideas. Many concepts, such as multi-layer neural networks, backpropagation, gradient-based optimization, and even convolutional architectures were known decades earlier. 
 
@@ -92,7 +90,7 @@ But why did deep learning become popular only after the 2010s? The obstacle was 
 
 The modern era began when data stopped being rare. This shift was driven by broader technological changes. Digital sensors replaced analog ones, smartphones placed cameras and microphones in billions of pockets, and the internet enabled continuous sharing of images, text, audio, and video. Companies began logging user interactions by default, storage became cheap, and bandwidth increased dramatically. Data was no longer collected deliberately, it was generated automatically as a byproduct of everyday life.
 
-Before large-scale datasets became feasible, progress relied on small, carefully curated benchmarks. The famous [MNIST](https://en.wikipedia.org/wiki/MNIST_database) dataset was collected by the [National Institute of Standards and Technology](https://www.nist.gov/) (NIST), and later was modified (hence the M before NIST) for simpler usage of ML algorithms[^2]. MNIST is a simple dataset of handwritten digits that allowed researchers to isolate questions about optimization, architectures, and learning dynamics without the confounding effects of scale and noise. 
+Before large-scale datasets became feasible, progress relied on small, carefully curated benchmarks. The famous [MNIST](https://en.wikipedia.org/wiki/MNIST_database) dataset was collected by the [National Institute of Standards and Technology](https://www.nist.gov/) (NIST), and later was modified (hence the M before NIST) for simpler usage of machine learning algorithms[^2]. MNIST is a simple dataset of handwritten digits that allowed researchers to isolate questions about optimization, architectures, and learning dynamics without the confounding effects of scale and noise. 
 
 <figure>
   <img src="../../assets/images/overview/mnist.png" alt="MNIST dataset" style="max-width: 80%; height: auto;">
@@ -126,7 +124,7 @@ Training neural networks is dominated by large-scale numerical operations repeat
 
 ## Software
 
-The relevant software emerged in parallel with hardware. [Python](https://www.python.org/) became the dominant language for ML because it allowed researchers to write clear, concise code while delegating computationally intensive operations to highly optimized numerical libraries implemented in C, C++, and CUDA. This separation between high-level model logic and low-level performance-critical kernels proved decisive. Researchers could focus on ideas rather than infrastructure, iterating rapidly while still benefiting from efficient linear algebra routines running on GPUs.
+The relevant software emerged in parallel with hardware. [Python](https://www.python.org/) became the dominant language for machine learning because it allowed researchers to write clear, concise code while delegating computationally intensive operations to highly optimized numerical libraries implemented in C, C++, and CUDA. This separation between high-level model logic and low-level performance-critical kernels proved decisive. Researchers could focus on ideas rather than infrastructure, iterating rapidly while still benefiting from efficient linear algebra routines running on GPUs.
 
 Modern deep learning frameworks such as [PyTorch](https://pytorch.org/) and [TensorFlow](https://www.tensorflow.org/) made it possible to automate differentiation, memory management, and efficient parallel execution. As a result, experiments that once required weeks of careful implementation could be expressed in hundreds of lines of code and tested within days.
 
