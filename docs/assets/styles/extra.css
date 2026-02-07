@@ -23,3 +23,8 @@
 .md-typeset ol li {
   margin-bottom: 0;
 }
+
+.md-typeset .admonition table,
+.md-typeset details table {
+  font-size: 0.9em;
+}
