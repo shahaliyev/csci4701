@@ -6,6 +6,9 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="Probability theory and information theory are the mathematical foundations of reasoning under uncertainty. This page introduces the key concepts used throughout deep learning, including random variables, probability distributions (PMF and PDF), joint and marginal distributions, conditional probability, independence and conditional independence, the probability chain rule, and the i.i.d. assumption. It also explains Bayes’ rule as a framework for updating beliefs using evidence, with practical intuition and machine learning examples. Later sections expand toward expectation, variance, entropy, cross-entropy, KL divergence, and their role in modern deep learning objectives such as maximum likelihood estimation and variational inference.
+">
+      
       
       
         <link rel="canonical" href="https://shahaliyev.org/csci4701/mathematics/03_probability/">
@@ -1362,6 +1365,78 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#expectation-variance-covariance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expectation, Variance, Covariance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-probability-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Probability Distributions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Probability Distributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uniform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uniform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bernoulli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bernoulli
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#categorical-multinoulli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categorical (Multinoulli)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normal-gaussian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal (Gaussian)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1776,6 +1851,78 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#expectation-variance-covariance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expectation, Variance, Covariance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-probability-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Probability Distributions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Probability Distributions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#uniform" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Uniform
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bernoulli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bernoulli
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#categorical-multinoulli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categorical (Multinoulli)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normal-gaussian" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal (Gaussian)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1877,9 +2024,9 @@ For continuous variables:
 $$
 p(x) = \int p(x,y)\,dy.
 $$</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>For example, suppose <span class="arithmatex">\(X\)</span> represents the outcome of a coin toss (tails or heads), and <span class="arithmatex">\(Y\)</span> represents the number shown on a fair die (<span class="arithmatex">\(1\)</span> to <span class="arithmatex">\(6\)</span>). If we assume the coin toss does not affect the die roll (and vice versa), then each of the <span class="arithmatex">\(2 \times 6 = 12\)</span> outcomes is equally likely, so the joint distribution assigns probability <span class="arithmatex">\(1/12\)</span> to every possible pair:</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Suppose <span class="arithmatex">\(X\)</span> represents the outcome of a coin toss (tails or heads), and <span class="arithmatex">\(Y\)</span> represents the number shown on a fair die (<span class="arithmatex">\(1\)</span> to <span class="arithmatex">\(6\)</span>). If we assume the coin toss does not affect the die roll (and vice versa), then each of the <span class="arithmatex">\(2 \times 6 = 12\)</span> outcomes is equally likely, so the joint distribution assigns probability <span class="arithmatex">\(1/12\)</span> to every possible pair:</p>
 <table>
 <thead>
 <tr>
@@ -1937,8 +2084,8 @@ $$
 p(y \mid x) = \frac{p(x,y)}{p(x)}.
 $$</p>
 <p>These formulas are only defined when <span class="arithmatex">\(P(X=x)&gt;0\)</span> or <span class="arithmatex">\(p(x)&gt;0\)</span>, since we cannot condition on an event that never occurs.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
 <p>Suppose <span class="arithmatex">\(X\)</span> is an image and <span class="arithmatex">\(Y\)</span> is its label. The joint distribution <span class="arithmatex">\(P(X,Y)\)</span> describes how often we encounter a specific image together with its correct label. The marginal distribution <span class="arithmatex">\(P(X)\)</span> describes what kinds of images appear in the world or in our dataset, regardless of their labels. The conditional distribution <span class="arithmatex">\(P(Y \mid X)\)</span> describes the probability of each label given a particular image. When we train a classifier, we are essentially training a model that takes an image <span class="arithmatex">\(x\)</span> and outputs estimates of probabilities like <span class="arithmatex">\(P(Y=\text{cat} \mid X=x)\)</span> and <span class="arithmatex">\(P(Y=\text{dog} \mid X=x)\)</span>, where <span class="arithmatex">\(x\)</span> could be a particular input image provided to our model.</p>
 </div>
 <h2 id="independence">Independence</h2>
@@ -1963,10 +2110,9 @@ $$
 P(X=x, Y=y \mid Z=z) = \\ 
 P(X=x \mid Z=z)\,P(Y=y \mid Z=z).
 $$</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Suppose <span class="arithmatex">\(Z\)</span> represents whether it is raining. Let <span class="arithmatex">\(X\)</span> be whether the street is wet, and <span class="arithmatex">\(Y\)</span> be whether people are carrying umbrellas.  </p>
-<p>In general, <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are strongly correlated: if the street is wet, umbrellas are more likely. However, once we condition on <span class="arithmatex">\(Z\)</span> (rain), the relationship mostly disappears: given that it is raining, the street being wet does not provide much additional information about umbrellas. This illustrates conditional independence: <span class="arithmatex">\(X \perp Y \mid Z\)</span>.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Suppose <span class="arithmatex">\(Z\)</span> represents whether it is raining. Let <span class="arithmatex">\(X\)</span> be whether the street is wet, and <span class="arithmatex">\(Y\)</span> be whether people are carrying umbrellas. In general, <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are strongly correlated: if the street is wet, umbrellas are more likely. However, once we condition on <span class="arithmatex">\(Z\)</span> (rain), the relationship mostly disappears: given that it is raining, the street being wet does not provide much additional information about umbrellas. This illustrates conditional independence: <span class="arithmatex">\(X \perp Y \mid Z\)</span>.</p>
 </div>
 <h2 id="chain-rule">Chain Rule</h2>
 <p>Probability has its own chain rule. Even when random variables are not independent, we can still represent any joint distribution by repeatedly applying the definition of conditional probability. For two variables, the joint distribution can be rewritten as:
@@ -2025,10 +2171,13 @@ $$</p>
   </div>
 </div>
 
-<p><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a> allows us to reverse conditional probabilities. It provides a way to compute the probability of a hypothesis after observing <strong>evidence</strong>. For discrete random variables, Bayes’ rule is:
+<p><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a> allows us to reverse conditional probabilities. It provides a way to compute the probability of a hypothesis after observing <strong>evidence</strong>. For discrete random variables, Bayes’ rule is:</p>
+<div style="overflow-x:auto; max-width:100%;">
 $$
 P(X=x \mid Y=y) = \frac{P(Y=y \mid X=x)\,P(X=x)}{P(Y=y)}.
-$$</p>
+$$
+</div>
+
 <p>Here, <span class="arithmatex">\(P(X=x)\)</span> is called the <strong>prior</strong>. It describes how likely <span class="arithmatex">\(x\)</span> was before observing <span class="arithmatex">\(y\)</span>. The term <span class="arithmatex">\(P(Y=y \mid X=x)\)</span> is the <strong>likelihood</strong>. It measures how compatible the observation <span class="arithmatex">\(y\)</span> is with the hypothesis <span class="arithmatex">\(x\)</span>. The result <span class="arithmatex">\(P(X=x \mid Y=y)\)</span> is called the <strong>posterior</strong>.</p>
 <div class="admonition notes">
 <p class="admonition-title">Notes</p>
@@ -2046,8 +2195,8 @@ $$</p>
 <p class="admonition-title">Note</p>
 <p>This continuous form of Bayes' rule will become important for us later when discussing <a href="../../notebooks/07_vae">variational autoencoders</a>.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
 <p>Consider a spam detection example. Let <span class="arithmatex">\(X\)</span> represent whether an email is spam (<span class="arithmatex">\(X=\text{spam}\)</span> or <span class="arithmatex">\(X=\text{not spam}\)</span>), and let <span class="arithmatex">\(Y\)</span> represent whether the email contains the phrase "win money" (<span class="arithmatex">\(Y=\text{yes}\)</span> or <span class="arithmatex">\(Y=\text{no}\)</span>). </p>
 <p>Suppose only <span class="arithmatex">\(2\%\)</span> of all emails are spam, so the prior probability is <span class="arithmatex">\(P(\text{spam})=0.02\)</span> and <span class="arithmatex">\(P(\text{not spam})=0.98\)</span>. Now assume spam emails contain the phrase "win money" <span class="arithmatex">\(60\%\)</span> of the time, so <span class="arithmatex">\(P(\text{yes} \mid \text{spam})=0.60\)</span>, while normal emails contain it only <span class="arithmatex">\(1\%\)</span> of the time, so <span class="arithmatex">\(P(\text{yes} \mid \text{not spam})=0.01\)</span>. If we observe an email containing "win money", Bayes’ rule gives:
 $$
@@ -2074,6 +2223,416 @@ P(\text{spam} \mid \text{yes}) = \frac{0.012}{0.0218} \approx 0.55.
 $$
 After observing the phrase, the probability that the email is spam jumps from <span class="arithmatex">\(2\%\)</span> to about <span class="arithmatex">\(55\%\)</span>. This illustrates Bayes’ rule as a mechanism for updating beliefs: the likelihood tells us how strongly the evidence points toward spam, while the prior reflects how common spam is overall.</p>
 </div>
+<h2 id="expectation-variance-covariance">Expectation, Variance, Covariance</h2>
+<p>So far, we have described probability distributions in terms of the probability of events. However, in machine learning we often want to summarize a distribution using a few meaningful numerical quantities. The most important of these are the <em>expectation (mean)</em>, the <em>variance</em>, and the <em>covariance</em>.</p>
+<p>The <strong>expectation</strong> (or expected value) of a function <span class="arithmatex">\(f(X)\)</span> is the average value of <span class="arithmatex">\(f(X)\)</span> when <span class="arithmatex">\(X\)</span> is sampled from its distribution. If <span class="arithmatex">\(X\)</span> is discrete:
+$$
+\mathbb{E}[f(X)]
+=
+\sum_x P(X=x)\,f(x).
+$$</p>
+<p>If <span class="arithmatex">\(X\)</span> is continuous:
+$$
+\mathbb{E}[f(X)]
+=
+\int p(x)\,f(x)\,dx.
+$$</p>
+<p>If we set <span class="arithmatex">\(f(X)=X\)</span>, we obtain the expected value of the random variable itself:
+$
+\mathbb{E}[X].
+$</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Expectations are the probabilistic version of weighted averages. The probability distribution acts as the weights. For example, the ordinary average of <span class="arithmatex">\(n\)</span> numbers <span class="arithmatex">\(x_1, x_2, \dots, x_n\)</span> is: <span class="arithmatex">\(\frac{1}{n}\sum_{i=1}^n x_i.\)</span>
+This is exactly the expectation of a discrete random variable that takes value <span class="arithmatex">\(x_i\)</span> with uniform probability <span class="arithmatex">\(P(X=x_i)=\frac{1}{n}\)</span> (e.g. fair dice):
+$$
+\mathbb{E}[X] = \sum_{i=1}^n P(X=x_i)\,x_i = \sum_{i=1}^n \frac{1}{n}x_i = \frac{1}{n}\sum_{i=1}^n x_i.
+$$</p>
+</div>
+<p>Expectation has an extremely useful property: it is <a href="../02_linear_algebra">linear</a>. For constants <span class="arithmatex">\(\alpha\)</span> and <span class="arithmatex">\(\beta\)</span>:
+$$
+\mathbb{E}[\alpha f(X) + \beta g(X)]
+=
+\alpha \mathbb{E}[f(X)] + \beta \mathbb{E}[g(X)].
+$$</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>Linearity holds even when <span class="arithmatex">\(f(X)\)</span> and <span class="arithmatex">\(g(X)\)</span> are dependent. This is one of the most powerful tools in probability.</p>
+</div>
+<p>The <strong>variance</strong> measures how spread out a random variable is around its mean. In other words, it tells us whether values are tightly clustered near the average or whether they fluctuate widely. It is defined as:
+$$
+\mathrm{Var}(X)
+=
+\mathbb{E}\Big[(X - \mathbb{E}[X])^2\Big].
+$$</p>
+<p>Here, <span class="arithmatex">\((X - \mathbb{E}[X])\)</span> is the deviation from the mean. If <span class="arithmatex">\(X\)</span> usually stays close to <span class="arithmatex">\(\mathbb{E}[X]\)</span>, the variance is small. If <span class="arithmatex">\(X\)</span> often takes values far from <span class="arithmatex">\(\mathbb{E}[X]\)</span>, the variance is large.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We square deviations because (i) it prevents positive and negative deviations from canceling out, (ii) it penalizes large deviations more strongly, and (iii) it leads to clean mathematical formulas that are easy to analyze and optimize.<br />
+Using absolute deviation is possible but less convenient in theory.</p>
+</div>
+<p>The <strong>standard deviation</strong> is defined as:
+$$
+\sigma(X) = \sqrt{\mathrm{Var}(X)}.
+$$ 
+It is often more intuitive than variance because it is measured in the same scale as the original variable.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Variance can also be rewritten in a form that is often easier to compute:
+$$
+\mathrm{Var}(X) = \mathbb{E}[X^2] - (\mathbb{E}[X])^2.
+$$
+This identity is widely used in probability derivations and appears frequently in machine learning theory.</p>
+</div>
+<p>The <strong>covariance</strong> measures how two random variables vary together. It captures whether they tend to increase and decrease at the same time. It is defined as:
+$$
+\mathrm{Cov}(X,Y)
+=
+\mathbb{E}\Big[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])\Big].
+$$</p>
+<p>If both <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are usually above their means at the same time (or below their means at the same time), the covariance becomes positive. If one is usually above its mean when the other is below its mean, the covariance becomes negative.</p>
+<ul>
+<li>If <span class="arithmatex">\(\mathrm{Cov}(X,Y) &gt; 0\)</span>, <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> tend to move in the same direction.</li>
+<li>If <span class="arithmatex">\(\mathrm{Cov}(X,Y) &lt; 0\)</span>, <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> tend to move in opposite directions.</li>
+<li>If <span class="arithmatex">\(\mathrm{Cov}(X,Y) = 0\)</span>, <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> have no linear relationship.</li>
+</ul>
+<p>Covariance measures <em>linear</em> dependence only. It is possible for two variables to be strongly dependent in a nonlinear way while still having covariance equal to zero. If <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent, then: <span class="arithmatex">\(\mathrm{Cov}(X,Y)=0.\)</span> However, the reverse is not always true: <span class="arithmatex">\(\mathrm{Cov}(X,Y)=0\)</span> does <strong>not</strong> guarantee independence.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Suppose <span class="arithmatex">\(X\)</span> is uniformly distributed on <span class="arithmatex">\([-1,1]\)</span>, and let <span class="arithmatex">\(Y=X^2\)</span>. Then <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are clearly dependent, because knowing <span class="arithmatex">\(X\)</span> determines <span class="arithmatex">\(Y\)</span>. However, their covariance is still <span class="arithmatex">\(0\)</span>, because positive and negative values of <span class="arithmatex">\(X\)</span> cancel out.</p>
+</div>
+<p>In machine learning, we often deal with random vectors. If <span class="arithmatex">\(X \in \mathbb{R}^n\)</span> is a random vector, then its <strong>covariance matrix</strong> is an <span class="arithmatex">\(n \times n\)</span> matrix defined as:
+$$
+\mathrm{Cov}(X)_{i,j} = \mathrm{Cov}(X_i, X_j).
+$$</p>
+<p>The diagonal elements represent variances:
+$$
+\mathrm{Cov}(X_i, X_i) = \mathrm{Var}(X_i).
+$$</p>
+<p>The off-diagonal elements represent how different dimensions vary together:
+$
+\mathrm{Cov}(X_i, X_j).
+$</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The covariance matrix is a compact way to describe how multiple variables relate to each other. For example, if your dataset has three features (height, weight, age), then the covariance matrix is a <span class="arithmatex">\(3 \times 3\)</span> matrix:
+<div style="overflow-x:auto; max-width:100%;">
+$$
+\Sigma =
+\begin{bmatrix}
+\mathrm{Var}(\text{height}) &amp; \mathrm{Cov}(\text{height},\text{weight}) &amp; \mathrm{Cov}(\text{height},\text{age}) \\
+\mathrm{Cov}(\text{weight},\text{height}) &amp; \mathrm{Var}(\text{weight}) &amp; \mathrm{Cov}(\text{weight},\text{age}) \\
+\mathrm{Cov}(\text{age},\text{height}) &amp; \mathrm{Cov}(\text{age},\text{weight}) &amp; \mathrm{Var}(\text{age})
+\end{bmatrix}.
+$$
+</div>
+The diagonal entries measure the spread of each feature (variance), while the off-diagonal entries measure whether two features increase or decrease together (covariance).</p>
+</div>
+<h2 id="common-probability-distributions">Common Probability Distributions</h2>
+<p>Many probability distributions exist, but only a small number appear repeatedly in deep learning and machine learning. These distributions are used to model labels, noise, uncertainty in model outputs, etc. In practice, choosing an appropriate distribution is part of defining the assumptions of a model. A good probabilistic model is not just about fitting data — it is also about choosing a distribution that matches the structure of the problem.</p>
+<h3 id="uniform">Uniform</h3>
+<p><a href="https://www.acsu.buffalo.edu/~adamcunn/probability/uniform.html">Uniform distribution</a> simply assigns equal probability to every possible outcome. For a discrete uniform distribution over <span class="arithmatex">\(k\)</span> values:
+$$
+P(X=i)=\frac{1}{k}.
+$$</p>
+<p>For a continuous uniform distribution over an interval <span class="arithmatex">\([a,b]\)</span>:
+$$
+p(x)=\frac{1}{b-a},
+\qquad x \in [a,b].
+$$</p>
+<p>Outside the interval, the density is zero.</p>
+<h3 id="bernoulli">Bernoulli</h3>
+<p><a href="https://www.acsu.buffalo.edu/~adamcunn/probability/bernoulli.html">Bernoulli distribution</a> is also simple. It models a binary random variable: <span class="arithmatex">\(X \in \{0,1\}.\)</span> It is controlled by a single parameter <span class="arithmatex">\(\phi \in [0,1]\)</span>, representing the probability of success:
+$$
+P(X=1) = \phi,
+\qquad
+P(X=0) = 1-\phi,
+$$</p>
+<p>which can also be written compactly as:
+$$
+P(X=x) = \phi^x (1-\phi)^{1-x}.
+$$</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We can derive the expectation and variance of a Bernoulli random variable directly from the definition of expectation. Since <span class="arithmatex">\(X \in \{0,1\}\)</span>, we have:
+<div style="overflow-x:auto; max-width:100%;">
+$$
+\mathbb{E}[X]
+=
+\sum_{x\in{0,1}} xP(X=x)
+= 
+0\cdot P(X=0) + 1\cdot P(X=1)
+=
+\phi.
+$$
+</div></p>
+<p>To compute the variance, we use:
+$$
+\mathrm{Var}(X) = \mathbb{E}[X^2] - (\mathbb{E}[X])^2.
+$$
+But since <span class="arithmatex">\(X\)</span> is binary, <span class="arithmatex">\(X^2=X\)</span>, so:
+$$
+\mathbb{E}[X^2] = \mathbb{E}[X] = \phi.
+$$
+Therefore,
+$$
+\mathrm{Var}(X)
+=
+\phi - \phi^2
+=
+\phi(1-\phi).
+$$</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Suppose we model whether an <a href="../../notebooks/03_cnn_torch">MNIST</a> image is the digit <span class="arithmatex">\(3\)</span> as a Bernoulli random variable: <span class="arithmatex">\(Y \in \{0,1\},\)</span> where <span class="arithmatex">\(Y=1\)</span> means the image is a <span class="arithmatex">\(3\)</span> and <span class="arithmatex">\(Y=0\)</span> means it is not. If we assume the dataset defines an underlying distribution <span class="arithmatex">\(P(Y)\)</span>, then we can write:
+$$
+Y \sim \mathrm{Bernoulli}(\phi),
+$$
+which implies we <strong>sample</strong> from the distribution. If <span class="arithmatex">\(10\%\)</span> of the MNIST dataset images are <span class="arithmatex">\(3\)</span>, then:
+$$ P(Y=1)=\phi = 0.1.$$ </p>
+<p>In binary classification, a neural network often outputs a probability estimate:
+$$
+\hat{\phi}(x) \approx P(Y=1 \mid X=x),
+$$
+where <span class="arithmatex">\(x\)</span> is an input image. The prediction can then be interpreted as sampling from a Bernoulli distribution:
+$$
+\hat{Y} \sim \mathrm{Bernoulli}(\hat{\phi}(x)).
+$$</p>
+<p>For instance, if the model outputs <span class="arithmatex">\(\hat{\phi}(x)=0.92\)</span>, it means the model assigns a <span class="arithmatex">\(92\%\)</span> probability that the given MNIST image is a <span class="arithmatex">\(3\)</span>.</p>
+</div>
+<h3 id="categorical-multinoulli">Categorical (Multinoulli)</h3>
+<p>The <a href="https://en.wikipedia.org/wiki/Categorical_distribution">categorical distribution</a> (also called the multinoulli distribution<sup id="fnref:multinoulli"><a class="footnote-ref" href="#fn:multinoulli">5</a></sup>) generalizes Bernoulli to more than two outcomes. It models a discrete variable with <span class="arithmatex">\(k\)</span> possible states:
+$$
+X \in {1,2,\dots,k}.
+$$</p>
+<p>It is parameterized by a probability vector:
+$$
+p = (p_1, p_2, \dots, p_k),
+\qquad
+\sum_{i=1}^k p_i = 1.
+$$</p>
+<p>The probability mass function is:
+$$
+P(X=i) = p_i.
+$$</p>
+<p>It is different from the , which models the counts obtained after <span class="arithmatex">\(n\)</span> independent categorical draws (so multinoulli is essentially the multinomial case with <span class="arithmatex">\(n=1\)</span>).</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>Do not confuse the multinoulli (categorical) distribution with the <a href="https://en.wikipedia.org/wiki/Multinomial_distribution">multinomial distribution</a>. A categorical distribution describes a single outcome from <span class="arithmatex">\(k\)</span> categories (one draw). A multinomial distribution describes a vector of counts showing how many times each category occurs after <span class="arithmatex">\(n\)</span> draws. In other words, multinomial is not another name for categorical — it is a different distribution ith a different type of output, which can be seen as a special case of the multinomial distribution when <span class="arithmatex">\(n=1\)</span>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>In MNIST digit classification, the label for a single image is modeled as a categorical random variable:
+$$
+Y \in {0,1,2,\dots,9}.
+$$
+We can write <span class="arithmatex">\(Y \sim \mathrm{Categorical}(p),\)</span> where:
+$$
+p = (p_0,p_1,\dots,p_9),
+\qquad
+\sum_{i=0}^9 p_i = 1.
+$$</p>
+<p>A neural network outputs a probability vector using <a href="../../nn_ngram">softmax</a>:
+$$
+\hat{p}(x) \approx P(Y \mid X=x).
+$$
+For example, if the model outputs <span class="arithmatex">\(\hat{p}_3(x)=0.85\)</span>, this means the model assigns an <span class="arithmatex">\(85\%\)</span> probability that the image is the digit <span class="arithmatex">\(3\)</span>.</p>
+<p>Now suppose we take a <a href="../../04_regul_optim">mini-batch</a> of <span class="arithmatex">\(n=100\)</span> MNIST images and count how many of each digit appear in the batch. We might obtain a count vector such as:
+$$
+(c_0,c_1,\dots,c_9) = (8,11,9,7,10,12,6,14,13,10),
+$$
+where
+$
+\sum_{i=0}^9 c_i = 100.
+$ This count vector is not categorical anymore. It is modeled by a multinomial distribution:
+$$
+(c_0,c_1,\dots,c_9) \sim \mathrm{Multinomial}(n=100, p).
+$$</p>
+<p>In other words, categorical (multinoulli) describes <em>one label</em>, while multinomial describes <em>counts of labels across many samples</em>.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Exercise</p>
+<p>Let <span class="arithmatex">\(Y \sim \mathrm{Categorical}(p)\)</span> with <span class="arithmatex">\(k\)</span> categories, and represent the label as a one-hot vector <span class="arithmatex">\(e_Y \in \mathbb{R}^k\)</span>. Show that <span class="arithmatex">\(\mathbb{E}[e_Y] = p.\)</span> Then derive the covariance matrix <span class="arithmatex">\(\mathrm{Cov}(e_Y)\)</span>.</p>
+</div>
+<h3 id="normal-gaussian">Normal (Gaussian)</h3>
+<p><a href="https://www.acsu.buffalo.edu/~adamcunn/probability/normal.html">Normal distribution</a>, also called Gaussian distribution<sup id="fnref:gauss"><a class="footnote-ref" href="#fn:gauss">6</a></sup>, is the most important continuous distribution in machine learning. It is defined as:
+$$
+\mathcal{N}(x;\mu,\sigma^2)
+=
+\sqrt{\frac{1}{2\pi\sigma^2}}
+\exp\Big(-\frac{(x-\mu)^2}{2\sigma^2}\Big).
+$$</p>
+<p>Here, <span class="arithmatex">\(\mu\)</span> is the mean (center), <span class="arithmatex">\(\sigma^2\)</span> is the variance (spread), and <span class="arithmatex">\(\sigma\)</span> is the standard deviation of the distribution</p>
+<figure>
+  <img src="../../assets/images/probability/normal_std.svg" alt="Normal (Gaussian) distribution standard deviation" style="max-width: 100%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    For the normal distribution, the values less than one standard deviation from the mean account for 68.27% of the set; while two standard deviations from the mean account for 95.45%; and three standard deviations account for 99.73% ~ <a href="//commons.wikimedia.org/wiki/User:Mwtoews" title="User:Mwtoews">M. W. Toews</a> - <span class="int-own-work" lang="en">Own work</span>, based (in concept) on figure by Jeremy Kemp, on 2005-02-09, <a href="https://creativecommons.org/licenses/by/2.5" title="Creative Commons Attribution 2.5">CC BY 2.5</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=1903871">Link</a>
+  </figcaption>
+</figure>
+
+<p>This distribution has a characteristic <em>bell curve</em> shape: values near <span class="arithmatex">\(\mu\)</span> are most likely, and values far from <span class="arithmatex">\(\mu\)</span> become increasingly rare.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The normal distribution is called <em>normal</em> because it became the standard default model for random measurement errors and noise in many scientific fields. For example, if you repeatedly measure the same quantity (temperature, weight, sensor voltage, satellite pixel reflectance), the errors often cluster around <span class="arithmatex">\(0\)</span>, while large errors are rare. The normal distribution captures exactly this pattern: small deviations are common, large deviations happen but are uncommon. </p>
+<p>This idea also appears in everyday life: most human characteristics such as height, reaction time, exam scores, and typing speed tend to cluster around an average, with fewer people being extremely low or extremely high. While not everything in nature is perfectly Gaussian, the normal distribution often provides a good first approximation of "typical variation."</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Central_limit_theorem">central limit theorem (CLT)</a> says that when many small independent random effects add together, their sum tends to become approximately Gaussian, even if the individual effects are not Gaussian. For example, the final value of a noisy measurement is often the sum of many tiny disturbances: sensor imperfections, rounding, thermal noise, vibration, lighting changes, etc. Even if each disturbance has its own distribution, the combined noise often looks normal.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Law_of_large_numbers">law of large numbers (LLN)</a> explains why averages become stable. If we sample <span class="arithmatex">\(X_1,X_2,\dots,X_n\)</span> from the same distribution and compute the average: 
+<span class="arithmatex">\(\bar{X}_n = \frac{1}{n}\sum_{i=1}^n X_i,\)</span>
+then <span class="arithmatex">\(\bar{X}_n\)</span> tends to get closer to the true mean <span class="arithmatex">\(\mathbb{E}[X]\)</span> as <span class="arithmatex">\(n\)</span> becomes large.  </p>
+<p>A simple example is coin tossing: with only <span class="arithmatex">\(10\)</span> tosses, the fraction of heads may be far from <span class="arithmatex">\(0.5\)</span>, but with <span class="arithmatex">\(10,000\)</span> tosses it will almost always be close to <span class="arithmatex">\(0.5\)</span>. In deep learning, this explains why large batches produce more stable gradient estimates than small batches.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>For a visual intuition and origins where the normal distribution formula comes from, see the video below.</p>
+</div>
+<div style="display:flex;justify-content:center;margin:1rem 0;">
+<div style="width:80%;max-width:900px;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+    <iframe
+    src="https://www.youtube.com/embed/cy8r7WSuT1I"
+    style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+    allowfullscreen>
+    </iframe>
+</div>
+</div>
+
+<p>In deep learning, we often model a random vector: $
+X \in \mathbb{R}^n.$ The most important distribution over vectors is the <a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">multivariate normal</a> distribution:
+$$
+X \sim \mathcal{N}(\mu,\Sigma),
+$$
+where <span class="arithmatex">\(\mu \in \mathbb{R}^n\)</span> is the mean vector and <span class="arithmatex">\(\Sigma \in \mathbb{R}^{n\times n}\)</span> is the covariance matrix. The probability density function is:</p>
+<div style="overflow-x:auto; max-width:100%;">
+$$
+\mathcal{N}(x;\mu,\Sigma)
+=
+\frac{1}{\sqrt{(2\pi)^n\det(\Sigma)}}
+\exp\Big(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu)\Big).
+$$
+</div>
+
+<p>The covariance matrix <span class="arithmatex">\(\Sigma\)</span> determines the <em>shape</em> of the Gaussian distribution. If different dimensions are correlated, the distribution becomes tilted, if variances are large, the distribution becomes wide.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A very common special case is the <strong>isotropic</strong> normal, where all dimensions have the same variance and are uncorrelated: 
+$$
+\Sigma = \sigma^2 I.
+$$
+In this case, the density calculation simplifies to <span class="arithmatex">\(\Sigma^{-1} = \frac{1}{\sigma^2}I\)</span> and <span class="arithmatex">\(\det(\Sigma) = (\sigma^2)^n\)</span>. The exponent also becomes proportional to the squared Euclidean distance <span class="arithmatex">\(\|x-\mu\|^2\)</span>. These all are extremely useful in deep learning because the computations become fast and stable even in high dimensions.</p>
+<p>A slightly more flexible assumption is a <strong>diagonal</strong> normal:
+$$
+\Sigma =
+\mathrm{diag}(\sigma_1^2,\sigma_2^2,\dots,\sigma_n^2),
+$$
+which allows each dimension to have its own variance but still avoids expensive full matrix inversion.</p>
+<p>Finally, it is often convenient to use the <strong>precision matrix</strong>, defined as:
+$$
+\beta = \Sigma^{-1}.
+$$
+Precision describes the same uncertainty information as covariance, but it appears directly in the Gaussian exponent and is often easier to use in derivations.</p>
+</div>
+<!-- 
+
+### Exponential Distribution
+
+The **exponential distribution** is defined over non-negative real numbers:
+$$
+X \ge 0.
+$$
+
+Its probability density function is:
+$$
+p(x;\lambda)
+=
+\lambda \exp(-\lambda x),
+\qquad x \ge 0.
+$$
+
+It assigns zero probability density to negative values.
+
+!!! note
+    Exponential distributions are often used to model waiting times and decay processes.  
+    In machine learning, it is also useful as a building block for more complex distributions.
+
+### Laplace Distribution
+
+The **Laplace distribution** is similar to a Gaussian but has a sharper peak and heavier tails.
+
+It is defined as:
+$$
+\mathrm{Laplace}(x;\mu,\gamma)
+=
+\frac{1}{2\gamma}
+\exp\Big(-\frac{|x-\mu|}{\gamma}\Big).
+$$
+
+!!! note
+    The Laplace distribution is important because it is closely related to the $L_1$ norm.  
+    It is often used in sparse modeling and regularization.
+
+### Dirac Delta Distribution
+
+The **Dirac delta distribution** is a special object used to represent a distribution that puts all probability mass at a single point.
+
+It is written as:
+$$
+p(x) = \delta(x-\mu).
+$$
+
+It is not a normal function, but it satisfies the key property:
+$$
+\int \delta(x-\mu)\,dx = 1.
+$$
+
+!!! note
+    The Dirac delta is useful for defining distributions that behave like "perfect certainty" in continuous space.
+
+### Empirical Distribution
+
+A dataset can be viewed as defining an **empirical distribution**.  
+Given samples $x^{(1)},x^{(2)},\dots,x^{(m)}$, we define:
+$$
+\hat{p}(x)
+=
+\frac{1}{m}\sum_{i=1}^m \delta(x-x^{(i)}).
+$$
+
+This means the distribution places equal probability mass on each training sample.
+
+!!! note
+    When we train a deep learning model, we do not know the true data distribution $p_{\text{data}}(x)$.  
+    We only have access to its empirical approximation defined by the dataset.
+
+### Mixture Distributions
+
+Sometimes one distribution is not flexible enough to represent complex data. A common strategy is to combine multiple simpler distributions into a **mixture model**.
+
+A mixture distribution has the form:
+$$
+P(x) = \sum_i P(c=i)\,P(x \mid c=i),
+$$
+where $c$ is a latent variable indicating which component generated the sample.
+
+!!! note
+    Mixture models introduce the important concept of a **latent variable** — a variable that affects the data but is not directly observed.
+
+### Gaussian Mixture Model (GMM)
+
+A **Gaussian mixture model** is a mixture distribution where each component is Gaussian:
+$$
+p(x) = \sum_{i=1}^k \alpha_i \,\mathcal{N}(x;\mu_i,\Sigma_i),
+$$
+where:
+
+- $\alpha_i \ge 0$ are mixture weights
+- $\sum_i \alpha_i = 1$
+
+!!! note
+    Gaussian mixture models are powerful because they can approximate a wide range of smooth probability distributions if enough components are used. -->
+
 <div class="footnote">
 <hr />
 <ol>
@@ -2089,6 +2648,12 @@ After observing the phrase, the probability that the email is spam jumps from <s
 <li id="fn:marginal">
 <p>The term <em>marginal</em> is said to come from the traditional way of computing these sums on paper: one writes the joint distribution in a table and records the row and column totals in the margins of the page.&#160;<a class="footnote-backref" href="#fnref:marginal" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
+<li id="fn:multinoulli">
+<p>The term multinoulli was popularized by Murphy (2012) as a playful name meaning "many Bernoullis."&#160;<a class="footnote-backref" href="#fnref:multinoulli" title="Jump back to footnote 5 in the text">&#8617;</a></p>
+</li>
+<li id="fn:gauss">
+<p>The distribution is called <em>Gaussian</em> because it was studied extensively by Carl Friedrich Gauss, especially in connection with measurement errors. The name <em>normal distribution</em> became popular later because it was treated as the standard (“normal”) baseline model for noise in many scientific applications.&#160;<a class="footnote-backref" href="#fnref:gauss" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+</li>
 </ol>
 </div>
 
@@ -2097,6 +2662,9 @@ After observing the phrase, the probability that the email is spam jumps from <s
 
 
 
+
+  
+  
 
 
 
