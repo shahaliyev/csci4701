@@ -1,0 +1,3 @@
+description:
+  - 02_backprop:
+    - This is a notebook from the lecture series dedicated to deep learning. We start from backpropagation, discuss multilayer perceptron, convolutional neural networks, as well as regularization and optimization techniques. We delve into batch normalization and residual blocks, and slowly progress into modern transformer architecture. We discuss generative models starting from variational autoencoders, generative adversarial networks, all the way down to latent diffusion models. 
