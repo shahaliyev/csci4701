@@ -1366,17 +1366,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#likelihood" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Likelihood
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#expectation-variance-covariance" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1610,6 +1599,34 @@
     
   
     Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_prob_modeling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Probabilistic Modeling
   
 
     
@@ -2001,17 +2018,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#likelihood" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Likelihood
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#expectation-variance-covariance" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2243,7 +2249,7 @@
 
 <h1 id="probability-theory">Probability Theory</h1>
 <div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
-  <time datetime="2026-02-09">9 Feb 2026</time>
+  <time datetime="2026-02-07">7 Feb 2026</time>
 </div>
 
 <p>Probability theory is the mathematical framework for reasoning under uncertainty. In artificial intelligence, probability is used in two main ways: (i) as a guide for how an intelligent system should reason under uncertainty, and (ii) as a tool for analyzing and understanding the behavior of learning algorithms. <a href="../../introduction/01_deep_learning">Deep learning</a> relies on probability because real-world data is noisy, incomplete, and never fully deterministic, so uncertainty is unavoidable.  </p>
@@ -2518,59 +2524,7 @@ Therefore,
 $$
 P(\text{spam} \mid \text{yes}) = \frac{0.012}{0.0218} \approx 0.55.
 $$
-After observing the phrase, the probability that the email is spam jumps from <span class="arithmatex">\(2\%\)</span> to about <span class="arithmatex">\(55\%\)</span>. This illustrates Bayes’ rule as a mechanism for updating beliefs: the likelihood tells us how strongly the evidence points toward spam, while the prior reflects how common spam is overall.</p>
-</div>
-<h2 id="likelihood">Likelihood</h2>
-<p>In probability, we often write expressions like <span class="arithmatex">\(p(y \mid \theta),\)</span> where <span class="arithmatex">\(\theta\)</span> is a parameter of a model, and <span class="arithmatex">\(y\)</span> is a possible outcome. The same expression can be interpreted in two different ways: as a probability or as a <a href="https://en.wikipedia.org/wiki/Likelihood_function">likelihood</a>.</p>
-<p>Probability treats <span class="arithmatex">\(\theta\)</span> as fixed and <span class="arithmatex">\(y\)</span> as uncertain. It answers: <em>If the model parameter is <span class="arithmatex">\(\theta\)</span>, how likely is outcome <span class="arithmatex">\(y\)</span>?</em> Likelihood treats <span class="arithmatex">\(y\)</span> as fixed (because we already observed it) and views the same expression as a function of <span class="arithmatex">\(\theta\)</span>. It answers: <em>Given the observed outcome <span class="arithmatex">\(y\)</span>, which values of <span class="arithmatex">\(\theta\)</span> best explain it?</em></p>
-<p>Formally, the <strong>likelihood function</strong> is defined as:
-$$
-L(\theta \mid y) = p(y \mid \theta).
-$$</p>
-<div class="admonition warning">
-<p class="admonition-title">Important</p>
-<p>Likelihood is not a probability distribution over <span class="arithmatex">\(\theta\)</span>. In general:
-$$
-\int L(\theta \mid y)\,d\theta \ne 1.
-$$
-Likelihood values only measure <em>relative support</em> for different parameter values of <span class="arithmatex">\(\theta\)</span>.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Suppose we toss a coin <span class="arithmatex">\(n=10\)</span> times and observe <span class="arithmatex">\(y=7\)</span> heads. Let <span class="arithmatex">\(\theta\)</span> be the probability of heads. The probability of observing exactly <span class="arithmatex">\(7\)</span> heads is:
-$$
-p(y=7 \mid \theta)
-=
-\binom{10}{7}\theta^7(1-\theta)^3.
-$$</p>
-<p>If <span class="arithmatex">\(\theta\)</span> is fixed, this is a probability statement about the outcome <span class="arithmatex">\(y\)</span>. But if we already observed <span class="arithmatex">\(y=7\)</span>, the same expression becomes a likelihood function:
-$$
-L(\theta \mid y=7)
-=
-\binom{10}{7}\theta^7(1-\theta)^3.
-$$</p>
-<p>It is maximized near <span class="arithmatex">\(\theta=0.7\)</span>, because the observation suggests the coin behaves like a <span class="arithmatex">\(70\%\)</span> heads coin.</p>
-</div>
-<p>In practice, likelihood values can become extremely small, because they often involve multiplying many probabilities. For this reason, we usually work with the log-likelihood:
-$$
-\log L(\theta \mid y)
-=
-\log p(y \mid \theta).
-$$</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Log-likelihood is used because it turns products into sums. If we assume i.i.d. samples <span class="arithmatex">\(y^{(1)},\dots,y^{(m)}\)</span>, then:
-$$
-p(y^{(1)},\dots,y^{(m)} \mid \theta)
-=
-\prod_{i=1}^{m} p(y^{(i)} \mid \theta),
-$$
-so the log-likelihood becomes:
-$$
-\log p(y^{(1)},\dots,y^{(m)} \mid \theta)
-=
-\sum_{i=1}^{m} \log p(y^{(i)} \mid \theta).
-$$</p>
+After observing the phrase, the probability that the email is spam jumps from <span class="arithmatex">\(2\%\)</span> to about <span class="arithmatex">\(55\%\)</span>. This illustrates Bayes’ rule as a mechanism for updating beliefs: the <a href="../05_prob_modeling">likelihood</a> tells us how strongly the evidence points toward spam, while the prior reflects how common spam is overall.</p>
 </div>
 <h2 id="expectation-variance-covariance">Expectation, Variance, Covariance</h2>
 <p>So far, we have described probability distributions in terms of the probability of events. However, in machine learning we often want to summarize a distribution using a few meaningful numerical quantities. The most important of these are the <em>expectation (mean)</em>, the <em>variance</em>, and the <em>covariance</em>.</p>
@@ -3186,7 +3140,7 @@ $$
 =
 \sum_{i=1}^m \log P(x^{(i)}).
 $$</p>
-<p>This is the main reason why, say, <a href="../../introduction/02_machine_learning">maximum likelihood estimation</a> is almost always performed using the <strong>log-likelihood</strong> instead of the raw likelihood.</p>
+<p>This is the main reason why, say, <a href="../05_prob_modeling">maximum likelihood estimation</a> is almost always performed using the <strong>log-likelihood</strong> instead of the raw likelihood.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>In machine learning, model parameters are often learned by <strong>maximum likelihood estimation (MLE)</strong>.  We choose parameters <span class="arithmatex">\(\theta\)</span> that make the observed dataset most probable under the model. Suppose we have i.i.d. samples:

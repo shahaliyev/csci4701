@@ -6,18 +6,18 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Information theory provides the mathematical language for measuring uncertainty, surprise, and the difference between probability distributions. This page introduces the core information-theoretic concepts used in deep learning, including self-information, entropy, cross-entropy, and KL divergence.
+        <meta name="description" content="Probabilistic modeling is the practice of describing how data is generated using probability distributions. This page introduces likelihood, maximum likelihood estimation (MLE), negative log-likelihood, maximum a posteriori estimation (MAP), Bayesian inference, and structured probabilistic models used in machine learning and deep learning.
 ">
       
       
       
-        <link rel="canonical" href="https://shahaliyev.org/csci4701/mathematics/04_information/">
+        <link rel="canonical" href="https://shahaliyev.org/csci4701/mathematics/05_prob_modeling/">
       
       
-        <link rel="prev" href="../03_probability/">
+        <link rel="prev" href="../04_information/">
       
       
-        <link rel="next" href="../05_prob_modeling/">
+        <link rel="next" href="../../supplementary/">
       
       
         
@@ -28,7 +28,7 @@
     
     
       
-        <title>Information Theory - CSCI 4701 Deep Learning</title>
+        <title>Probabilistic Modeling - CSCI 4701 Deep Learning</title>
       
     
     
@@ -93,7 +93,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#information-theory" class="md-skip">
+        <a href="#probabilistic-modeling" class="md-skip">
           Skip to content
         </a>
       
@@ -127,7 +127,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Information Theory
+              Probabilistic Modeling
             
           </span>
         </div>
@@ -1221,6 +1221,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_information/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Information Theory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1240,7 +1268,7 @@
   <span class="md-ellipsis">
     
   
-    Information Theory
+    Probabilistic Modeling
   
 
     
@@ -1258,7 +1286,7 @@
   <span class="md-ellipsis">
     
   
-    Information Theory
+    Probabilistic Modeling
   
 
     
@@ -1284,10 +1312,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#self-information" class="md-nav__link">
+  <a href="#likelihood" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Self-Information
+        Likelihood
       
     </span>
   </a>
@@ -1295,10 +1323,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#entropy" class="md-nav__link">
+  <a href="#maximum-likelihood-estimation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Entropy
+        Maximum Likelihood Estimation
       
     </span>
   </a>
@@ -1306,10 +1334,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conditional-entropy" class="md-nav__link">
+  <a href="#negative-log-likelihood" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conditional Entropy
+        Negative Log-Likelihood
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Negative Log-Likelihood">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-cross-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Binary Cross-Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#categorical-cross-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categorical Cross-Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bayesian-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bayesian Inference
       
     </span>
   </a>
@@ -1317,10 +1384,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cross-entropy" class="md-nav__link">
+  <a href="#maximum-a-posteriori-estimation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cross-Entropy
+        Maximum A Posteriori Estimation
       
     </span>
   </a>
@@ -1328,10 +1395,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kullback-leibler-divergence" class="md-nav__link">
+  <a href="#latent-variable-models" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kullback-Leibler Divergence
+        Latent Variable Models
       
     </span>
   </a>
@@ -1339,10 +1406,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mutual-information" class="md-nav__link">
+  <a href="#mixture-models" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mutual Information
+        Mixture Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expectation-maximization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expectation-Maximization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structured-probabilistic-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structured Probabilistic Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generative-vs-discriminative-modeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generative vs Discriminative Modeling
       
     </span>
   </a>
@@ -1353,34 +1453,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../05_prob_modeling/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Probabilistic Modeling
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -1654,10 +1726,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#self-information" class="md-nav__link">
+  <a href="#likelihood" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Self-Information
+        Likelihood
       
     </span>
   </a>
@@ -1665,10 +1737,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#entropy" class="md-nav__link">
+  <a href="#maximum-likelihood-estimation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Entropy
+        Maximum Likelihood Estimation
       
     </span>
   </a>
@@ -1676,10 +1748,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#conditional-entropy" class="md-nav__link">
+  <a href="#negative-log-likelihood" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conditional Entropy
+        Negative Log-Likelihood
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Negative Log-Likelihood">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#binary-cross-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Binary Cross-Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#categorical-cross-entropy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Categorical Cross-Entropy
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bayesian-inference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bayesian Inference
       
     </span>
   </a>
@@ -1687,10 +1798,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#cross-entropy" class="md-nav__link">
+  <a href="#maximum-a-posteriori-estimation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Cross-Entropy
+        Maximum A Posteriori Estimation
       
     </span>
   </a>
@@ -1698,10 +1809,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#kullback-leibler-divergence" class="md-nav__link">
+  <a href="#latent-variable-models" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Kullback-Leibler Divergence
+        Latent Variable Models
       
     </span>
   </a>
@@ -1709,10 +1820,43 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mutual-information" class="md-nav__link">
+  <a href="#mixture-models" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Mutual Information
+        Mixture Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expectation-maximization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expectation-Maximization
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structured-probabilistic-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Structured Probabilistic Models
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generative-vs-discriminative-modeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generative vs Discriminative Modeling
       
     </span>
   </a>
@@ -1739,318 +1883,501 @@
   
 
 
-<h1 id="information-theory">Information Theory</h1>
+<h1 id="probabilistic-modeling">Probabilistic Modeling</h1>
 <div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
   <time datetime="2026-02-09">9 Feb 2026</time>
 </div>
 
-<p><a href="https://en.wikipedia.org/wiki/Information_theory">Information theory</a> is the mathematical framework for measuring how much <em>uncertainty</em> or <em>information</em> is contained in a probability distribution. While <a href="../03_probability">probability theory</a> tells us how to represent uncertainty, information theory tells us how to <em>quantify</em> it. In <a href="../../introduction/01_deep_learning">deep learning</a>, information theory appears everywhere: in loss functions, in <a href="../../notebooks/04_regul_optim">regularization</a>, in probabilistic modeling (<a href="../../notebooks/07_vae">VAEs</a>), and in the general idea of compressing data into meaningful representations.</p>
+<p><a href="https://en.wikipedia.org/wiki/Statistical_model">Statistical modeling</a> is the practice of describing real-world data using mathematical models with unknown parameters. In machine learning, statistical models are often expressed in probabilistic form, meaning we assume data is generated from a probability distribution. <strong>Probabilistic modeling</strong> is therefore the practice of describing how data is generated using probability distributions. Instead of treating observations as deterministic, we assume they are generated by an underlying random process, often with noise and uncertainty.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>The following source was consulted in preparing this material: Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep Learning</em>. MIT Press. <a href="https://www.deeplearningbook.org/contents/prob.html">Chapter 3: Probability and Information Theory</a>.</p>
+<p>The following sources were consulted in preparing this material: </p>
+<ul>
+<li>Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep Learning</em>. MIT Press. <a href="https://www.deeplearningbook.org/contents/prob.html">Chapter 3: Probability and Information Theory</a>.</li>
+<li>Grosse, R. (2020). <a href="https://www.cs.toronto.edu/~rgrosse/courses/csc311_f20/readings/L07%20Probabilistic%20Models.pdf">Lecture 7: Probabilistic Models</a>. CSC 311: Introduction to Machine Learning, University of Toronto.</li>
+</ul>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Important</p>
 <p>Some concepts in this material are simplified for pedagogical purposes. These simplifications slightly reduce precision but preserve the core ideas relevant to deep learning.</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Information theory was established by <a href="https://en.wikipedia.org/wiki/Claude_Shannon">Claude Shannon</a> in his famous 1948 paper <a href="https://people.math.harvard.edu/~ctm/home/text/others/shannon/entropy/entropy.pdf">A Mathematical Theory of Communication</a>, where he introduced the idea that information can be measured quantitatively, just like mass or energy. Shannon originally developed the theory to study how efficiently messages can be transmitted through noisy communication channels (e.g. radio). Today, the same mathematical tools are fundamental in deep learning, because training a model often means minimizing uncertainty and compressing information into useful representations.</p>
-</div>
-<h2 id="self-information">Self-Information</h2>
-<p>The core idea of information theory is simple: <em>Learning that an unlikely event happened gives more information than learning that a likely event happened.</em> </p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Learning that "the sun rose today" is not informative, but learning that "a solar eclipse happened today" is informative.</p>
-</div>
-<p>To measure this idea mathematically, we want a quantity that behaves like <strong>surprise</strong>:</p>
+<h2 id="likelihood">Likelihood</h2>
+<p>In <a href="../03_probability">probability</a>, we often write expressions like <span class="arithmatex">\(p(y \mid \theta)\)</span>, where <span class="arithmatex">\(\theta\)</span> is a parameter of a model, and <span class="arithmatex">\(y\)</span> is a possible outcome. The same expression can be interpreted in two different ways: as a probability or as a likelihood. The likelihood is not a different formula — it is the same function, interpreted differently.</p>
 <ul>
-<li>If an event is very likely, it should have low surprise.</li>
-<li>If an event is rare, it should have high surprise.</li>
+<li><strong>Probability</strong> treats <span class="arithmatex">\(\theta\)</span> as fixed and <span class="arithmatex">\(y\)</span> as uncertain. It answers: <em>If the model parameter is <span class="arithmatex">\(\theta\)</span>, how likely is outcome <span class="arithmatex">\(y\)</span>?</em></li>
+<li><strong>Likelihood</strong> treats <span class="arithmatex">\(y\)</span> as fixed (because we already observed it) and views the same expression as a function of <span class="arithmatex">\(\theta\)</span>. It answers: <em>Given the observed outcome <span class="arithmatex">\(y\)</span>, which values of <span class="arithmatex">\(\theta\)</span> make it most plausible?</em></li>
 </ul>
-<p>If two independent events occur, their probabilities multiply, so their surprise would multiply as well. Similar to <a href="../05_prob_modeling">log-likelihood</a>, to convert multiplication into addition, we can take the logarithm.</p>
+<p>For continuous variables, <span class="arithmatex">\(p(y\mid\theta)\)</span> is a probability density rather than a probability. The <a href="https://en.wikipedia.org/wiki/Likelihood_function">likelihood function</a> is defined as:
+$$
+L(\theta \mid y) = p(y \mid \theta).
+$$</p>
 <div class="admonition warning">
 <p class="admonition-title">Important</p>
-<p>Multiplying probabilities quickly produces extremely small numbers. For example, if we observe <span class="arithmatex">\(100\)</span> independent events each with probability <span class="arithmatex">\(0.01\)</span>, then the joint probability <span class="arithmatex">\(p(x_{1:100})\)</span> is:
+<p>Likelihood is not a probability distribution over <span class="arithmatex">\(\theta\)</span>. In general:
 $$
-(0.01)^{100} = 10^{-200},
+\int L(\theta \mid y)\,d\theta \ne 1.
 $$
-which is essentially zero in floating-point arithmetic.   This causes numerical underflow and also leads to very small gradients when optimizing likelihoods directly. Taking the logarithm fixes this problem:
-$$
-\log (0.01^{100})
-=
-100 \log(0.01)
-\approx
--460.5,
-$$
-which is a normal-sized number. This is why deep learning almost always optimizes log-likelihood instead of likelihood: products become sums, computations stay stable, and gradients remain usable.</p>
+Likelihood values only measure relative support for different parameter values of <span class="arithmatex">\(\theta\)</span>.</p>
 </div>
-<p>Using the identity <span class="arithmatex">\(\log(1/u)=-\log(u)\)</span>, we obtain the <a href="https://en.wikipedia.org/wiki/Information_content">self-information</a> (also called <em>surprisal</em>, <em>information content</em>, or <em>Shannon information</em>) of an event <span class="arithmatex">\(X=x\)</span>:
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>A coin toss can be modeled as <span class="arithmatex">\(Y \sim \mathrm{Bernoulli}(\theta),\)</span> where <span class="arithmatex">\(Y \in \{0,1\}\)</span>, and <span class="arithmatex">\(\theta\)</span> is the probability of observing <span class="arithmatex">\(Y=1\)</span> (e.g., heads). If the coin is weighted, then <span class="arithmatex">\(\theta \ne 0.5\)</span>. The probability of observing outcome <span class="arithmatex">\(y\)</span> is:
 $$
-I(x) = -\log P(X=x).
+p(y \mid \theta) = \theta^y(1-\theta)^{1-y}.
 $$</p>
-<p>This definition satisfies three key properties defined by Shannon:</p>
+<p>If <span class="arithmatex">\(\theta\)</span> is fixed, this is a probability statement about the random outcome <span class="arithmatex">\(Y\)</span>. But after observing <span class="arithmatex">\(y\)</span>, the same expression becomes a likelihood function of <span class="arithmatex">\(\theta\)</span>:
+$$
+L(\theta \mid y) = \theta^y(1-\theta)^{1-y}.
+$$</p>
+<p>For example, if we observe <span class="arithmatex">\(y=1\)</span> (heads), then:
+$$
+L(\theta \mid y=1) = \theta,
+$$
+which is maximized near <span class="arithmatex">\(\theta=1\)</span>. If we observe <span class="arithmatex">\(y=0\)</span> (tails), then:
+$$
+L(\theta \mid y=0) = 1-\theta,
+$$
+which is maximized near <span class="arithmatex">\(\theta=0\)</span>.</p>
+</div>
+<p>In practice, likelihood values can become extremely small, because they often involve multiplying many probabilities. For this reason, we usually work with the <strong>log-likelihood</strong>:
+$$
+\log L(\theta \mid y) = \log p(y \mid \theta).
+$$</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Log-likelihood is used because it turns products into sums. If we assume i.i.d. samples <span class="arithmatex">\(y^{(1)},\dots,y^{(m)}\)</span>, then:
+$$
+p(y^{(1)},\dots,y^{(m)} \mid \theta)
+=
+\prod_{i=1}^{m} p(y^{(i)} \mid \theta),
+$$
+so the log-likelihood becomes:
+$$
+\log p(y^{(1)},\dots,y^{(m)} \mid \theta)
+=
+\sum_{i=1}^{m} \log p(y^{(i)} \mid \theta).
+$$</p>
+</div>
+<h2 id="maximum-likelihood-estimation">Maximum Likelihood Estimation</h2>
+<p>Once we choose a probabilistic model <span class="arithmatex">\(p(x \mid \theta)\)</span>, the main question becomes: <em>which parameter values <span class="arithmatex">\(\theta\)</span> best explain the observed dataset?</em> Given a dataset of <span class="arithmatex">\(m\)</span> samples:
+$$
+D = {x^{(1)},x^{(2)},\dots,x^{(m)}},
+$$
+the likelihood of the dataset is:
+$$
+p(D \mid \theta)
+=
+\prod_{i=1}^{m} p(x^{(i)} \mid \theta),
+$$
+assuming the samples are i.i.d. <a href="https://en.wikipedia.org/wiki/Maximum_likelihood_estimation">Maximum likelihood estimation (MLE)</a> chooses the parameter values that maximize this likelihood:</p>
+<div style="overflow-x:auto; max-width:100%; margin:-0.4rem 0;">
+$$
+\hat{\theta}_{\mathrm{MLE}}
+=
+\arg\max_{\theta} p(D \mid \theta)
+$$
+</div>
+
+<p>With log-likelihood, the formula becomes:</p>
+<div style="overflow-x:auto; max-width:100%; margin:-0.4rem 0;">
+$$
+\hat{\theta}_{\mathrm{MLE}}
+=
+\arg\max_{\theta} \log p(D \mid \theta)
+=
+\arg\max_{\theta} \sum_{i=1}^{m} \log p(x^{(i)} \mid \theta).
+$$
+</div>
+
+<p>Because the logarithm is <a href="../03_probability#logarithm">monotonic</a>, maximizing likelihood and maximizing log-likelihood produce the same solution.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>MLE is the standard statistical justification behind many deep learning loss functions. In practice, training often means choosing parameters <span class="arithmatex">\(\theta\)</span> so that the observed dataset becomes as likely as possible under the model.</p>
+</div>
+<h2 id="negative-log-likelihood">Negative Log-Likelihood</h2>
+<p>In deep learning, we usually convert MLE into a minimization problem. This leads to the <strong>negative log-likelihood</strong> loss:
+$$
+\mathcal{L}(\theta)
+=
+-\log p(D\mid \theta).
+$$</p>
+<p>Minimizing negative log-likelihood is equivalent to maximizing likelihood, so negative log-likelihood is the most common probabilistic form of a training objective.</p>
+<h3 id="binary-cross-entropy">Binary Cross-Entropy</h3>
+<p>In binary classification, the label is <span class="arithmatex">\(y \in \{0,1\}\)</span> and the model predicts the probability of the positive class:
+$$
+\hat{p} = p_\theta(Y=1 \mid x),
+$$
+where <span class="arithmatex">\(\theta\)</span> represents the model parameters (weights).</p>
+<p>Under a Bernoulli model, the likelihood of observing <span class="arithmatex">\(y\)</span> is:
+$$
+p_\theta(y\mid x)
+=
+\hat{p}^{\,y}(1-\hat{p})^{1-y}.
+$$</p>
+<p>Taking the negative logarithm gives the binary <a href="../04_information">cross-entropy</a> loss:</p>
+<div style="overflow-x:auto; max-width:100%;">
+$$
+\mathcal{L}_{\mathrm{BCE}}(y,\hat{p})
+=
+-y\log(\hat{p})-(1-y)\log(1-\hat{p}).
+$$
+</div>
+
+<p>So binary cross-entropy is exactly the negative log-likelihood of a Bernoulli model.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Suppose the true label is <span class="arithmatex">\(y=1\)</span> (positive class). If the model predicts <span class="arithmatex">\(\hat{p}=0.9\)</span>, then:
+$$
+\mathcal{L}_{\mathrm{BCE}}
+=
+-\log(0.9)
+\approx
+0.105.
+$$</p>
+<p>If the model predicts <span class="arithmatex">\(\hat{p}=0.1\)</span>, then:
+$$
+\mathcal{L}_{\mathrm{BCE}}
+=
+-\log(0.1)
+\approx
+2.303.
+$$</p>
+<p>The loss is small when the model assigns high probability to the correct label, and large when it assigns low probability.</p>
+</div>
+<h3 id="categorical-cross-entropy">Categorical Cross-Entropy</h3>
+<p>In <a href="https://en.wikipedia.org/wiki/Multiclass_classification">multiclass classification</a> with <span class="arithmatex">\(k\)</span> classes, the label is:
+$$
+y \in {1,2,\dots,k}.
+$$</p>
+<p>The model outputs a probability vector <span class="arithmatex">\(\hat{p}\in\mathbb{R}^k\)</span>. The likelihood of observing class <span class="arithmatex">\(y\)</span> is the probability assigned to that class:
+$$
+p(y\mid x) = \hat{p}_y.
+$$</p>
+<p>Therefore, the negative log-likelihood becomes:
+$$
+\mathcal{L}(y,\hat{p})
+=
+-\log(\hat{p}_y).
+$$</p>
+<p>If we represent the label as a one-hot vector <span class="arithmatex">\(e_y\)</span>, the same loss can be written as:
+$$
+\mathcal{L}(y,\hat{p})
+=
+-\sum_{i=1}^k e_{y,i}\log(\hat{p}_i).
+$$</p>
+<p>So categorical cross-entropy is exactly the negative log-likelihood of a categorical distribution.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Cross-entropy loss is widely used because minimizing negative log-likelihood is equivalent to maximizing the likelihood of the observed labels under the model. In practice, neural networks usually output logits (unnormalized scores) rather than probabilities. Cross-entropy is computed using numerically stable implementations that combine softmax and log into a single operation:
+$$
+\mathcal{L}(y,z)
+=
+-\log\left(\mathrm{softmax}(z)_y\right),
+$$
+where <span class="arithmatex">\(z \in \mathbb{R}^k\)</span> is the logits vector.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Suppose we have <span class="arithmatex">\(k=3\)</span> classes and the true class is <span class="arithmatex">\(y=2\)</span>. If the model predicts <span class="arithmatex">\(\hat{p}=(0.1,0.8,0.1)\)</span>, then:
+$$
+\mathcal{L}
+=
+-\log(0.8)
+\approx
+0.223.
+$$</p>
+<p>If the model predicts <span class="arithmatex">\(\hat{p}=(0.4,0.2,0.4)\)</span>, then:
+$$
+\mathcal{L}
+=
+-\log(0.2)
+\approx
+1.609.
+$$</p>
+<p>The loss increases sharply when the model assigns low probability to the correct class.</p>
+</div>
+<h2 id="bayesian-inference">Bayesian Inference</h2>
+<p>MLE treats the model parameters <span class="arithmatex">\(\theta\)</span> as fixed but unknown. In <a href="https://en.wikipedia.org/wiki/Bayesian_inference">Bayesian inference</a>, we instead treat <span class="arithmatex">\(\theta\)</span> as a random variable and represent uncertainty about its value using probability distributions. Before observing data, we have a certain <em>belief</em> <span class="arithmatex">\(p(\theta).\)</span> about the data distribution. After observing a dataset <span class="arithmatex">\(D\)</span>, we update this belief using <a href="../03_probability#bayes-rule">Bayes' rule</a>:
+$$
+p(\theta \mid D)
+=
+\frac{p(D \mid \theta)\,p(\theta)}{p(D)}.
+$$</p>
+<p>Here:</p>
+<ul>
+<li><span class="arithmatex">\(p(\theta)\)</span> is the <strong>prior</strong>, representing our belief about <span class="arithmatex">\(\theta\)</span> before seeing data.</li>
+<li><span class="arithmatex">\(p(D\mid\theta)\)</span> is the <strong>likelihood</strong>, measuring how well <span class="arithmatex">\(\theta\)</span> explains the observed data.</li>
+<li><span class="arithmatex">\(p(\theta\mid D)\)</span> is the <strong>posterior</strong>, representing our updated belief after seeing data.</li>
+<li><span class="arithmatex">\(p(D)\)</span> is the <strong>marginal likelihood</strong> (or <strong>evidence</strong>), which normalizes the posterior:
+$$
+p(D)
+=
+\int p(D \mid \theta)\,p(\theta)\,d\theta.
+$$</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Bayesian inference provides a way to combine prior assumptions with observed data. Instead of producing a single best estimate of parameters, it produces a full probability distribution over plausible parameter values.  When the dataset is small, the posterior remains broad. As more data is observed, the posterior typically becomes more concentrated around parameter values that explain the data well.</p>
+</div>
+<h2 id="maximum-a-posteriori-estimation">Maximum A Posteriori Estimation</h2>
+<p>MLE chooses parameters <span class="arithmatex">\(\theta\)</span> that maximize the likelihood of the observed dataset:</p>
+<div style="overflow-x:auto; max-width:100%; margin:-0.4rem 0;">
+$$
+\hat{\theta}_{\mathrm{MLE}}
+=
+\arg\max_{\theta} p(D \mid \theta).
+$$
+</div>
+
+<p>In Bayesian inference, we instead compute the posterior distribution:
+$$
+p(\theta \mid D)
+=
+\frac{p(D \mid \theta)\,p(\theta)}{p(D)}.
+$$</p>
+<p><a href="https://en.wikipedia.org/wiki/Maximum_a_posteriori_estimation">Maximum a posteriori estimation (MAP)</a> chooses the parameter value that maximizes the posterior:</p>
+<div style="overflow-x:auto; max-width:100%; margin:-0.4rem 0;">
+$$
+\hat{\theta}_{\mathrm{MAP}}
+=
+\arg\max_{\theta} p(\theta \mid D).
+$$
+</div>
+
+<p>Since <span class="arithmatex">\(p(D)\)</span> does not depend on <span class="arithmatex">\(\theta\)</span>, maximizing the posterior is equivalent to:</p>
+<div style="overflow-x:auto; max-width:100%; margin:-0.4rem 0;">
+$$
+\hat{\theta}_{\mathrm{MAP}}
+=
+\arg\max_{\theta} p(D \mid \theta)\,p(\theta).
+$$
+</div>
+
+<p>Taking the logarithm gives the common optimization form:</p>
+<div style="overflow-x:auto; max-width:100%; margin:-0.4rem 0;">
+$$
+\hat{\theta}_{\mathrm{MAP}}
+=
+\arg\max_{\theta}
+\Big(
+\log p(D \mid \theta) + \log p(\theta)
+\Big).
+$$
+</div>
+
+<p>MAP can be seen as MLE with an additional term <span class="arithmatex">\(\log p(\theta)\)</span> that encourages parameter values that are consistent with the prior.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Consider linear regression with Gaussian noise:
+$$
+y = w^\top x + \epsilon,
+\qquad
+\epsilon \sim \mathcal{N}(0,\sigma^2).
+$$</p>
+<p>This implies the likelihood:
+$$
+p(D \mid w)
+\propto
+\exp\left(
+-\frac{1}{2\sigma^2}\sum_{i=1}^m (y^{(i)} - w^\top x^{(i)})^2
+\right).
+$$</p>
+<p>Maximizing this likelihood (MLE) is equivalent to minimizing the mean squared error. Now assume a Gaussian prior over weights:
+$$
+w \sim \mathcal{N}(0,\tau^2 I).
+$$</p>
+<p>The MAP objective becomes:
+$$
+\hat{w}_{\mathrm{MAP}}
+=
+\arg\max_w
+\Big(
+\log p(D \mid w) + \log p(w)
+\Big).
+$$</p>
+<p>Since the Gaussian prior contributes a penalty term proportional to <span class="arithmatex">\(\|w\|^2\)</span>, MAP becomes equivalent to minimizing:
+$$
+\sum_{i=1}^m (y^{(i)} - w^\top x^{(i)})^2
++
+\lambda |w|^2.
+$$</p>
+<p>This is exactly <span class="arithmatex">\(L_2\)</span> regularization (ridge regression). Therefore, MAP estimation provides a probabilistic justification for <a href="../../notebooks/04_regul_optim">weight decay</a> in deep learning.</p>
+</div>
+<h2 id="latent-variable-models">Latent Variable Models</h2>
+<div class="admonition quote">
+<p class="admonition-title">Quote</p>
+<p>But the latent process of which we speak, is far from being obvious to men’s minds, beset as they now are. For we mean not the measures, symptoms, or degrees of any process which can be exhibited in the bodies themselves, but simply a continued process, which, for the most part, escapes the observation of the senses. ~ <a href="https://en.wikipedia.org/wiki/Francis_Bacon">Francis Bacon</a> (<a href="https://en.wikipedia.org/wiki/Novum_Organum">Novum Organum</a>) </p>
+</div>
+<p>In many real-world problems, the observed data <span class="arithmatex">\(x\)</span> is influenced by hidden (latent) factors that we do not directly measure. A <a href="https://en.wikipedia.org/wiki/Latent_variable_model">latent variable model</a> introduces an <a href="https://en.wikipedia.org/wiki/Latent_and_observable_variables">unobserved random variable</a> <span class="arithmatex">\(z\)</span> to represent this hidden structure. The model assumes that data is generated in two steps:</p>
 <ol>
-<li>Certain events contain no information: if <span class="arithmatex">\(P(x)=1\)</span>, then <span class="arithmatex">\(I(x)=0\)</span>.</li>
-<li>Unlikely events contain more information: smaller <span class="arithmatex">\(P(x)\)</span> gives larger <span class="arithmatex">\(I(x)\)</span>.</li>
-<li>Independent information is additive: if events are independent, their probabilities multiply, so their information adds.</li>
+<li>Latent variable was <em>sampled</em> <span class="arithmatex">\(z \sim p(z).\)</span></li>
+<li>Observation <em>conditioned</em> on <span class="arithmatex">\(z\)</span> was generated <span class="arithmatex">\(x \sim p(x \mid z).\)</span></li>
 </ol>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In this course, <span class="arithmatex">\(\log\)</span> always means the natural logarithm (base <span class="arithmatex">\(e\)</span>). When using natural logs, information is measured in <em>nats</em> rather than bits.</p>
-</div>
-<h2 id="entropy">Entropy</h2>
-<p>Self-information measures the surprise of a single outcome. But often we want a single number that summarizes the uncertainty of an entire distribution. In information theory, the (Shannon) <a href="https://en.wikipedia.org/wiki/Entropy_(information_theory)">entropy</a> of a discrete random variable <span class="arithmatex">\(X\)</span> is the expected self-information:</p>
-<div style="overflow-x:auto; max-width:100%;">
+<p>Together, this defines the joint distribution:
 $$
-H(X)
-=
-\mathbb{E}[I(X)]
-=
--\sum_x P(X=x)\log P(X=x).
-$$
-</div>
-
-<p>It implies that if <span class="arithmatex">\(X\)</span> is almost always the same value, there is little uncertainty, so entropy is low. If <span class="arithmatex">\(X\)</span> has many equally likely outcomes, uncertainty is high, so entropy is high. Discrete entropy is always nonnegative: <span class="arithmatex">\(H(X)\ge 0.\)</span></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Entropy is maximized by the uniform distribution. If <span class="arithmatex">\(X\)</span> takes <span class="arithmatex">\(k\)</span> outcomes with equal probability <span class="arithmatex">\(P(X=i)=1/k\)</span>, then:
-$$
-H(X)
-=
--\sum_{i=1}^{k}\frac{1}{k}\log\frac{1}{k}
-=
-\log k.
-$$
-This matches intuition: choosing among more equally likely options is more uncertain.</p>
-</div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Consider a Bernoulli random variable <span class="arithmatex">\(X\sim \mathrm{Bernoulli}(\phi)\)</span>:
-$$
-P(X=1)=\phi,\qquad P(X=0)=1-\phi.
-$$
-Its entropy is:
-$$
-H(X)
-=
--\phi\log\phi-(1-\phi)\log(1-\phi).
-$$
-This entropy is highest at <span class="arithmatex">\(\phi=0.5\)</span> (maximum uncertainty) and approaches <span class="arithmatex">\(0\)</span> as <span class="arithmatex">\(\phi\to 0\)</span> or <span class="arithmatex">\(\phi\to 1\)</span> (almost no uncertainty).</p>
-</div>
-<p>For a continuous random variable with density <span class="arithmatex">\(p(x)\)</span>, the analogous quantity is:
-$$
-H(X)
-=
--\int p(x)\log p(x)\,dx.
+p(x,z) = p(x \mid z)\,p(z).
 $$</p>
-<p><a href="https://en.wikipedia.org/wiki/Differential_entropy">Differential (continuous) entropy</a> measures uncertainty in a continuous distribution, but it behaves differently from discrete entropy. This happens because <span class="arithmatex">\(p(x)\)</span> is a probability <em>density</em>, not a probability. A density can be greater than <span class="arithmatex">\(1\)</span>, so <span class="arithmatex">\(\log p(x)\)</span> can be positive. Hence, differential entropy can be negative.</p>
-<p>Another important difference is that differential entropy depends on the <em>units</em> of measurement. If we scale a continuous variable, its differential entropy changes. If <span class="arithmatex">\(Y=aX\)</span> for some constant <span class="arithmatex">\(a&gt;0\)</span>, then:
+<p>Since <span class="arithmatex">\(z\)</span> is not observed, the probability of an observation <span class="arithmatex">\(x\)</span> is obtained by marginalizing over all possible latent values:
 $$
-H(Y)=H(X)+\log a.
+p(x) = \int p(x,z)\,dz
+=
+\int p(x \mid z)\,p(z)\,dz.
 $$</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This means that differential entropy is not an absolute measure of "how much uncertainty exists." Changing meters to centimeters changes the value.</p>
+<p>In practice, latent variable models are powerful because they can represent complex data-generating processes, such as clustering, hidden states, or abstract representations. However, they are also more difficult to train, because computing the marginal likelihood often requires intractable integration (or summation) over latent variables. Many important machine learning models can be viewed as latent variable models, including mixture models, <a href="https://en.wikipedia.org/wiki/Hidden_Markov_model">hidden Markov models (HMMs)</a>, and <a href="../../notebooks/07_vae">variational autoencoders (VAEs)</a>.</p>
 </div>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Let <span class="arithmatex">\(X\sim U(0,1)\)</span>, so <span class="arithmatex">\(p(x)=1\)</span> on <span class="arithmatex">\([0,1]\)</span>. Then:
+<h2 id="mixture-models">Mixture Models</h2>
+<p>In the probability section, we introduced <a href="../03_probability#mixture-distributions">mixture distributions</a> as weighted combinations of simpler distributions:</p>
+<div style="overflow-x:auto; max-width:100%; margin:-0.4rem 0;">
 $$
-H(X)
-=
--\int_0^1 1\cdot \log(1)\,dx
-=
-0.
-$$</p>
-<p>Now let <span class="arithmatex">\(Y\sim U(0,0.1)\)</span>, so <span class="arithmatex">\(p(y)=10\)</span> on <span class="arithmatex">\([0,0.1]\)</span>. Then:
-$$
-H(Y)
-=
--\int_0^{0.1} 10\log(10)\,dy
-=
--\log(10),
-$$
-which is negative.</p>
-</div>
-<h2 id="conditional-entropy">Conditional Entropy</h2>
-<p>Sometimes uncertainty is reduced after observing another variable. The <a href="https://en.wikipedia.org/wiki/Conditional_entropy">conditional entropy</a> measures the remaining uncertainty in <span class="arithmatex">\(X\)</span> after we know <span class="arithmatex">\(Y\)</span>:</p>
-<div style="overflow-x:auto; max-width:100%;">
-$$
-H(X \mid Y)
-=
--\sum_{x,y} P(x,y)\log P(x \mid y).
-$$
-</div>
-
-<p>Equivalently, it is the expected entropy of the conditional distribution:</p>
-<div style="overflow-x:auto; max-width:100%;">
-$$
-H(X \mid Y)
-=
-\sum_y P(y)\,H(X \mid Y=y).
-$$
-</div>
-
-<p>If <span class="arithmatex">\(X\)</span> is completely determined by <span class="arithmatex">\(Y\)</span>, then <span class="arithmatex">\(H(X\mid Y)=0\)</span>. If <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent, then observing <span class="arithmatex">\(Y\)</span> gives no information about <span class="arithmatex">\(X\)</span>, so <span class="arithmatex">\(H(X\mid Y)=H(X)\)</span>.</p>
-<h2 id="cross-entropy">Cross-Entropy</h2>
-<p>Entropy <span class="arithmatex">\(H(P)\)</span> measures the uncertainty of a distribution <span class="arithmatex">\(P\)</span>. In learning, we usually have two distributions:</p>
-<ul>
-<li>The <em>true</em> (data) distribution <span class="arithmatex">\(P\)</span> that generates labels.</li>
-<li>A <em>model</em> distribution <span class="arithmatex">\(Q\)</span> that tries to predict them.</li>
-</ul>
-<p><a href="https://en.wikipedia.org/wiki/Cross-entropy">Cross-entropy</a> measures the expected number of <em>nats</em> needed to encode outcomes generated by the true distribution <span class="arithmatex">\(P\)</span>, when we use an encoding scheme (or predictive model) that assumes the distribution is <span class="arithmatex">\(Q\)</span>. In other words, it measures how well <span class="arithmatex">\(Q\)</span> predicts samples coming from <span class="arithmatex">\(P\)</span>. If <span class="arithmatex">\(Q\)</span> assigns low probability to events that happen frequently under <span class="arithmatex">\(P\)</span>, the cross-entropy becomes large.
-$$
-H(P,Q)
-=
--\sum_x P(x)\log Q(x).
-$$
-Compare this with entropy:
-$$
-H(P) = -\sum_x P(x)\log P(x).
-$$</p>
-<p>The only difference is what appears inside the logarithm: entropy uses the true distribution <span class="arithmatex">\(P\)</span>, while cross-entropy uses the model distribution <span class="arithmatex">\(Q\)</span>.</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-<p>Suppose <span class="arithmatex">\(X\)</span> represents the outcome of a biased coin, and the true distribution is:
-$$
-P(X=\text{heads}) = 0.9,
+p(x) = \sum_{k=1}^{K} \pi_k\,p_k(x),
 \qquad
-P(X=\text{tails}) = 0.1.
-$$</p>
-<p>The entropy of the true distribution is:
-<div style="overflow-x:auto; max-width:100%;">
-$$
-H(P)
-=
--0.9\log(0.9) - 0.1\log(0.1)
-\approx
-0.325 \text{ nats}.
-$$
-</div>
-Now suppose we build a wrong model <span class="arithmatex">\(Q\)</span> that assumes the coin is fair:
-$$
-Q(X=\text{heads}) = 0.5,
+\pi_k \ge 0,
 \qquad
-Q(X=\text{tails}) = 0.5.
-$$</p>
-<p>The cross-entropy of <span class="arithmatex">\(P\)</span> relative to <span class="arithmatex">\(Q\)</span> is:
-<div style="overflow-x:auto; max-width:100%;">
-$$
-H(P,Q)
-=
--0.9\log(0.5) - 0.1\log(0.5)
-=
--\log(0.5)
-=
-\log 2
-\approx
-0.693 \text{ nats}.
-$$
-</div></p>
-<p>So even though the true coin has relatively low uncertainty (<span class="arithmatex">\(H(P)\approx 0.325\)</span>), using the wrong model distribution <span class="arithmatex">\(Q\)</span> increases the expected code length to <span class="arithmatex">\(H(P,Q)\approx 0.693\)</span>. </p>
-<p>Intuitively, this happens because the model assigns too little probability to the outcome that occurs most of the time (heads). Cross-entropy penalizes this mismatch. If we instead choose <span class="arithmatex">\(Q=P\)</span>, then:
-$$
-H(P,P)=H(P),
-$$
-meaning cross-entropy becomes minimal when the assumed distribution matches the true one.</p>
-</div>
-<h2 id="kullback-leibler-divergence">Kullback-Leibler Divergence</h2>
-<p>Cross-entropy answers a practical question: <em>If the world follows <span class="arithmatex">\(P\)</span>, but we build a model as if it were <span class="arithmatex">\(Q\)</span>, how costly is that mistake on average?</em> But sometimes we want a cleaner question: <em>How much worse is <span class="arithmatex">\(Q\)</span> compared to the true distribution <span class="arithmatex">\(P\)</span>?</em></p>
-<p>The answer is the extra penalty we pay when we use <span class="arithmatex">\(Q\)</span> instead of <span class="arithmatex">\(P\)</span>.
-This difference is exactly the <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback–Leibler (KL) divergence</a>:
-$$
-D_{\mathrm{KL}}(P|Q)
-=
-H(P,Q)-H(P).
-$$</p>
-<p>Equivalently, it can be written as:
-$$
-D_{\mathrm{KL}}(P|Q)
-=
-\sum_x P(x)\log\frac{P(x)}{Q(x)}.
-$$</p>
-<p>Or for continuous distributions:
-$$
-D_{\mathrm{KL}}(P | Q)
-=
-\int p(x)\log \frac{p(x)}{q(x)}\,dx.
-$$</p>
-<p>So KL divergence measures the <em>gap</em> between cross-entropy and entropy: it is zero when <span class="arithmatex">\(P=Q\)</span>, and grows as <span class="arithmatex">\(Q\)</span> becomes a worse approximation of <span class="arithmatex">\(P\)</span>. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>KL divergence is always nonnegative:
-$$
-D_{\mathrm{KL}}(P|Q)\ge 0,
-$$
-and equals <span class="arithmatex">\(0\)</span> if and only if <span class="arithmatex">\(P=Q\)</span> (<a href="../03_probability/#measure-theory">almost everywhere</a> in the continuous case).</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Important</p>
-<p>KL divergence is not symmetric:
-$$
-D_{\mathrm{KL}}(P | Q) \ne D_{\mathrm{KL}}(Q | P).
-$$
-So it is not a true distance metric, but it is still one of the most important ways to compare distributions in deep learning. </p>
-</div>
-<p>A key identity connects entropy, cross-entropy, and KL divergence:
-$$
-H(P,Q)
-=
-H(P) + D_{\mathrm{KL}}(P | Q).
-$$</p>
-<p>This immediately explains why minimizing cross-entropy makes sense. Since <span class="arithmatex">\(H(P)\)</span> does not depend on the model <span class="arithmatex">\(Q\)</span>, minimizing <span class="arithmatex">\(H(P,Q)\)</span> over <span class="arithmatex">\(Q\)</span> is equivalent to minimizing KL divergence:
-$$
-\arg\min_Q H(P,Q)
-=
-\arg\min_Q D_{\mathrm{KL}}(P|Q).
-$$</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In classification, minimizing cross-entropy is the same as minimizing <span class="arithmatex">\(D_{\mathrm{KL}}(P\|Q)\)</span> between the true label distribution and the model predictions.</p>
-</div>
-<div class="admonition success">
-<p class="admonition-title">Exercise</p>
-<p>Let <span class="arithmatex">\(P=\mathcal{N}(\mu_1,\sigma_1^2)\)</span> and <span class="arithmatex">\(Q=\mathcal{N}(\mu_2,\sigma_2^2)\)</span>. Derive a <a href="https://en.wikipedia.org/wiki/Closed-form_expression">closed-form expression</a> for <span class="arithmatex">\(D_{\mathrm{KL}}(P\|Q)\)</span> in terms of <span class="arithmatex">\(\mu_1,\mu_2,\sigma_1,\sigma_2\)</span>.</p>
-</div>
-<h2 id="mutual-information">Mutual Information</h2>
-<p>Entropy measures uncertainty in a single random variable. <a href="https://en.wikipedia.org/wiki/Mutual_information">Mutual information</a> measures how strongly two random variables are related: how much knowing one reduces uncertainty about the other. Between <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span>, it is defined as:
-$$
-I(X;Y)
-=
-\sum_{x,y} P(x,y)\log\frac{P(x,y)}{P(x)P(y)}.
-$$</p>
-<p>For continuous variables:
-$$
-I(X;Y)
-=
-\int p(x,y)\log\frac{p(x,y)}{p(x)p(y)}\,dx\,dy.
-$$</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Mutual information compares the true joint distribution <span class="arithmatex">\(P(X,Y)\)</span> with what the joint distribution would look like if <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> were independent. If <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent, then <span class="arithmatex">\(P(X,Y)=P(X)P(Y)\)</span>, so <span class="arithmatex">\(I(X;Y)=0\)</span>.</p>
-</div>
-<p>Mutual information can be written as a KL divergence:
-$$
-I(X;Y)
-=
-D_{\mathrm{KL}}\big(P(X,Y)\,|\,P(X)P(Y)\big).
-$$</p>
-<p>It can also be expressed using entropy:</p>
-<div style="overflow-x:auto; max-width:100%;">
-$$
-I(X;Y)
-=
-H(X)-H(X\mid Y)
-=
-H(Y)-H(Y\mid X).
+\sum_{k=1}^{K}\pi_k = 1.
 $$
 </div>
 
+<p>In probabilistic modeling, the same idea is interpreted as a latent variable model. We assume that each data point was generated by one of <span class="arithmatex">\(K\)</span> hidden components. This is modeled by introducing a latent variable:
+$$
+Z \in {1,2,\dots,K},
+$$
+which represents the unknown component assignment. The generative process is:</p>
+<ol>
+<li>Sample a component index: <span class="arithmatex">\(Z \sim \mathrm{Categorical}(\pi_1,\dots,\pi_K).\)</span></li>
+<li>Sample the observation from the chosen component: <span class="arithmatex">\(X \sim p(x \mid Z=k).\)</span></li>
+</ol>
+<p>The marginal distribution of <span class="arithmatex">\(X\)</span> is therefore:
+$$
+p(x) = \sum_{k=1}^{K} \pi_k\,p(x \mid Z=k).
+$$</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This shows that the information is the reduction in uncertainty of <span class="arithmatex">\(X\)</span> after observing <span class="arithmatex">\(Y\)</span> (and vice versa). It is always nonnegative: <span class="arithmatex">\(I(X;Y)\ge 0\)</span>.</p>
+<p>The key modeling idea is that <span class="arithmatex">\(Z\)</span> is not observed.   Learning a mixture model means learning both the component distributions and the hidden assignments of data points.</p>
 </div>
+<h2 id="expectation-maximization">Expectation-Maximization</h2>
+<p>Many probabilistic models contain latent variables, such as mixture models. In these models, the likelihood involves marginalizing over hidden variables. If the latent variable <span class="arithmatex">\(z\)</span> is discrete, the likelihood contains a sum:
+$$
+p(D \mid \theta)
+=
+\prod_{i=1}^{m}
+\sum_{z^{(i)}} p(x^{(i)}, z^{(i)} \mid \theta).
+$$</p>
+<p>If the latent variable <span class="arithmatex">\(z\)</span> is continuous, the likelihood contains an integral:
+$$
+p(D \mid \theta)
+=
+\prod_{i=1}^{m}
+\int p(x^{(i)}, z^{(i)} \mid \theta)\,dz^{(i)}.
+$$</p>
+<p>Directly maximizing this likelihood is often difficult, because of the intractable sum (or integral) over latent variables. The <a href="https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm">Expectation-Maximization (EM) algorithm</a> is an iterative method for maximum likelihood estimation in latent variable models. It alternates between estimating the latent variables (softly) and updating the parameters.</p>
+<p>In the <em>E-step (Expectation)</em>, we compute the posterior distribution of the latent variable given the current parameters:
+$$
+p(z^{(i)} \mid x^{(i)}, \theta^{(t)}).
+$$</p>
+<p>This gives a <em>soft assignment</em> of each data point to latent states or mixture components.</p>
+<p>In the <em>M-step (Maximization)</em>, we update the parameters by maximizing the expected log-likelihood under these soft assignments:</p>
+<div style="overflow-x:auto; max-width:100%; margin:-0.4rem 0;">
+$$
+\theta^{(t+1)}
+=
+\arg\max_{\theta}
+\mathbb{E}_{z \sim p(z \mid x,\theta^{(t)})}
+\left[
+\log p(x,z \mid \theta)
+\right].
+$$
+</div>
+
+<p>This step improves the likelihood by fitting the model parameters to the expected latent structure. EM repeats these two steps until convergence.  Each iteration is guaranteed not to decrease the data likelihood.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>EM is most commonly associated with <a href="https://en.wikipedia.org/wiki/Mixture_model#Gaussian_mixture_model">Gaussian Mixture Models (GMMs)</a>. Consider a GMM with <span class="arithmatex">\(K\)</span> Gaussian components:
+$$
+p(x)
+=
+\sum_{k=1}^{K} \pi_k\,\mathcal{N}(x;\mu_k,\Sigma_k).
+$$</p>
+<p>Each data point <span class="arithmatex">\(x^{(i)}\)</span> is assumed to be generated by an unknown component <span class="arithmatex">\(z^{(i)} \in \{1,\dots,K\}\)</span>.</p>
+<p><strong>E-step.</strong> Compute the posterior probability that point <span class="arithmatex">\(x^{(i)}\)</span> belongs to component <span class="arithmatex">\(k\)</span>:
+$$
+\gamma_{ik}
+=
+p(z^{(i)}=k \mid x^{(i)},\theta)
+=
+\frac{
+\pi_k\,\mathcal{N}(x^{(i)};\mu_k,\Sigma_k)
+}{
+\sum_{j=1}^{K} \pi_j\,\mathcal{N}(x^{(i)};\mu_j,\Sigma_j)
+}.
+$$</p>
+<p>The values <span class="arithmatex">\(\gamma_{ik}\)</span> are called <em>responsibilities</em>, and they act as soft cluster assignments.</p>
+<p><strong>M-step.</strong> Update the parameters using these responsibilities:
+$$
+N_k = \sum_{i=1}^{m} \gamma_{ik},
+\qquad
+\pi_k = \frac{N_k}{m},
+$$
+$$
+\mu_k
+=
+\frac{1}{N_k}\sum_{i=1}^{m} \gamma_{ik} x^{(i)},
+$$
+$$
+\Sigma_k
+=
+\frac{1}{N_k}\sum_{i=1}^{m} \gamma_{ik}
+(x^{(i)}-\mu_k)(x^{(i)}-\mu_k)^\top.
+$$</p>
+<p>EM repeats these steps until the parameters converge.
+Intuitively, the E-step estimates soft cluster memberships, and the M-step recomputes the cluster parameters based on those memberships.</p>
+</div>
+<h2 id="structured-probabilistic-models">Structured Probabilistic Models</h2>
+<p>In many deep learning problems, we work with multiple random variables. Modeling the full joint distribution <span class="arithmatex">\(p(x_1,\dots,x_n)\)</span> directly is often impractical, because the number of possible interactions grows rapidly with <span class="arithmatex">\(n\)</span>. Instead, we exploit the fact that most variables interact only with a small subset of others.</p>
+<p>A <a href="https://en.wikipedia.org/wiki/Graphical_model">structured probabilistic model</a> (also called a <strong>graphical model</strong>) represents a joint probability distribution using a graph.   Each node represents a random variable, and edges represent direct probabilistic dependencies.</p>
+<p>In a <strong>directed</strong> graphical model (also called a <strong>Bayesian network</strong>), edges are arrows that indicate conditional dependence. A Bayesian network must be a <strong>directed acyclic graph (DAG)</strong> (it cannot contain directed cycles). The joint distribution factorizes into conditional probabilities:
+$$
+p(x_1,\dots,x_n)
+=
+\prod_{i=1}^{n} p(x_i \mid \mathrm{Pa}(x_i)),
+$$
+where <span class="arithmatex">\(\mathrm{Pa}(x_i)\)</span> denotes the parents of <span class="arithmatex">\(x_i\)</span> in the graph.</p>
+<figure>
+  <img src="../../assets/images/prob_modeling/directed.svg" alt="Example of a directed graphical model (Bayesian network)" style="max-width: 100%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    An example of a directed acyclic graphical model (Bayesian network). In this example, $A$ is a parent of $B$, $C$, and $D$, and $C$ is also a parent of $D$, so the factorization is $p(A,B,C,D)=p(A)\,p(B\mid A)\,p(C\mid A)\,p(D\mid A,C)$. ~ <a href="//commons.wikimedia.org/w/index.php?title=User:RJE42&amp;action=edit&amp;redlink=1" class="new" title="User:RJE42 (page does not exist)">RJE42</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=105416431">Link</a>
+  </figcaption>
+</figure>
+
+<p>In an <strong>undirected</strong> graphical model (Markov Random Field), edges do not have direction. Instead of conditional probabilities, the distribution is represented using non-negative functions called <em>potential functions</em>. The joint distribution is written as:
+$$
+p(x)
+=
+\frac{1}{Z}
+\prod_{i=1}^{m} \phi^{(i)}(C^{(i)}),
+$$
+where each <span class="arithmatex">\(\phi^{(i)}\)</span> is a potential function over a clique <span class="arithmatex">\(C^{(i)}\)</span>, and <span class="arithmatex">\(Z\)</span> is a normalizing constant called the <em>partition function</em>. Unlike conditional probabilities, potential functions are not required to sum to <span class="arithmatex">\(1\)</span>. They only need to be non-negative.</p>
+<figure>
+  <img src="../../assets/images/prob_modeling/undirected.svg" alt="Example of an undirected graphical model (Markov random field)" style="max-width: 100%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    Example of an undirected graphical model. For example, the edge $A-B$ indicates that $A$ and $B$ are not independent. Since there are no edges between $B$, $C$, and $D$, the model assumes they are conditionally independent given $A$. ~ <a href="//commons.wikimedia.org/w/index.php?title=User:RJE42&amp;action=edit&amp;redlink=1" class="new" title="User:RJE42 (page does not exist)">RJE42</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=105416381">Link</a>
+  </figcaption>
+</figure>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In an undirected graph, edges do not represent causal direction. Instead, an edge between two nodes indicates that the variables directly interact.</p>
+</div>
+<h2 id="generative-vs-discriminative-modeling">Generative vs Discriminative Modeling</h2>
+<p>Probabilistic models are often divided into two categories. A <strong>generative model</strong> describes how the data is generated by modeling the joint distribution <span class="arithmatex">\(p(x,y).\)</span> Using the joint distribution, we can answer different types of questions, such as generating new samples <span class="arithmatex">\(x\)</span> or perform classification using Bayes' rule. Examples of generative models include Naive Bayes, GMMs, HMMs, VAEs, etc.</p>
+<p>A <strong>discriminative model</strong> focuses directly on predicting the target variable from the input by modeling: <span class="arithmatex">\(p(y \mid x),\)</span> or by learning a direct decision function. Discriminative models do not attempt to model the full data distribution <span class="arithmatex">\(p(x)\)</span>, and are often preferred when the main goal is prediction. Examples include logistic regression, support vector machines (SVMs), and neural networks trained with cross-entropy.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Generative models are typically more flexible and can be used for sampling and missing-data problems, but they can be harder to train.
+Discriminative models often achieve better performance in supervised prediction tasks when large labeled datasets are available.</p>
+</div>
+<p>In this page, we introduced probabilistic modeling as a way to describe how data can be generated from probability distributions. We saw how the likelihood function turns observed data into a tool for choosing good model parameters. This leads to maximum likelihood estimation, and to negative log-likelihood, which is the basis of many loss functions used in deep learning. We also introduced Bayesian inference, where model parameters are treated as uncertain and described using probability distributions. MAP estimation was presented as a practical way to combine the likelihood with a prior. Finally, we discussed latent variable models, mixture models, and the Expectation-Maximization algorithm, which are useful when data is generated by hidden factors. We also introduced structured probabilistic models, which use graphs to represent dependencies between random variables, and explained the difference between generative and discriminative modeling.</p>
 
 
 
@@ -2091,7 +2418,7 @@ $$
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../03_probability/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Probability Theory">
+          <a href="../04_information/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Information Theory">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2101,20 +2428,20 @@ $$
                 Previous
               </span>
               <div class="md-ellipsis">
-                Probability Theory
+                Information Theory
               </div>
             </div>
           </a>
         
         
           
-          <a href="../05_prob_modeling/" class="md-footer__link md-footer__link--next" aria-label="Next: Probabilistic Modeling">
+          <a href="../../supplementary/" class="md-footer__link md-footer__link--next" aria-label="Next: Suppementary Material">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Probabilistic Modeling
+                Suppementary Material
               </div>
             </div>
             <div class="md-footer__button md-icon">
