@@ -6,7 +6,7 @@ description: >
 # Probability Theory
 
 <div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
-  <time datetime="2026-02-09">9 Feb 2026</time>
+  <time datetime="2026-02-07">7 Feb 2026</time>
 </div>
 
 Probability theory is the mathematical framework for reasoning under uncertainty. In artificial intelligence, probability is used in two main ways: (i) as a guide for how an intelligent system should reason under uncertainty, and (ii) as a tool for analyzing and understanding the behavior of learning algorithms. [Deep learning](../../introduction/01_deep_learning) relies on probability because real-world data is noisy, incomplete, and never fully deterministic, so uncertainty is unavoidable.  
@@ -287,63 +287,7 @@ $$
     $$
     P(\text{spam} \mid \text{yes}) = \frac{0.012}{0.0218} \approx 0.55.
     $$
-    After observing the phrase, the probability that the email is spam jumps from $2\%$ to about $55\%$. This illustrates Bayes’ rule as a mechanism for updating beliefs: the likelihood tells us how strongly the evidence points toward spam, while the prior reflects how common spam is overall.
-
-## Likelihood
-
-In probability, we often write expressions like $p(y \mid \theta),$ where $\theta$ is a parameter of a model, and $y$ is a possible outcome. The same expression can be interpreted in two different ways: as a probability or as a [likelihood](https://en.wikipedia.org/wiki/Likelihood_function).
-
-Probability treats $\theta$ as fixed and $y$ as uncertain. It answers: *If the model parameter is $\theta$, how likely is outcome $y$?* Likelihood treats $y$ as fixed (because we already observed it) and views the same expression as a function of $\theta$. It answers: *Given the observed outcome $y$, which values of $\theta$ best explain it?*
-
-Formally, the **likelihood function** is defined as:
-$$
-L(\theta \mid y) = p(y \mid \theta).
-$$
-
-!!! warning "Important"
-    Likelihood is not a probability distribution over $\theta$. In general:
-    $$
-    \int L(\theta \mid y)\,d\theta \ne 1.
-    $$
-    Likelihood values only measure *relative support* for different parameter values of $\theta$.
-
-!!! example
-    Suppose we toss a coin $n=10$ times and observe $y=7$ heads. Let $\theta$ be the probability of heads. The probability of observing exactly $7$ heads is:
-    $$
-    p(y=7 \mid \theta)
-    =
-    \binom{10}{7}\theta^7(1-\theta)^3.
-    $$
-
-    If $\theta$ is fixed, this is a probability statement about the outcome $y$. But if we already observed $y=7$, the same expression becomes a likelihood function:
-    $$
-    L(\theta \mid y=7)
-    =
-    \binom{10}{7}\theta^7(1-\theta)^3.
-    $$
-
-    It is maximized near $\theta=0.7$, because the observation suggests the coin behaves like a $70\%$ heads coin.
-
-In practice, likelihood values can become extremely small, because they often involve multiplying many probabilities. For this reason, we usually work with the log-likelihood:
-$$
-\log L(\theta \mid y)
-=
-\log p(y \mid \theta).
-$$
-
-!!! note
-    Log-likelihood is used because it turns products into sums. If we assume i.i.d. samples $y^{(1)},\dots,y^{(m)}$, then:
-    $$
-    p(y^{(1)},\dots,y^{(m)} \mid \theta)
-    =
-    \prod_{i=1}^{m} p(y^{(i)} \mid \theta),
-    $$
-    so the log-likelihood becomes:
-    $$
-    \log p(y^{(1)},\dots,y^{(m)} \mid \theta)
-    =
-    \sum_{i=1}^{m} \log p(y^{(i)} \mid \theta).
-    $$
+    After observing the phrase, the probability that the email is spam jumps from $2\%$ to about $55\%$. This illustrates Bayes’ rule as a mechanism for updating beliefs: the [likelihood](../05_prob_modeling) tells us how strongly the evidence points toward spam, while the prior reflects how common spam is overall.
 
 
 ## Expectation, Variance, Covariance
@@ -1022,7 +966,7 @@ $$
 \sum_{i=1}^m \log P(x^{(i)}).
 $$
 
-This is the main reason why, say, [maximum likelihood estimation](../../introduction/02_machine_learning) is almost always performed using the **log-likelihood** instead of the raw likelihood.
+This is the main reason why, say, [maximum likelihood estimation](../05_prob_modeling) is almost always performed using the **log-likelihood** instead of the raw likelihood.
 
 !!! note
     In machine learning, model parameters are often learned by **maximum likelihood estimation (MLE)**.  We choose parameters $\theta$ that make the observed dataset most probable under the model. Suppose we have i.i.d. samples:
