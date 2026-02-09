@@ -1,27 +1,12 @@
 ---
 description: >
-  Probability theory and information theory are the mathematical foundations of reasoning under uncertainty.
-  This page introduces the key concepts used throughout deep learning, including random variables, probability
-  distributions (PMF and PDF), joint and marginal distributions, conditional probability, independence and
-  conditional independence, the probability chain rule, and the i.i.d. assumption. It also explains Bayes’ rule
-  as a framework for updating beliefs using evidence, with practical intuition and machine learning examples.
-  Later sections expand toward expectation, variance, entropy, cross-entropy, KL divergence, and their role in
-  modern deep learning objectives such as maximum likelihood estimation and variational inference.
+  Probability theory provides the mathematical foundation for reasoning under uncertainty. This page introduces the core probability concepts used in deep learning, including random variables, probability distributions, conditional probability, Bayes' rule, likelihood, expectation, and common distributions and functions used to model data, noise, and model outputs.
 ---
-
-
 
 # Probability Theory
 
 <div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
-  <time datetime="2026-02-07">7 Feb 2026</time>
-</div>
-
-<div class="admonition warning">
-  <p class="admonition-title">Important</p>
-  <p style="margin: 1em 0;">
-    The page is currently under development.
-  </p>
+  <time datetime="2026-02-09">9 Feb 2026</time>
 </div>
 
 Probability theory is the mathematical framework for reasoning under uncertainty. In artificial intelligence, probability is used in two main ways: (i) as a guide for how an intelligent system should reason under uncertainty, and (ii) as a tool for analyzing and understanding the behavior of learning algorithms. [Deep learning](../../introduction/01_deep_learning) relies on probability because real-world data is noisy, incomplete, and never fully deterministic, so uncertainty is unavoidable.  
@@ -141,6 +126,25 @@ These formulas are only defined when $P(X=x)>0$ or $p(x)>0$, since we cannot con
 !!! example
     Suppose $X$ is an image and $Y$ is its label. The joint distribution $P(X,Y)$ describes how often we encounter a specific image together with its correct label. The marginal distribution $P(X)$ describes what kinds of images appear in the world or in our dataset, regardless of their labels. The conditional distribution $P(Y \mid X)$ describes the probability of each label given a particular image. When we train a classifier, we are essentially training a model that takes an image $x$ and outputs estimates of probabilities like $P(Y=\text{cat} \mid X=x)$ and $P(Y=\text{dog} \mid X=x)$, where $x$ could be a particular input image provided to our model.
 
+
+Marginalization can also be written in a form that uses conditional probabilities. This is known as the [law of total probability](https://en.wikipedia.org/wiki/Law_of_total_probability). For discrete variables:
+<div style="overflow-x:auto; max-width:100%;">
+$$
+P(Y=y)
+=
+\sum_x P(Y=y \mid X=x)\,P(X=x).
+$$
+</div>
+
+For continuous variables:
+$$
+p(y)
+=
+\int p(y \mid x)\,p(x)\,dx.
+$$
+
+This identity is extremely important.
+
 ## Independence
 
 In many problems, we work with multiple random variables. The relationship between these variables determines how complicated the joint distribution is. Two random variables $X$ and $Y$ are called **independent** if knowing the value of one gives no information about the other. Formally, $X$ and $Y$ are independent if their joint distribution factorizes into a product of marginals:
@@ -224,17 +228,7 @@ This assumption is extremely important because it makes learning feasible: it al
 We have reached a crucial point in probability theory. Terminology can be dense and seem complicated, so I suggest spending some time here to clearly understand the concepts. You will frequently see the described terminology in deep learning literature. 
 
 !!! tip
-    For a visual intuition of Bayes' rule, see the video below on Bayes' theorem.
-
-<div style="display:flex;justify-content:center;margin:1rem 0;">
-  <div style="width:80%;max-width:900px;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-    <iframe
-      src="https://www.youtube.com/embed/HZGCoVF3YvM"
-      style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
-      allowfullscreen>
-    </iframe>
-  </div>
-</div>
+    For a visual intuition of Bayes' rule, see the video on [Bayes' theorem](https://www.youtube.com/watch?v=HZGCoVF3YvM).
 
 
 [Bayes’ rule](https://en.wikipedia.org/wiki/Bayes%27_theorem) allows us to reverse conditional probabilities. It provides a way to compute the probability of a hypothesis after observing **evidence**. For discrete random variables, Bayes’ rule is:
@@ -250,7 +244,7 @@ $$
 
 Here, $P(X=x)$ is called the **prior**. It describes how likely $x$ was before observing $y$. The term $P(Y=y \mid X=x)$ is the **likelihood**. It measures how compatible the observation $y$ is with the hypothesis $x$. The result $P(X=x \mid Y=y)$ is called the **posterior**.
 
-!!! notes
+!!! note
     The denominator $P(Y=y)$ acts as a normalization constant. It ensures that the posterior distribution $P(X \mid Y=y)$ sums to $1$ over all possible values of $X$.  
 
 For continuous random variables, we use probability densities instead:
@@ -294,6 +288,62 @@ $$
     P(\text{spam} \mid \text{yes}) = \frac{0.012}{0.0218} \approx 0.55.
     $$
     After observing the phrase, the probability that the email is spam jumps from $2\%$ to about $55\%$. This illustrates Bayes’ rule as a mechanism for updating beliefs: the likelihood tells us how strongly the evidence points toward spam, while the prior reflects how common spam is overall.
+
+## Likelihood
+
+In probability, we often write expressions like $p(y \mid \theta),$ where $\theta$ is a parameter of a model, and $y$ is a possible outcome. The same expression can be interpreted in two different ways: as a probability or as a [likelihood](https://en.wikipedia.org/wiki/Likelihood_function).
+
+Probability treats $\theta$ as fixed and $y$ as uncertain. It answers: *If the model parameter is $\theta$, how likely is outcome $y$?* Likelihood treats $y$ as fixed (because we already observed it) and views the same expression as a function of $\theta$. It answers: *Given the observed outcome $y$, which values of $\theta$ best explain it?*
+
+Formally, the **likelihood function** is defined as:
+$$
+L(\theta \mid y) = p(y \mid \theta).
+$$
+
+!!! warning "Important"
+    Likelihood is not a probability distribution over $\theta$. In general:
+    $$
+    \int L(\theta \mid y)\,d\theta \ne 1.
+    $$
+    Likelihood values only measure *relative support* for different parameter values of $\theta$.
+
+!!! example
+    Suppose we toss a coin $n=10$ times and observe $y=7$ heads. Let $\theta$ be the probability of heads. The probability of observing exactly $7$ heads is:
+    $$
+    p(y=7 \mid \theta)
+    =
+    \binom{10}{7}\theta^7(1-\theta)^3.
+    $$
+
+    If $\theta$ is fixed, this is a probability statement about the outcome $y$. But if we already observed $y=7$, the same expression becomes a likelihood function:
+    $$
+    L(\theta \mid y=7)
+    =
+    \binom{10}{7}\theta^7(1-\theta)^3.
+    $$
+
+    It is maximized near $\theta=0.7$, because the observation suggests the coin behaves like a $70\%$ heads coin.
+
+In practice, likelihood values can become extremely small, because they often involve multiplying many probabilities. For this reason, we usually work with the log-likelihood:
+$$
+\log L(\theta \mid y)
+=
+\log p(y \mid \theta).
+$$
+
+!!! note
+    Log-likelihood is used because it turns products into sums. If we assume i.i.d. samples $y^{(1)},\dots,y^{(m)}$, then:
+    $$
+    p(y^{(1)},\dots,y^{(m)} \mid \theta)
+    =
+    \prod_{i=1}^{m} p(y^{(i)} \mid \theta),
+    $$
+    so the log-likelihood becomes:
+    $$
+    \log p(y^{(1)},\dots,y^{(m)} \mid \theta)
+    =
+    \sum_{i=1}^{m} \log p(y^{(i)} \mid \theta).
+    $$
 
 
 ## Expectation, Variance, Covariance
@@ -379,6 +429,22 @@ Covariance measures _linear_ dependence only. It is possible for two variables t
 
 !!! example
     Suppose $X$ is uniformly distributed on $[-1,1]$, and let $Y=X^2$. Then $X$ and $Y$ are clearly dependent, because knowing $X$ determines $Y$. However, their covariance is still $0$, because positive and negative values of $X$ cancel out.
+
+!!! note
+    Covariance depends on scale. A scale-independent version is the [correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) (Pearson correlation):
+    $$
+    \rho(X,Y)
+    =
+    \frac{\mathrm{Cov}(X,Y)}{\sigma(X)\sigma(Y)},
+    \qquad
+    \sigma(X)=\sqrt{\mathrm{Var}(X)}.
+    $$
+    It is always bounded:
+    $$
+    -1 \le \rho(X,Y) \le 1.
+    $$
+    Correlation measures only *linear* dependence, so $\rho(X,Y)=0$ does not imply independence.
+
 
 In machine learning, we often deal with random vectors. If $X \in \mathbb{R}^n$ is a random vector, then its **covariance matrix** is an $n \times n$ matrix defined as:
 $$
@@ -512,10 +578,8 @@ $$
 P(X=i) = p_i.
 $$
 
- It is different from the , which models the counts obtained after $n$ independent categorical draws (so multinoulli is essentially the multinomial case with $n=1$).
-
 !!! warning "Important"
-    Do not confuse the multinoulli (categorical) distribution with the [multinomial distribution](https://en.wikipedia.org/wiki/Multinomial_distribution). A categorical distribution describes a single outcome from $k$ categories (one draw). A multinomial distribution describes a vector of counts showing how many times each category occurs after $n$ draws. In other words, multinomial is not another name for categorical — it is a different distribution ith a different type of output, which can be seen as a special case of the multinomial distribution when $n=1$.
+    Do not confuse the multinoulli (categorical) distribution with the [multinomial distribution](https://en.wikipedia.org/wiki/Multinomial_distribution). A categorical distribution describes a single outcome from $k$ categories (one draw). A multinomial distribution describes a vector of counts showing how many times each category occurs after $n$ draws. In other words, multinomial is not another name for categorical — it is a different distribution with a different type of output, which can be seen as a special case of the multinomial distribution when $n=1$.
 
 !!! example
     In MNIST digit classification, the label for a single image is modeled as a categorical random variable:
@@ -529,7 +593,7 @@ $$
     \sum_{i=0}^9 p_i = 1.
     $$
 
-    A neural network outputs a probability vector using [softmax](../../nn_ngram):
+    A neural network outputs a probability vector using [softmax](../../notebooks/05_nn_ngram):
     $$
     \hat{p}(x) \approx P(Y \mid X=x).
     $$
@@ -559,11 +623,11 @@ $$
 $$
 \mathcal{N}(x;\mu,\sigma^2)
 =
-\sqrt{\frac{1}{2\pi\sigma^2}}
+\frac{1}{\sqrt{2\pi\sigma^2}}
 \exp\Big(-\frac{(x-\mu)^2}{2\sigma^2}\Big).
 $$
 
-Here, $\mu$ is the mean (center), $\sigma^2$ is the variance (spread), and $\sigma$ is the standard deviation of the distribution
+Here, $\mu$ is the mean (center), $\sigma^2$ is the variance (spread), and $\sigma$ is the standard deviation of the distribution.
 
 <figure>
   <img src="../../assets/images/probability/normal_std.svg" alt="Normal (Gaussian) distribution standard deviation" style="max-width: 100%; height: auto;">
@@ -589,18 +653,7 @@ This distribution has a characteristic *bell curve* shape: values near $\mu$ are
     A simple example is coin tossing: with only $10$ tosses, the fraction of heads may be far from $0.5$, but with $10,000$ tosses it will almost always be close to $0.5$. In deep learning, this explains why large batches produce more stable gradient estimates than small batches.
 
 !!! tip
-    For a visual intuition and origins where the normal distribution formula comes from, see the video below.
-
-<div style="display:flex;justify-content:center;margin:1rem 0;">
-<div style="width:80%;max-width:900px;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-    <iframe
-    src="https://www.youtube.com/embed/cy8r7WSuT1I"
-    style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
-    allowfullscreen>
-    </iframe>
-</div>
-</div>
-
+    See the video for a visual intuition and origins where the [normal distribution formula](https://www.youtube.com/watch?v=cy8r7WSuT1I) comes from.
 
 In deep learning, we often model a random vector: $
 X \in \mathbb{R}^n.$ The most important distribution over vectors is the [multivariate normal](https://en.wikipedia.org/wiki/Multivariate_normal_distribution) distribution:
@@ -613,7 +666,7 @@ where $\mu \in \mathbb{R}^n$ is the mean vector and $\Sigma \in \mathbb{R}^{n\ti
 $$
 \mathcal{N}(x;\mu,\Sigma)
 =
-\frac{1}{\sqrt{(2\pi)^n\det(\Sigma)}}
+\frac{1}{\sqrt{(2\pi)^n \det(\Sigma)}}
 \exp\Big(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu)\Big).
 $$
 </div>
@@ -640,104 +693,455 @@ The covariance matrix $\Sigma$ determines the *shape* of the Gaussian distributi
     $$
     Precision describes the same uncertainty information as covariance, but it appears directly in the Gaussian exponent and is often easier to use in derivations.
 
-<!-- 
 
-### Exponential Distribution
+### Exponential
 
-The **exponential distribution** is defined over non-negative real numbers:
+[Exponential distribution](https://www.acsu.buffalo.edu/~adamcunn/probability/exponential.html) models the waiting time until an event happens. It is defined on $x \ge 0$ and is parameterized by a rate $\lambda > 0$:
 $$
-X \ge 0.
-$$
-
-Its probability density function is:
-$$
-p(x;\lambda)
-=
-\lambda \exp(-\lambda x),
+p(x;\lambda) = \lambda e^{-\lambda x},
 \qquad x \ge 0.
 $$
 
-It assigns zero probability density to negative values.
+!!! success "Exercise"
+    Derive the expectation and variance of the exponential distribution.
 
 !!! note
-    Exponential distributions are often used to model waiting times and decay processes.  
-    In machine learning, it is also useful as a building block for more complex distributions.
+    A key property of the exponential distribution is the **memoryless** property:
+    $$
+    P(X > s+t \mid X > s) = P(X > t).
+    $$
+    This means that if we have already waited $s$ time units, the remaining waiting time still follows the same distribution.
 
-### Laplace Distribution
+### Laplace
 
-The **Laplace distribution** is similar to a Gaussian but has a sharper peak and heavier tails.
-
-It is defined as:
+[Laplace distribution](https://www.acsu.buffalo.edu/~adamcunn/probability/laplace.html) is a continuous distribution that resembles a normal distribution but has a sharper peak and heavier tails. It is defined as:
 $$
-\mathrm{Laplace}(x;\mu,\gamma)
+p(x;\mu,b)
 =
-\frac{1}{2\gamma}
-\exp\Big(-\frac{|x-\mu|}{\gamma}\Big).
+\frac{1}{2b}
+\exp\Big(-\frac{|x-\mu|}{b}\Big),
+\qquad b>0.
 $$
 
-!!! note
-    The Laplace distribution is important because it is closely related to the $L_1$ norm.  
-    It is often used in sparse modeling and regularization.
-
-### Dirac Delta Distribution
-
-The **Dirac delta distribution** is a special object used to represent a distribution that puts all probability mass at a single point.
-
-It is written as:
+Here, $\mu$ is the mean (center), and $b$ is a scale parameter controlling spread. Its variance is:
 $$
-p(x) = \delta(x-\mu).
+\mathrm{Var}(X) = 2b^2.
 $$
 
-It is not a normal function, but it satisfies the key property:
+Laplace noise is often used when we want a model that is more tolerant to outliers than a Gaussian. It is also closely related to $L_1$ [regularization](../../notebooks/04_regul_optim): if we assume model parameters follow a Laplace prior, maximizing the posterior corresponds to an $L_1$ penalty, which encourages sparsity.
+
+### Dirac Delta and Empirical Distribution
+
+In deep learning, we often treat a dataset as if it defines a probability distribution. But a dataset is finite: it contains only a limited set of observed points. To represent such a distribution mathematically, we use the [Dirac delta function](https://en.wikipedia.org/wiki/Dirac_delta_function).
+
+
+<figure>
+  <img src="../../assets/images/probability/dirac.png" alt="Dirac delta distribution standard deviation" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    Schematic representation of the Dirac delta function. The height of the arrow is usually meant to specify the value of any multiplicative constant, which will give the area under the function. ~ <a href="//commons.wikimedia.org/wiki/User:Qef" title="User:Qef">Qef</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=4308538">Link</a>
+  </figcaption>
+</figure>
+
+The Dirac delta $\delta(x)$ is not a normal function, but a mathematical object (a distribution) that behaves like a probability density concentrated at a single point. It satisfies:
+
+- $\delta(x) = 0$ for all $x \ne 0$
+- $\int_{-\infty}^{\infty} \delta(x)\,dx = 1$
+
+More generally, a delta centered at a point $a$ is written as $\delta(x-a)$ and satisfies:
 $$
-\int \delta(x-\mu)\,dx = 1.
+\int_{-\infty}^{\infty} \delta(x-a)\,dx = 1.
 $$
 
-!!! note
-    The Dirac delta is useful for defining distributions that behave like "perfect certainty" in continuous space.
+!!! warning "Important"
+    The notation $\delta(x-a)$ does not mean ordinary subtraction inside a normal function. It simply means a *Dirac delta distribution centered at $a$*.  
 
-### Empirical Distribution
+    Intuitively, $\delta(x-a)$ represents an "infinitely sharp spike" located exactly at $x=a$, with total area $1$.  This is why it behaves like a tool that extracts the value of a function at $a$:
+    $$
+    \int_{-\infty}^{\infty} f(x)\,\delta(x-a)\,dx = f(a).
+    $$
 
-A dataset can be viewed as defining an **empirical distribution**.  
-Given samples $x^{(1)},x^{(2)},\dots,x^{(m)}$, we define:
+    So $\delta(x-a)$ is best understood as "a delta located at $a$".
+
+
+### Empirical
+
+Suppose we have a dataset of $m$ samples:
+$$
+\{x^{(1)}, x^{(2)}, \dots, x^{(m)}\}.
+$$
+
+[Empirical distribution](https://en.wikipedia.org/wiki/Empirical_distribution_function) $\hat{p}(x)$ is defined as:
 $$
 \hat{p}(x)
 =
-\frac{1}{m}\sum_{i=1}^m \delta(x-x^{(i)}).
+\frac{1}{m}
+\sum_{i=1}^{m} \delta(x-x^{(i)}).
 $$
 
-This means the distribution places equal probability mass on each training sample.
+This means that the dataset assigns equal probability mass $\frac{1}{m}$ to every observed sample.
 
 !!! note
-    When we train a deep learning model, we do not know the true data distribution $p_{\text{data}}(x)$.  
-    We only have access to its empirical approximation defined by the dataset.
+    The empirical distribution in machine learning represents the distribution we actually train on. When we minimize training loss, we are minimizing an expectation under $\hat{p}(x)$ rather than under the true unknown distribution $p(x)$.
+
+The empirical expectation of a function $f(x)$ is:
+<div style="overflow-x:auto; max-width:100%;">
+$$
+\mathbb{E}[f(X)]
+=
+\int f(x)\,\hat{p}(x)\,dx
+=
+\frac{1}{m}\sum_{i=1}^m f(x^{(i)}),
+\qquad
+X \sim \hat{p}.
+$$
+</div>
+
+
+So the standard dataset average used in deep learning is literally an expectation under the empirical distribution.
+
+!!! note
+    The empirical distribution is a discrete approximation of the true data-generating distribution. Training a neural network is essentially an attempt to learn a model that generalizes beyond $\hat{p}(x)$ and performs well on the true distribution $p(x)$.
 
 ### Mixture Distributions
 
-Sometimes one distribution is not flexible enough to represent complex data. A common strategy is to combine multiple simpler distributions into a **mixture model**.
+[Mixture distribution](https://en.wikipedia.org/wiki/Mixture_distribution) is a probability distribution formed by combining multiple simpler distributions. The idea is that the data may come from several different underlying sources, and each source has its own distribution. Suppose we have $K$ component distributions:
+$$
+p_1(x), p_2(x), \dots, p_K(x),
+$$
+and mixture weights:
+$$
+\pi_1,\pi_2,\dots,\pi_K,
+\qquad
+\pi_k \ge 0,
+\qquad
+\sum_{k=1}^K \pi_k = 1.
+$$
 
-A mixture distribution has the form:
+Then the mixture distribution is:
 $$
-P(x) = \sum_i P(c=i)\,P(x \mid c=i),
+p(x)
+=
+\sum_{k=1}^K \pi_k p_k(x).
 $$
-where $c$ is a latent variable indicating which component generated the sample.
+
+This can be interpreted as a two-step sampling process:
+
+1. First sample a component index:
+   $
+   Z \sim \mathrm{Categorical}(\pi_1,\dots,\pi_K).
+   $
+2. Then sample from the corresponding component distribution:
+   $
+   X \sim p_Z(x).
+   $
 
 !!! note
-    Mixture models introduce the important concept of a **latent variable** — a variable that affects the data but is not directly observed.
-
-### Gaussian Mixture Model (GMM)
-
-A **Gaussian mixture model** is a mixture distribution where each component is Gaussian:
-$$
-p(x) = \sum_{i=1}^k \alpha_i \,\mathcal{N}(x;\mu_i,\Sigma_i),
-$$
-where:
-
-- $\alpha_i \ge 0$ are mixture weights
-- $\sum_i \alpha_i = 1$
+    The variable $Z$ is called a [latent variable](../../07_vae) because it is not directly observed, but it explains which component generated the data.
 
 !!! note
-    Gaussian mixture models are powerful because they can approximate a wide range of smooth probability distributions if enough components are used. -->
+    Mixture models are widely used in probabilistic modeling because many real-world datasets are multi-modal. For example, the distribution of human heights in a population is not perfectly Gaussian, because it is better approximated as a mixture of two Gaussians (male and female). Similarly, pixel intensities in images often come from mixtures of different object materials, lighting conditions, and textures.
+
+<figure>
+  <img src="../../assets/images/probability/gmm.gif" alt="Gaussian Mixture Model (GMM)" style="max-width: 100%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    An example of Gaussian Mixture in image segmentation with grey histogram ~ <a href="//commons.wikimedia.org/w/index.php?title=User:KazukiAmakawa&amp;action=edit&amp;redlink=1" class="new" title="User:KazukiAmakawa (page does not exist)">KazukiAmakawa</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=75542622">Link</a>
+  </figcaption>
+</figure>
+
+The most common mixture model is the [Gaussian mixture model (GMM)](https://en.wikipedia.org/wiki/Mixture_model#Gaussian_mixture_model):
+$$
+p(x)
+=
+\sum_{k=1}^K \pi_k \mathcal{N}(x;\mu_k,\Sigma_k).
+$$
+
+Each component is a Gaussian with its own mean $\mu_k$ and covariance matrix $\Sigma_k$. GMMs are expressive enough to approximate many complex distributions, while still being mathematically tractable.
+
+!!! note
+    Mixture models are a natural step toward deep generative models. Many modern models (including [VAEs](../../notebooks/07_vae) and [diffusion models](../../notebooks)) can be viewed as learning complex mixtures in high-dimensional spaces.
+
+
+## Common Functions
+
+Deep learning models often output unconstrained real numbers. However, many probabilistic parameters must satisfy constraints such as being in $(0,1)$ or summing to $1$. For this reason, we use special nonlinear functions that map real-valued inputs into valid probability domains. The most common functions are described below.
+
+### Sigmoid
+
+The [logistic (sigmoid)](../../notebooks/02_neural_network) function maps any real number to $(0,1)$:
+$$
+\sigma(x)
+=
+\frac{1}{1+e^{-x}}
+=
+\frac{\exp(x)}{\exp(x)+\exp(0)}.
+$$
+
+It is widely used to parameterize Bernoulli probabilities:
+$$
+\phi = \sigma(z),
+\qquad
+Y \sim \mathrm{Bernoulli}(\phi).
+$$
+
+<figure>
+  <img src="../../assets/images/probability/sigmoid.svg" alt="Sigmoid function" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+   The logistic (sigmoid) curve ~ <a href="//commons.wikimedia.org/wiki/User:Qef" title="User:Qef">Qef</a> (<a href="//commons.wikimedia.org/wiki/User_talk:Qef" title="User talk:Qef">talk</a>) - Created from scratch with gnuplot, Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=4310325">Link</a>
+  </figcaption>
+</figure>
+
+Sigmoid is [differentiable](../01_calculus) and also satisfies the symmetry identity:
+$$
+1-\sigma(x)=\sigma(-x).
+$$
+
+Its inverse function is called the [logit](../../notebooks/05_nn_ngram):
+$$
+\forall x \in (0,1),
+\qquad
+\sigma^{-1}(x)
+=
+\log\Big(\frac{x}{1-x}\Big).
+$$
+
+!!! warning "Important"
+    Sigmoid **saturates** for large $|x|$. When $x \gg 0$, $\sigma(x)\approx 1$, and when $x \ll 0$, $\sigma(x)\approx 0$. In both cases, the gradient $\frac{d}{dx}\sigma(x)$ becomes close to $0$, which slows down learning due to [vanishing gradients](../../notebooks/04_regul_optim).   For this reason, sigmoid is rarely used as a hidden-layer activation in modern deep networks, and is usually replaced by ReLU or its variants.
+
+!!! success "Exercise"
+    Find the derivative of the sigmoid function.
+
+### ReLU
+
+!!! warning "Important"
+    ReLU is not a probability concept. It does not parameterize a probability distribution and does not map values into a valid probability domain. It is primarily an activation function used in neural network architectures to improve optimization and gradient flow. We mention it here only because sigmoid saturation motivates why modern deep networks typically use ReLU-like activations in hidden layers.
+
+The [rectified linear unit (ReLU)](https://en.wikipedia.org/wiki/Rectified_linear_unit) is the most commonly used activation function in modern deep learning. It is defined as:
+$$
+\mathrm{ReLU}(x)=\max(0,x).
+$$
+
+ReLU is popular because it is simple, fast to compute, and avoids the strong saturation effect of sigmoid and [tanh](https://en.wikipedia.org/wiki/Activation_function).
+
+<figure>
+  <img src="../../assets/images/probability/relu.svg" alt="ReLU function" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    Plot of the ReLU (blue) and <a href='https://en.wikipedia.org/wiki/Rectified_linear_unit#Gaussian-error_linear_unit_(GELU)'>GELU</a> (green) functions near x = 0 ~ <a href="//commons.wikimedia.org/w/index.php?title=User:Ringdongdang&amp;action=edit&amp;redlink=1" class="new" title="User:Ringdongdang (page does not exist)">Ringdongdang</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=95947821">Link</a>
+  </figcaption>
+</figure>
+
+ReLU is piecewise linear, so its derivative is simple:
+$$
+\frac{d}{dx}\mathrm{ReLU}(x)
+=
+\begin{cases}
+0, & x < 0, \\\\
+1, & x > 0.
+\end{cases}
+$$
+
+!!! note
+    ReLU is not differentiable at $x=0$. However, researchers eventually realized that, this is not a practical issue in deep learning, because $x=0$ occurs with probability nearly zero for continuous-valued activations. In implementations, the gradient at $0$ is usually defined as $0$ (a valid subgradient choice).
+
+!!! warning "Important"
+    ReLU has zero gradient for all negative inputs. If a neuron consistently outputs negative values, it may stop learning completely. This is called the **dying ReLU** problem. Variants such as _Leaky ReLU_ and _GELU_ are often used to reduce this effect.
+
+### Softplus
+
+The [softplus](https://en.wikipedia.org/wiki/Softplus) function maps $\mathbb{R}$ to $(0,\infty)$:
+$$
+\zeta(x)
+=
+\log(1+\exp(x)).
+$$
+
+!!! note
+    Softplus is useful when a model parameter must be strictly positive (e.g variance $\sigma^2 > 0$).
+
+<figure>
+  <img src="../../assets/images/probability/softplus.svg" alt="Softplus function" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    Plot of the softplus function and the <a href='https://en.wikipedia.org/wiki/Ramp_function'>ramp function</a> ~ <a href="//commons.wikimedia.org/wiki/User:Nbarth" title="User:Nbarth">Nbarth</a> - This <a href="https://en.wikipedia.org/wiki/vector_image" class="extiw" title="w:vector image">vector image</a> includes elements that have been taken or adapted from this file:, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" title="Creative Commons Zero, Public Domain Dedication">CC0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=150411524">Link</a>
+  </figcaption>
+</figure>
+
+Softplus is closely connected to sigmoid. In particular:
+$$
+\log \sigma(x) = -\zeta(-x).
+$$
+
+And its derivative is exactly sigmoid:
+<div style="overflow-x:auto; max-width:100%;">
+$$
+\frac{d}{dx}\zeta(x)
+=
+\frac{d}{dx}\log(1+\exp(x))
+=
+\frac{\exp(x)}{1+\exp(x)}
+=
+\sigma(x).
+$$
+</div>
+
+This is a useful fact in deep learning: softplus behaves like a smooth version of ReLU, but its gradient changes smoothly between $0$ and $1$. The inverse of softplus is:
+$$
+\forall x>0,
+\qquad
+\zeta^{-1}(x)=\log(\exp(x)-1).
+$$
+
+A useful symmetry identity is:
+$$
+\zeta(x)-\zeta(-x)=x.
+$$
+
+!!! note
+    In practice, we rarely implement softplus as $\log(1+\exp(x))$ directly, because $\exp(x)$ can overflow for large $x$. Instead, deep learning libraries use numerically stable implementations.  
+
+    !!! example
+        PyTorch provides:
+        ```python
+        torch.nn.functional.softplus(x)
+        ```
+        which computes softplus safely even when $x$ has large magnitude.
+
+    Softplus is commonly used when a model must output a strictly positive parameter (such as a variance), since it guarantees positivity while still being smooth and differentiable.
+
+### Logarithm
+
+Recall that the [logarithm](https://en.wikipedia.org/wiki/Logarithm) function $\log(x)$ transforms products into sums. If we have independent samples, probabilities multiply:
+$$
+P(x^{(1)},\dots,x^{(m)})
+=
+\prod_{i=1}^m P(x^{(i)}).
+$$
+
+Taking the logarithm converts this product into a sum:
+$$
+\log P(x^{(1)},\dots,x^{(m)})
+=
+\sum_{i=1}^m \log P(x^{(i)}).
+$$
+
+This is the main reason why, say, [maximum likelihood estimation](../../introduction/02_machine_learning) is almost always performed using the **log-likelihood** instead of the raw likelihood.
+
+!!! note
+    In machine learning, model parameters are often learned by **maximum likelihood estimation (MLE)**.  We choose parameters $\theta$ that make the observed dataset most probable under the model. Suppose we have i.i.d. samples:
+    $$
+    D=\{y^{(1)},\dots,y^{(m)}\}.
+    $$
+
+    The likelihood of the dataset is:
+    $$
+    p(D \mid \theta)
+    =
+    \prod_{i=1}^{m} p\!\big(y^{(i)} \mid \theta\big).
+    $$
+
+    The MLE estimate $\hat{\theta}_{\mathrm{MLE}}$ is defined as the value of $\theta$ that maximizes this likelihood. In practice we maximize the log-likelihood instead:
+    $$
+    \log p(D \mid \theta)
+    =
+    \sum_{i=1}^{m} \log p\!\big(y^{(i)} \mid \theta\big).
+    $$
+
+!!! success "Exercise"
+    Suppose we observe $m$ i.i.d. samples $y^{(1)},\dots,y^{(m)}$ from a Bernoulli distribution with parameter $\theta$.
+    Write the likelihood function $L(\theta \mid y^{(1)},\dots,y^{(m)})$ as a product.
+    Then rewrite it as a log-likelihood (a sum).
+
+The logarithm is only defined for $x>0$. In particular:
+$$
+\log(0) = -\infty
+$$
+
+!!! note
+    This matters in deep learning because losses often contain $\log(p)$ terms. If a model assigns probability $p=0$ to the true outcome, the loss becomes infinite. In practice, this is handled by using numerically stable implementations (computing loss from logits) or by clamping probabilities with a small constant $\epsilon>0$:
+    $$
+    \log(p) \;\;\to\;\; \log(\max(p,\epsilon)).
+    $$
+
+<figure>
+  <img src="../../assets/images/probability/log.png" alt="Log functions" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    Plots of logarithm functions, with three commonly used bases. ~ Richard F. Lyon - made myself, alt version of Logarithm plots.svg with better text, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=13257335">Link</a>
+  </figcaption>
+</figure>
+
+Logarithm is strictly increasing (monotonic):
+$$
+x_1 < x_2
+\quad\Rightarrow\quad
+\log(x_1) < \log(x_2).
+$$
+
+Therefore, maximizing $P(x)$ is equivalent to maximizing $\log P(x)$:
+$$
+\arg\max_x P(x)
+=
+\arg\max_x \log P(x).
+$$
+
+!!! note
+    The derivative of log is $\frac{1}{x}.$ This derivative becomes very large when $x$ is close to $0$, which is one reason why log strongly penalizes assigning very small probability to true outcomes.
+
+
+### Softmax
+
+The [softmax](https://en.wikipedia.org/wiki/Softmax_function) function maps logits $z\in\mathbb{R}^k$ into a probability vector $p\in\mathbb{R}^k$:
+$$
+p
+=
+\mathrm{softmax}(z_i)
+=
+\frac{\exp(z_i)}{\sum_{j=1}^{k} \exp(z_j)}.
+$$
+
+Softmax is also invariant to adding the same constant to all logits:
+$$
+\mathrm{softmax}(z)=\mathrm{softmax}(z+c).
+$$
+
+!!! warning "Important"
+    For numerical stability, softmax is usually computed as:
+    $$
+    \mathrm{softmax}(z)
+    =
+    \frac{\exp(z-\max(z))}{\sum_{j=1}^k \exp(z_j-\max(z))}.
+    $$
+
+
+
+!!! note
+    A logit is an unconstrained score in $(-\infty,\infty)$ that becomes a probability only after applying a transformation. For binary classification:
+    $$
+    \phi=\sigma(z),
+    \qquad
+    z=\mathrm{logit}(\phi).
+    $$
+    For multiclass classification: 
+    $$p=\mathrm{softmax}(z).$$
+
+    Working with logits is often preferred in deep learning because logits are numerically stable and easier to optimize than probabilities directly.
+
+## Measure Theory
+
+When working with continuous probability distributions, some technical details require ideas from [measure theory](https://en.wikipedia.org/wiki/Measure_(mathematics)). In deep learning literature, we will encounter a few terms.
+
+A set $A$ is said to have **measure zero** if its total "size" is zero under integration. For example, a single point has measure zero. Any countable set of points also has measure zero. For example, the set of all rational numbers has measure zero, even though it is infinite.
+
+A property is said to hold **almost everywhere** if it holds everywhere except on a measure-zero set. This means the property may fail on some special cases, but those cases occupy negligible space and do not affect integrals.
+
+This terminology matters because many results that are always true in discrete probability only hold _almost everywhere_ in the continuous case. In practice, these exceptions can usually be ignored.
+
+!!! note
+    This is why deep learning often ignores edge cases. For example, ReLU is not differentiable at $x=0$, but this does not matter in practice because the probability of hitting exactly $x=0$ is almost zero for continuous-valued activations.
+
+
+
+
+
+
+
 
 
 [^kolmogorov]: Kolmogorov, A.N. (1933, 1950). [Foundations of the theory of probability](https://archive.org/details/foundationsofthe00kolm). New York, US: Chelsea Publishing Company.
@@ -750,7 +1154,7 @@ where:
 
 [^multinoulli]: The term multinoulli was popularized by Murphy (2012) as a playful name meaning "many Bernoullis."
 
-[^gauss]: The distribution is called *Gaussian* because it was studied extensively by Carl Friedrich Gauss, especially in connection with measurement errors. The name *normal distribution* became popular later because it was treated as the standard (“normal”) baseline model for noise in many scientific applications.
+[^gauss]: The distribution is called *Gaussian* because it was studied extensively by [Carl Friedrich Gauss](https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss), especially in connection with measurement errors.
 
 
 
