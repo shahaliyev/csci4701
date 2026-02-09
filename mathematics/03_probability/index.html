@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Probability theory and information theory are the mathematical foundations of reasoning under uncertainty. This page introduces the key concepts used throughout deep learning, including random variables, probability distributions (PMF and PDF), joint and marginal distributions, conditional probability, independence and conditional independence, the probability chain rule, and the i.i.d. assumption. It also explains Bayes’ rule as a framework for updating beliefs using evidence, with practical intuition and machine learning examples. Later sections expand toward expectation, variance, entropy, cross-entropy, KL divergence, and their role in modern deep learning objectives such as maximum likelihood estimation and variational inference.
+        <meta name="description" content="Probability theory provides the mathematical foundation for reasoning under uncertainty. This page introduces the core probability concepts used in deep learning, including random variables, probability distributions, conditional probability, Bayes' rule, likelihood, expectation, and common distributions and functions used to model data, noise, and model outputs.
 ">
       
       
@@ -1366,6 +1366,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#likelihood" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Likelihood
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#expectation-variance-covariance" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1432,8 +1443,146 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#exponential" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exponential
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#laplace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laplace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dirac-delta-and-empirical-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dirac Delta and Empirical Distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#empirical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empirical
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mixture-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixture Distributions
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sigmoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sigmoid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ReLU
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#softplus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Softplus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logarithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logarithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Softmax
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measure-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measure Theory
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1852,6 +2001,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#likelihood" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Likelihood
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#expectation-variance-covariance" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1918,8 +2078,146 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#exponential" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exponential
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#laplace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Laplace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dirac-delta-and-empirical-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dirac Delta and Empirical Distribution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#empirical" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Empirical
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mixture-distributions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixture Distributions
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Functions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Common Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sigmoid" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sigmoid
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ReLU
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#softplus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Softplus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#logarithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Logarithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#softmax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Softmax
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#measure-theory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Measure Theory
+      
+    </span>
+  </a>
   
 </li>
       
@@ -1945,14 +2243,7 @@
 
 <h1 id="probability-theory">Probability Theory</h1>
 <div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
-  <time datetime="2026-02-07">7 Feb 2026</time>
-</div>
-
-<div class="admonition warning">
-  <p class="admonition-title">Important</p>
-  <p style="margin: 1em 0;">
-    The page is currently under development.
-  </p>
+  <time datetime="2026-02-09">9 Feb 2026</time>
 </div>
 
 <p>Probability theory is the mathematical framework for reasoning under uncertainty. In artificial intelligence, probability is used in two main ways: (i) as a guide for how an intelligent system should reason under uncertainty, and (ii) as a tool for analyzing and understanding the behavior of learning algorithms. <a href="../../introduction/01_deep_learning">Deep learning</a> relies on probability because real-world data is noisy, incomplete, and never fully deterministic, so uncertainty is unavoidable.  </p>
@@ -2088,6 +2379,22 @@ $$</p>
 <p class="admonition-title">Example</p>
 <p>Suppose <span class="arithmatex">\(X\)</span> is an image and <span class="arithmatex">\(Y\)</span> is its label. The joint distribution <span class="arithmatex">\(P(X,Y)\)</span> describes how often we encounter a specific image together with its correct label. The marginal distribution <span class="arithmatex">\(P(X)\)</span> describes what kinds of images appear in the world or in our dataset, regardless of their labels. The conditional distribution <span class="arithmatex">\(P(Y \mid X)\)</span> describes the probability of each label given a particular image. When we train a classifier, we are essentially training a model that takes an image <span class="arithmatex">\(x\)</span> and outputs estimates of probabilities like <span class="arithmatex">\(P(Y=\text{cat} \mid X=x)\)</span> and <span class="arithmatex">\(P(Y=\text{dog} \mid X=x)\)</span>, where <span class="arithmatex">\(x\)</span> could be a particular input image provided to our model.</p>
 </div>
+<p>Marginalization can also be written in a form that uses conditional probabilities. This is known as the <a href="https://en.wikipedia.org/wiki/Law_of_total_probability">law of total probability</a>. For discrete variables:</p>
+<div style="overflow-x:auto; max-width:100%;">
+$$
+P(Y=y)
+=
+\sum_x P(Y=y \mid X=x)\,P(X=x).
+$$
+</div>
+
+<p>For continuous variables:
+$$
+p(y)
+=
+\int p(y \mid x)\,p(x)\,dx.
+$$</p>
+<p>This identity is extremely important.</p>
 <h2 id="independence">Independence</h2>
 <p>In many problems, we work with multiple random variables. The relationship between these variables determines how complicated the joint distribution is. Two random variables <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are called <strong>independent</strong> if knowing the value of one gives no information about the other. Formally, <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent if their joint distribution factorizes into a product of marginals:
 $$
@@ -2159,18 +2466,8 @@ $$</p>
 <p>We have reached a crucial point in probability theory. Terminology can be dense and seem complicated, so I suggest spending some time here to clearly understand the concepts. You will frequently see the described terminology in deep learning literature. </p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>For a visual intuition of Bayes' rule, see the video below on Bayes' theorem.</p>
+<p>For a visual intuition of Bayes' rule, see the video on <a href="https://www.youtube.com/watch?v=HZGCoVF3YvM">Bayes' theorem</a>.</p>
 </div>
-<div style="display:flex;justify-content:center;margin:1rem 0;">
-  <div style="width:80%;max-width:900px;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-    <iframe
-      src="https://www.youtube.com/embed/HZGCoVF3YvM"
-      style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
-      allowfullscreen>
-    </iframe>
-  </div>
-</div>
-
 <p><a href="https://en.wikipedia.org/wiki/Bayes%27_theorem">Bayes’ rule</a> allows us to reverse conditional probabilities. It provides a way to compute the probability of a hypothesis after observing <strong>evidence</strong>. For discrete random variables, Bayes’ rule is:</p>
 <div style="overflow-x:auto; max-width:100%;">
 $$
@@ -2179,8 +2476,8 @@ $$
 </div>
 
 <p>Here, <span class="arithmatex">\(P(X=x)\)</span> is called the <strong>prior</strong>. It describes how likely <span class="arithmatex">\(x\)</span> was before observing <span class="arithmatex">\(y\)</span>. The term <span class="arithmatex">\(P(Y=y \mid X=x)\)</span> is the <strong>likelihood</strong>. It measures how compatible the observation <span class="arithmatex">\(y\)</span> is with the hypothesis <span class="arithmatex">\(x\)</span>. The result <span class="arithmatex">\(P(X=x \mid Y=y)\)</span> is called the <strong>posterior</strong>.</p>
-<div class="admonition notes">
-<p class="admonition-title">Notes</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
 <p>The denominator <span class="arithmatex">\(P(Y=y)\)</span> acts as a normalization constant. It ensures that the posterior distribution <span class="arithmatex">\(P(X \mid Y=y)\)</span> sums to <span class="arithmatex">\(1\)</span> over all possible values of <span class="arithmatex">\(X\)</span>.  </p>
 </div>
 <p>For continuous random variables, we use probability densities instead:
@@ -2222,6 +2519,58 @@ $$
 P(\text{spam} \mid \text{yes}) = \frac{0.012}{0.0218} \approx 0.55.
 $$
 After observing the phrase, the probability that the email is spam jumps from <span class="arithmatex">\(2\%\)</span> to about <span class="arithmatex">\(55\%\)</span>. This illustrates Bayes’ rule as a mechanism for updating beliefs: the likelihood tells us how strongly the evidence points toward spam, while the prior reflects how common spam is overall.</p>
+</div>
+<h2 id="likelihood">Likelihood</h2>
+<p>In probability, we often write expressions like <span class="arithmatex">\(p(y \mid \theta),\)</span> where <span class="arithmatex">\(\theta\)</span> is a parameter of a model, and <span class="arithmatex">\(y\)</span> is a possible outcome. The same expression can be interpreted in two different ways: as a probability or as a <a href="https://en.wikipedia.org/wiki/Likelihood_function">likelihood</a>.</p>
+<p>Probability treats <span class="arithmatex">\(\theta\)</span> as fixed and <span class="arithmatex">\(y\)</span> as uncertain. It answers: <em>If the model parameter is <span class="arithmatex">\(\theta\)</span>, how likely is outcome <span class="arithmatex">\(y\)</span>?</em> Likelihood treats <span class="arithmatex">\(y\)</span> as fixed (because we already observed it) and views the same expression as a function of <span class="arithmatex">\(\theta\)</span>. It answers: <em>Given the observed outcome <span class="arithmatex">\(y\)</span>, which values of <span class="arithmatex">\(\theta\)</span> best explain it?</em></p>
+<p>Formally, the <strong>likelihood function</strong> is defined as:
+$$
+L(\theta \mid y) = p(y \mid \theta).
+$$</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>Likelihood is not a probability distribution over <span class="arithmatex">\(\theta\)</span>. In general:
+$$
+\int L(\theta \mid y)\,d\theta \ne 1.
+$$
+Likelihood values only measure <em>relative support</em> for different parameter values of <span class="arithmatex">\(\theta\)</span>.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Suppose we toss a coin <span class="arithmatex">\(n=10\)</span> times and observe <span class="arithmatex">\(y=7\)</span> heads. Let <span class="arithmatex">\(\theta\)</span> be the probability of heads. The probability of observing exactly <span class="arithmatex">\(7\)</span> heads is:
+$$
+p(y=7 \mid \theta)
+=
+\binom{10}{7}\theta^7(1-\theta)^3.
+$$</p>
+<p>If <span class="arithmatex">\(\theta\)</span> is fixed, this is a probability statement about the outcome <span class="arithmatex">\(y\)</span>. But if we already observed <span class="arithmatex">\(y=7\)</span>, the same expression becomes a likelihood function:
+$$
+L(\theta \mid y=7)
+=
+\binom{10}{7}\theta^7(1-\theta)^3.
+$$</p>
+<p>It is maximized near <span class="arithmatex">\(\theta=0.7\)</span>, because the observation suggests the coin behaves like a <span class="arithmatex">\(70\%\)</span> heads coin.</p>
+</div>
+<p>In practice, likelihood values can become extremely small, because they often involve multiplying many probabilities. For this reason, we usually work with the log-likelihood:
+$$
+\log L(\theta \mid y)
+=
+\log p(y \mid \theta).
+$$</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Log-likelihood is used because it turns products into sums. If we assume i.i.d. samples <span class="arithmatex">\(y^{(1)},\dots,y^{(m)}\)</span>, then:
+$$
+p(y^{(1)},\dots,y^{(m)} \mid \theta)
+=
+\prod_{i=1}^{m} p(y^{(i)} \mid \theta),
+$$
+so the log-likelihood becomes:
+$$
+\log p(y^{(1)},\dots,y^{(m)} \mid \theta)
+=
+\sum_{i=1}^{m} \log p(y^{(i)} \mid \theta).
+$$</p>
 </div>
 <h2 id="expectation-variance-covariance">Expectation, Variance, Covariance</h2>
 <p>So far, we have described probability distributions in terms of the probability of events. However, in machine learning we often want to summarize a distribution using a few meaningful numerical quantities. The most important of these are the <em>expectation (mean)</em>, the <em>variance</em>, and the <em>covariance</em>.</p>
@@ -2300,6 +2649,22 @@ $$</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p>Suppose <span class="arithmatex">\(X\)</span> is uniformly distributed on <span class="arithmatex">\([-1,1]\)</span>, and let <span class="arithmatex">\(Y=X^2\)</span>. Then <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are clearly dependent, because knowing <span class="arithmatex">\(X\)</span> determines <span class="arithmatex">\(Y\)</span>. However, their covariance is still <span class="arithmatex">\(0\)</span>, because positive and negative values of <span class="arithmatex">\(X\)</span> cancel out.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Covariance depends on scale. A scale-independent version is the <a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">correlation coefficient</a> (Pearson correlation):
+$$
+\rho(X,Y)
+=
+\frac{\mathrm{Cov}(X,Y)}{\sigma(X)\sigma(Y)},
+\qquad
+\sigma(X)=\sqrt{\mathrm{Var}(X)}.
+$$
+It is always bounded:
+$$
+-1 \le \rho(X,Y) \le 1.
+$$
+Correlation measures only <em>linear</em> dependence, so <span class="arithmatex">\(\rho(X,Y)=0\)</span> does not imply independence.</p>
 </div>
 <p>In machine learning, we often deal with random vectors. If <span class="arithmatex">\(X \in \mathbb{R}^n\)</span> is a random vector, then its <strong>covariance matrix</strong> is an <span class="arithmatex">\(n \times n\)</span> matrix defined as:
 $$
@@ -2416,10 +2781,9 @@ $$</p>
 $$
 P(X=i) = p_i.
 $$</p>
-<p>It is different from the , which models the counts obtained after <span class="arithmatex">\(n\)</span> independent categorical draws (so multinoulli is essentially the multinomial case with <span class="arithmatex">\(n=1\)</span>).</p>
 <div class="admonition warning">
 <p class="admonition-title">Important</p>
-<p>Do not confuse the multinoulli (categorical) distribution with the <a href="https://en.wikipedia.org/wiki/Multinomial_distribution">multinomial distribution</a>. A categorical distribution describes a single outcome from <span class="arithmatex">\(k\)</span> categories (one draw). A multinomial distribution describes a vector of counts showing how many times each category occurs after <span class="arithmatex">\(n\)</span> draws. In other words, multinomial is not another name for categorical — it is a different distribution ith a different type of output, which can be seen as a special case of the multinomial distribution when <span class="arithmatex">\(n=1\)</span>.</p>
+<p>Do not confuse the multinoulli (categorical) distribution with the <a href="https://en.wikipedia.org/wiki/Multinomial_distribution">multinomial distribution</a>. A categorical distribution describes a single outcome from <span class="arithmatex">\(k\)</span> categories (one draw). A multinomial distribution describes a vector of counts showing how many times each category occurs after <span class="arithmatex">\(n\)</span> draws. In other words, multinomial is not another name for categorical — it is a different distribution with a different type of output, which can be seen as a special case of the multinomial distribution when <span class="arithmatex">\(n=1\)</span>.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
@@ -2433,7 +2797,7 @@ p = (p_0,p_1,\dots,p_9),
 \qquad
 \sum_{i=0}^9 p_i = 1.
 $$</p>
-<p>A neural network outputs a probability vector using <a href="../../nn_ngram">softmax</a>:
+<p>A neural network outputs a probability vector using <a href="../../notebooks/05_nn_ngram">softmax</a>:
 $$
 \hat{p}(x) \approx P(Y \mid X=x).
 $$
@@ -2460,10 +2824,10 @@ $$</p>
 $$
 \mathcal{N}(x;\mu,\sigma^2)
 =
-\sqrt{\frac{1}{2\pi\sigma^2}}
+\frac{1}{\sqrt{2\pi\sigma^2}}
 \exp\Big(-\frac{(x-\mu)^2}{2\sigma^2}\Big).
 $$</p>
-<p>Here, <span class="arithmatex">\(\mu\)</span> is the mean (center), <span class="arithmatex">\(\sigma^2\)</span> is the variance (spread), and <span class="arithmatex">\(\sigma\)</span> is the standard deviation of the distribution</p>
+<p>Here, <span class="arithmatex">\(\mu\)</span> is the mean (center), <span class="arithmatex">\(\sigma^2\)</span> is the variance (spread), and <span class="arithmatex">\(\sigma\)</span> is the standard deviation of the distribution.</p>
 <figure>
   <img src="../../assets/images/probability/normal_std.svg" alt="Normal (Gaussian) distribution standard deviation" style="max-width: 100%; height: auto;">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
@@ -2487,18 +2851,8 @@ then <span class="arithmatex">\(\bar{X}_n\)</span> tends to get closer to the tr
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>For a visual intuition and origins where the normal distribution formula comes from, see the video below.</p>
+<p>See the video for a visual intuition and origins where the <a href="https://www.youtube.com/watch?v=cy8r7WSuT1I">normal distribution formula</a> comes from.</p>
 </div>
-<div style="display:flex;justify-content:center;margin:1rem 0;">
-<div style="width:80%;max-width:900px;position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
-    <iframe
-    src="https://www.youtube.com/embed/cy8r7WSuT1I"
-    style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
-    allowfullscreen>
-    </iframe>
-</div>
-</div>
-
 <p>In deep learning, we often model a random vector: $
 X \in \mathbb{R}^n.$ The most important distribution over vectors is the <a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">multivariate normal</a> distribution:
 $$
@@ -2509,7 +2863,7 @@ where <span class="arithmatex">\(\mu \in \mathbb{R}^n\)</span> is the mean vecto
 $$
 \mathcal{N}(x;\mu,\Sigma)
 =
-\frac{1}{\sqrt{(2\pi)^n\det(\Sigma)}}
+\frac{1}{\sqrt{(2\pi)^n \det(\Sigma)}}
 \exp\Big(-\frac{1}{2}(x-\mu)^T\Sigma^{-1}(x-\mu)\Big).
 $$
 </div>
@@ -2534,105 +2888,407 @@ $$
 $$
 Precision describes the same uncertainty information as covariance, but it appears directly in the Gaussian exponent and is often easier to use in derivations.</p>
 </div>
-<!-- 
-
-### Exponential Distribution
-
-The **exponential distribution** is defined over non-negative real numbers:
+<h3 id="exponential">Exponential</h3>
+<p><a href="https://www.acsu.buffalo.edu/~adamcunn/probability/exponential.html">Exponential distribution</a> models the waiting time until an event happens. It is defined on <span class="arithmatex">\(x \ge 0\)</span> and is parameterized by a rate <span class="arithmatex">\(\lambda &gt; 0\)</span>:
 $$
-X \ge 0.
-$$
-
-Its probability density function is:
-$$
-p(x;\lambda)
-=
-\lambda \exp(-\lambda x),
+p(x;\lambda) = \lambda e^{-\lambda x},
 \qquad x \ge 0.
+$$</p>
+<div class="admonition success">
+<p class="admonition-title">Exercise</p>
+<p>Derive the expectation and variance of the exponential distribution.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A key property of the exponential distribution is the <strong>memoryless</strong> property:
 $$
-
-It assigns zero probability density to negative values.
-
-!!! note
-    Exponential distributions are often used to model waiting times and decay processes.  
-    In machine learning, it is also useful as a building block for more complex distributions.
-
-### Laplace Distribution
-
-The **Laplace distribution** is similar to a Gaussian but has a sharper peak and heavier tails.
-
-It is defined as:
+P(X &gt; s+t \mid X &gt; s) = P(X &gt; t).
 $$
-\mathrm{Laplace}(x;\mu,\gamma)
+This means that if we have already waited <span class="arithmatex">\(s\)</span> time units, the remaining waiting time still follows the same distribution.</p>
+</div>
+<h3 id="laplace">Laplace</h3>
+<p><a href="https://www.acsu.buffalo.edu/~adamcunn/probability/laplace.html">Laplace distribution</a> is a continuous distribution that resembles a normal distribution but has a sharper peak and heavier tails. It is defined as:
+$$
+p(x;\mu,b)
 =
-\frac{1}{2\gamma}
-\exp\Big(-\frac{|x-\mu|}{\gamma}\Big).
+\frac{1}{2b}
+\exp\Big(-\frac{|x-\mu|}{b}\Big),
+\qquad b&gt;0.
+$$</p>
+<p>Here, <span class="arithmatex">\(\mu\)</span> is the mean (center), and <span class="arithmatex">\(b\)</span> is a scale parameter controlling spread. Its variance is:
 $$
+\mathrm{Var}(X) = 2b^2.
+$$</p>
+<p>Laplace noise is often used when we want a model that is more tolerant to outliers than a Gaussian. It is also closely related to <span class="arithmatex">\(L_1\)</span> <a href="../../notebooks/04_regul_optim">regularization</a>: if we assume model parameters follow a Laplace prior, maximizing the posterior corresponds to an <span class="arithmatex">\(L_1\)</span> penalty, which encourages sparsity.</p>
+<h3 id="dirac-delta-and-empirical-distribution">Dirac Delta and Empirical Distribution</h3>
+<p>In deep learning, we often treat a dataset as if it defines a probability distribution. But a dataset is finite: it contains only a limited set of observed points. To represent such a distribution mathematically, we use the <a href="https://en.wikipedia.org/wiki/Dirac_delta_function">Dirac delta function</a>.</p>
+<figure>
+  <img src="../../assets/images/probability/dirac.png" alt="Dirac delta distribution standard deviation" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    Schematic representation of the Dirac delta function. The height of the arrow is usually meant to specify the value of any multiplicative constant, which will give the area under the function. ~ <a href="//commons.wikimedia.org/wiki/User:Qef" title="User:Qef">Qef</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=4308538">Link</a>
+  </figcaption>
+</figure>
 
-!!! note
-    The Laplace distribution is important because it is closely related to the $L_1$ norm.  
-    It is often used in sparse modeling and regularization.
-
-### Dirac Delta Distribution
-
-The **Dirac delta distribution** is a special object used to represent a distribution that puts all probability mass at a single point.
-
-It is written as:
+<p>The Dirac delta <span class="arithmatex">\(\delta(x)\)</span> is not a normal function, but a mathematical object (a distribution) that behaves like a probability density concentrated at a single point. It satisfies:</p>
+<ul>
+<li><span class="arithmatex">\(\delta(x) = 0\)</span> for all <span class="arithmatex">\(x \ne 0\)</span></li>
+<li><span class="arithmatex">\(\int_{-\infty}^{\infty} \delta(x)\,dx = 1\)</span></li>
+</ul>
+<p>More generally, a delta centered at a point <span class="arithmatex">\(a\)</span> is written as <span class="arithmatex">\(\delta(x-a)\)</span> and satisfies:
 $$
-p(x) = \delta(x-\mu).
+\int_{-\infty}^{\infty} \delta(x-a)\,dx = 1.
+$$</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>The notation <span class="arithmatex">\(\delta(x-a)\)</span> does not mean ordinary subtraction inside a normal function. It simply means a <em>Dirac delta distribution centered at <span class="arithmatex">\(a\)</span></em>.  </p>
+<p>Intuitively, <span class="arithmatex">\(\delta(x-a)\)</span> represents an "infinitely sharp spike" located exactly at <span class="arithmatex">\(x=a\)</span>, with total area <span class="arithmatex">\(1\)</span>.  This is why it behaves like a tool that extracts the value of a function at <span class="arithmatex">\(a\)</span>:
 $$
-
-It is not a normal function, but it satisfies the key property:
+\int_{-\infty}^{\infty} f(x)\,\delta(x-a)\,dx = f(a).
+$$</p>
+<p>So <span class="arithmatex">\(\delta(x-a)\)</span> is best understood as "a delta located at <span class="arithmatex">\(a\)</span>".</p>
+</div>
+<h3 id="empirical">Empirical</h3>
+<p>Suppose we have a dataset of <span class="arithmatex">\(m\)</span> samples:
 $$
-\int \delta(x-\mu)\,dx = 1.
-$$
-
-!!! note
-    The Dirac delta is useful for defining distributions that behave like "perfect certainty" in continuous space.
-
-### Empirical Distribution
-
-A dataset can be viewed as defining an **empirical distribution**.  
-Given samples $x^{(1)},x^{(2)},\dots,x^{(m)}$, we define:
+{x^{(1)}, x^{(2)}, \dots, x^{(m)}}.
+$$</p>
+<p><a href="https://en.wikipedia.org/wiki/Empirical_distribution_function">Empirical distribution</a> <span class="arithmatex">\(\hat{p}(x)\)</span> is defined as:
 $$
 \hat{p}(x)
 =
-\frac{1}{m}\sum_{i=1}^m \delta(x-x^{(i)}).
+\frac{1}{m}
+\sum_{i=1}^{m} \delta(x-x^{(i)}).
+$$</p>
+<p>This means that the dataset assigns equal probability mass <span class="arithmatex">\(\frac{1}{m}\)</span> to every observed sample.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The empirical distribution in machine learning represents the distribution we actually train on. When we minimize training loss, we are minimizing an expectation under <span class="arithmatex">\(\hat{p}(x)\)</span> rather than under the true unknown distribution <span class="arithmatex">\(p(x)\)</span>.</p>
+</div>
+<p>The empirical expectation of a function <span class="arithmatex">\(f(x)\)</span> is:</p>
+<div style="overflow-x:auto; max-width:100%;">
 $$
-
-This means the distribution places equal probability mass on each training sample.
-
-!!! note
-    When we train a deep learning model, we do not know the true data distribution $p_{\text{data}}(x)$.  
-    We only have access to its empirical approximation defined by the dataset.
-
-### Mixture Distributions
-
-Sometimes one distribution is not flexible enough to represent complex data. A common strategy is to combine multiple simpler distributions into a **mixture model**.
-
-A mixture distribution has the form:
+\mathbb{E}[f(X)]
+=
+\int f(x)\,\hat{p}(x)\,dx
+=
+\frac{1}{m}\sum_{i=1}^m f(x^{(i)}),
+\qquad
+X \sim \hat{p}.
 $$
-P(x) = \sum_i P(c=i)\,P(x \mid c=i),
+</div>
+
+<p>So the standard dataset average used in deep learning is literally an expectation under the empirical distribution.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The empirical distribution is a discrete approximation of the true data-generating distribution. Training a neural network is essentially an attempt to learn a model that generalizes beyond <span class="arithmatex">\(\hat{p}(x)\)</span> and performs well on the true distribution <span class="arithmatex">\(p(x)\)</span>.</p>
+</div>
+<h3 id="mixture-distributions">Mixture Distributions</h3>
+<p><a href="https://en.wikipedia.org/wiki/Mixture_distribution">Mixture distribution</a> is a probability distribution formed by combining multiple simpler distributions. The idea is that the data may come from several different underlying sources, and each source has its own distribution. Suppose we have <span class="arithmatex">\(K\)</span> component distributions:
 $$
-where $c$ is a latent variable indicating which component generated the sample.
-
-!!! note
-    Mixture models introduce the important concept of a **latent variable** — a variable that affects the data but is not directly observed.
-
-### Gaussian Mixture Model (GMM)
-
-A **Gaussian mixture model** is a mixture distribution where each component is Gaussian:
+p_1(x), p_2(x), \dots, p_K(x),
 $$
-p(x) = \sum_{i=1}^k \alpha_i \,\mathcal{N}(x;\mu_i,\Sigma_i),
+and mixture weights:
 $$
-where:
+\pi_1,\pi_2,\dots,\pi_K,
+\qquad
+\pi_k \ge 0,
+\qquad
+\sum_{k=1}^K \pi_k = 1.
+$$</p>
+<p>Then the mixture distribution is:
+$$
+p(x)
+=
+\sum_{k=1}^K \pi_k p_k(x).
+$$</p>
+<p>This can be interpreted as a two-step sampling process:</p>
+<ol>
+<li>First sample a component index:
+   $
+   Z \sim \mathrm{Categorical}(\pi_1,\dots,\pi_K).
+   $</li>
+<li>Then sample from the corresponding component distribution:
+   $
+   X \sim p_Z(x).
+   $</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The variable <span class="arithmatex">\(Z\)</span> is called a <a href="../../07_vae">latent variable</a> because it is not directly observed, but it explains which component generated the data.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mixture models are widely used in probabilistic modeling because many real-world datasets are multi-modal. For example, the distribution of human heights in a population is not perfectly Gaussian, because it is better approximated as a mixture of two Gaussians (male and female). Similarly, pixel intensities in images often come from mixtures of different object materials, lighting conditions, and textures.</p>
+</div>
+<figure>
+  <img src="../../assets/images/probability/gmm.gif" alt="Gaussian Mixture Model (GMM)" style="max-width: 100%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    An example of Gaussian Mixture in image segmentation with grey histogram ~ <a href="//commons.wikimedia.org/w/index.php?title=User:KazukiAmakawa&amp;action=edit&amp;redlink=1" class="new" title="User:KazukiAmakawa (page does not exist)">KazukiAmakawa</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=75542622">Link</a>
+  </figcaption>
+</figure>
 
-- $\alpha_i \ge 0$ are mixture weights
-- $\sum_i \alpha_i = 1$
+<p>The most common mixture model is the <a href="https://en.wikipedia.org/wiki/Mixture_model#Gaussian_mixture_model">Gaussian mixture model (GMM)</a>:
+$$
+p(x)
+=
+\sum_{k=1}^K \pi_k \mathcal{N}(x;\mu_k,\Sigma_k).
+$$</p>
+<p>Each component is a Gaussian with its own mean <span class="arithmatex">\(\mu_k\)</span> and covariance matrix <span class="arithmatex">\(\Sigma_k\)</span>. GMMs are expressive enough to approximate many complex distributions, while still being mathematically tractable.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Mixture models are a natural step toward deep generative models. Many modern models (including <a href="../../notebooks/07_vae">VAEs</a> and <a href="../../notebooks">diffusion models</a>) can be viewed as learning complex mixtures in high-dimensional spaces.</p>
+</div>
+<h2 id="common-functions">Common Functions</h2>
+<p>Deep learning models often output unconstrained real numbers. However, many probabilistic parameters must satisfy constraints such as being in <span class="arithmatex">\((0,1)\)</span> or summing to <span class="arithmatex">\(1\)</span>. For this reason, we use special nonlinear functions that map real-valued inputs into valid probability domains. The most common functions are described below.</p>
+<h3 id="sigmoid">Sigmoid</h3>
+<p>The <a href="../../notebooks/02_neural_network">logistic (sigmoid)</a> function maps any real number to <span class="arithmatex">\((0,1)\)</span>:
+$$
+\sigma(x)
+=
+\frac{1}{1+e^{-x}}
+=
+\frac{\exp(x)}{\exp(x)+\exp(0)}.
+$$</p>
+<p>It is widely used to parameterize Bernoulli probabilities:
+$$
+\phi = \sigma(z),
+\qquad
+Y \sim \mathrm{Bernoulli}(\phi).
+$$</p>
+<figure>
+  <img src="../../assets/images/probability/sigmoid.svg" alt="Sigmoid function" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+   The logistic (sigmoid) curve ~ <a href="//commons.wikimedia.org/wiki/User:Qef" title="User:Qef">Qef</a> (<a href="//commons.wikimedia.org/wiki/User_talk:Qef" title="User talk:Qef">talk</a>) - Created from scratch with gnuplot, Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=4310325">Link</a>
+  </figcaption>
+</figure>
 
-!!! note
-    Gaussian mixture models are powerful because they can approximate a wide range of smooth probability distributions if enough components are used. -->
+<p>Sigmoid is <a href="../01_calculus">differentiable</a> and also satisfies the symmetry identity:
+$$
+1-\sigma(x)=\sigma(-x).
+$$</p>
+<p>Its inverse function is called the <a href="../../notebooks/05_nn_ngram">logit</a>:
+$$
+\forall x \in (0,1),
+\qquad
+\sigma^{-1}(x)
+=
+\log\Big(\frac{x}{1-x}\Big).
+$$</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>Sigmoid <strong>saturates</strong> for large <span class="arithmatex">\(|x|\)</span>. When <span class="arithmatex">\(x \gg 0\)</span>, <span class="arithmatex">\(\sigma(x)\approx 1\)</span>, and when <span class="arithmatex">\(x \ll 0\)</span>, <span class="arithmatex">\(\sigma(x)\approx 0\)</span>. In both cases, the gradient <span class="arithmatex">\(\frac{d}{dx}\sigma(x)\)</span> becomes close to <span class="arithmatex">\(0\)</span>, which slows down learning due to <a href="../../notebooks/04_regul_optim">vanishing gradients</a>.   For this reason, sigmoid is rarely used as a hidden-layer activation in modern deep networks, and is usually replaced by ReLU or its variants.</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Exercise</p>
+<p>Find the derivative of the sigmoid function.</p>
+</div>
+<h3 id="relu">ReLU</h3>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>ReLU is not a probability concept. It does not parameterize a probability distribution and does not map values into a valid probability domain. It is primarily an activation function used in neural network architectures to improve optimization and gradient flow. We mention it here only because sigmoid saturation motivates why modern deep networks typically use ReLU-like activations in hidden layers.</p>
+</div>
+<p>The <a href="https://en.wikipedia.org/wiki/Rectified_linear_unit">rectified linear unit (ReLU)</a> is the most commonly used activation function in modern deep learning. It is defined as:
+$$
+\mathrm{ReLU}(x)=\max(0,x).
+$$</p>
+<p>ReLU is popular because it is simple, fast to compute, and avoids the strong saturation effect of sigmoid and <a href="https://en.wikipedia.org/wiki/Activation_function">tanh</a>.</p>
+<figure>
+  <img src="../../assets/images/probability/relu.svg" alt="ReLU function" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    Plot of the ReLU (blue) and <a href='https://en.wikipedia.org/wiki/Rectified_linear_unit#Gaussian-error_linear_unit_(GELU)'>GELU</a> (green) functions near x = 0 ~ <a href="//commons.wikimedia.org/w/index.php?title=User:Ringdongdang&amp;action=edit&amp;redlink=1" class="new" title="User:Ringdongdang (page does not exist)">Ringdongdang</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=95947821">Link</a>
+  </figcaption>
+</figure>
 
+<p>ReLU is piecewise linear, so its derivative is simple:
+$$
+\frac{d}{dx}\mathrm{ReLU}(x)
+=
+\begin{cases}
+0, &amp; x &lt; 0, \\
+1, &amp; x &gt; 0.
+\end{cases}
+$$</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ReLU is not differentiable at <span class="arithmatex">\(x=0\)</span>. However, researchers eventually realized that, this is not a practical issue in deep learning, because <span class="arithmatex">\(x=0\)</span> occurs with probability nearly zero for continuous-valued activations. In implementations, the gradient at <span class="arithmatex">\(0\)</span> is usually defined as <span class="arithmatex">\(0\)</span> (a valid subgradient choice).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>ReLU has zero gradient for all negative inputs. If a neuron consistently outputs negative values, it may stop learning completely. This is called the <strong>dying ReLU</strong> problem. Variants such as <em>Leaky ReLU</em> and <em>GELU</em> are often used to reduce this effect.</p>
+</div>
+<h3 id="softplus">Softplus</h3>
+<p>The <a href="https://en.wikipedia.org/wiki/Softplus">softplus</a> function maps <span class="arithmatex">\(\mathbb{R}\)</span> to <span class="arithmatex">\((0,\infty)\)</span>:
+$$
+\zeta(x)
+=
+\log(1+\exp(x)).
+$$</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Softplus is useful when a model parameter must be strictly positive (e.g variance <span class="arithmatex">\(\sigma^2 &gt; 0\)</span>).</p>
+</div>
+<figure>
+  <img src="../../assets/images/probability/softplus.svg" alt="Softplus function" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    Plot of the softplus function and the <a href='https://en.wikipedia.org/wiki/Ramp_function'>ramp function</a> ~ <a href="//commons.wikimedia.org/wiki/User:Nbarth" title="User:Nbarth">Nbarth</a> - This <a href="https://en.wikipedia.org/wiki/vector_image" class="extiw" title="w:vector image">vector image</a> includes elements that have been taken or adapted from this file:, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" title="Creative Commons Zero, Public Domain Dedication">CC0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=150411524">Link</a>
+  </figcaption>
+</figure>
+
+<p>Softplus is closely connected to sigmoid. In particular:
+$$
+\log \sigma(x) = -\zeta(-x).
+$$</p>
+<p>And its derivative is exactly sigmoid:</p>
+<div style="overflow-x:auto; max-width:100%;">
+$$
+\frac{d}{dx}\zeta(x)
+=
+\frac{d}{dx}\log(1+\exp(x))
+=
+\frac{\exp(x)}{1+\exp(x)}
+=
+\sigma(x).
+$$
+</div>
+
+<p>This is a useful fact in deep learning: softplus behaves like a smooth version of ReLU, but its gradient changes smoothly between <span class="arithmatex">\(0\)</span> and <span class="arithmatex">\(1\)</span>. The inverse of softplus is:
+$$
+\forall x&gt;0,
+\qquad
+\zeta^{-1}(x)=\log(\exp(x)-1).
+$$</p>
+<p>A useful symmetry identity is:
+$$
+\zeta(x)-\zeta(-x)=x.
+$$</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In practice, we rarely implement softplus as <span class="arithmatex">\(\log(1+\exp(x))\)</span> directly, because <span class="arithmatex">\(\exp(x)\)</span> can overflow for large <span class="arithmatex">\(x\)</span>. Instead, deep learning libraries use numerically stable implementations.  </p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>PyTorch provides:
+<div class="highlight"><pre><span></span><code><span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">functional</span><span class="o">.</span><span class="n">softplus</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div>
+which computes softplus safely even when <span class="arithmatex">\(x\)</span> has large magnitude.</p>
+</div>
+<p>Softplus is commonly used when a model must output a strictly positive parameter (such as a variance), since it guarantees positivity while still being smooth and differentiable.</p>
+</div>
+<h3 id="logarithm">Logarithm</h3>
+<p>Recall that the <a href="https://en.wikipedia.org/wiki/Logarithm">logarithm</a> function <span class="arithmatex">\(\log(x)\)</span> transforms products into sums. If we have independent samples, probabilities multiply:
+$$
+P(x^{(1)},\dots,x^{(m)})
+=
+\prod_{i=1}^m P(x^{(i)}).
+$$</p>
+<p>Taking the logarithm converts this product into a sum:
+$$
+\log P(x^{(1)},\dots,x^{(m)})
+=
+\sum_{i=1}^m \log P(x^{(i)}).
+$$</p>
+<p>This is the main reason why, say, <a href="../../introduction/02_machine_learning">maximum likelihood estimation</a> is almost always performed using the <strong>log-likelihood</strong> instead of the raw likelihood.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In machine learning, model parameters are often learned by <strong>maximum likelihood estimation (MLE)</strong>.  We choose parameters <span class="arithmatex">\(\theta\)</span> that make the observed dataset most probable under the model. Suppose we have i.i.d. samples:
+$$
+D={y^{(1)},\dots,y^{(m)}}.
+$$</p>
+<p>The likelihood of the dataset is:
+$$
+p(D \mid \theta)
+=
+\prod_{i=1}^{m} p!\big(y^{(i)} \mid \theta\big).
+$$</p>
+<p>The MLE estimate <span class="arithmatex">\(\hat{\theta}_{\mathrm{MLE}}\)</span> is defined as the value of <span class="arithmatex">\(\theta\)</span> that maximizes this likelihood. In practice we maximize the log-likelihood instead:
+$$
+\log p(D \mid \theta)
+=
+\sum_{i=1}^{m} \log p!\big(y^{(i)} \mid \theta\big).
+$$</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">Exercise</p>
+<p>Suppose we observe <span class="arithmatex">\(m\)</span> i.i.d. samples <span class="arithmatex">\(y^{(1)},\dots,y^{(m)}\)</span> from a Bernoulli distribution with parameter <span class="arithmatex">\(\theta\)</span>.
+Write the likelihood function <span class="arithmatex">\(L(\theta \mid y^{(1)},\dots,y^{(m)})\)</span> as a product.
+Then rewrite it as a log-likelihood (a sum).</p>
+</div>
+<p>The logarithm is only defined for <span class="arithmatex">\(x&gt;0\)</span>. In particular:
+$$
+\log(0) = -\infty
+$$</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This matters in deep learning because losses often contain <span class="arithmatex">\(\log(p)\)</span> terms. If a model assigns probability <span class="arithmatex">\(p=0\)</span> to the true outcome, the loss becomes infinite. In practice, this is handled by using numerically stable implementations (computing loss from logits) or by clamping probabilities with a small constant <span class="arithmatex">\(\epsilon&gt;0\)</span>:
+$$
+\log(p) \;\;\to\;\; \log(\max(p,\epsilon)).
+$$</p>
+</div>
+<figure>
+  <img src="../../assets/images/probability/log.png" alt="Log functions" style="max-width: 80%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    Plots of logarithm functions, with three commonly used bases. ~ Richard F. Lyon - made myself, alt version of Logarithm plots.svg with better text, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=13257335">Link</a>
+  </figcaption>
+</figure>
+
+<p>Logarithm is strictly increasing (monotonic):
+$$
+x_1 &lt; x_2
+\quad\Rightarrow\quad
+\log(x_1) &lt; \log(x_2).
+$$</p>
+<p>Therefore, maximizing <span class="arithmatex">\(P(x)\)</span> is equivalent to maximizing <span class="arithmatex">\(\log P(x)\)</span>:
+$$
+\arg\max_x P(x)
+=
+\arg\max_x \log P(x).
+$$</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The derivative of log is <span class="arithmatex">\(\frac{1}{x}.\)</span> This derivative becomes very large when <span class="arithmatex">\(x\)</span> is close to <span class="arithmatex">\(0\)</span>, which is one reason why log strongly penalizes assigning very small probability to true outcomes.</p>
+</div>
+<h3 id="softmax">Softmax</h3>
+<p>The <a href="https://en.wikipedia.org/wiki/Softmax_function">softmax</a> function maps logits <span class="arithmatex">\(z\in\mathbb{R}^k\)</span> into a probability vector <span class="arithmatex">\(p\in\mathbb{R}^k\)</span>:
+$$
+p
+=
+\mathrm{softmax}(z_i)
+=
+\frac{\exp(z_i)}{\sum_{j=1}^{k} \exp(z_j)}.
+$$</p>
+<p>Softmax is also invariant to adding the same constant to all logits:
+$$
+\mathrm{softmax}(z)=\mathrm{softmax}(z+c).
+$$</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>For numerical stability, softmax is usually computed as:
+$$
+\mathrm{softmax}(z)
+=
+\frac{\exp(z-\max(z))}{\sum_{j=1}^k \exp(z_j-\max(z))}.
+$$</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A logit is an unconstrained score in <span class="arithmatex">\((-\infty,\infty)\)</span> that becomes a probability only after applying a transformation. For binary classification:
+$$
+\phi=\sigma(z),
+\qquad
+z=\mathrm{logit}(\phi).
+$$
+For multiclass classification: 
+$<span class="arithmatex">\(p=\mathrm{softmax}(z).\)</span>$</p>
+<p>Working with logits is often preferred in deep learning because logits are numerically stable and easier to optimize than probabilities directly.</p>
+</div>
+<h2 id="measure-theory">Measure Theory</h2>
+<p>When working with continuous probability distributions, some technical details require ideas from <a href="https://en.wikipedia.org/wiki/Measure_(mathematics)">measure theory</a>. In deep learning literature, we will encounter a few terms.</p>
+<p>A set <span class="arithmatex">\(A\)</span> is said to have <strong>measure zero</strong> if its total "size" is zero under integration. For example, a single point has measure zero. Any countable set of points also has measure zero. For example, the set of all rational numbers has measure zero, even though it is infinite.</p>
+<p>A property is said to hold <strong>almost everywhere</strong> if it holds everywhere except on a measure-zero set. This means the property may fail on some special cases, but those cases occupy negligible space and do not affect integrals.</p>
+<p>This terminology matters because many results that are always true in discrete probability only hold <em>almost everywhere</em> in the continuous case. In practice, these exceptions can usually be ignored.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is why deep learning often ignores edge cases. For example, ReLU is not differentiable at <span class="arithmatex">\(x=0\)</span>, but this does not matter in practice because the probability of hitting exactly <span class="arithmatex">\(x=0\)</span> is almost zero for continuous-valued activations.</p>
+</div>
 <div class="footnote">
 <hr />
 <ol>
@@ -2652,7 +3308,7 @@ where:
 <p>The term multinoulli was popularized by Murphy (2012) as a playful name meaning "many Bernoullis."&#160;<a class="footnote-backref" href="#fnref:multinoulli" title="Jump back to footnote 5 in the text">&#8617;</a></p>
 </li>
 <li id="fn:gauss">
-<p>The distribution is called <em>Gaussian</em> because it was studied extensively by Carl Friedrich Gauss, especially in connection with measurement errors. The name <em>normal distribution</em> became popular later because it was treated as the standard (“normal”) baseline model for noise in many scientific applications.&#160;<a class="footnote-backref" href="#fnref:gauss" title="Jump back to footnote 6 in the text">&#8617;</a></p>
+<p>The distribution is called <em>Gaussian</em> because it was studied extensively by <a href="https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a>, especially in connection with measurement errors.&#160;<a class="footnote-backref" href="#fnref:gauss" title="Jump back to footnote 6 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
