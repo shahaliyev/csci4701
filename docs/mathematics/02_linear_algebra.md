@@ -134,7 +134,7 @@ $$
 $$
 
 !!! note
-    Identity matrices appear implicitly in [residual connections](../../notebooks/06_batchnorm_resnet) and linear solvers. Adding $\mathbf{I}$ to a matrix corresponds to biasing a transformation toward preserving information.
+    Identity matrices appear implicitly in [residual connections](../../notebooks/05_batchnorm_resnet) and linear solvers. Adding $\mathbf{I}$ to a matrix corresponds to biasing a transformation toward preserving information.
 
 The matrix **inversion** provides a formal way to solve linear systems of the form $\mathbf{y} = \mathbf{A}\mathbf{x}$. If the matrix $\mathbf{A}$ is square ($n \times n$) and [invertible](https://en.wikipedia.org/wiki/Invertible_matrix), there exists a matrix $\mathbf{A}^{-1}$ such that
 $\mathbf{A}^{-1}\mathbf{A} = \mathbf{I}.$

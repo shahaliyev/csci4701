@@ -537,7 +537,7 @@ $$
     \sum_{i=0}^9 p_i = 1.
     $$
 
-    A neural network outputs a probability vector using [softmax](../../notebooks/05_nn_ngram):
+    A neural network outputs a probability vector using [softmax](../../notebooks/06_nn_ngram):
     $$
     \hat{p}(x) \approx P(Y \mid X=x).
     $$
@@ -839,7 +839,7 @@ $$
 1-\sigma(x)=\sigma(-x).
 $$
 
-Its inverse function is called the [logit](../../notebooks/05_nn_ngram):
+Its inverse function is called the [logit](../../notebooks/06_nn_ngram):
 $$
 \forall x \in (0,1),
 \qquad
