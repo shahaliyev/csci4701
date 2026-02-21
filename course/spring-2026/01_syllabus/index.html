@@ -977,14 +977,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/05_nn_ngram/" class="md-nav__link">
+      <a href="../../../notebooks/05_batchnorm_resnet/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    05. Neural Network N-Gram Model
+    06. Batch Normalization and Residual Blocks
   
 
     
@@ -1005,14 +1005,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/06_batchnorm_resnet/" class="md-nav__link">
+      <a href="../../../notebooks/06_nn_ngram/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    06. Batch Normalization and Residual Blocks
+    05. Neural Network N-Gram Model
   
 
     
@@ -1646,14 +1646,14 @@ table td:first-child {
 <tbody>
 <tr>
 <td>1</td>
-<td><strong>Deep Learning (DL) Overview / Course Structure</strong></td>
+<td><strong>Deep Learning Overview / Course Structure</strong></td>
 <td>Describe the scope of deep learning and the course syllabus. Fulfill technological requirements.</td>
 <td></td>
 <td><a href="../../../introduction/01_deep_learning">introduction/01_deep_learning</a></td>
 </tr>
 <tr>
 <td>2</td>
-<td><strong>Mathematics of DL: Calculus / Linear Algebra</strong></td>
+<td><strong>Mathematics of Deep Learning: Calculus / Linear Algebra</strong></td>
 <td>Compute partial derivatives and apply the chain rule. Work with vectors, matrices, and tensors; apply norms and inner products. Understand intuition behind eigenvectors and SVD.</td>
 <td></td>
 <td><a href="../../../mathematics/01_calculus">mathematics/01_calculus</a> <br> <a href="../../../mathematics/02_linear_algebra">mathematics/02_linear_algebra</a> <br> <a href="../../../supplementary/svd">supplementary/svd</a></td>
@@ -1681,15 +1681,15 @@ table td:first-child {
 </tr>
 <tr>
 <td>6</td>
-<td><strong>Multilayer Perceptron (MLP)</strong></td>
-<td>Construct an MLP from stacked neurons. Train a simple MLP classifier on a small dataset.</td>
+<td><strong>Multilayer Perceptron (MLP) / Cross-Entropy</strong></td>
+<td>Construct an MLP from stacked neurons. Train a simple MLP classifier on a small dataset. Understand cross-entropy loss.</td>
 <td><strong>Feb 10:</strong> Project proposal deadline</td>
 <td><a href="../../../notebooks/02_neural_network">notebooks/02_neural_network</a></td>
 </tr>
 <tr>
 <td>7</td>
-<td><strong>Images as Tensors / MLP on MNIST / Batching &amp; Cross-Entropy</strong></td>
-<td>Understand image representations, tensor shapes, and batching. Use torchvision datasets and dataloaders. Train an MLP on MNIST with SGD + cross-entropy.</td>
+<td><strong>Images as Tensors / Training MLP on MNIST Dataset</strong></td>
+<td>Understand image representations, tensor shapes, and batching. Use torchvision datasets and dataloaders. Train an MLP on MNIST.</td>
 <td><strong>Feb 12:</strong> Quiz 2 [5–6]</td>
 <td><a href="../../../notebooks/03_cnn_torch">notebooks/03_cnn_torch</a></td>
 </tr>
@@ -1702,52 +1702,52 @@ table td:first-child {
 </tr>
 <tr>
 <td>9</td>
-<td><strong>Mathematics of DL: Probability Theory</strong></td>
+<td><strong>Mathematics of Deep Learning: Probability Theory</strong></td>
 <td>Describe random variables; distinguish discrete and continuous distributions; work with PMF/PDF. Compute expectation, variance, and covariance. Use conditional probability, independence, and Bayes’ rule. Recognize common distributions.</td>
 <td><strong>Feb 19:</strong> Quiz 3 [7–8]</td>
 <td><a href="../../../mathematics/03_probability">mathematics/03_probability</a></td>
 </tr>
 <tr>
 <td>10</td>
-<td><strong>Regularization</strong></td>
-<td>Apply weight decay and dropout. Handle exploding and vanishing gradients. Use Xavier and He initialization. Distinguish local minima from saddle points in training dynamics.</td>
+<td><strong>Regularization / Optimization</strong></td>
+<td>Recall overfitting and understand how regularization helps with it. Apply data augmentation. Apply weight decay and dropout. Handle exploding and vanishing gradients. Use Xavier and He initialization.</td>
 <td></td>
 <td><a href="../../../notebooks/04_regul_optim">notebooks/04_regul_optim</a></td>
 </tr>
 <tr>
 <td>11</td>
 <td><strong>Optimization</strong></td>
-<td>Adjust learning rate and apply schedules. Use SGD with momentum. Apply RMSProp and Adam. Compare optimizers based on convergence behavior and practical performance.</td>
+<td>Distinguish local minima from saddle points in training dynamics. Adjust learning rate and apply schedules. Use stochastic gradient-decent (SGD) and explain its purpose. Apply momentum, RMSProp, and Adam to optimize learning. Compare optimizers based on convergence behavior and practical performance.</td>
 <td></td>
 <td><a href="../../../notebooks/04_regul_optim">notebooks/04_regul_optim</a></td>
 </tr>
 <tr>
 <td>12</td>
-<td><strong>Regularization / Optimization</strong></td>
-<td>Train a regularized CNN on CIFAR-10 using optimizers. Apply hyperparameter tuning.</td>
+<td><strong>Training CNN on CIFAR-10 Dataset / Hyperparameter Tuning</strong></td>
+<td>Train a regularized and optimized CNN on CIFAR-10. Apply hyperparameter tuning.</td>
 <td><strong>Mar 3:</strong> Quiz 4 [10–11]</td>
 <td><a href="../../../notebooks/04_regul_optim">notebooks/04_regul_optim</a></td>
 </tr>
 <tr>
 <td>13</td>
-<td><strong>Paper: AlexNet</strong></td>
-<td>Discuss AlexNet, its key ideas, what is outdated, and the paper structure.</td>
+<td><strong>Paper Reading: AlexNet / Transfer Learning and Fine-tuning</strong></td>
+<td>Discuss AlexNet, its key ideas and structure. Determine what is outdated. Explain how pretrained CNNs enable transfer learning, and how fine-tuning adapts them to new datasets. Demonstrate fine-tuning of an ImageNet-pretrained CNN on CIFAR-10.</td>
 <td></td>
 <td>[<a href="https://papers.nips.cc/paper_files/paper/2012/hash/c399862d3b9d6b76c8436e924a68c45b-Abstract.html"> alexnet </a>]</td>
 </tr>
 <tr>
 <td>14</td>
-<td><strong>Bigram Model / Negative Log-Likelihood / Softmax</strong></td>
-<td>Build a character-level bigram model and sample from it. Distinguish probability vs likelihood. Compute average negative log-likelihood as a loss. Explain the purpose of softmax.</td>
+<td><strong>CNN Architectures / Batch Normalization</strong></td>
+<td>Compare AlexNet, VGG, Inception in terms of depth, parameter count, and training purpose and stability. Explain why normalization helps training deep networks. Implement batch normalization and understand training vs evaluation behavior. Understand batch-size effects and when to prefer layer normalization.</td>
 <td></td>
-<td><a href="../../../notebooks/05_nn_ngram">notebooks/05_nn_ngram</a></td>
+<td><a href="../../../notebooks/05_batchnorm_resnet">notebooks/05_batchnorm_resnet</a></td>
 </tr>
 <tr>
 <td>15</td>
-<td><strong>Neural Network N-gram Model / Mini-Batch Training</strong></td>
-<td>Construct a neural N-gram model. Train the model with mini-batch updates.</td>
-<td><strong>Mar 12:</strong> Quiz 5 [14]<br>Project milestone 1 deadline</td>
-<td><a href="../../../notebooks/05_nn_ngram">notebooks/05_nn_ngram</a></td>
+<td><strong>Residual Block / Residual Network</strong></td>
+<td>Understand residual (skip) connections. Train a model with residual blocks. Connect residuals to vanishing gradients and regularization.</td>
+<td><strong>Mar 12:</strong> Quiz 5 [13-14]<br>Project milestone 1 deadline</td>
+<td><a href="../../../notebooks/05_batchnorm_resnet">notebooks/05_batchnorm_resnet</a></td>
 </tr>
 <tr>
 <td>16</td>
@@ -1772,22 +1772,22 @@ table td:first-child {
 </tr>
 <tr>
 <td>18</td>
-<td><strong>Batch Normalization / Layer Normalization</strong></td>
-<td>Explain why normalization helps training deep networks. Implement batch normalization and understand training vs evaluation behavior. Understand batch-size effects and when to prefer layer normalization.</td>
+<td><strong>Sequence Modeling: Tokenization / Bigram Model / Perplexity</strong></td>
+<td>Understand the aims of sequence modeling. Tokenize and build a character-level bigram model and sample from it. Implement average negative log-likelihood loss and perplexity.</td>
 <td></td>
-<td><a href="../../../notebooks/06_batchnorm_resnet">notebooks/06_batchnorm_resnet</a></td>
+<td><a href="../../../notebooks/06_nn_ngram">notebooks/06_nn_ngram</a></td>
 </tr>
 <tr>
 <td>19</td>
-<td><strong>Residual Blocks / Residual Network for NLP</strong></td>
-<td>Understand residual (skip) connections. Add a residual block to a feed-forward N-gram model with correct dimensions. Connect residuals to vanishing gradients and regularization.</td>
+<td><strong>Neural N-gram Language Model</strong></td>
+<td>Construct a neural N-gram model and train it with mini-batch updates.</td>
 <td></td>
-<td><a href="../../../notebooks/06_batchnorm_resnet">notebooks/06_batchnorm_resnet</a></td>
+<td><a href="../../../notebooks/06_nn_ngram">notebooks/06_nn_ngram</a></td>
 </tr>
 <tr>
 <td>20</td>
-<td><strong>Sequence Modeling: Autoregressive Models and RNN/LSTM</strong></td>
-<td>Explain autoregressive modeling beyond fixed context windows. Describe how RNNs maintain state. Identify limitations of RNN/LSTM/GRU.</td>
+<td><strong>Autoregressive Modeling: RNN / LSTM</strong></td>
+<td>Explain autoregressive modeling. Describe how RNNs maintain state. Implement RNN and LSTM and identify their limitations.</td>
 <td><strong>Apr 7:</strong> Quiz 6 [18–19]</td>
 <td></td>
 </tr>
@@ -1821,10 +1821,10 @@ table td:first-child {
 </tr>
 <tr>
 <td>25</td>
-<td><strong>Mathematics of DL: Information Theory and Probabilistic Modeling</strong></td>
+<td><strong>Mathematics of deep learning: Information Theory and Probabilistic Modeling</strong></td>
 <td>Compute entropy, cross-entropy, and KL divergence. Derive cross-entropy loss from maximum likelihood. Interpret common losses as probabilistic objectives.</td>
-<td></td>
-<td><a href="../../../notebooks/04_information">mathematics/04_information</a> <br> [ <a href="https://www.cs.toronto.edu/~rgrosse/courses/csc311_f20/readings/L07%20Probabilistic%20Models.pdf">probabalistic models</a> ]</td>
+<td>NOTE: Will be taught immediately before sequence modeling in future semesters</td>
+<td><a href="../../../mathematics/04_information">mathematics/04_information</a> <br> <a href="../../../mathematics/05_prob_modeling">mathematics/05_prob_modeling</a> <br>  [ <a href="https://www.cs.toronto.edu/~rgrosse/courses/csc311_f20/readings/L07%20Probabilistic%20Models.pdf">probabalistic models</a> ]</td>
 </tr>
 <tr>
 <td>26</td>
