@@ -1607,6 +1607,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supplementary/tsne/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    t-Distributed Stochastic Neighbor Embedding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2340,12 +2368,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><a href="https://colab.research.google.com/github/shahaliyev/csci4701/blob/main/docs/notebooks/04_regul_optim.ipynb" rel="noopener" target="_blank">
 <img alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/>
 </a></p>
-<div class="admonition warning">
-<p class="admonition-title">Important</p>
-<p style="margin: 1em 0;">
-    The notebook is currently under revision.
-  </p>
-</div>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p style="margin: 0.5em 0;">
@@ -4486,7 +4508,7 @@ def plot_descent(f, grad_f, point, steps, start, end, learning_rate, b1_vals=[0.
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [32]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="CodeMirror cm-s-jupyter">
 <div class="zeroclipboard-container">
 <clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-32">
@@ -4502,8 +4524,8 @@ def plot_descent(f, grad_f, point, steps, start, end, learning_rate, b1_vals=[0.
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">from</span> <span class="nn">torchvision</span> <span class="kn">import</span> <span class="n">datasets</span><span class="p">,</span> <span class="n">transforms</span>
 <span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
 
-<span class="n">DATA_PATH</span> <span class="o">=</span> <span class="s1">'../../_drafts/data'</span> <span class="c1"># modify accordingly (e.g. to './data')</span>
-<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">256</span> <span class="c1"># adjust if needed</span>
+<span class="n">DATA_PATH</span> <span class="o">=</span> <span class="s1">'./data'</span>
+<span class="n">BATCH_SIZE</span> <span class="o">=</span> <span class="mi">256</span>
 
 <span class="c1"># Per-channel (R,G,B) mean and standard deviation of the CIFAR-10 training set.These values were computed once from the dataset and are commonly reused.</span>
 <span class="n">cifar_mean</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.4914</span><span class="p">,</span> <span class="mf">0.4822</span><span class="p">,</span> <span class="mf">0.4465</span><span class="p">)</span>
@@ -4530,8 +4552,8 @@ def plot_descent(f, grad_f, point, steps, start, end, learning_rate, b1_vals=[0.
 <div class="clipboard-copy-txt" id="cell-32">from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 
-DATA_PATH = '../../_drafts/data' # modify accordingly (e.g. to './data')
-BATCH_SIZE = 256 # adjust if needed
+DATA_PATH = './data'
+BATCH_SIZE = 256
 
 # Per-channel (R,G,B) mean and standard deviation of the CIFAR-10 training set.These values were computed once from the dataset and are commonly reused.
 cifar_mean = (0.4914, 0.4822, 0.4465)

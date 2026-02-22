@@ -2,102 +2,106 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://shahaliyev.org/csci4701/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/advanced/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/course/spring-2026/01_syllabus/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/course/spring-2026/02_assesments/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/course/spring-2026/03_project/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/introduction/01_deep_learning/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/introduction/02_machine_learning/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/introduction/03_resources/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/mathematics/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/mathematics/01_calculus/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/mathematics/02_linear_algebra/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/mathematics/03_probability/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/mathematics/04_information/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/mathematics/05_prob_modeling/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/notebooks/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/notebooks/01_backprop/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/notebooks/02_neural_network/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/notebooks/03_cnn_torch/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/notebooks/04_regul_optim/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/notebooks/05_batchnorm_resnet/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/notebooks/06_nn_ngram/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/notebooks/07_vae/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/supplementary/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/supplementary/pca/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
     </url>
     <url>
          <loc>https://shahaliyev.org/csci4701/supplementary/svd/</loc>
-         <lastmod>2026-02-21</lastmod>
+         <lastmod>2026-02-22</lastmod>
+    </url>
+    <url>
+         <loc>https://shahaliyev.org/csci4701/supplementary/tsne/</loc>
+         <lastmod>2026-02-22</lastmod>
     </url>
 </urlset>
