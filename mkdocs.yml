@@ -75,5 +75,8 @@ extra:
 repo_url: https://github.com/shahaliyev/csci4701
 repo_name: GitHub
 
+exclude_docs: |
+  notebooks/data/**
+
 
 
