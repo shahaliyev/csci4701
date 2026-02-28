@@ -1745,7 +1745,7 @@ table td:first-child {
 <tr>
 <td>11</td>
 <td><strong>Optimization</strong></td>
-<td>Distinguish local minima from saddle points in training dynamics. Adjust learning rate and apply schedules. Use stochastic gradient-decent (SGD) and explain its purpose. Apply momentum, RMSProp, and Adam to optimize learning. Compare optimizers based on convergence behavior and practical performance.</td>
+<td>Distinguish local minima from saddle points in training dynamics. Adjust learning rate and apply schedules. Use stochastic gradient decent (SGD) and explain its purpose. Apply momentum, RMSProp, and Adam to optimize learning. Compare optimizers based on convergence behavior and practical performance.</td>
 <td></td>
 <td><a href="../../../notebooks/04_regul_optim">notebooks/04_regul_optim</a></td>
 </tr>
@@ -1800,43 +1800,43 @@ table td:first-child {
 </tr>
 <tr>
 <td>18</td>
+<td><strong>Mathematics of deep learning: Information Theory and Probabilistic Modeling</strong></td>
+<td>Compute entropy, cross-entropy, and KL divergence. Derive cross-entropy loss from maximum likelihood. Interpret common losses as probabilistic objectives.</td>
+<td></td>
+<td><a href="../../../mathematics/04_information">mathematics/04_information</a> <br> <a href="../../../mathematics/05_prob_modeling">mathematics/05_prob_modeling</a> <br>  [ <a href="https://www.cs.toronto.edu/~rgrosse/courses/csc311_f20/readings/L07%20Probabilistic%20Models.pdf">probabalistic models</a> ]</td>
+</tr>
+<tr>
+<td>19</td>
 <td><strong>Sequence Modeling: Tokenization / Bigram Model / Perplexity</strong></td>
 <td>Understand the aims of sequence modeling. Tokenize and build a character-level bigram model and sample from it. Implement average negative log-likelihood loss and perplexity.</td>
 <td></td>
 <td><a href="../../../notebooks/06_nn_ngram">notebooks/06_nn_ngram</a></td>
 </tr>
 <tr>
-<td>19</td>
+<td>20</td>
 <td><strong>Neural N-gram Language Model</strong></td>
 <td>Construct a neural N-gram model and train it with mini-batch updates.</td>
-<td></td>
+<td><strong>Apr 7:</strong> Quiz 6 [18–19]</td>
 <td><a href="../../../notebooks/06_nn_ngram">notebooks/06_nn_ngram</a></td>
 </tr>
 <tr>
-<td>20</td>
+<td>21</td>
 <td><strong>Autoregressive Modeling: RNN / LSTM</strong></td>
 <td>Explain autoregressive modeling. Describe how RNNs maintain state. Implement RNN and LSTM and identify their limitations.</td>
-<td><strong>Apr 7:</strong> Quiz 6 [18–19]</td>
-<td></td>
-</tr>
-<tr>
-<td>21</td>
-<td><strong>Attention Mechanism</strong></td>
-<td>Understand attention as weighted information selection. Derive queries, keys, and values at the tensor level. Implement attention with matrix operations and verify shapes and normalization.</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>22</td>
-<td><strong>Transformer Architecture / Self-Attention</strong></td>
-<td>Explain self-attention and Transformer blocks. Explain how Transformers scale.</td>
+<td><strong>Attention Mechanism</strong></td>
+<td>Understand attention as weighted information selection. Derive queries, keys, and values at the tensor level. Implement attention with matrix operations and verify shapes and normalization.</td>
 <td><strong>Apr 14:</strong> Quiz 7 [20–21]</td>
 <td></td>
 </tr>
 <tr>
 <td>23</td>
-<td><strong>Transformer Blocks</strong></td>
-<td>Assemble a Transformer block from self-attention and feed-forward sublayers. Trace signal flow. Analyze training stability and sensitivity to initialization and learning rate.</td>
+<td><strong>Transformer Architecture / Self-Attention</strong></td>
+<td>Explain self-attention and the motivation for Transformer models. Describe token embeddings and positional encoding. Explain multi-head attention and how attention heads capture different relationships. Assemble a Transformer block from self-attention, normalization, residual connections, and feed-forward layers. Trace tensor shapes through the model and discuss scaling behavior and training stability.</td>
 <td></td>
 <td></td>
 </tr>
@@ -1849,29 +1849,29 @@ table td:first-child {
 </tr>
 <tr>
 <td>25</td>
-<td><strong>Mathematics of deep learning: Information Theory and Probabilistic Modeling</strong></td>
-<td>Compute entropy, cross-entropy, and KL divergence. Derive cross-entropy loss from maximum likelihood. Interpret common losses as probabilistic objectives.</td>
-<td>NOTE: Will be taught immediately before sequence modeling in future semesters</td>
-<td><a href="../../../mathematics/04_information">mathematics/04_information</a> <br> <a href="../../../mathematics/05_prob_modeling">mathematics/05_prob_modeling</a> <br>  [ <a href="https://www.cs.toronto.edu/~rgrosse/courses/csc311_f20/readings/L07%20Probabilistic%20Models.pdf">probabalistic models</a> ]</td>
+<td><strong>Variational Autoencoders I</strong></td>
+<td>Introduce latent-variable generative models. Explain latent representations and probabilistic encoders/decoders. Explain approximate inference and why variational methods are needed.</td>
+<td></td>
+<td><a href="../../../notebooks/07_vae">notebooks/notebooks/07_vae</a></td>
 </tr>
 <tr>
 <td>26</td>
-<td><strong>Variational Autoencoders I</strong></td>
-<td>Introduce latent-variable generative models. Explain latent representations and probabilistic encoders/decoders. Explain approximate inference and why variational methods are needed.</td>
+<td><strong>Variational Autoencoders II</strong></td>
+<td>Understand the VAE objective (ELBO). Implement a VAE. Interpret reconstruction and regularization terms and their trade-off.</td>
 <td><strong>Apr 28:</strong> Project milestone 2 deadline</td>
 <td><a href="../../../notebooks/07_vae">notebooks/notebooks/07_vae</a></td>
 </tr>
 <tr>
 <td>27</td>
-<td><strong>Variational Autoencoders II</strong></td>
-<td>Understand the VAE objective (ELBO). Implement a VAE. Interpret reconstruction and regularization terms and their trade-off.</td>
+<td><strong>Generative Adversarial Networks</strong></td>
+<td>Explain adversarial training between a generator and discriminator. Formulate the GAN objective as a minimax game. Implement a basic GAN and examine training dynamics. Analyze common failure modes such as mode collapse and instability, and discuss stabilization techniques (e.g. normalization)</td>
 <td></td>
-<td><a href="../../../notebooks/07_vae">notebooks/notebooks/07_vae</a></td>
+<td></td>
 </tr>
 <tr>
 <td>28</td>
-<td><strong>Generative Adversarial Networks (GAN) / Diffusion Models</strong></td>
-<td>Explain adversarial training between generator and discriminator. Describe common failure modes (mode collapse, instability) and stabilization techniques. Formulate diffusion via forward noising and learned reverse denoising. Explain sampling as iterative probabilistic inference.</td>
+<td><strong>Diffusion Models</strong></td>
+<td>Introduce diffusion as generative modeling via gradual noise corruption and learned denoising. Describe the forward noising process and the reverse denoising model. Derive the training objective and connect it to score-based learning. Explain sampling as iterative probabilistic inference and discuss computational trade-offs and scalability.</td>
 <td><strong>May 5:</strong> Quiz 9 [25–27]</td>
 <td></td>
 </tr>
