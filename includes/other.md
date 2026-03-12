@@ -10,3 +10,5 @@
 
 <!-- Footnote -->
 <span class="fn"><span class="fn-body"><a href=''></a> </span></span>
+
+<div style="overflow-x:auto; max-width:100%; margin:-0.4rem 0;">
