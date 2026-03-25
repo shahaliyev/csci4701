@@ -964,14 +964,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../notebooks/05_batchnorm_resnet/" class="md-nav__link">
+      <a href="../../notebooks/05_cnn_architectures/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    05. Batch Normalization and Residual Blocks
+    05. Convolutional Neural Network Architectures
   
 
     
@@ -992,14 +992,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../notebooks/06_nn_ngram/" class="md-nav__link">
+      <a href="../../notebooks/06_rnn_sequential/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    06. Neural Network N-Gram Model
+    06. Recurrent Neural Networks
   
 
     
@@ -1020,14 +1020,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../notebooks/07_vae/" class="md-nav__link">
+      <a href="../../notebooks/08_vae/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    07. Variational Autoencoders (VAE)
+    07. Variational Autoencoders
   
 
     
@@ -2524,7 +2524,7 @@ p(y) = \int p(y \mid x)\,p(x)\,dx.
 $$</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This continuous form of Bayes' rule will become important for us later when discussing <a href="../../notebooks/07_vae">variational autoencoders</a>.</p>
+<p>This continuous form of Bayes' rule will become important for us later when discussing <a href="../../notebooks/08_vae">variational autoencoders</a>.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
@@ -2779,7 +2779,7 @@ p = (p_0,p_1,\dots,p_9),
 \qquad
 \sum_{i=0}^9 p_i = 1.
 $$</p>
-<p>A neural network outputs a probability vector using <a href="../../notebooks/06_nn_ngram">softmax</a>:
+<p>A neural network outputs a probability vector using <a href="../../notebooks/06_rnn_sequential">softmax</a>:
 $$
 \hat{p}(x) \approx P(Y \mid X=x).
 $$
@@ -2996,7 +2996,7 @@ $$</p>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The variable <span class="arithmatex">\(Z\)</span> is called a <a href="../../07_vae">latent variable</a> because it is not directly observed, but it explains which component generated the data.</p>
+<p>The variable <span class="arithmatex">\(Z\)</span> is called a <a href="../../08_vae">latent variable</a> because it is not directly observed, but it explains which component generated the data.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3018,7 +3018,7 @@ $$</p>
 <p>Each component is a Gaussian with its own mean <span class="arithmatex">\(\mu_k\)</span> and covariance matrix <span class="arithmatex">\(\Sigma_k\)</span>. GMMs are expressive enough to approximate many complex distributions, while still being mathematically tractable.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Mixture models are a natural step toward deep generative models. Many modern models (including <a href="../../notebooks/07_vae">VAEs</a> and <a href="../../notebooks">diffusion models</a>) can be viewed as learning complex mixtures in high-dimensional spaces.</p>
+<p>Mixture models are a natural step toward deep generative models. Many modern models (including <a href="../../notebooks/08_vae">VAEs</a> and <a href="../../notebooks">diffusion models</a>) can be viewed as learning complex mixtures in high-dimensional spaces.</p>
 </div>
 <h2 id="common-functions">Common Functions</h2>
 <p>Deep learning models often output unconstrained real numbers. However, many probabilistic parameters must satisfy constraints such as being in <span class="arithmatex">\((0,1)\)</span> or summing to <span class="arithmatex">\(1\)</span>. For this reason, we use special nonlinear functions that map real-valued inputs into valid probability domains. The most common functions are described below.</p>
@@ -3048,7 +3048,7 @@ $$</p>
 $$
 1-\sigma(x)=\sigma(-x).
 $$</p>
-<p>Its inverse function is called the <a href="../../notebooks/06_nn_ngram">logit</a>:
+<p>Its inverse function is called the <a href="../../notebooks/06_rnn_sequential">logit</a>:
 $$
 \forall x \in (0,1),
 \qquad
