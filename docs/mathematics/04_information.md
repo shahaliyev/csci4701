@@ -9,7 +9,7 @@ description: >
   <time datetime="2026-02-09">9 Feb 2026</time>
 </div>
 
-[Information theory](https://en.wikipedia.org/wiki/Information_theory) is the mathematical framework for measuring how much *uncertainty* or *information* is contained in a probability distribution. While [probability theory](../03_probability) tells us how to represent uncertainty, information theory tells us how to *quantify* it. In [deep learning](../../introduction/01_deep_learning), information theory appears everywhere: in loss functions, in [regularization](../../notebooks/04_regul_optim), in probabilistic modeling ([VAEs](../../notebooks/07_vae)), and in the general idea of compressing data into meaningful representations.
+[Information theory](https://en.wikipedia.org/wiki/Information_theory) is the mathematical framework for measuring how much *uncertainty* or *information* is contained in a probability distribution. While [probability theory](../03_probability) tells us how to represent uncertainty, information theory tells us how to *quantify* it. In [deep learning](../../introduction/01_deep_learning), information theory appears everywhere: in loss functions, in [regularization](../../notebooks/04_regul_optim), in probabilistic modeling ([VAEs](../../notebooks/08_vae)), and in the general idea of compressing data into meaningful representations.
 
 !!! info
     The following source was consulted in preparing this material: Goodfellow, I., Bengio, Y., & Courville, A. (2016). *Deep Learning*. MIT Press. [Chapter 3: Probability and Information Theory](https://www.deeplearningbook.org/contents/prob.html).

@@ -373,7 +373,7 @@ p(x) = \int p(x,z)\,dz
 $$
 
 !!! note
-    In practice, latent variable models are powerful because they can represent complex data-generating processes, such as clustering, hidden states, or abstract representations. However, they are also more difficult to train, because computing the marginal likelihood often requires intractable integration (or summation) over latent variables. Many important machine learning models can be viewed as latent variable models, including mixture models, [hidden Markov models (HMMs)](https://en.wikipedia.org/wiki/Hidden_Markov_model), and [variational autoencoders (VAEs)](../../notebooks/07_vae).
+    In practice, latent variable models are powerful because they can represent complex data-generating processes, such as clustering, hidden states, or abstract representations. However, they are also more difficult to train, because computing the marginal likelihood often requires intractable integration (or summation) over latent variables. Many important machine learning models can be viewed as latent variable models, including mixture models, [hidden Markov models (HMMs)](https://en.wikipedia.org/wiki/Hidden_Markov_model), and [variational autoencoders (VAEs)](../../notebooks/08_vae).
 
 ## Mixture Models
 

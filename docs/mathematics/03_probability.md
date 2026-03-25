@@ -259,7 +259,7 @@ $$
 
 
 !!! note
-    This continuous form of Bayes' rule will become important for us later when discussing [variational autoencoders](../../notebooks/07_vae).
+    This continuous form of Bayes' rule will become important for us later when discussing [variational autoencoders](../../notebooks/08_vae).
 
 !!! example
     Consider a spam detection example. Let $X$ represent whether an email is spam ($X=\text{spam}$ or $X=\text{not spam}$), and let $Y$ represent whether the email contains the phrase "win money" ($Y=\text{yes}$ or $Y=\text{no}$). 
@@ -537,7 +537,7 @@ $$
     \sum_{i=0}^9 p_i = 1.
     $$
 
-    A neural network outputs a probability vector using [softmax](../../notebooks/06_nn_ngram):
+    A neural network outputs a probability vector using [softmax](../../notebooks/06_rnn_sequential):
     $$
     \hat{p}(x) \approx P(Y \mid X=x).
     $$
@@ -780,7 +780,7 @@ This can be interpreted as a two-step sampling process:
    $
 
 !!! note
-    The variable $Z$ is called a [latent variable](../../07_vae) because it is not directly observed, but it explains which component generated the data.
+    The variable $Z$ is called a [latent variable](../../08_vae) because it is not directly observed, but it explains which component generated the data.
 
 !!! note
     Mixture models are widely used in probabilistic modeling because many real-world datasets are multi-modal. For example, the distribution of human heights in a population is not perfectly Gaussian, because it is better approximated as a mixture of two Gaussians (male and female). Similarly, pixel intensities in images often come from mixtures of different object materials, lighting conditions, and textures.
@@ -802,7 +802,7 @@ $$
 Each component is a Gaussian with its own mean $\mu_k$ and covariance matrix $\Sigma_k$. GMMs are expressive enough to approximate many complex distributions, while still being mathematically tractable.
 
 !!! note
-    Mixture models are a natural step toward deep generative models. Many modern models (including [VAEs](../../notebooks/07_vae) and [diffusion models](../../notebooks)) can be viewed as learning complex mixtures in high-dimensional spaces.
+    Mixture models are a natural step toward deep generative models. Many modern models (including [VAEs](../../notebooks/08_vae) and [diffusion models](../../notebooks)) can be viewed as learning complex mixtures in high-dimensional spaces.
 
 
 ## Common Functions
@@ -839,7 +839,7 @@ $$
 1-\sigma(x)=\sigma(-x).
 $$
 
-Its inverse function is called the [logit](../../notebooks/06_nn_ngram):
+Its inverse function is called the [logit](../../notebooks/06_rnn_sequential):
 $$
 \forall x \in (0,1),
 \qquad
