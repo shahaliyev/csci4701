@@ -12,3 +12,13 @@
 <span class="fn"><span class="fn-body"><a href=''></a> </span></span>
 
 <div style="overflow-x:auto; max-width:100%; margin:-0.4rem 0;">
+
+
+
+<figure>
+  <img src="../../assets/images/.." alt="" style="max-width: 100%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    ~ Zhang et al., <a href="">Dive into Deep Learning</a>, <a href="">Fig. </a>.
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+  </figcaption>
+</figure>
