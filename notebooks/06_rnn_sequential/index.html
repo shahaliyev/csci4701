@@ -1158,6 +1158,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#long-short-term-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Long Short-Term Memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gated-recurrent-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gated Recurrent Unit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deep-and-bidirectional-recurrent-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deep and Bidirectional Recurrent Networks
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1181,7 +1214,7 @@
   <span class="md-ellipsis">
     
   
-    07. Variational Autoencoders
+    08. Variational Autoencoders
   
 
     
@@ -1818,6 +1851,39 @@
     <span class="md-ellipsis">
       
         Backpropagation Through Time
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#long-short-term-memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Long Short-Term Memory
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gated-recurrent-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gated Recurrent Unit
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#deep-and-bidirectional-recurrent-networks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deep and Bidirectional Recurrent Networks
       
     </span>
   </a>
@@ -5913,6 +5979,388 @@ $$</p>
 \prod_{j=t+1}^{t+K} \frac{\partial h_j}{\partial h_{j-1}}.
 $$</p>
 <p>This reduces computational cost and mitigates instability, but it limits the model's ability to learn very long-range dependencies.</p>
+<h2 id="long-short-term-memory">Long Short-Term Memory<a class="anchor-link" href="#long-short-term-memory">¶</a></h2><p>The vanilla RNN introduced an important idea: instead of rebuilding the prediction from a fixed window, we maintain a hidden state that is updated over time. This already gives the model a form of memory. However, in practice, vanilla RNNs have a serious weakness. When sequences become long, they struggle to preserve useful information over many time steps. The hidden state is repeatedly transformed by the same recurrent update, so gradients may shrink or grow too much during backpropagation. Gradient clipping can help with exploding gradients, but vanishing gradients require a more definitive solution.</p>
+<p>The main idea of <a href="https://en.wikipedia.org/wiki/Long_short-term_memory">Long Short-Term Memory (LSTM)</a> is simple: instead of storing everything inside a single repeatedly overwritten hidden state, we introduce a more carefully controlled memory. The model learns when to write new information, when to keep old information, and when to expose stored information to the rest of the network. In other words, the model does not merely update its state at every step. It learns how much it should update it.</p>
+<p>The name <em>long short-term memory</em> reflects two kinds of storage. As before, the model has trainable weights, which encode long-term statistical knowledge gathered during training. It also has activations that move from one step to the next, which provide short-term dynamic context for a specific sequence. LSTM adds an intermediate memory cell whose content can be preserved much more reliably across time. Rather than forcing the model to rewrite its entire representation at each step, LSTM allows it to keep certain information nearly unchanged for many steps and modify it only when needed.</p>
+<p>To make this possible, LSTM introduces gates. A <em>gate</em> is a learned mechanism that outputs values between $0$ and $1$, typically using the sigmoid function. Values close to $0$ basically mean "block this information" and values close to $1$ mean "allow this information to pass." Since these gate values are produced from the current input and the previous hidden state, the model can decide dynamically, at each time step, how information should flow.</p>
+<figure>
+<img alt="LSTM gates" src="../../assets/images/rnn/lstm-2.svg" style="max-width: 100%; height: auto;"/>
+<figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    LSTM gates controlling memoery cell state ~ Zhang et al., <a href="https://d2l.ai/chapter_recurrent-modern/lstm.html">Dive into Deep Learning</a>, <a href="https://d2l.ai/_images/lstm-2.svg">Fig. 10.0.3</a>.
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+  </figcaption>
+</figure>
+<p>There are three gates in a standard LSTM. The input gate controls how much new candidate information should be written into memory. The forget gate controls how much of the previous memory should be kept. The output gate controls how much of the internal memory should be revealed as the hidden state.  Suppose the input at time step $t$ is $x_t$, the previous hidden state is $h_{t-1}$, and the previous cell state is $c_{t-1}$. Then the three gates are computed as</p>
+<p>$$
+i_t = \sigma(x_t W_{xi} + h_{t-1} W_{hi} + b_i),
+$$</p>
+<p>$$
+f_t = \sigma(x_t W_{xf} + h_{t-1} W_{hf} + b_f),
+$$</p>
+<p>$$
+o_t = \sigma(x_t W_{xo} + h_{t-1} W_{ho} + b_o).
+$$</p>
+<p>Here, $i_t$ is the input gate, $f_t$ is the forget gate, and $o_t$ is the output gate. Each is a vector, not a single number. This means the model can decide separately for each hidden dimension how much to remember, forget, or reveal. In addition to the gates, the LSTM computes a candidate content vector, often written as</p>
+<p>$$
+\tilde{c}_t = \tanh(x_t W_{xc} + h_{t-1} W_{hc} + b_c).
+$$</p>
+<p>This is the new information that <em>could</em> be written into memory. However, it is not written directly. First, the input gate decides how much of this candidate should actually enter the cell state. The core of the LSTM is the cell state update:</p>
+<p>$$
+c_t = f_t \odot c_{t-1} + i_t \odot \tilde{c}_t.
+$$</p>
+<p>This equation is the heart of the architecture. The previous memory $c_{t-1}$ is multiplied elementwise by the forget gate $f_t$, so the model can keep it, partially erase it, or completely remove it. At the same time, the candidate memory $\tilde{c}_t$ is multiplied by the input gate $i_t$, so the model can decide how much new information to write. The new cell state $c_t$ is therefore not a complete overwrite. It is a controlled combination of retained old information and selected new information.</p>
+<p>In a vanilla RNN, the hidden state is repeatedly transformed through a nonlinear mapping, which tends to distort or wash out older information. In an LSTM, the cell state has a more direct path across time. If the forget gate stays close to $1$ and the input gate stays close to $0$, then the memory can remain almost unchanged across many steps:</p>
+<p>$$
+c_t \approx c_{t-1}.
+$$</p>
+<p>This creates a route through time along which information and gradients can pass much more easily. The model is no longer forced to rewrite everything at every step. Finally, the hidden state is computed from the cell state using the output gate:</p>
+<p>$$
+h_t = o_t \odot \tanh(c_t).
+$$</p>
+<figure>
+<img alt="LSTM hidden state" src="../../assets/images/rnn/lstm-3.svg" style="max-width: 100%; height: auto;"/>
+<figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    LSTM cell state ~ Zhang et al., <a href="https://d2l.ai/chapter_recurrent-modern/lstm.html">Dive into Deep Learning</a>, <a href="https://d2l.ai/_images/lstm-3.svg">Fig. 10.0.4</a>.
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+  </figcaption>
+</figure>
+<p>This means the internal memory and the exposed hidden state are not the same thing. The cell state $c_t$ is the long-lived internal memory. The hidden state $h_t$ is the controlled visible representation that gets passed to the next layer or used for prediction. This distinction is essential. The model may store information internally for a long time without revealing all of it at every step. Only when the output gate opens does that stored information strongly affect the external computation. So the LSTM maintains two state variables instead of one:</p>
+<p>$$
+(h_t, c_t).
+$$</p>
+<p>The hidden state $h_t$ is the exposed working state, while the cell state $c_t$ is the protected internal memory. This gives the model much finer control over information flow than a vanilla RNN.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p style="margin: 1em 0;">
+    At an intuitive level, the LSTM update can be read as follows. First, decide what old information should be forgotten. Second, decide what new information should be written. Third, update the internal memory. Fourth, decide how much of that memory should be exposed as the hidden state. This sequence of operations makes LSTM much more stable and expressive for long sequential problems than a standard recurrent network.
+  </p>
+</div>
+<p>We now translate the LSTM equations directly into code, in a similar vein as RNN. The implementation below is written manually rather than using <code>nn.LSTM</code>, so that each we see how LSTM works under the hood.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=0a63f9d8">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-52">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">class</span> <span class="nc">LSTM</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">embed_dim</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embed_dim</span><span class="p">)</span>
+
+        <span class="c1"># input gate parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_xi</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">embed_dim</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_hi</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_i</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">))</span>
+
+        <span class="c1"># forget gate parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_xf</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">embed_dim</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_hf</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_f</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">))</span>
+
+        <span class="c1"># output gate parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_xo</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">embed_dim</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_ho</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_o</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">))</span>
+
+        <span class="c1"># cell state parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_xc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">embed_dim</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_hc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_c</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">))</span>
+
+        <span class="c1"># output parameters</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_hy</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_y</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">h</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+            <span class="n">x_t</span> <span class="o">=</span> <span class="n">emb</span><span class="p">[:,</span> <span class="n">t</span><span class="p">]</span>
+
+            <span class="n">i_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x_t</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_xi</span> <span class="o">+</span> <span class="n">h</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_hi</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_i</span><span class="p">)</span>
+            <span class="n">f_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x_t</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_xf</span> <span class="o">+</span> <span class="n">h</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_hf</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_f</span><span class="p">)</span>
+            <span class="n">o_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x_t</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_xo</span> <span class="o">+</span> <span class="n">h</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_ho</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_o</span><span class="p">)</span>
+            <span class="n">c_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x_t</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_xc</span> <span class="o">+</span> <span class="n">h</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_hc</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_c</span><span class="p">)</span>
+
+            <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">*</span><span class="n">f_t</span> <span class="o">+</span> <span class="n">i_t</span><span class="o">*</span><span class="n">c_t</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">o_t</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+
+            <span class="n">out</span> <span class="o">=</span> <span class="n">h</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_hy</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_y</span>
+            <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">logits</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">c</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-52">class LSTM(nn.Module):
+    def __init__(self, vocab_size, embed_dim, hidden_size):
+        super().__init__()
+        self.hidden_size = hidden_size
+        self.embedding = nn.Embedding(vocab_size, embed_dim)
+
+        # input gate parameters
+        self.W_xi = nn.Parameter(torch.randn(embed_dim, hidden_size) * 0.01)
+        self.W_hi = nn.Parameter(torch.randn(hidden_size, hidden_size) * 0.01)
+        self.b_i = nn.Parameter(torch.zeros(hidden_size))
+
+        # forget gate parameters
+        self.W_xf = nn.Parameter(torch.randn(embed_dim, hidden_size) * 0.01)
+        self.W_hf = nn.Parameter(torch.randn(hidden_size, hidden_size) * 0.01)
+        self.b_f = nn.Parameter(torch.zeros(hidden_size))
+
+        # output gate parameters
+        self.W_xo = nn.Parameter(torch.randn(embed_dim, hidden_size) * 0.01)
+        self.W_ho = nn.Parameter(torch.randn(hidden_size, hidden_size) * 0.01)
+        self.b_o = nn.Parameter(torch.zeros(hidden_size))
+
+        # cell state parameters
+        self.W_xc = nn.Parameter(torch.randn(embed_dim, hidden_size) * 0.01)
+        self.W_hc = nn.Parameter(torch.randn(hidden_size, hidden_size) * 0.01)
+        self.b_c = nn.Parameter(torch.zeros(hidden_size))
+
+        # output parameters
+        self.W_hy = nn.Parameter(torch.randn(hidden_size, vocab_size) * 0.01)
+        self.b_y = nn.Parameter(torch.zeros(vocab_size))
+
+    def forward(self, X, h=None, c=None):
+        B, T = X.shape
+        emb = self.embedding(X)
+
+        if h is None:
+            h = torch.zeros(B, self.hidden_size)
+        if c is None:
+            c = torch.zeros(B, self.hidden_size)
+
+        outputs = []
+        for t in range(T):
+            x_t = emb[:, t]
+
+            i_t = torch.sigmoid(x_t @ self.W_xi + h @ self.W_hi + self.b_i)
+            f_t = torch.sigmoid(x_t @ self.W_xf + h @ self.W_hf + self.b_f)
+            o_t = torch.sigmoid(x_t @ self.W_xo + h @ self.W_ho + self.b_o)
+            c_t = torch.tanh(x_t @ self.W_xc + h @ self.W_hc + self.b_c)
+
+            c = c*f_t + i_t*c_t
+            h = o_t * torch.tanh(c)
+
+            out = h @ self.W_hy + self.b_y
+            outputs.append(out)
+
+        logits = torch.stack(outputs, dim=1)
+        return logits, h, c</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=adc53f5a">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>In the mathematical formulation, we used explicit time indices such as $h_t$ and $c_t$ to emphasize that the hidden state and cell state evolve over time. In the implementation, however, we write simply <code>h</code> and <code>c</code>. Inside the loop over time steps, the variables <code>h</code> and <code>c</code> always represent the <strong>current state</strong>. At the beginning of an iteration, <code>h</code> corresponds to $h_{t-1}$ and <code>c</code> corresponds to $c_{t-1}$. After applying the update equations, they are overwritten to become $h_t$ and $c_t$. We also slightly adjust the notation for the candidate memory. In the derivation, this quantity is often written as $\tilde{c}_t$ to distinguish it from the actual cell state. In code, we denote it as <code>c_t</code> for simplicity. This should be interpreted as the candidate update, not the final cell state.</p>
+<div class="admonition success">
+<p class="admonition-title">Exercise</p>
+<p style="margin: 1em 0;">
+    Initialize and train an LSTM model and sample names from it.
+  </p>
+</div>
+<h2 id="gated-recurrent-unit">Gated Recurrent Unit<a class="anchor-link" href="#gated-recurrent-unit">¶</a></h2><p>The LSTM introduced a powerful idea: instead of blindly updating a hidden state at every step, the model learns to control information flow through gates. However, this flexibility comes at a cost. The LSTM maintains two separate states ($h_t$ and $c_t$) and uses three gates, which increases both the number of parameters and computational complexity.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Gated_recurrent_unit">Gated Recurrent Unit (GRU)</a> simplifies this design while preserving the essential idea of gated information flow. Instead of maintaining a separate cell state, the GRU merges memory and hidden representation into a single state. At the same time, it reduces the number of gates from three to two. Despite this simplification, GRUs often achieve performance comparable to vanilla LSTMs in practice.</p>
+<figure>
+<img alt="Gated Recurrent Unit (GRU) hidden state" src="../../assets/images/rnn/gru.svg" style="max-width: 100%; height: auto;"/>
+<figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    Gated Recurrent Unit (GRU) hidden state ~ Zhang et al., <a href="https://d2l.ai/chapter_recurrent-modern/gru.html">Dive into Deep Learning</a>, <a href="https://d2l.ai/_images/gru-3.svg">Fig. 10.2.3</a>.
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+  </figcaption>
+</figure>
+<p>The GRU introduces two gates: the reset gate and the update gate. As in LSTMs, these gates use sigmoid activations and take values in the interval $[0,1]$, allowing the model to control how information flows through time. Let $x_t$ denote the input at time step $t$ and $h_{t-1}$ the previous hidden state. The reset gate $r_t$ and update gate $z_t$ are computed as</p>
+<p>$$
+r_t = \sigma(x_t W_{xr} + h_{t-1} W_{hr} + b_r),
+$$</p>
+<p>$$
+z_t = \sigma(x_t W_{xz} + h_{t-1} W_{hz} + b_z).
+$$</p>
+<p>The reset gate determines how much of the previous state should be used when computing new information. If $r_t$ is close to $0$, the model effectively ignores the past state. If it is close to $1$, the past is fully taken into account. Next, the model computes a candidate hidden state $\tilde{h}_t$:</p>
+<p>$$
+\tilde{h}_t = \tanh(x_t W_{xh} + (r_t \odot h_{t-1}) W_{hh} + b_h).
+$$</p>
+<p>This equation is similar to the vanilla RNN update, with one important difference: the previous hidden state is first modulated by the reset gate. When $r_t$ is small, the contribution of $h_{t-1}$ is suppressed, and the candidate becomes largely a function of the current input. This allows the model to "reset" its memory when past information is no longer relevant. Finally, the update gate determines how the new hidden state is formed:</p>
+<p>$$
+h_t = z_t \odot h_{t-1} + (1 - z_t) \odot \tilde{h}_t.
+$$</p>
+<p>This is a <a href="https://en.wikipedia.org/wiki/Convex_combination">convex combination</a> between the previous state and the candidate state. When $z_t$ is close to $1$, the model keeps the old state and ignores the candidate. This allows information to persist across many time steps without modification. When $z_t$ is close to $0$, the model replaces the old state with the newly computed candidate. This update plays a role similar to the cell state in LSTMs. Instead of explicitly maintaining a separate memory vector, the GRU uses the update gate to control how much of the past is carried forward. As a result, the GRU can preserve information over long sequences while using a simpler structure.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p style="margin: 1em 0;">
+  Intuitively, the GRU update can be read as follows. First, decide how much of the past should influence the new information (reset gate). Then compute a candidate representation. Finally, decide how much of the old state should be kept versus replaced (update gate).
+  </p>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=5cbe0f1e">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div><div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="CodeMirror cm-s-jupyter">
+<div class="zeroclipboard-container">
+<clipboard-copy ,="" aria-label="Copy to Clipboard" for="cell-53">
+<div>
+<span class="notice" hidden="">Copied!</span>
+<svg aria-hidden="true" class="clipboard-copy-icon" data-view-component="true" height="20" version="1.1" viewbox="0 0 16 16" width="20">
+<path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+<path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z" fill="currentColor" fill-rule="evenodd"></path>
+</svg>
+</div>
+</clipboard-copy>
+</div>
+<div class="highlight-ipynb hl-python"><pre><span></span><span class="k">class</span> <span class="nc">GRU</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">embed_dim</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span> <span class="o">=</span> <span class="n">hidden_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">embed_dim</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_xr</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">embed_dim</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_hr</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_r</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_xz</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">embed_dim</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_hz</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_z</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_xh</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">embed_dim</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_hh</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">hidden_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_h</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_hy</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">hidden_size</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_y</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">B</span><span class="p">,</span> <span class="n">T</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">emb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">h</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_size</span><span class="p">)</span>
+
+        <span class="n">outputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+            <span class="n">x_t</span> <span class="o">=</span> <span class="n">emb</span><span class="p">[:,</span> <span class="n">t</span><span class="p">]</span>
+
+            <span class="n">r_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x_t</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_xr</span> <span class="o">+</span> <span class="n">h</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_hr</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_r</span><span class="p">)</span>
+            <span class="n">z_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">x_t</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_xz</span> <span class="o">+</span> <span class="n">h</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_hz</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_z</span><span class="p">)</span>
+            <span class="n">h_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">x_t</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_xh</span> <span class="o">+</span> <span class="p">(</span><span class="n">r_t</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_hh</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_h</span><span class="p">)</span>
+
+            <span class="n">h</span> <span class="o">=</span> <span class="n">z_t</span> <span class="o">*</span> <span class="n">h</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">z_t</span><span class="p">)</span> <span class="o">*</span> <span class="n">h_t</span>
+
+            <span class="n">out</span> <span class="o">=</span> <span class="n">h</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_hy</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_y</span>
+            <span class="n">outputs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+
+        <span class="n">logits</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">logits</span><span class="p">,</span> <span class="n">h</span>
+</pre></div>
+<div class="clipboard-copy-txt" id="cell-53">class GRU(nn.Module):
+    def __init__(self, vocab_size, embed_dim, hidden_size):
+        super().__init__()
+        self.hidden_size = hidden_size
+        self.embedding = nn.Embedding(vocab_size, embed_dim)
+
+        self.W_xr = nn.Parameter(torch.randn(embed_dim, hidden_size) * 0.01)
+        self.W_hr = nn.Parameter(torch.randn(hidden_size, hidden_size) * 0.01)
+        self.b_r = nn.Parameter(torch.zeros(hidden_size))
+
+        self.W_xz = nn.Parameter(torch.randn(embed_dim, hidden_size) * 0.01)
+        self.W_hz = nn.Parameter(torch.randn(hidden_size, hidden_size) * 0.01)
+        self.b_z = nn.Parameter(torch.zeros(hidden_size))
+
+        self.W_xh = nn.Parameter(torch.randn(embed_dim, hidden_size) * 0.01)
+        self.W_hh = nn.Parameter(torch.randn(hidden_size, hidden_size) * 0.01)
+        self.b_h = nn.Parameter(torch.zeros(hidden_size))
+
+        self.W_hy = nn.Parameter(torch.randn(hidden_size, vocab_size) * 0.01)
+        self.b_y = nn.Parameter(torch.zeros(vocab_size))
+
+    def forward(self, X, h=None):
+        B, T = X.shape
+        emb = self.embedding(X)
+
+        if h is None:
+            h = torch.zeros(B, self.hidden_size)
+
+        outputs = []
+        for t in range(T):
+            x_t = emb[:, t]
+
+            r_t = torch.sigmoid(x_t @ self.W_xr + h @ self.W_hr + self.b_r)
+            z_t = torch.sigmoid(x_t @ self.W_xz + h @ self.W_hz + self.b_z)
+            h_t = torch.tanh(x_t @ self.W_xh + (r_t * h) @ self.W_hh + self.b_h)
+
+            h = z_t * h + (1 - z_t) * h_t
+
+            out = h @ self.W_hy + self.b_y
+            outputs.append(out)
+
+        logits = torch.stack(outputs, dim=1)
+        return logits, h</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3a30dfd0">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<div class="admonition success">
+<p class="admonition-title">Exercise</p>
+<p style="margin: 1em 0;">
+    Initialize and train a GRU model and sample names from it.
+  </p>
+</div>
+<h2 id="deep-and-bidirectional-recurrent-networks">Deep and Bidirectional Recurrent Networks<a class="anchor-link" href="#deep-and-bidirectional-recurrent-networks">¶</a></h2><p>So far, we have improved recurrent models by changing how a single layer processes information over time (e.g. LSTM and GRU). There are also architectural extensions that do not modify the core update rule, but instead change how recurrent layers are organized or how information flows through the sequence.</p>
+<p>A <em>deep RNN</em> is obtained by stacking multiple recurrent layers on top of each other. At each time step, the input is first processed by the lowest layer, and its output is then passed to the next layer, and so on. Each layer maintains its own hidden state and learns its own transformation. This introduces depth in the vertical direction, in addition to the existing depth across time. Lower layers may learn simple local patterns, while higher layers can build more abstract representations from them. This is similar in spirit to deep feedforward networks. In practice, they are harder to train and require careful tuning, and most of the improvement in recurrent models historically comes from gating mechanisms (LSTM, GRU) rather than depth itself.</p>
+<p>Standard recurrent models process sequences in a single direction, typically from left to right. This means that the representation at a given position depends only on past inputs. A <em>bidirectional RNN</em> removes this limitation by processing the sequence in both directions. One recurrent network runs forward (from beginning to end), while another runs backward (from end to beginning). The representations from both directions are then combined at each time step. This allows the model to use both past and future context. In many tasks, such as text classification or sequence labeling, the meaning of an element depends not only on what came before it, but also on what comes after it. The main limitation is that bidirectional models require access to the entire sequence. They cannot be used in settings where predictions must be made step by step, such as autoregressive generation.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=59886a6b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 </div>
 </div>
 </div>
@@ -5981,13 +6429,13 @@ $$</p>
         
         
           
-          <a href="../08_vae/" class="md-footer__link md-footer__link--next" aria-label="Next: 07. Variational Autoencoders">
+          <a href="../08_vae/" class="md-footer__link md-footer__link--next" aria-label="Next: 08. Variational Autoencoders">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                07. Variational Autoencoders
+                08. Variational Autoencoders
               </div>
             </div>
             <div class="md-footer__button md-icon">
