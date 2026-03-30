@@ -1769,10 +1769,11 @@
 
 <h1 id="information-theory">Information Theory</h1>
 <div style="margin:.3rem 0 1rem;font-size:.9em;color:#555;display:flex;align-items:center;gap:.35rem;font-family:monospace">
-  <time datetime="2026-02-09">9 Feb 2026</time>
+  <time datetime="2026-02-09">9 Feb 2026</time> /
+  <time datetime="2026-03-30">30 Mar 2026</time>
 </div>
 
-<p><a href="https://en.wikipedia.org/wiki/Information_theory">Information theory</a> is the mathematical framework for measuring how much <em>uncertainty</em> or <em>information</em> is contained in a probability distribution. While <a href="../03_probability">probability theory</a> tells us how to represent uncertainty, information theory tells us how to <em>quantify</em> it. In <a href="../../introduction/01_deep_learning">deep learning</a>, information theory appears everywhere: in loss functions, in <a href="../../notebooks/04_regul_optim">regularization</a>, in probabilistic modeling (<a href="../../notebooks/08_vae">VAEs</a>), and in the general idea of compressing data into meaningful representations.</p>
+<p><a href="https://en.wikipedia.org/wiki/Information_theory">Information theory</a> is the mathematical framework for measuring how much <em>uncertainty</em> or <em>information</em> is contained in a probability distribution. While <a href="../03_probability">probability theory</a> tells us how to represent uncertainty, information theory tells us how to <em>quantify</em> it. In <a href="../../introduction/01_deep_learning">deep learning</a>, information theory appears everywhere: in loss functions, in <a href="../../notebooks/04_regul_optim">regularization</a>, in <a href="../mathematics/05_prob_modeling">probabilistic modeling</a>, and in the general idea of compressing data into meaningful representations.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>The following source was consulted in preparing this material: Goodfellow, I., Bengio, Y., &amp; Courville, A. (2016). <em>Deep Learning</em>. MIT Press. <a href="https://www.deeplearningbook.org/contents/prob.html">Chapter 3: Probability and Information Theory</a>.</p>
@@ -1791,19 +1792,31 @@
 <p class="admonition-title">Example</p>
 <p>Learning that "the sun rose today" is not informative, but learning that "a solar eclipse happened today" is informative.</p>
 </div>
-<p>To measure this idea mathematically, we want a quantity that behaves like <strong>surprise</strong>:</p>
-<ul>
-<li>If an event is very likely, it should have low surprise.</li>
-<li>If an event is rare, it should have high surprise.</li>
-</ul>
-<p>If two independent events occur, their probabilities multiply, so their surprise would multiply as well. Similar to <a href="../05_prob_modeling">log-likelihood</a>, to convert multiplication into addition, we can take the logarithm.</p>
+<p>Shannon proposed that any measure of information should satisfy three basic properties:</p>
+<ol>
+<li>Certainty carries no information. If <span class="arithmatex">\(P(x)=1\)</span>, then the event is fully predictable, so its information should be <span class="arithmatex">\(0\)</span>.</li>
+<li>Rarer events are more informative. if <span class="arithmatex">\(P(x)\)</span> decreases, the information should increase.</li>
+<li>Independent information is additive. if two independent events occur, the total information should be the sum of their individual information.</li>
+</ol>
+<p>To measure this idea mathematically, we want a quantity that behaves like <strong>surprise</strong>: If an event is very likely, it should have low surprise, and vice versa. We can define surprise as inversely proportional to probability:
+$$
+S(x) \propto \frac{1}{P(x)}.
+$$</p>
+<p>This captures the basic intuition: rare events (small <span class="arithmatex">\(P(x)\)</span>) produce large surprise, while common events produce small surprise. However, this definition has a problem. If two independent events <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> occur, their joint probability is <span class="arithmatex">\(P(x,y) = P(x)P(y)\)</span>, so their surprise would become:
+$$
+S(x,y) \propto \frac{1}{P(x)P(y)} = \frac{1}{P(x)} \cdot \frac{1}{P(y)},
+$$
+which multiplies rather than adds. If two independent events occur, their probabilities multiply, so their surprise would multiply as well. But we defined that information from independent events should accumulate additively, not multiplicatively. To convert multiplication into addition, there is a common trick in probability theory: take the logarithm. Using the identity <span class="arithmatex">\(\log(1/u)=-\log(u)\)</span>, we obtain the <a href="https://en.wikipedia.org/wiki/Information_content">self-information</a> (also called <em>surprisal</em>, <em>information content</em>, or <em>Shannon information</em>) of an event <span class="arithmatex">\(X=x\)</span>, which satisfies all three key properties defined by Shannon:
+$$
+I(x) = -\log P(X=x).
+$$</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In this course, <span class="arithmatex">\(\log\)</span> always means the natural logarithm (base <span class="arithmatex">\(e\)</span>). When using natural logs, information is measured in <em>nats</em> rather than bits. There are excpetions (e.g. <a href="../../supplementary/tsne">t-SNE</a>), naturally.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Important</p>
-<p>Multiplying probabilities quickly produces extremely small numbers. For example, if we observe <span class="arithmatex">\(100\)</span> independent events each with probability <span class="arithmatex">\(0.01\)</span>, then the joint probability <span class="arithmatex">\(p(x_{1:100})\)</span> is:
-$$
-(0.01)^{100} = 10^{-200},
-$$
-which is essentially zero in floating-point arithmetic.   This causes numerical underflow and also leads to very small gradients when optimizing likelihoods directly. Taking the logarithm fixes this problem:
+<p>From the infamous <a href="../../notebooks/04_regul_optim/#exploding-vanishing-gradients">vanishing gradient problem</a>, recall that multiplying probabilities quickly produces extremely small numbers. For example, if we observe <span class="arithmatex">\(100\)</span> independent events each with probability <span class="arithmatex">\(0.01\)</span>, then the joint probability <span class="arithmatex">\(p(x_{1:100})\)</span> is <span class="arithmatex">\((0.01)^{100} = 10^{-200}\)</span>, which is essentially zero in floating-point arithmetic. This causes numerical underflow and also leads to very small gradients when optimizing likelihoods directly. Taking the logarithm fixes this problem:
 $$
 \log (0.01^{100})
 =
@@ -1812,20 +1825,6 @@ $$
 -460.5,
 $$
 which is a normal-sized number. This is why deep learning almost always optimizes log-likelihood instead of likelihood: products become sums, computations stay stable, and gradients remain usable.</p>
-</div>
-<p>Using the identity <span class="arithmatex">\(\log(1/u)=-\log(u)\)</span>, we obtain the <a href="https://en.wikipedia.org/wiki/Information_content">self-information</a> (also called <em>surprisal</em>, <em>information content</em>, or <em>Shannon information</em>) of an event <span class="arithmatex">\(X=x\)</span>:
-$$
-I(x) = -\log P(X=x).
-$$</p>
-<p>This definition satisfies three key properties defined by Shannon:</p>
-<ol>
-<li>Certain events contain no information: if <span class="arithmatex">\(P(x)=1\)</span>, then <span class="arithmatex">\(I(x)=0\)</span>.</li>
-<li>Unlikely events contain more information: smaller <span class="arithmatex">\(P(x)\)</span> gives larger <span class="arithmatex">\(I(x)\)</span>.</li>
-<li>Independent information is additive: if events are independent, their probabilities multiply, so their information adds.</li>
-</ol>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In this course, <span class="arithmatex">\(\log\)</span> always means the natural logarithm (base <span class="arithmatex">\(e\)</span>). When using natural logs, information is measured in <em>nats</em> rather than bits.</p>
 </div>
 <h2 id="entropy">Entropy</h2>
 <p>Self-information measures the surprise of a single outcome. But often we want a single number that summarizes the uncertainty of an entire distribution. In information theory, the (Shannon) <a href="https://en.wikipedia.org/wiki/Entropy_(information_theory)">entropy</a> of a discrete random variable <span class="arithmatex">\(X\)</span> is the expected self-information:</p>
@@ -1839,7 +1838,14 @@ H(X)
 $$
 </div>
 
-<p>It implies that if <span class="arithmatex">\(X\)</span> is almost always the same value, there is little uncertainty, so entropy is low. If <span class="arithmatex">\(X\)</span> has many equally likely outcomes, uncertainty is high, so entropy is high. Discrete entropy is always nonnegative: <span class="arithmatex">\(H(X)\ge 0.\)</span></p>
+<p>It implies that if <span class="arithmatex">\(X\)</span> is almost always the same value, there is little uncertainty, so entropy is low. If <span class="arithmatex">\(X\)</span> has many equally likely outcomes, uncertainty is high, so entropy is high.</p>
+<figure>
+  <img src="../../assets/images/information/binary_entropy_plot.svg" alt="Binary Entropy plot" style="max-width: 100%; height: auto;">
+  <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
+    Entropy $Η(X)$ (i.e. the expected surprisal) of a coin flip, measured in bits, graphed versus the bias of the coin $Pr(X = 1)$, where X = 1 represents a result of heads. Here, the entropy is at most 1 bit, and to communicate the outcome of a coin flip (2 possible values) will require an average of at most 1 bit (exactly 1 bit for a fair coin). The result of a fair die (6 possible values) would have entropy $\log_2 6$ bits. ~ <a href="//commons.wikimedia.org/wiki/File:Binary_entropy_plot.png" title="File:Binary entropy plot.png">Original: </a> <a href="//commons.wikimedia.org/wiki/User:Brona" title="User:Brona">Brona</a> Vector: <a href="//commons.wikimedia.org/wiki/User:Alejo2083" title="User:Alejo2083">Alessio Damato</a>Newer version by <a href="//commons.wikimedia.org/wiki/User:Krishnavedala" title="User:Krishnavedala">Rubber Duck</a> - Own work based on: <a href="//commons.wikimedia.org/wiki/File:Binary_entropy_plot.png" title="File:Binary entropy plot.png">Binary entropy plot.png</a>&nbsp;by <a href="//commons.wikimedia.org/wiki/User:Brona" title="User:Brona">Brona</a>, <a href="http://creativecommons.org/licenses/by-sa/3.0/" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=1984868">Link</a>
+  </figcaption>
+</figure>
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Entropy is maximized by the uniform distribution. If <span class="arithmatex">\(X\)</span> takes <span class="arithmatex">\(k\)</span> outcomes with equal probability <span class="arithmatex">\(P(X=i)=1/k\)</span>, then:
@@ -1866,78 +1872,62 @@ H(X)
 $$
 This entropy is highest at <span class="arithmatex">\(\phi=0.5\)</span> (maximum uncertainty) and approaches <span class="arithmatex">\(0\)</span> as <span class="arithmatex">\(\phi\to 0\)</span> or <span class="arithmatex">\(\phi\to 1\)</span> (almost no uncertainty).</p>
 </div>
-<p>For a continuous random variable with density <span class="arithmatex">\(p(x)\)</span>, the analogous quantity is:
+<p>Discrete entropy is always nonnegative: <span class="arithmatex">\(H(X)\ge 0.\)</span> <a href="https://en.wikipedia.org/wiki/Differential_entropy">Differential (continuous) entropy</a> measures uncertainty in a continuous distribution, but it behaves differently from discrete entropy. This happens because <span class="arithmatex">\(p(x)\)</span> is a probability <em>density</em>, not a probability. A density can be greater than <span class="arithmatex">\(1\)</span>, so <span class="arithmatex">\(\log p(x)\)</span> can be positive. Hence, differential entropy can be negative. For a continuous random variable with density <span class="arithmatex">\(p(x)\)</span>, the differential entropy is:
 $$
 H(X)
 =
 -\int p(x)\log p(x)\,dx.
 $$</p>
-<p><a href="https://en.wikipedia.org/wiki/Differential_entropy">Differential (continuous) entropy</a> measures uncertainty in a continuous distribution, but it behaves differently from discrete entropy. This happens because <span class="arithmatex">\(p(x)\)</span> is a probability <em>density</em>, not a probability. A density can be greater than <span class="arithmatex">\(1\)</span>, so <span class="arithmatex">\(\log p(x)\)</span> can be positive. Hence, differential entropy can be negative.</p>
-<p>Another important difference is that differential entropy depends on the <em>units</em> of measurement. If we scale a continuous variable, its differential entropy changes. If <span class="arithmatex">\(Y=aX\)</span> for some constant <span class="arithmatex">\(a&gt;0\)</span>, then:
-$$
-H(Y)=H(X)+\log a.
-$$</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This means that differential entropy is not an absolute measure of "how much uncertainty exists." Changing meters to centimeters changes the value.</p>
+<p>In a continuous distribution, the probability of any exact value is zero <span class="arithmatex">\(P(X = x) = 0\)</span>. This means that self-information <span class="arithmatex">\(-\log P(X=x)\)</span> is not well-defined for individual outcomes. As a result, differential entropy is not the expected surprisal of exact values, but rather a quantity derived from the probability <em>density</em>. For a small region of width <span class="arithmatex">\(\Delta x\)</span>, the probability is approximately:
+$$
+P(x \le X \le x+\Delta x) \approx p(x)\,\Delta x.
+$$</p>
+<p>From the <a href="../01_calculus/#fundamental-theorem-of-calculus">fundamental theorem of calculus</a>, the information associated with this event is:
+$$
+-\log\big(p(x)\,\Delta x\big) = -\log p(x) - \log \Delta x.
+$$</p>
+<p>Averaging over all such small intervals leads to the differential entropy expression.</p>
 </div>
+<p>Another important difference is that differential entropy depends on the units of measurement. This happens because it is defined in terms of a probability density, which changes when we rescale the variable. Suppose we scale a continuous variable by a factor <span class="arithmatex">\(a&gt;0\)</span>, defining <span class="arithmatex">\(Y = aX\)</span>. Then the density must adjust to preserve total probability, and the entropy transforms as:
+$$
+H(Y) = H(X) + \log a.
+$$</p>
+<div class="admonition success">
+<p class="admonition-title">Exercise</p>
+<p>Show that <span class="arithmatex">\(H(Y)=H(X)+\log a\)</span>. <em>Hint:</em> use the transformed density <span class="arithmatex">\(p_Y(y)=\frac{1}{a}p_X(y/a)\)</span> and apply a change of variables in the entropy integral.</p>
+</div>
+<p>The dependence on units arises because differential entropy implicitly measures uncertainty relative to a resolution of measurement. When we rescale the variable, we also change this resolution, which shifts the entropy value. This means that simply changing units (for example, from meters to centimeters) shifts the entropy by a constant. Therefore, unlike discrete entropy, differential entropy is not an absolute measure of uncertainty.</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<p>Let <span class="arithmatex">\(X\sim U(0,1)\)</span>, so <span class="arithmatex">\(p(x)=1\)</span> on <span class="arithmatex">\([0,1]\)</span>. Then:
-$$
-H(X)
-=
--\int_0^1 1\cdot \log(1)\,dx
-=
-0.
-$$</p>
-<p>Now let <span class="arithmatex">\(Y\sim U(0,0.1)\)</span>, so <span class="arithmatex">\(p(y)=10\)</span> on <span class="arithmatex">\([0,0.1]\)</span>. Then:
-$$
-H(Y)
-=
--\int_0^{0.1} 10\log(10)\,dy
-=
--\log(10),
-$$
-which is negative.</p>
+<p>Let <span class="arithmatex">\(X \sim U(0,1)\)</span>, so <span class="arithmatex">\(p(x)=1\)</span> on <span class="arithmatex">\([0,1]\)</span>. Then <span class="arithmatex">\(H(X) = 0\)</span>. Now define <span class="arithmatex">\(Y = 0.1X\)</span>, so <span class="arithmatex">\(Y \sim U(0,0.1)\)</span> and <span class="arithmatex">\(p(y)=10\)</span>. Then <span class="arithmatex">\(H(Y) = -\log(10)\)</span>. Although the entropy decreases, this does not indicate a reduction in uncertainty. It reflects that the distribution has been compressed into a smaller range, increasing the density and changing the coordinate scale.</p>
 </div>
 <h2 id="conditional-entropy">Conditional Entropy</h2>
-<p>Sometimes uncertainty is reduced after observing another variable. The <a href="https://en.wikipedia.org/wiki/Conditional_entropy">conditional entropy</a> measures the remaining uncertainty in <span class="arithmatex">\(X\)</span> after we know <span class="arithmatex">\(Y\)</span>:</p>
-<div style="overflow-x:auto; max-width:100%;">
+<p>Sometimes uncertainty about a variable is reduced after observing another variable. The <a href="https://en.wikipedia.org/wiki/Conditional_entropy">conditional entropy</a> measures how much uncertainty about <span class="arithmatex">\(X\)</span> remains after we observe <span class="arithmatex">\(Y\)</span>. A useful way to understand this is to consider each possible value of <span class="arithmatex">\(Y\)</span>. If we observe <span class="arithmatex">\(Y=y\)</span>, then <span class="arithmatex">\(X\)</span> follows the conditional distribution <span class="arithmatex">\(P(X \mid Y=y)\)</span>, which has its own entropy <span class="arithmatex">\(H(X \mid Y=y)\)</span>. The conditional entropy averages this remaining uncertainty over all possible values of <span class="arithmatex">\(Y\)</span>:
+$$
+H(X \mid Y) = \sum_y P(y)\,H(X \mid Y=y).
+$$</p>
+<p>Equivalently, it can be written as:
 $$
 H(X \mid Y)
 =
--\sum_{x,y} P(x,y)\log P(x \mid y).
+-\sum_{x,y} P(x,y)\log P(x \mid y),
 $$
-</div>
-
-<p>Equivalently, it is the expected entropy of the conditional distribution:</p>
-<div style="overflow-x:auto; max-width:100%;">
-$$
-H(X \mid Y)
-=
-\sum_y P(y)\,H(X \mid Y=y).
-$$
-</div>
-
-<p>If <span class="arithmatex">\(X\)</span> is completely determined by <span class="arithmatex">\(Y\)</span>, then <span class="arithmatex">\(H(X\mid Y)=0\)</span>. If <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent, then observing <span class="arithmatex">\(Y\)</span> gives no information about <span class="arithmatex">\(X\)</span>, so <span class="arithmatex">\(H(X\mid Y)=H(X)\)</span>.</p>
+which expresses the expected surprisal of <span class="arithmatex">\(X\)</span> given <span class="arithmatex">\(Y\)</span>. If <span class="arithmatex">\(X\)</span> is completely determined by <span class="arithmatex">\(Y\)</span>, then there is no uncertainty left, so <span class="arithmatex">\(H(X\mid Y)=0\)</span>. If <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent, then observing <span class="arithmatex">\(Y\)</span> does not change the distribution of <span class="arithmatex">\(X\)</span>, so <span class="arithmatex">\(H(X\mid Y)=H(X)\)</span>.</p>
 <h2 id="cross-entropy">Cross-Entropy</h2>
-<p>Entropy <span class="arithmatex">\(H(P)\)</span> measures the uncertainty of a distribution <span class="arithmatex">\(P\)</span>. In learning, we usually have two distributions:</p>
+<p>Entropy <span class="arithmatex">\(H(P)\)</span> measures the uncertainty of a distribution <span class="arithmatex">\(P\)</span>. In deep learning, we usually have two distributions:</p>
 <ul>
 <li>The <em>true</em> (data) distribution <span class="arithmatex">\(P\)</span> that generates labels.</li>
 <li>A <em>model</em> distribution <span class="arithmatex">\(Q\)</span> that tries to predict them.</li>
 </ul>
-<p><a href="https://en.wikipedia.org/wiki/Cross-entropy">Cross-entropy</a> measures the expected number of <em>nats</em> needed to encode outcomes generated by the true distribution <span class="arithmatex">\(P\)</span>, when we use an encoding scheme (or predictive model) that assumes the distribution is <span class="arithmatex">\(Q\)</span>. In other words, it measures how well <span class="arithmatex">\(Q\)</span> predicts samples coming from <span class="arithmatex">\(P\)</span>. If <span class="arithmatex">\(Q\)</span> assigns low probability to events that happen frequently under <span class="arithmatex">\(P\)</span>, the cross-entropy becomes large.
+<p><a href="https://en.wikipedia.org/wiki/Cross-entropy">Cross-entropy</a> measures the expected number of <em>nats</em> needed to encode outcomes generated by the true distribution <span class="arithmatex">\(P\)</span>, when we use an encoding scheme (e.g. <a href="../../notebooks/02_neural_network">neural network</a>) that assumes the distribution is <span class="arithmatex">\(Q\)</span>. In other words, it measures how well <span class="arithmatex">\(Q\)</span> predicts samples coming from <span class="arithmatex">\(P\)</span>. If <span class="arithmatex">\(Q\)</span> assigns low probability to events that happen frequently under <span class="arithmatex">\(P\)</span>, the cross-entropy becomes large.
 $$
 H(P,Q)
 =
 -\sum_x P(x)\log Q(x).
-$$
-Compare this with entropy:
-$$
-H(P) = -\sum_x P(x)\log P(x).
 $$</p>
-<p>The only difference is what appears inside the logarithm: entropy uses the true distribution <span class="arithmatex">\(P\)</span>, while cross-entropy uses the model distribution <span class="arithmatex">\(Q\)</span>.</p>
+<p>Compare this with entropy. The only difference is what appears inside the logarithm: entropy uses the true distribution <span class="arithmatex">\(P\)</span>, while cross-entropy uses the model distribution <span class="arithmatex">\(Q\)</span>.</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p>Suppose <span class="arithmatex">\(X\)</span> represents the outcome of a biased coin, and the true distribution is:
@@ -1955,8 +1945,8 @@ H(P)
 \approx
 0.325 \text{ nats}.
 $$
-</div>
-Now suppose we build a wrong model <span class="arithmatex">\(Q\)</span> that assumes the coin is fair:
+</div></p>
+<p>Now suppose we build a wrong model <span class="arithmatex">\(Q\)</span> that assumes the coin is fair:
 $$
 Q(X=\text{heads}) = 0.5,
 \qquad
@@ -1976,25 +1966,18 @@ H(P,Q)
 0.693 \text{ nats}.
 $$
 </div></p>
-<p>So even though the true coin has relatively low uncertainty (<span class="arithmatex">\(H(P)\approx 0.325\)</span>), using the wrong model distribution <span class="arithmatex">\(Q\)</span> increases the expected code length to <span class="arithmatex">\(H(P,Q)\approx 0.693\)</span>. </p>
-<p>Intuitively, this happens because the model assigns too little probability to the outcome that occurs most of the time (heads). Cross-entropy penalizes this mismatch. If we instead choose <span class="arithmatex">\(Q=P\)</span>, then:
+<p>So even though the true coin has relatively low uncertainty (<span class="arithmatex">\(H(P)\approx 0.325\)</span>), using the wrong model distribution <span class="arithmatex">\(Q\)</span> increases the expected code length to <span class="arithmatex">\(H(P,Q)\approx 0.693\)</span>. This happens because the model assigns too little probability to the outcome that occurs most of the time (heads). Cross-entropy penalizes this mismatch. If we instead choose <span class="arithmatex">\(Q=P\)</span>, then:
 $$
 H(P,P)=H(P),
 $$
 meaning cross-entropy becomes minimal when the assumed distribution matches the true one.</p>
 </div>
 <h2 id="kullback-leibler-divergence">Kullback-Leibler Divergence</h2>
-<p>Cross-entropy answers a practical question: <em>If the world follows <span class="arithmatex">\(P\)</span>, but we build a model as if it were <span class="arithmatex">\(Q\)</span>, how costly is that mistake on average?</em> But sometimes we want a cleaner question: <em>How much worse is <span class="arithmatex">\(Q\)</span> compared to the true distribution <span class="arithmatex">\(P\)</span>?</em></p>
-<p>The answer is the extra penalty we pay when we use <span class="arithmatex">\(Q\)</span> instead of <span class="arithmatex">\(P\)</span>.
-This difference is exactly the <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback–Leibler (KL) divergence</a>:
+<p>Cross-entropy answers a practical question: <em>If the world follows <span class="arithmatex">\(P\)</span>, but we build a model as if it were <span class="arithmatex">\(Q\)</span>, how costly is that mistake on average?</em> But sometimes we want a cleaner question: <em>How much worse is <span class="arithmatex">\(Q\)</span> compared to the true distribution <span class="arithmatex">\(P\)</span>?</em> The answer is the extra penalty we pay when we use <span class="arithmatex">\(Q\)</span> instead of <span class="arithmatex">\(P\)</span>. This difference is exactly the <a href="https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence">Kullback–Leibler (KL) divergence</a>:
 $$
 D_{\mathrm{KL}}(P|Q)
 =
-H(P,Q)-H(P).
-$$</p>
-<p>Equivalently, it can be written as:
-$$
-D_{\mathrm{KL}}(P|Q)
+H(P,Q)-H(P) 
 =
 \sum_x P(x)\log\frac{P(x)}{Q(x)}.
 $$</p>
@@ -2004,15 +1987,6 @@ D_{\mathrm{KL}}(P | Q)
 =
 \int p(x)\log \frac{p(x)}{q(x)}\,dx.
 $$</p>
-<p>So KL divergence measures the <em>gap</em> between cross-entropy and entropy: it is zero when <span class="arithmatex">\(P=Q\)</span>, and grows as <span class="arithmatex">\(Q\)</span> becomes a worse approximation of <span class="arithmatex">\(P\)</span>. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>KL divergence is always nonnegative:
-$$
-D_{\mathrm{KL}}(P|Q)\ge 0,
-$$
-and equals <span class="arithmatex">\(0\)</span> if and only if <span class="arithmatex">\(P=Q\)</span> (<a href="../03_probability/#measure-theory">almost everywhere</a> in the continuous case).</p>
-</div>
 <div class="admonition warning">
 <p class="admonition-title">Important</p>
 <p>KL divergence is not symmetric:
@@ -2021,50 +1995,71 @@ D_{\mathrm{KL}}(P | Q) \ne D_{\mathrm{KL}}(Q | P).
 $$
 So it is not a true distance metric, but it is still one of the most important ways to compare distributions in deep learning. </p>
 </div>
-<p>A key identity connects entropy, cross-entropy, and KL divergence:
+<p>So KL divergence measures the gap between cross-entropy and entropy: it is zero when <span class="arithmatex">\(P=Q\)</span>, and grows as <span class="arithmatex">\(Q\)</span> becomes a worse approximation of <span class="arithmatex">\(P\)</span>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Important</p>
+<p>KL divergence can become infinite if the model assigns zero probability to events that occur under the true distribution. If <span class="arithmatex">\(Q(x)=0\)</span> for some <span class="arithmatex">\(x\)</span> with <span class="arithmatex">\(P(x)&gt;0\)</span>, then
 $$
+D_{\mathrm{KL}}(P|Q)=\infty.
+$$
+This reflects a severe mismatch: the model considers an event impossible that can actually occur. This is why probabilistic models assign nonzero probability (or density) to all relevant outcomes.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>KL divergence is always nonnegative:
+$$
+D_{\mathrm{KL}}(P|Q)\ge 0,
+$$
+and equals <span class="arithmatex">\(0\)</span> if and only if <span class="arithmatex">\(P=Q\)</span> (<a href="../03_probability/#measure-theory">almost everywhere</a> in the continuous case).</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Suppose the true distribution is <span class="arithmatex">\(P=(0.9,\,0.1)\)</span>, while the model predicts <span class="arithmatex">\(Q=(0.5,\,0.5).\)</span> Then
+$$
+D_{\mathrm{KL}}(P|Q)
+=
+0.9\log\frac{0.9}{0.5}
++
+0.1\log\frac{0.1}{0.5}.
+$$
+The first term contributes more because outcomes that are likely under <span class="arithmatex">\(P\)</span> receive greater weight. This reflects the idea that KL divergence focuses primarily on errors made on events that truly matter under the data distribution.</p>
+</div>
+<p>In classification, minimizing cross-entropy is the same as minimizing <span class="arithmatex">\(D_{\mathrm{KL}}(P\|Q)\)</span> between the true label distribution and the model predictions. A key identity connects entropy, cross-entropy, and KL divergence:</p>
+<div class="arithmatex">\[
 H(P,Q)
 =
-H(P) + D_{\mathrm{KL}}(P | Q).
-$$</p>
+H(P) + D_{\mathrm{KL}}(P \| Q).
+\]</div>
 <p>This immediately explains why minimizing cross-entropy makes sense. Since <span class="arithmatex">\(H(P)\)</span> does not depend on the model <span class="arithmatex">\(Q\)</span>, minimizing <span class="arithmatex">\(H(P,Q)\)</span> over <span class="arithmatex">\(Q\)</span> is equivalent to minimizing KL divergence:
 $$
 \arg\min_Q H(P,Q)
 =
 \arg\min_Q D_{\mathrm{KL}}(P|Q).
 $$</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In classification, minimizing cross-entropy is the same as minimizing <span class="arithmatex">\(D_{\mathrm{KL}}(P\|Q)\)</span> between the true label distribution and the model predictions.</p>
-</div>
 <div class="admonition success">
 <p class="admonition-title">Exercise</p>
 <p>Let <span class="arithmatex">\(P=\mathcal{N}(\mu_1,\sigma_1^2)\)</span> and <span class="arithmatex">\(Q=\mathcal{N}(\mu_2,\sigma_2^2)\)</span>. Derive a <a href="https://en.wikipedia.org/wiki/Closed-form_expression">closed-form expression</a> for <span class="arithmatex">\(D_{\mathrm{KL}}(P\|Q)\)</span> in terms of <span class="arithmatex">\(\mu_1,\mu_2,\sigma_1,\sigma_2\)</span>.</p>
 </div>
 <h2 id="mutual-information">Mutual Information</h2>
-<p>Entropy measures uncertainty in a single random variable. <a href="https://en.wikipedia.org/wiki/Mutual_information">Mutual information</a> measures how strongly two random variables are related: how much knowing one reduces uncertainty about the other. Between <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span>, it is defined as:
+<p>Entropy measures uncertainty in a single random variable. <a href="https://en.wikipedia.org/wiki/Mutual_information">Mutual information</a> measures how much uncertainty about one variable is reduced by knowing another. In other words, it quantifies how much information <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> share. Between <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span>, it is defined as:
 $$
 I(X;Y)
 =
 \sum_{x,y} P(x,y)\log\frac{P(x,y)}{P(x)P(y)}.
 $$</p>
-<p>For continuous variables:
+<p>The ratio <span class="arithmatex">\(\frac{P(x,y)}{P(x)P(y)}\)</span> compares the true joint probability with what it would be if <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> were independent. If <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent, then <span class="arithmatex">\(P(x,y)=P(x)P(y)\)</span> and the ratio equals <span class="arithmatex">\(1\)</span>, so <span class="arithmatex">\(\log 1 = 0\)</span>. Deviations from independence produce positive contributions, and mutual information averages this discrepancy over all outcomes. For continuous variables:
 $$
 I(X;Y)
 =
 \int p(x,y)\log\frac{p(x,y)}{p(x)p(y)}\,dx\,dy.
 $$</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Mutual information compares the true joint distribution <span class="arithmatex">\(P(X,Y)\)</span> with what the joint distribution would look like if <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> were independent. If <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent, then <span class="arithmatex">\(P(X,Y)=P(X)P(Y)\)</span>, so <span class="arithmatex">\(I(X;Y)=0\)</span>.</p>
-</div>
-<p>Mutual information can be written as a KL divergence:
+<p>Mutual information can also be written as a KL divergence between the true joint distribution and the product of marginals:
 $$
 I(X;Y)
 =
 D_{\mathrm{KL}}\big(P(X,Y)\,|\,P(X)P(Y)\big).
 $$</p>
-<p>It can also be expressed using entropy:</p>
+<p>This shows that mutual information measures how far the joint distribution is from the case where the variables are independent. An equivalent and often more intuitive view expresses mutual information in terms of entropy:</p>
 <div style="overflow-x:auto; max-width:100%;">
 $$
 I(X;Y)
@@ -2075,10 +2070,35 @@ H(Y)-H(Y\mid X).
 $$
 </div>
 
+<p>This representation makes the meaning clear: mutual information is the reduction in uncertainty of one variable after observing the other.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This shows that the information is the reduction in uncertainty of <span class="arithmatex">\(X\)</span> after observing <span class="arithmatex">\(Y\)</span> (and vice versa). It is always nonnegative: <span class="arithmatex">\(I(X;Y)\ge 0\)</span>.</p>
+<p>Mutual information is always nonnegative:
+$$
+I(X;Y)\ge 0,
+$$
+and equals <span class="arithmatex">\(0\)</span> if and only if <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent.</p>
 </div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Suppose <span class="arithmatex">\(X\)</span> is a fair coin and <span class="arithmatex">\(Y=X\)</span>. Then knowing <span class="arithmatex">\(Y\)</span> completely determines <span class="arithmatex">\(X\)</span>, so
+$$
+H(X\mid Y)=0
+\quad \Rightarrow \quad
+I(X;Y)=H(X).
+$$</p>
+<p>If instead <span class="arithmatex">\(X\)</span> and <span class="arithmatex">\(Y\)</span> are independent coin flips, then knowing <span class="arithmatex">\(Y\)</span> gives no information about <span class="arithmatex">\(X\)</span>, so
+$$
+H(X\mid Y)=H(X)
+\quad \Rightarrow \quad
+I(X;Y)=0.
+$$</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In deep learning, mutual information is often used to analyze and design representations. For example, learning good features can be viewed as preserving information about relevant variables (e.g. labels) while discarding irrelevant variation. Although mutual information is rarely computed exactly, many modern methods (e.g. <em>contrastive learning</em>) can be interpreted as approximating or maximizing it.</p>
+</div>
+<p>In conclusion, information theory provides a unified framework for understanding uncertainty, prediction, and learning. Self-information quantifies the surprise of individual outcomes, entropy extends this to measure the average uncertainty of a distribution, and cross-entropy and KL divergence capture how well a model approximates reality. Mutual information then connects these ideas by measuring how much knowing one variable reduces uncertainty about another. While these quantities originate from communication theory, they form the mathematical foundation of modern deep learning: training objectives such as cross-entropy and KL divergence can be viewed as optimizing information-theoretic quantities, even when they are not expressed explicitly in those terms.</p>
 
 
 
