@@ -40,4 +40,12 @@
   </p>
 </div>
 
+<div class="admonition example">
+  <p class="admonition-title">Example</p>
+  <p style="margin: 1em 0;">
+    Your text here.
+  </p>
+</div>
+
+
 
