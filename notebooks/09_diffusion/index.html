@@ -1146,9 +1146,10 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Forward Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#celeba-dataset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1156,6 +1157,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1840,9 +1846,10 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
+    <nav class="md-nav" aria-label="Forward Process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#celeba-dataset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1850,6 +1857,11 @@
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2512,7 +2524,7 @@ T = 1000,
 \beta_T = 0.02.
 $$</p>
 <p>The schedule is linear, so the values gradually increase from $10^{-4}$ to $0.02$. Later diffusion models often use improved schedules, such as cosine schedules, but the linear schedule is the cleanest starting point.</p>
-<h2 id="celeba-dataset">CelebA Dataset<a class="anchor-link" href="#celeba-dataset">¶</a></h2><p><a href="https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html">CelebA</a> is a good dataset for a first DDPM implementation. It has many face images, and most of them have a similar structure: a human face near the center of the image. This makes it easier to train on than a general natural-image dataset where objects, scenes, and layouts vary much more. CelebA still contains 200K images with different identities, poses, appearances, and backgrounds. This makes it large enough for meaningful diffusion training, but still regular enough for early experiments. For this notebook, this is useful because we want to check whether the DDPM pipeline works before moving to harder datasets. If the model fails badly on CelebA, the problem is more likely to be in the implementation, training setup, noise schedule, or sampling code than in the dataset itself. Although CelebA can be loaded with <code>torchvision.datasets.CelebA</code>, this notebook reads it from a local folder. The torchvision version uses <code>gdown</code> for downloading, and the Google Drive download often fails because of quota limits.</p>
+<h3 id="celeba-dataset">CelebA Dataset<a class="anchor-link" href="#celeba-dataset">¶</a></h3><p><a href="https://mmlab.ie.cuhk.edu.hk/projects/CelebA.html">CelebA</a> is a good dataset for a first DDPM implementation. It has many face images, and most of them have a similar structure: a human face near the center of the image. This makes it easier to train on than a general natural-image dataset where objects, scenes, and layouts vary much more. CelebA still contains 200K images with different identities, poses, appearances, and backgrounds. This makes it large enough for meaningful diffusion training, but still regular enough for early experiments. For this notebook, this is useful because we want to check whether the DDPM pipeline works before moving to harder datasets. If the model fails badly on CelebA, the problem is more likely to be in the implementation, training setup, noise schedule, or sampling code than in the dataset itself. Although CelebA can be loaded with <code>torchvision.datasets.CelebA</code>, this notebook reads it from a local folder. The torchvision version uses <code>gdown</code> for downloading, and the Google Drive download often fails because of quota limits.</p>
 </div>
 </div>
 </div>
@@ -3018,16 +3030,6 @@ $$</p>
 \frac{x_t - \sqrt{1-\bar{\alpha}_t}\epsilon_\theta(x_t,t)}{\sqrt{\bar{\alpha}_t}}.
 $$</p>
 <p>Hence the model outputs the noise estimate, and from that noise estimate we can compute a direction toward $x_0$. This predicted noise can then be used to compute the reverse mean and move from $x_t$ to $x_{t-1}$.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="u-net-and-time-encoding">U-Net and Time Encoding<a class="anchor-link" href="#u-net-and-time-encoding">¶</a></h3><div class="admonition info">
 <p class="admonition-title">Info</p>
 <p style="margin: 0.5em 0;">
@@ -3041,10 +3043,10 @@ $$</p>
 <p>We now need to choose an appropriate model. In the original paper, the reverse process is parameterized with a U-Net-like model. The original <strong>U-Net</strong> architecture (<a href="https://arxiv.org/abs/1505.04597">Ronneberger et al., 2015</a>) was introduced for biomedical image segmentation. Its basic idea is simple: use a contracting path to capture context, then use an expanding path to recover spatial resolution. This fits <em>image-to-image</em> problems well because the input and output are both spatial tensors. You should be already familiar with such an encoder-decoder architecture from <a href="../../notebooks/06_rnn_sequential">sequence-to-sequence</a> modeling.</p>
 <p>A U-Net first reduces the spatial resolution while increasing the number of channels. This lets the model capture larger-scale structure. Then it increases the resolution again to return to the original image size. The important detail is the <a href="../../notebooks/05_cnn_architectures/#residual-network">skip connections</a> between matching resolutions. These connections pass high-resolution features from the encoder side to the decoder side. This matters because denoising needs both global structure and local detail.</p>
 <figure>
-<img alt="U-Net Architecture" src="../../assets/images/diffusion/unet.png" style="max-width: 80%; height: auto;"/>
+<img alt="U-Net architecture" src="../../assets/images/diffusion/unet.png" style="max-width: 80%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
-<p>U-Net architecture, Figure 1 from <em>U-Net: Convolutional Networks for Biomedical Image Segmentation</em> by Olaf Ronneberger, Philipp Fischer, and Thomas Brox, 2015. Source: <a href="https://arxiv.org/abs/1505.04597">arXiv:1505.04597</a>.</p>
-</figcaption>
+    U-Net architecture ~ Ronneberger et al., <a href="https://arxiv.org/abs/1505.04597">U-Net: Convolutional Networks for Biomedical Image Segmentation</a>, Fig. 1.
+  </figcaption>
 </figure>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -3620,16 +3622,6 @@ L_0
 -\log p_\theta(x_0\mid x_1).
 $$</p>
 <p>So each middle loss term says: make the learned reverse transition close to the true reverse posterior. The first term, $L_T$, compares the final noisy distribution with the prior $p(x_T)$. If the noise schedule is chosen well, $x_T$ is almost standard Gaussian, so this term does not require learning. The last term, $L_0$, handles the final reconstruction from $x_1$ to $x_0$. The middle terms are the main part for learning the reverse process.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Hence it is not the end of the story. The question becomes: how do we compute $q(x_{t-1}\mid x_t,x_0)?$ During training, we know both $x_0$ and $x_t$, so we can ask: given the clean image and the current noisy image, what should the previous noisy image $x_{t-1}$ look like? By Bayes' rule,</p>
 <p>$$
 q(x_{t-1}\mid x_t,x_0)
@@ -3704,8 +3696,7 @@ $$</p>
 +
 \frac{\sqrt{\alpha_t}(1-\bar{\alpha}_{t-1})}{1-\bar{\alpha}_t}x_t.
 $$</p>
-<h1 id="since-baralpha_talpha_tbaralpha_t-1-we-have-fracsqrtbaralpha_t-1sqrtbaralpha_t">Since $\bar{\alpha}_t=\alpha_t\bar{\alpha}_{t-1}$, we have $
-\frac{\sqrt{\bar{\alpha}_{t-1}}}{\sqrt{\bar{\alpha}_t}}<a class="anchor-link" href="#since-baralpha_talpha_tbaralpha_t-1-we-have-fracsqrtbaralpha_t-1sqrtbaralpha_t">¶</a></h1><p>\frac{1}{\sqrt{\alpha_t}}$. So the expression becomes</p>
+<p>Since $\bar{\alpha}_t=\alpha_t\bar{\alpha}_{t-1}$, we have $\frac{\sqrt{\bar{\alpha}_{t-1}}}{\sqrt{\bar{\alpha}_t}}=\frac{1}{\sqrt{\alpha_t}}$. So the expression becomes</p>
 <p>$$
 \tilde{\mu}_t(x_t,\epsilon)
 =
@@ -3859,16 +3850,6 @@ $$</p>
 \right].
 $$</p>
 <p>The joke is that, this final expression becomes MSE between the true noise and the predicted noise. For each batch, we sample $t$, sample $\epsilon$, construct $x_t$, predict $\epsilon_\theta(x_t,t)$, and compute the loss.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="training-ddpm">Training DDPM<a class="anchor-link" href="#training-ddpm">¶</a></h2><p>Diffusion training is slow because, at every step, we must sample a timestep $t$, generate $x_t$, run the U-Net, and predict the noise. If we train on many classes at once, the model has to learn a broader distribution, which usually needs more time. So here we make a deliberate simplification. CelebeA images are already relatively small, $64\times64$, so we can technically keep the original resolution instead of resizing to $32\times32$ (which we do for faster training). CelebA dataset also has less variation than many other datasets, so the model can learn the data distribution faster. This is useful for learning, where we want to see the whole DDPM pipeline end to end, including sampling, without waiting too long. We also restrict the dataset to have only 10K images, which is enough for diffusion to learn a rough distribution for sampling. Longer training and full dataset will naturally improve the sampling outputs while making the training slower.</p>
 <p>Now we can train the model with the simplified DDPM objective. Each iteration follows the same pattern: take a clean image batch $x_0$, sample a random timestep $t$, sample Gaussian noise $\epsilon$, create $x_t$ using <code>forward_sample</code>, and train the U-Net to predict $\epsilon$ from $(x_t,t)$. The <code>tqdm</code> progress bar is only for monitoring. It shows the current epoch progress and displays the current loss while training. It does not affect the model.</p>
 <p><strong>Automatic Mixed Precision (AMP)</strong> accelerates training by using lower numerical precision where it is safe, while preserving stability where needed. In practice, most of the forward pass runs in <code>float16</code>, which reduces memory usage and increases throughput on modern GPUs, while sensitive operations remain in <code>float32</code> to avoid numerical errors. During backpropagation, gradients can become very small in <code>float16</code>, so PyTorch uses a technique called loss scaling: the loss is temporarily multiplied by a large factor before computing gradients, and then scaled back before the optimizer step. This is handled automatically through <code>autocast</code> (which manages precision during the forward pass) and <code>GradScaler</code> (which manages stable gradient updates). Importantly, AMP does not change the DDPM objective or training logic; it only makes the same training loop more efficient, typically resulting in faster training and lower memory consumption.</p>
@@ -4441,7 +4422,7 @@ for $t&gt;0$, and omit noise at $t=0$. The overall procedure is therefore to sta
 </clipboard-copy>
 </div>
 <div class="highlight-ipynb hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span> <span class="nn">tqdm.auto</span> <span class="kn">import</span> <span class="n">tqdm</span>  <span class="c1"># as discussed above, tqdm widgets were removed due to mkdocs conversion issues</span>
 
 <span class="nd">@torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">sample_ddpm</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">betas</span><span class="p">,</span> <span class="n">image_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
@@ -4464,9 +4445,7 @@ for $t&gt;0$, and omit noise at $t=0$. The overall procedure is therefore to sta
 
         <span class="n">eps_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">t_batch</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span>
 
-        <span class="n">mean</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">alpha_t</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span>
-            <span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">beta_t</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha_bar_t</span><span class="p">))</span> <span class="o">*</span> <span class="n">eps_pred</span>
-        <span class="p">)</span>
+        <span class="n">mean</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">alpha_t</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="p">(</span><span class="n">beta_t</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha_bar_t</span><span class="p">))</span> <span class="o">*</span> <span class="n">eps_pred</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">t</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">posterior_var_t</span> <span class="o">=</span> <span class="n">beta_t</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha_bar_prev_t</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha_bar_t</span><span class="p">)</span>
@@ -4478,7 +4457,7 @@ for $t&gt;0$, and omit noise at $t=0$. The overall procedure is therefore to sta
     <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 <div class="clipboard-copy-txt" id="cell-16">import torch
-from tqdm.auto import tqdm
+from tqdm.auto import tqdm  # as discussed above, tqdm widgets were removed due to mkdocs conversion issues
 
 @torch.no_grad()
 def sample_ddpm(model, betas, image_size=32, n_samples=16, channels=3, device=None):
@@ -4501,9 +4480,7 @@ def sample_ddpm(model, betas, image_size=32, n_samples=16, channels=3, device=No
 
         eps_pred = model(x, t_batch).sample
 
-        mean = (1 / torch.sqrt(alpha_t)) * (
-            x - (beta_t / torch.sqrt(1 - alpha_bar_t)) * eps_pred
-        )
+        mean = (1 / torch.sqrt(alpha_t)) * (x - (beta_t / torch.sqrt(1 - alpha_bar_t)) * eps_pred)
 
         if t &gt; 0:
             posterior_var_t = beta_t * (1 - alpha_bar_prev_t) / (1 - alpha_bar_t)
