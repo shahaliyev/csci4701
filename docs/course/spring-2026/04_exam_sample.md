@@ -286,11 +286,6 @@
     20: "D"
   };
 
-  const phrases = [
-    "Fingers crossed 🤞",
-    "Big Brother watches you 👁️"
-  ];
-
   function initExamFormatting() {
     const root = document.querySelector(".md-content__inner") || document.querySelector("article") || document.body;
     if (!root || root.dataset.examFormatted === "1") return;
@@ -385,7 +380,7 @@
       });
 
       score.textContent = `Score: ${correct}/${total}`;
-      comment.textContent = randomPhrase();
+      comment.textContent = "Fingers crossed 🤞";
       result.classList.add("is-visible");
     });
 
@@ -395,7 +390,6 @@
 
     questionHeadings[0].parentNode.insertBefore(rendered, questionHeadings[0]);
 
-    highlightCode(rendered);
   }
 
   function makeQuestionHeader(number, label) {
@@ -515,16 +509,6 @@
     return wrapper;
   }
 
-  function highlightCode(scope) {
-    scope.querySelectorAll("pre code").forEach((block) => {
-      if (window.hljs && typeof window.hljs.highlightElement === "function") {
-        window.hljs.highlightElement(block);
-      } else if (window.Prism && typeof window.Prism.highlightElement === "function") {
-        window.Prism.highlightElement(block);
-      }
-    });
-  }
-
   function highlightPython(text) {
     const pattern = /(\"\"\"[\s\S]*?\"\"\"|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|#.*|\b(?:import|from|def|return|pass|if|else|elif|for|while|in|as|None|True|False|assert)\b|\b(?:np|print|len|range|abs|int|float|str|list|dict|set|tuple)\b|\b\d+(?:\.\d+)?\b)/g;
     let html = "";
@@ -569,10 +553,6 @@
     });
 
     return clone;
-  }
-
-  function randomPhrase() {
-    return phrases[Math.floor(Math.random() * phrases.length)];
   }
 
   if (document.readyState === "loading") {
@@ -1015,301 +995,4 @@ C. Step-by-step noising is required during training because direct noising remov
 
 D. Direct noising is enough during training because the chosen noisy image has the same distribution as if all earlier steps had been simulated.
 
-<script>
-(function () {
-  const answers = {
-    6: "matching",
-    7: "C",
-    8: "C",
-    9: "C",
-    10: "A",
-    11: "B",
-    12: "D",
-    13: "C",
-    14: "A",
-    15: "B",
-    16: "D",
-    17: "A",
-    18: "A",
-    19: "B",
-    20: "C",
-    21: "D"
-  };
 
-  const matchingAnswers = [
-    "Dropout",
-    "Gradient descent",
-    "Overfitting",
-    "Data augmentation",
-    "Mini-batch training"
-  ];
-
-  function initExamPage() {
-    const app = document.getElementById("exam-app");
-    const panel = document.getElementById("exam-panel");
-    if (!app || !panel || app.dataset.ready === "1") return;
-    app.dataset.ready = "1";
-
-    const questions = collectQuestions(app);
-    if (!questions.length) return;
-
-    let order = shuffle(questions.map((_, index) => index));
-    let current = 0;
-
-    function advanceQuestion() {
-      if (current + 1 === questions.length) {
-        order = shuffle(questions.map((_, index) => index));
-        current = 0;
-      } else {
-        current += 1;
-      }
-      renderTake();
-    }
-
-    function setActiveView(view) {
-      app.querySelectorAll("[data-exam-view]").forEach((button) => {
-        button.classList.toggle("is-active", button.dataset.examView === view);
-      });
-      if (view === "take") {
-        order = shuffle(questions.map((_, index) => index));
-        current = 0;
-        renderTake();
-      } else {
-        renderSee("all");
-      }
-    }
-
-    function renderSee(filter) {
-      panel.innerHTML = "";
-
-      const filters = document.createElement("div");
-      filters.className = "exam-filter-row";
-      [
-        ["all", "All Questions"],
-        ["code", "Code"],
-        ["choice", "Multiple Choice"]
-      ].forEach(([value, label]) => {
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "exam-btn" + (value === filter ? " is-active" : "");
-        button.textContent = label;
-        button.addEventListener("click", () => renderSee(value));
-        filters.appendChild(button);
-      });
-      panel.appendChild(filters);
-
-      const selected = questions.filter((question) => {
-        return filter === "all" || question.type === filter;
-      });
-
-      if (!selected.length) {
-        const empty = document.createElement("p");
-        empty.className = "exam-empty";
-        empty.textContent = "No questions in this view.";
-        panel.appendChild(empty);
-        return;
-      }
-
-      selected.forEach((question) => {
-        panel.appendChild(makeCard(question, { interactive: false }));
-      });
-    }
-
-    function renderTake() {
-      panel.innerHTML = "";
-      const question = questions[order[current]];
-      const nav = document.createElement("div");
-      nav.className = "exam-nav-row";
-
-      const progress = document.createElement("span");
-      progress.className = "exam-meta";
-      progress.textContent = `Practice question ${current + 1} of ${questions.length}`;
-      nav.appendChild(progress);
-
-      panel.appendChild(nav);
-      panel.appendChild(makeCard(question, { interactive: true, advance: advanceQuestion }));
-    }
-
-    app.querySelectorAll("[data-exam-view]").forEach((button) => {
-      button.addEventListener("click", () => setActiveView(button.dataset.examView));
-    });
-    app.addEventListener("exam-next", advanceQuestion);
-
-    renderSee("all");
-  }
-
-  function collectQuestions(app) {
-    const content = app.closest(".md-content__inner") || document.querySelector("article") || document.body;
-    const headings = Array.from(content.querySelectorAll("h2")).filter((heading) => {
-      return /^Question\s+\d+$/i.test(heading.textContent.trim());
-    });
-
-    return headings.map((heading) => {
-      const number = Number(heading.textContent.match(/\d+/)[0]);
-      const nodes = [];
-      let next = heading.nextElementSibling;
-      while (next && next.tagName !== "H2" && next.tagName !== "SCRIPT") {
-        nodes.push(next);
-        next = next.nextElementSibling;
-      }
-
-      heading.classList.add("exam-hidden-source");
-      nodes.forEach((node) => node.classList.add("exam-hidden-source"));
-
-      const hasCode = nodes.some((node) => node.tagName === "PRE" || node.querySelector("pre"));
-      const type = hasCode ? "code" : "choice";
-      return { number, heading, nodes, type, answer: answers[number] };
-    });
-  }
-
-  function makeCard(question, options) {
-    const card = document.createElement("section");
-    card.className = "exam-card";
-
-    const meta = document.createElement("div");
-    meta.className = "exam-meta";
-    meta.textContent = question.type === "code" ? "Code question" : "Multiple choice";
-    card.appendChild(meta);
-
-    const title = document.createElement("h2");
-    title.textContent = `Question ${question.number}`;
-    card.appendChild(title);
-
-    if (options.interactive && question.type === "choice") {
-      renderInteractiveChoice(card, question);
-    } else {
-      question.nodes.forEach((node) => {
-        card.appendChild(cloneVisible(node));
-      });
-
-      if (options.interactive && question.type === "code") {
-        const textarea = document.createElement("textarea");
-        textarea.className = "exam-code-answer";
-        textarea.placeholder = "Paste or draft your code here.";
-        card.appendChild(textarea);
-
-        const button = document.createElement("button");
-        button.type = "button";
-        button.className = "exam-btn";
-        button.textContent = "Submit";
-        button.addEventListener("click", () => {
-          showFeedback(card, "Big brother watches you 👁️", "neutral");
-          addNextButton(card);
-        });
-        card.appendChild(button);
-      }
-    }
-
-    return card;
-  }
-
-  function renderInteractiveChoice(card, question) {
-    if (question.answer === "matching") {
-      question.nodes.forEach((node) => card.appendChild(cloneVisible(node)));
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "exam-btn";
-      button.textContent = "Submit";
-      button.addEventListener("click", () => {
-        showFeedback(card, "Fingers crossed 🤞", "neutral");
-        addNextButton(card);
-      });
-      card.appendChild(button);
-      return;
-    }
-
-    const optionNodes = [];
-    question.nodes.forEach((node) => {
-      const text = node.textContent.trim();
-      if (/^[A-D]\.\s/.test(text)) {
-        optionNodes.push(node);
-      } else {
-        card.appendChild(cloneVisible(node));
-      }
-    });
-
-    optionNodes.forEach((node) => {
-      const text = node.textContent.trim();
-      const label = text.slice(0, 1);
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "exam-option";
-      button.textContent = text;
-      button.addEventListener("click", () => {
-        const correct = label === question.answer;
-        card.querySelectorAll(".exam-option").forEach((option) => {
-          option.disabled = true;
-        });
-        button.classList.add(correct ? "is-correct" : "is-incorrect");
-        showFeedback(card, correct ? "Correct." : "Incorrect.", correct ? "correct" : "incorrect");
-        if (correct) {
-          setTimeout(() => {
-            const panel = document.getElementById("exam-panel");
-            if (panel && panel.contains(card)) {
-              const activeTake = document.querySelector('[data-exam-view="take"].is-active');
-              if (activeTake) {
-                const app = document.getElementById("exam-app");
-                app && app.dispatchEvent(new CustomEvent("exam-next"));
-              }
-            }
-          }, 650);
-        } else {
-          addNextButton(card);
-        }
-      });
-      card.appendChild(button);
-    });
-  }
-
-  function addNextButton(card) {
-    const feedback = card.querySelector(".exam-feedback");
-    if (!feedback || feedback.querySelector(".exam-next-inline")) return;
-    const next = document.createElement("button");
-    next.type = "button";
-    next.className = "exam-btn exam-next-inline";
-    next.textContent = "Next";
-    next.addEventListener("click", () => {
-      const app = document.getElementById("exam-app");
-      app && app.dispatchEvent(new CustomEvent("exam-next"));
-    });
-    feedback.appendChild(next);
-  }
-
-  function cloneVisible(node) {
-    const clone = node.cloneNode(true);
-    clone.classList.remove("exam-hidden-source");
-    clone.querySelectorAll(".exam-hidden-source").forEach((child) => {
-      child.classList.remove("exam-hidden-source");
-    });
-    return clone;
-  }
-
-  function showFeedback(card, text, kind) {
-    let feedback = card.querySelector(".exam-feedback");
-    if (!feedback) {
-      feedback = document.createElement("div");
-      card.appendChild(feedback);
-    }
-    feedback.className = `exam-feedback ${kind}`;
-    feedback.textContent = text;
-  }
-
-  function shuffle(items) {
-    const copy = items.slice();
-    for (let i = copy.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [copy[i], copy[j]] = [copy[j], copy[i]];
-    }
-    return copy;
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initExamPage);
-  } else {
-    initExamPage();
-  }
-  if (window.document$ && typeof window.document$.subscribe === "function") {
-    window.document$.subscribe(initExamPage);
-  }
-})();
-</script>
