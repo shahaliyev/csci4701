@@ -553,7 +553,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../course/spring-2026/02_assesments/" class="md-nav__link">
+      <a href="../../course/spring-2026/02_assessments/" class="md-nav__link">
         
   
   
@@ -589,6 +589,62 @@
     
   
     Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/spring-2026/04_exam_sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exam Sample
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../course/spring-2026/05_policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policies &amp; Resources
   
 
     
@@ -1307,14 +1363,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../08_vae/" class="md-nav__link">
+      <a href="../08_gan/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    08. Variational Autoencoders
+    08. Generative Adversarial Networks
   
 
     
@@ -1335,14 +1391,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../09_diffusion/" class="md-nav__link">
+      <a href="../09_vae/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    09. Denoising Diffusion Probabilistic Models
+    09. Variational Autoencoders
   
 
     
@@ -1363,14 +1419,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../10_gan/" class="md-nav__link">
+      <a href="../10_diffusion/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    10. Generative Adversarial Networks
+    10. Denoising Diffusion Probabilistic Models
   
 
     
@@ -7333,7 +7389,7 @@ src.shape, tgt.shape, tgt_in.shape, label.shape, src_valid_len[:5]</pad></pad></
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>The overall picture should be clear now. A machine translation dataset does not give us isolated tokens or fixed windows from one stream. Instead, each example is a pair of variable-length sequences from two different languages. To train neural sequence models efficiently, we preprocess the text, tokenize it, append special symbols such as <code>&lt;eos&gt;</code>, build separate vocabularies, and convert each sentence pair into fixed-length padded arrays. Once this structure is in place, we are ready to ask the central modeling question: <em>how should a neural network read one sequence and generate another, especially when the two are unaligned and may differ in length?</em></p>
-<h2 id="encoder-decoder-architecture">Encoder-Decoder Architecture<a class="anchor-link" href="#encoder-decoder-architecture">¶</a></h2><p>Up to this point, we have constructed the dataset in a form suitable for neural networks. Each example consists of a source sequence, a decoder input sequence, and the corresponding labels. However, we have not yet defined how a model should transform the source sequence into the target sequence. As mentioned, main difficulty is that the two sequences are unaligned and may have different lengths. A fixed-window or feedforward approach is not sufficient here, because there is no direct positional correspondence between input and output tokens. Instead, we need a model that can read an entire sequence, form a representation of it, and then generate another sequence based on that representation. The standard solution is the <em>encoder–decoder architecture</em>, which we will see over and over again, including in our discussions about <a href="../../notebooks/07_transformer">transformers</a> and <a href="../../notebooks/08_vae">variational autoencoders</a>. The idea is to split the model into two components:</p>
+<h2 id="encoder-decoder-architecture">Encoder-Decoder Architecture<a class="anchor-link" href="#encoder-decoder-architecture">¶</a></h2><p>Up to this point, we have constructed the dataset in a form suitable for neural networks. Each example consists of a source sequence, a decoder input sequence, and the corresponding labels. However, we have not yet defined how a model should transform the source sequence into the target sequence. As mentioned, main difficulty is that the two sequences are unaligned and may have different lengths. A fixed-window or feedforward approach is not sufficient here, because there is no direct positional correspondence between input and output tokens. Instead, we need a model that can read an entire sequence, form a representation of it, and then generate another sequence based on that representation. The standard solution is the <em>encoder–decoder architecture</em>, which we will see over and over again, including in our discussions about <a href="../../notebooks/07_transformer">transformers</a> and <a href="../../notebooks/09_vae">variational autoencoders</a>. The idea is to split the model into two components:</p>
 <ul>
 <li>The <strong>encoder</strong> reads the source sequence $x_{1:T}$ and produces a representation (often called a <em>state</em> or <em>context</em>).</li>
 <li>The <strong>decoder</strong> generates the target sequence $y_{1:T'}$ one token at a time, conditioned on both this encoded representation and the previously generated tokens.</li>

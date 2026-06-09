@@ -12,7 +12,7 @@
       
       
       
-        <link rel="next" href="../02_assesments/">
+        <link rel="next" href="../02_assessments/">
       
       
         
@@ -567,7 +567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../02_assesments/" class="md-nav__link">
+      <a href="../02_assessments/" class="md-nav__link">
         
   
   
@@ -603,6 +603,62 @@
     
   
     Project
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04_exam_sample/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Exam Sample
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05_policies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Policies &amp; Resources
   
 
     
@@ -1061,14 +1117,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/08_vae/" class="md-nav__link">
+      <a href="../../../notebooks/08_gan/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    08. Variational Autoencoders
+    08. Generative Adversarial Networks
   
 
     
@@ -1089,14 +1145,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/09_diffusion/" class="md-nav__link">
+      <a href="../../../notebooks/09_vae/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    09. Denoising Diffusion Probabilistic Models
+    09. Variational Autoencoders
   
 
     
@@ -1117,14 +1173,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../notebooks/10_gan/" class="md-nav__link">
+      <a href="../../../notebooks/10_diffusion/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    10. Generative Adversarial Networks
+    10. Denoising Diffusion Probabilistic Models
   
 
     
@@ -1787,6 +1843,12 @@ table td:first-child {
 
 </style>
 
+<p><strong>Prerequisites</strong> of this course include:</p>
+<ul>
+<li>CSCI 4734: <a href="../../../introduction/02_machine_learning/">Machine Learning</a> (official)<sup id="fnref:ml-prereq"><a class="footnote-ref" href="#fn:ml-prereq">1</a></sup>  </li>
+<li>Fundamental knowledge in <a href="../../../mathematics/01_calculus">calculus</a>, <a href="../../../mathematics/02_linear_algebra">linear algebra</a>, and <a href="../../../mathematics/03_probability">probability theory</a>  </li>
+<li>Experience with Python &amp; NumPy (study this <a href="https://cs231n.github.io/python-numpy-tutorial/">tutorial</a>)</li>
+</ul>
 <div class="admonition warning">
   <p class="admonition-title">Important</p>
   <p>
@@ -1971,49 +2033,49 @@ table td:first-child {
 <td><strong>Attention Mechanism</strong></td>
 <td>Understand attention as weighted information selection. Derive queries, keys, and values at the tensor level. Implement attention with matrix operations and verify shapes and normalization.</td>
 <td><strong>Apr 14:</strong> Quiz 7 [20–21]</td>
-<td></td>
+<td><a href="../../../notebooks/07_transformer">notebooks/07_transformer</a></td>
 </tr>
 <tr>
 <td>23</td>
 <td><strong>Transformer Architecture / Self-Attention</strong></td>
 <td>Explain self-attention and the motivation for Transformer models. Describe token embeddings and positional encoding. Explain multi-head attention and how attention heads capture different relationships. Assemble a Transformer block from self-attention, normalization, residual connections, and feed-forward layers. Trace tensor shapes through the model and discuss scaling behavior and training stability.</td>
 <td></td>
-<td></td>
+<td><a href="../../../notebooks/07_transformer">notebooks/07_transformer</a></td>
 </tr>
 <tr>
 <td>24</td>
 <td><strong>Paper Reading: Transformer, Vision Transformer, Swin Transformer</strong></td>
 <td>Extract core architectural ideas and compare attention for sequences vs images. Discuss scalability and efficiency constraints.</td>
 <td><strong>Apr 21:</strong> Quiz 8 [22–23]</td>
-<td></td>
+<td><a href="../../../notebooks/07_transformer">notebooks/07_transformer</a></td>
 </tr>
 <tr>
 <td>25</td>
-<td><strong>Variational Autoencoders I</strong></td>
-<td>Introduce latent-variable generative models. Explain latent representations and probabilistic encoders/decoders. Explain approximate inference and why variational methods are needed.</td>
+<td><strong>Generative Adversarial Networks</strong></td>
+<td>Explain adversarial training between a generator and discriminator. Formulate the GAN objective as a minimax game. Implement a basic GAN and examine training dynamics. Analyze common failure modes such as mode collapse and instability, and discuss stabilization techniques (e.g. normalization).</td>
 <td></td>
-<td><a href="../../../notebooks/08_vae">notebooks/notebooks/08_vae</a></td>
+<td><a href="../../../notebooks/08_gan">notebooks/08_gan</a></td>
 </tr>
 <tr>
 <td>26</td>
-<td><strong>Variational Autoencoders II</strong></td>
-<td>Understand the VAE objective (ELBO). Implement a VAE. Interpret reconstruction and regularization terms and their trade-off.</td>
+<td><strong>Variational Autoencoders I</strong></td>
+<td>Introduce latent-variable generative models. Explain latent representations and probabilistic encoders/decoders. Explain approximate inference and why variational methods are needed.</td>
 <td><strong>Apr 28:</strong> Project milestone 2 deadline</td>
-<td><a href="../../../notebooks/08_vae">notebooks/notebooks/08_vae</a></td>
+<td><a href="../../../notebooks/09_vae">notebooks/09_vae</a></td>
 </tr>
 <tr>
 <td>27</td>
-<td><strong>Generative Adversarial Networks</strong></td>
-<td>Explain adversarial training between a generator and discriminator. Formulate the GAN objective as a minimax game. Implement a basic GAN and examine training dynamics. Analyze common failure modes such as mode collapse and instability, and discuss stabilization techniques (e.g. normalization)</td>
+<td><strong>Variational Autoencoders II</strong></td>
+<td>Understand the VAE objective (ELBO). Implement a VAE. Interpret reconstruction and regularization terms and their trade-off.</td>
 <td></td>
-<td></td>
+<td><a href="../../../notebooks/09_vae">notebooks/09_vae</a></td>
 </tr>
 <tr>
 <td>28</td>
 <td><strong>Diffusion Models</strong></td>
 <td>Introduce diffusion as generative modeling via gradual noise corruption and learned denoising. Describe the forward noising process and the reverse denoising model. Derive the training objective and connect it to score-based learning. Explain sampling as iterative probabilistic inference and discuss computational trade-offs and scalability.</td>
 <td><strong>May 5:</strong> Quiz 9 [25–27]</td>
-<td></td>
+<td><a href="../../../notebooks/10_diffusion">notebooks/10_diffusion</a></td>
 </tr>
 <tr>
 <td>29</td>
@@ -2031,6 +2093,14 @@ table td:first-child {
 </tr>
 </tbody>
 </table>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:ml-prereq">
+<p>If you have not taken the machine learning (ML) course but have an ML background, email me with specific reasons why you want to enroll, with your academic advisor in correspondence.&#160;<a class="footnote-backref" href="#fnref:ml-prereq" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
 
 
 
@@ -2069,7 +2139,7 @@ table td:first-child {
         
         
           
-          <a href="../02_assesments/" class="md-footer__link md-footer__link--next" aria-label="Next: Assessments">
+          <a href="../02_assessments/" class="md-footer__link md-footer__link--next" aria-label="Next: Assessments">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
