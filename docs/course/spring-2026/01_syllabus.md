@@ -56,6 +56,12 @@ table td:first-child {
 
 </style>
 
+**Prerequisites** of this course include:
+
+- CSCI 4734: [Machine Learning](../../../introduction/02_machine_learning/) (official)[^ml-prereq]  
+- Fundamental knowledge in [calculus](../../../mathematics/01_calculus), [linear algebra](../../../mathematics/02_linear_algebra), and [probability theory](../../../mathematics/03_probability)  
+- Experience with Python & NumPy (study this [tutorial](https://cs231n.github.io/python-numpy-tutorial/))
+
 <div class="admonition warning">
   <p class="admonition-title">Important</p>
   <p>
@@ -69,6 +75,8 @@ table td:first-child {
    Square brackets in the <em>Assessment / Notes</em> column indicate the range of classes whose material is covered by the assessment. For example, <em>Quiz 1 [1–3]</em> means that the quiz assesses material covered in classes 1 through 3.
   </p>
 </div>
+
+[^ml-prereq]: If you have not taken the machine learning (ML) course but have an ML background, email me with specific reasons why you want to enroll, with your academic advisor in correspondence.
 
 | Class | Topic | Learning Outcomes | Assessment | Materials |
 |---|---|---|---|---|
@@ -94,12 +102,12 @@ table td:first-child {
 | 19 | **Sequence Modeling: Tokenization / Bigram Model / Perplexity** | Understand the aims of sequence modeling. Tokenize and build a character-level bigram model and sample from it. Implement average negative log-likelihood loss and perplexity. | | [notebooks/06_rnn_sequential](../../../notebooks/06_rnn_sequential) |
 | 20 | **Neural N-gram Language Model** | Construct a neural N-gram model and train it with mini-batch updates. | **Apr 7:** Quiz 6 \[18–19\] | [notebooks/06_rnn_sequential](../../../notebooks/06_rnn_sequential) | 
 | 21 | **Autoregressive Modeling: RNN / LSTM** | Explain autoregressive modeling. Describe how RNNs maintain state. Implement RNN and LSTM and identify their limitations. | | [notebooks/06_rnn_sequential](../../../notebooks/06_rnn_sequential) |
-| 22 | **Attention Mechanism** | Understand attention as weighted information selection. Derive queries, keys, and values at the tensor level. Implement attention with matrix operations and verify shapes and normalization. | **Apr 14:** Quiz 7 \[20–21\] | |
-| 23 | **Transformer Architecture / Self-Attention** | Explain self-attention and the motivation for Transformer models. Describe token embeddings and positional encoding. Explain multi-head attention and how attention heads capture different relationships. Assemble a Transformer block from self-attention, normalization, residual connections, and feed-forward layers. Trace tensor shapes through the model and discuss scaling behavior and training stability. |  | |
-| 24 | **Paper Reading: Transformer, Vision Transformer, Swin Transformer** | Extract core architectural ideas and compare attention for sequences vs images. Discuss scalability and efficiency constraints. | **Apr 21:** Quiz 8 \[22–23\] | |
-| 25 | **Variational Autoencoders I** | Introduce latent-variable generative models. Explain latent representations and probabilistic encoders/decoders. Explain approximate inference and why variational methods are needed. | | [notebooks/notebooks/08_vae](../../../notebooks/08_vae) |
-| 26 | **Variational Autoencoders II** | Understand the VAE objective (ELBO). Implement a VAE. Interpret reconstruction and regularization terms and their trade-off. |  **Apr 28:** Project milestone 2 deadline | [notebooks/notebooks/08_vae](../../../notebooks/08_vae) |
-| 27 | **Generative Adversarial Networks** | Explain adversarial training between a generator and discriminator. Formulate the GAN objective as a minimax game. Implement a basic GAN and examine training dynamics. Analyze common failure modes such as mode collapse and instability, and discuss stabilization techniques (e.g. normalization) | | |
-| 28 | **Diffusion Models** | Introduce diffusion as generative modeling via gradual noise corruption and learned denoising. Describe the forward noising process and the reverse denoising model. Derive the training objective and connect it to score-based learning. Explain sampling as iterative probabilistic inference and discuss computational trade-offs and scalability. | **May 5:** Quiz 9 \[25–27\] | |
+| 22 | **Attention Mechanism** | Understand attention as weighted information selection. Derive queries, keys, and values at the tensor level. Implement attention with matrix operations and verify shapes and normalization. | **Apr 14:** Quiz 7 \[20–21\] | [notebooks/07_transformer](../../../notebooks/07_transformer) |
+| 23 | **Transformer Architecture / Self-Attention** | Explain self-attention and the motivation for Transformer models. Describe token embeddings and positional encoding. Explain multi-head attention and how attention heads capture different relationships. Assemble a Transformer block from self-attention, normalization, residual connections, and feed-forward layers. Trace tensor shapes through the model and discuss scaling behavior and training stability. |  | [notebooks/07_transformer](../../../notebooks/07_transformer) |
+| 24 | **Paper Reading: Transformer, Vision Transformer, Swin Transformer** | Extract core architectural ideas and compare attention for sequences vs images. Discuss scalability and efficiency constraints. | **Apr 21:** Quiz 8 \[22–23\] | [notebooks/07_transformer](../../../notebooks/07_transformer) |
+| 25 | **Generative Adversarial Networks** | Explain adversarial training between a generator and discriminator. Formulate the GAN objective as a minimax game. Implement a basic GAN and examine training dynamics. Analyze common failure modes such as mode collapse and instability, and discuss stabilization techniques (e.g. normalization). | | [notebooks/08_gan](../../../notebooks/08_gan) |
+| 26 | **Variational Autoencoders I** | Introduce latent-variable generative models. Explain latent representations and probabilistic encoders/decoders. Explain approximate inference and why variational methods are needed. | **Apr 28:** Project milestone 2 deadline | [notebooks/09_vae](../../../notebooks/09_vae) |
+| 27 | **Variational Autoencoders II** | Understand the VAE objective (ELBO). Implement a VAE. Interpret reconstruction and regularization terms and their trade-off. |  | [notebooks/09_vae](../../../notebooks/09_vae) |
+| 28 | **Diffusion Models** | Introduce diffusion as generative modeling via gradual noise corruption and learned denoising. Describe the forward noising process and the reverse denoising model. Derive the training objective and connect it to score-based learning. Explain sampling as iterative probabilistic inference and discuss computational trade-offs and scalability. | **May 5:** Quiz 9 \[25–27\] | [notebooks/10_diffusion](../../../notebooks/10_diffusion) |
 | 29 | **Foundation Models and Modern Trends** | Explain large-scale pretraining and transfer learning. Examine GPT, BERT, CLIP, and latent diffusion models (LDMs). Discuss scaling behavior and limitations. | | |
 | — | **Final Exam** | — | **Tuesday, May 12:** Final Exam \[1–29\] |
