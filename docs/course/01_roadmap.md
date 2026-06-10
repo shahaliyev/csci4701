@@ -355,8 +355,8 @@ The course roadmap for **CSCI 4701: Deep Learning**. Every node is a link — ho
       <div class="rm-cluster rm-col-fm">
         <div class="rm-label">Modern Ecosystem</div>
         <div class="rm-one-col-grid">
-          <a class="rm-node" data-id="frontier" href="../../introduction/01_deep_learning#transformers-and-beyond">Foundation Models<br>&amp; Modern Trends</a>
-          <a class="rm-node" data-id="hardware" href="../../introduction/01_deep_learning#hardware">Hardware &amp;<br>Industry Standards</a>
+          <a class="rm-node" data-id="frontier" href="">Foundation Models<br>&amp; Modern Trends</a>
+          <a class="rm-node" data-id="hardware" href="">Hardware &amp;<br>Industry Standards</a>
         </div>
       </div>
 
