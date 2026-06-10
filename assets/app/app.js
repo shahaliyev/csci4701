@@ -166,3 +166,52 @@
       window.document$.subscribe(build);
   
   })();
+
+  (() => {
+    const dependencies = {
+      backprop: ["calc", "linalg"],
+      regul: ["prob-theory"],
+      info: ["prob-theory"],
+      "prob-model": ["prob-theory"],
+      rnn: ["prob-theory", "info", "prob-model"],
+      gan: ["prob-theory", "info", "prob-model"],
+      vae: ["prob-theory", "info", "prob-model"],
+      diff: ["prob-theory", "info", "prob-model"],
+      frontier: ["trf"],
+      svd: ["linalg"],
+      pca: ["svd"],
+      tsne: ["pca"],
+      "inp-loss": ["inp-met"],
+      "inp-met": ["inp-loss"]
+    };
+
+    const bindRoadmapHighlights = () => {
+      document.querySelectorAll('.course-roadmap[data-roadmap]:not([data-rm-highlight-bound])').forEach((root) => {
+        root.dataset.rmHighlightBound = "1";
+
+        root.addEventListener("mouseover", (e) => {
+          const node = e.target.closest("a.rm-node[data-id]");
+
+          if (!node || !root.contains(node)) {
+            root.querySelectorAll(".rm-lit").forEach((n) => n.classList.remove("rm-lit"));
+            return;
+          }
+
+          root.querySelectorAll(".rm-lit").forEach((n) => n.classList.remove("rm-lit"));
+          (dependencies[node.dataset.id] || []).forEach((id) => {
+            root.querySelectorAll(`[data-id="${id}"]`).forEach((n) => n.classList.add("rm-lit"));
+          });
+        });
+
+        root.addEventListener("mouseleave", (e) => {
+          if (e.relatedTarget && root.contains(e.relatedTarget)) return;
+          root.querySelectorAll(".rm-lit").forEach((n) => n.classList.remove("rm-lit"));
+        });
+      });
+    };
+
+    document.addEventListener("DOMContentLoaded", bindRoadmapHighlights);
+
+    if (window.document$ && typeof window.document$.subscribe === "function")
+      window.document$.subscribe(bindRoadmapHighlights);
+  })();
