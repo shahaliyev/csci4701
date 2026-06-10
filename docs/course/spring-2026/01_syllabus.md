@@ -56,7 +56,7 @@ table td:first-child {
 
 </style>
 
-**Prerequisites** of this course include:
+See the [course roadmap](../../01_roadmap). **Prerequisites** of this course include:
 
 - CSCI 4734: [Machine Learning](../../../introduction/02_machine_learning/) (official)[^ml-prereq]  
 - Fundamental knowledge in [calculus](../../../mathematics/01_calculus), [linear algebra](../../../mathematics/02_linear_algebra), and [probability theory](../../../mathematics/03_probability)  

@@ -792,11 +792,20 @@ Complete and test the full function.
 import numpy as np
 
 def momentum_step(param, grad, v=1.0, lr=0.1, beta=0.9):
-    v_next = None
-    param_next = None
-    # TODO: update velocity and parameter
-    # Hint: velocity is an exponential moving average of gradients.
-    return v_next, param_next
+    """
+    param: scalar current parameter value
+    grad: scalar gradient at the current parameter
+    v: scalar velocity state
+    lr: learning rate
+    beta: momentum coefficient
+
+    Return:
+    tuple (v_next, param_next) of updated velocity and parameter
+
+    Hint:
+    velocity is an exponential moving average of gradients.
+    """
+    pass
 
 # Tests do not modify
 param = 5.0

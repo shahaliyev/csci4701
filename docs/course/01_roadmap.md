@@ -1,6 +1,6 @@
-# Course Roadmap
+# Roadmap
 
-The course roadmap for **CSCI 4701: Deep Learning**. Every node is a link — hover to see related topics highlighted. See the [Spring 2026 syllabus](spring-2026/01_syllabus) for dates and assessments.
+The course roadmap for **CSCI 4701: Deep Learning**. Every node is a link — hover to see related topics highlighted. See the navigation bar for Syllabus and other related information.
 
 
 <style>
@@ -145,11 +145,6 @@ The course roadmap for **CSCI 4701: Deep Learning**. Every node is a link — ho
   max-width: 100%;
 }
 
-@media (max-width: 1100px) {
-  .course-roadmap .rm-grid-row {
-    width: 100%;
-  }
-}
 
 .course-roadmap .rm-grid-row > * {
   min-width: 0;
@@ -250,65 +245,28 @@ The course roadmap for **CSCI 4701: Deep Learning**. Every node is a link — ho
   justify-self: center;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .course-roadmap {
-    font-size: 0.56rem;
+    font-size: 0.64rem;
+    line-height: 1.15;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .course-roadmap .rm-label {
+    font-size: 0.58rem;
+    white-space: nowrap;
+    overflow-wrap: normal;
+  }
+
+  .course-roadmap a.rm-node {
+    white-space: nowrap;
+    overflow: visible;
+    overflow-wrap: normal;
   }
 
   .course-roadmap .rm-grid-row {
-    display: grid;
-    grid-template-columns: 1fr;
-    width: 100%;
-  }
-
-  .course-roadmap .rm-col-phase,
-  .course-roadmap .rm-col-narrow,
-  .course-roadmap .rm-col-wide,
-  .course-roadmap .rm-col-fm,
-  .course-roadmap .rm-span-prereq,
-  .course-roadmap .rm-span-wide,
-  .course-roadmap .rm-span-fm {
-    grid-column: 1;
-  }
-
-  .course-roadmap .rm-one-col-grid,
-  .course-roadmap .rm-math-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .course-roadmap .rm-phase-card {
-    min-height: var(--rm-node-h);
-  }
-
-  .course-roadmap .rm-two-plus-centered,
-  .course-roadmap .rm-foundations-grid,
-  .course-roadmap .rm-three-grid,
-  .course-roadmap .rm-supp-grid {
-    grid-template-columns: repeat(2, minmax(7rem, 1fr));
-  }
-
-  .course-roadmap .rm-two-plus-centered .rm-centered,
-  .course-roadmap .rm-foundations-grid .rm-centered,
-  .course-roadmap .rm-three-grid .rm-centered,
-  .course-roadmap .rm-supp-grid .rm-centered {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-@media (max-width: 560px) {
-  .course-roadmap .rm-two-plus-centered,
-  .course-roadmap .rm-foundations-grid,
-  .course-roadmap .rm-three-grid,
-  .course-roadmap .rm-supp-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .course-roadmap .rm-two-plus-centered .rm-centered,
-  .course-roadmap .rm-foundations-grid .rm-centered,
-  .course-roadmap .rm-three-grid .rm-centered,
-  .course-roadmap .rm-supp-grid .rm-centered {
-    grid-column: auto;
+    min-width: max-content;
   }
 }
 </style>
