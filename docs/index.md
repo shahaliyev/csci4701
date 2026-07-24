@@ -28,3 +28,7 @@ This is the website for the **CSCI 4701: Deep Learning** course taught at [ADA U
     <span>Extra topics beyond the curriculum for further study</span>
   </a>
 </div>
+
+## AI Disclosure
+
+Most of the generative AI-assistance was used for structuring and coding this website. Parts of the material (paragraphs, code blocks, and occasionally, large sections) were drafted with the help of AI. All material has been substantially revised, restructured, and checked for correctness by the instructor, who remains responsible for the content. Mistakes or inaccuracies may still exist, and the course materials continue to be revised.
