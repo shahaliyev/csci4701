@@ -4,6 +4,7 @@ site_description: CSCI 4701 Deep Learning course website — roadmap, notebooks,
 
 theme:
   name: material
+  font: false
   features:
     - navigation.instant
     - navigation.sections
