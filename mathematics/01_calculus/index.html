@@ -6,6 +6,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="CSCI 4701 Deep Learning course website — roadmap, notebooks, and course materials.">
+      
       
       
         <link rel="canonical" href="https://shahaliyev.org/csci4701/mathematics/01_calculus/">
@@ -51,23 +53,13 @@
       
     
     
-      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+      <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
     
       <link rel="stylesheet" href="../../assets/styles/extra.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-  
-  
-
-<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-S1QRRQG9BM"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-S1QRRQG9BM",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-S1QRRQG9BM",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
 
     
     
@@ -2104,7 +2096,7 @@
 <p>An <strong>integral</strong> such as <span class="arithmatex">\(\int_a^b f(x)\,dx\)</span> represents the total accumulation of the values of <span class="arithmatex">\(f(x)\)</span> as <span class="arithmatex">\(x\)</span> moves from <span class="arithmatex">\(a\)</span> to <span class="arithmatex">\(b\)</span>. It is simply the continuous analogue of a summation. You can think of an integral as summing many small contributions of <span class="arithmatex">\(f(x)\)</span> over an interval. The exact techniques for computing integrals are less important in deep learning than the idea they represent.</p>
 <p>Conceptually, integration means breaking an interval into many small pieces. For each piece, we take the value of <span class="arithmatex">\(f(x)\)</span> and multiply it by the width of the piece. Adding all these pieces together gives an approximation of the total accumulation. As the pieces become smaller and more numerous, this approximation approaches the integral. Mathematically, we represent this very small width as <span class="arithmatex">\(dx\)</span>.</p>
 <figure>
-  <img src="../../assets/images/calculus/integration.gif" alt="Integration" style="max-width: 100%; height: auto;">
+  <img src="../../assets/images/calculus/integration.webp" alt="Integration" style="max-width: 100%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     Riemann Integration and Darboux Lower Sums. By <a href="//commons.wikimedia.org/wiki/User:IkamusumeFan" title="User:IkamusumeFan">IkamusumeFan</a> - <span class="int-own-work" lang="en">Own work</span><span typeof="mw:File"><a href="//commons.wikimedia.org/wiki/File:Matplotlib_icon.svg" class="mw-file-description"></a></span>&nbsp;This plot was created with <a href="https://en.wikipedia.org/wiki/en:Matplotlib" class="extiw" title="w:en:Matplotlib"><span title="comprehensive library for creating static, animated, and interactive visualizations in Python">Matplotlib</span></a>., <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=28296068">Link</a>
   </figcaption>
@@ -2148,7 +2140,7 @@ f(x+h) \approx f(x) + f'(x)\,h.
 \]</div>
 <p>This formula should be read as a prediction: "start from the current value <span class="arithmatex">\(f(x)\)</span>, then add the change suggested by the slope times the step size." The approximation becomes more accurate as the step <span class="arithmatex">\(h\)</span> becomes smaller. Geometrically, this means that near the point <span class="arithmatex">\(x\)</span>, the function can be replaced by its tangent line. The tangent line touches the function at <span class="arithmatex">\(x\)</span> and has the same slope there. Over a very small region, the curve and the tangent line are almost indistinguishable, which is why the <a href="https://en.wikipedia.org/wiki/Linear_approximation">linear approximation</a> works.</p>
 <figure>
-  <img src="../../assets/images/calculus/tangent.svg" alt="Tangent line" style="max-width: 80%; height: auto;">
+  <img src="../../assets/images/calculus/tangent.svg" alt="Tangent line" style="max-width: 80%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     By Chorch - Own Work, Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=926971">Link</a>
   </figcaption>
@@ -2321,8 +2313,6 @@ F(x) = \int_a^x f(t)\,dt,
 
 
 
-  
-
 
 
 
@@ -2454,11 +2444,11 @@ F(x) = \int_a^x f(t)\,dt,
       
         <script src="../../assets/app/app.js"></script>
       
-        <script src="../../assets/app/katex.js"></script>
+        <script src="../../assets/vendor/katex/katex.min.js" defer></script>
       
-        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+        <script src="../../assets/vendor/katex/contrib/auto-render.min.js" defer></script>
       
-        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+        <script src="../../assets/app/katex.js" defer></script>
       
     
   </body>

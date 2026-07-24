@@ -53,23 +53,13 @@
       
     
     
-      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+      <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
     
       <link rel="stylesheet" href="../../assets/styles/extra.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-  
-  
-
-<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-S1QRRQG9BM"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-S1QRRQG9BM",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-S1QRRQG9BM",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
 
     
     
@@ -2681,7 +2671,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <time datetime="2026-03-23">23 Mar 2025</time> / <time datetime="2026-03-06">06 Mar 2026</time>
 </div>
 <p><a href="https://colab.research.google.com/github/shahaliyev/csci4701/blob/main/docs/notebooks/05_cnn_architectures.ipynb" rel="noopener" target="_blank">
-<img alt="Open in Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/>
+<img alt="Open in Colab" decoding="async" loading="lazy" src="https://colab.research.google.com/assets/colab-badge.svg"/>
 </a></p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
@@ -2694,7 +2684,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>In previous notebooks we introduced basic convolutional neural networks such as <a href="../03_cnn_torch">LeNet</a> and discussed optimization challenges like <a href="../04_regul_optim">vanishing gradients</a>. In this notebook we will discuss influential neural network architectures and their core ideas.</p>
 <h2 id="imagenet-dataset">ImageNet Dataset<a class="anchor-link" href="#imagenet-dataset">¶</a></h2><p>We discussed in our introduction that the progress in <a href="../../introduction/01_deep_learning">deep learning</a> was limited by the lack of large labeled datasets. A major turning point came with the introduction of the <em>Imagenet</em> (<a href="https://www.image-net.org/static_files/papers/imagenet_cvpr09.pdf">Deng et al., 2009</a>) dataset. The dataset was organized according to the <a href="https://wordnet.princeton.edu/">WordNet hierarchy</a>, a large lexical database of English nouns. The idea was to collect thousands of real-world images illustrating a wide range of classes so that machine learning systems could learn visual concepts at scale. Images were gathered from search engines and then verified by humans (crowdsourced) threefold using <a href="https://www.mturk.com/">Amazon Mechanical Turk</a>. The full ImageNet dataset contains more than <em>14 million images</em> at $224 \times 224$ resolution, covering over <em>20,000 categories</em>, which took about three years and (perhaps) a couple of hundred thousand dollars to build.</p>
 <figure>
-<img alt="AI/ML/DL relation" src="../../assets/images/overview/alexnet.png" style="max-width: 100%; height: auto;"/>
+<img alt="AI/ML/DL relation" decoding="async" loading="lazy" src="../../assets/images/overview/alexnet.png" style="max-width: 100%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
    Eight ILSVRC-2010 test images and the five labels considered most probable by the AlexNet model. Performance in the challenge is typically measured using <em>top-1 accuracy</em>, which checks whether the model's most confident prediction is correct, and <em>top-5 accuracy</em>, which checks whether the correct class appears among the five most confident predictions. The top-5 metric was originally introduced because many classes in ImageNet are visually similar and fine-grained. ~ Krizhevsky, A., Sutskever, I., &amp; Hinton, G. E. (2012). <a href="https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">ImageNet Classification with Deep Convolutional Neural Networks</a>. Advances in Neural Information Processing Systems (NeurIPS)  
   </figcaption>
@@ -2702,7 +2692,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>Most deep learning research focuses on a subset of introduced for the <a href="https://www.image-net.org/challenges/LSVRC/index.php">ImageNet Large Scale Visual Recognition Challenge (ILSVRC)</a> benchmark, which was launched to evaluate algorithms for image classification and object detection. The classification task uses <em>1000 object categories</em>, each with roughly <em>1000 training images</em>. This results in approximately <em>1.2 million</em> training images, along with a validation set of about <em>50,000</em> images and a separate test set used for leaderboard evaluation.</p>
 <h2 id="alexnet">AlexNet<a class="anchor-link" href="#alexnet">¶</a></h2><p>AlexNet (<a href="https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks">Krizhevsky et al., 2012</a>) won ILSVRC 2012 by a large margin. Architecturally it was very close to LeNet: a sequence of convolutional and pooling layers followed by fully connected layers for classification. The main reasons it succeeded where earlier networks had not were basically much more data, better hardware, and a few critical design and training choices.</p>
 <figure>
-<img alt="AlexNet architecture" src="../../assets/images/cnn_architectures/alexnet.svg" style="max-width: 100%; height: auto;"/>
+<img alt="AlexNet architecture" decoding="async" loading="lazy" src="../../assets/images/cnn_architectures/alexnet.svg" style="max-width: 100%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     LeNet and AlexNet architectures ~ Zhang et al., <a href="https://d2l.ai/chapter_convolutional-modern/alexnet.html">Dive into Deep Learning</a>, <a href="https://d2l.ai/_images/alexnet.svg">Fig. 8.1.2</a>.
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
@@ -2732,7 +2722,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   </p>
 </div>
 <figure>
-<img alt="VGGNet" src="../../assets/images/cnn_architectures/vgg.svg" style="max-width: 100%; height: auto;"/>
+<img alt="VGGNet" decoding="async" loading="lazy" src="../../assets/images/cnn_architectures/vgg.svg" style="max-width: 100%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     Alexnet and VGG architectures ~ Zhang et al., <a href="https://d2l.ai/chapter_convolutional-modern/vgg.html">Dive into Deep Learning</a>, <a href="https://d2l.ai/_images/vgg.svg">Fig. 8.2.1</a>.
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
@@ -2740,14 +2730,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </figure>
 <p>To understand the architecture, it is important to explain the one more concept.  The <strong>receptive field</strong> of a neuron is the set of input pixels that can influence its value. A single $5 \times 5$ convolution gives each output pixel a receptive field of $5 \times 5$: it sees 25 input pixels.</p>
 <figure>
-<img alt="Receptive field of 5x5 kernel" src="../../assets/images/cnn_architectures/receptive5.png" style="max-width: 75%; height: auto;"/>
+<img alt="Receptive field of 5x5 kernel" decoding="async" loading="lazy" src="../../assets/images/cnn_architectures/receptive5.png" style="max-width: 75%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     The receptive field of a single 5x5 kernel (plotted offline with matplotlib)
   </figcaption>
 </figure>
 <p>It turns out, two $3 \times 3$ convolutions in sequence also yield a receptive field of $5 \times 5$: the first $3 \times 3$ sees 9 pixels, and the second $3 \times 3$ sees 9 <em>output</em> values of the first layer, which themselves each see 9 input pixels. So one $5 \times 5$ and two $3 \times 3$ layers have the same receptive field.</p>
 <figure>
-<img alt="Receptive field of 3x3 kernel" src="../../assets/images/cnn_architectures/receptive3.png" style="max-width: 100%; height: auto;"/>
+<img alt="Receptive field of 3x3 kernel" decoding="async" loading="lazy" src="../../assets/images/cnn_architectures/receptive3.png" style="max-width: 100%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     The receptive field of two 3x3 kernels (plotted offline with matplotlib)
   </figcaption>
@@ -2756,7 +2746,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>At the same time they use fewer parameters. For $C$ input and output channels, a single $5 \times 5$ layer has $25 C^2$ parameters. Two $3 \times 3$ layers have $9 C^2 + 9 C^2 = 18 C^2$ parameters — about 30% fewer — while covering the same spatial context and allowing more flexible, hierarchical features. The same reasoning extends to three $3 \times 3$ layers replacing one $7 \times 7$: same receptive field, more non-linearities, fewer parameters.</p>
 <h2 id="network-in-network">Network in Network<a class="anchor-link" href="#network-in-network">¶</a></h2><p>Network in Network (NiN) (<a href="https://arxiv.org/abs/1312.4400">Lin et al., 2014</a>) introduced two major ideas that became standard.</p>
 <figure>
-<img alt="Network in Network" src="../../assets/images/cnn_architectures/nin.svg" style="max-width: 100%; height: auto;"/>
+<img alt="Network in Network" decoding="async" loading="lazy" src="../../assets/images/cnn_architectures/nin.svg" style="max-width: 100%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     VGGNet and Network in Network ~ Zhang et al., <a href="https://d2l.ai/chapter_convolutional-modern/nin.html">Dive into Deep Learning</a>, <a href="https://d2l.ai/_images/nin.svg">Fig. 8.3.1</a>.
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
@@ -2764,21 +2754,21 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </figure>
 <p>At first glance, a <strong>kernel of size $1 \times 1$</strong> seems meaningless, as it does not combine information across height or width — only across channels. However, at each spatial position $(h, w)$, the layer takes the $C_{\text{in}}$ channel values and computes $C_{\text{out}}$ linear combinations of them. So it behaves like a small fully connected layer applied independently at every pixel. That gives the network a way to mix and compress channels (e.g. reduce 256 channels to 64) or add extra non-linear capacity without changing spatial resolution.</p>
 <figure>
-<img alt="The effect of 1x1 kernel" src="../../assets/images/cnn_architectures/nin_1x1.svg" style="max-width: 100%; height: auto;"/>
+<img alt="The effect of 1x1 kernel" decoding="async" loading="lazy" src="../../assets/images/cnn_architectures/nin_1x1.svg" style="max-width: 100%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     The effect of 1x1 kernel (plotted offline with matplotlib)
   </figcaption>
 </figure>
 <p>After the last convolutional layers we usually have a tensor of shape (batch, channels, height, width). Classical designs flatten this and feed it into one or more large fully connected layers to produce class scores. Those dense layers contain most of the parameters and are prone to overfitting. <strong>Global average pooling</strong> layer introduced by NiN replaces that with a single step: <em>average each channel over all spatial positions</em>. So for each of the $C$ channels we compute one number (the mean over $H \times W$). The result is a vector of length $C$, which can be fed directly into the classifier (or a single linear layer). No flattening, no huge matrices to keep in the memory, just one number per channel. That drastically cuts parameters, reduces overfitting, and makes the output invariant to the spatial size of the feature map, so the same network can handle slightly different input resolutions. Since NiN, GAP is common in modern CNNs.</p>
 <figure>
-<img alt="Global average pooling (GAP) layer" src="../../assets/images/cnn_architectures/gap.svg" style="max-width: 80%; height: auto;"/>
+<img alt="Global average pooling (GAP) layer" decoding="async" loading="lazy" src="../../assets/images/cnn_architectures/gap.svg" style="max-width: 80%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     The effect of the global average pooling layer on a simple input (plotted offline with matplotlib)
   </figcaption>
 </figure>
 <h2 id="inception-googlenet">Inception (GoogLeNet)<a class="anchor-link" href="#inception-googlenet">¶</a></h2><p>Inception(<a href="https://arxiv.org/abs/1409.4842">Szegedy et al., 2014</a>) introduced the <em>Inception block</em>.<span class="fn"><span class="fn-body">It was named <em>Inception</em> because of the <a href="https://knowyourmeme.com/memes/we-need-to-go-deeper">internet meme</a> from the infamous <em>Inception</em> movie. If you don't believe this, scroll down the paper for references section and check out the very first reference.</span></span> Indeed, why would we select among many kernel sizes, can't we use them all? Instead of choosing one kernel size per layer, the block runs several convolutions in parallel (e.g. $1 \times 1$, $3 \times 3$, $5 \times 5$) and concatenates their outputs along the channel dimension. The network can thus combine fine-grained ($1 \times 1$), local ($3 \times 3$), and broader ($5 \times 5$) patterns in one place, and the relative importance of each path is learned.</p>
 <figure>
-<img alt="Inception module" src="../../assets/images/cnn_architectures/inception.svg" style="max-width: 100%; height: auto;"/>
+<img alt="Inception module" decoding="async" loading="lazy" src="../../assets/images/cnn_architectures/inception.svg" style="max-width: 100%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     Inception module with parallel paths ~ Zhang et al., <a href="https://d2l.ai/chapter_convolutional-modern/googlenet.html">Dive into Deep Learning</a>, <a href="https://d2l.ai/_images/inception.svg">Fig. 8.4.1</a>.
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
@@ -2787,7 +2777,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>A naive version, however, would be very expensive. The specific model of the Inception paper called GoogLeNet
 <span class="fn"><span class="fn-body">A play on words: GoogLeNet 1) was developed by Google researchers, and 2) pays homage to the <a href="../03_cnn_torch">LeNet architecture</a>.</span></span> therefore, inspired by NiN, uses <strong>$1 \times 1$ convolutions as bottlenecks</strong> before the larger kernels: they reduce the channel count, so the subsequent $3 \times 3$ and $5 \times 5$ layers do far fewer operations while still capturing multi-scale structure.</p>
 <figure>
-<img alt="GoogLeNet architecture" src="../../assets/images/cnn_architectures/googlenet.svg" style="max-width: 100%; height: auto;"/>
+<img alt="GoogLeNet architecture" decoding="async" loading="lazy" src="../../assets/images/cnn_architectures/googlenet.svg" style="max-width: 100%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     GoogLeNet architecture composed of Inception modules ~ Zhang et al., <a href="https://d2l.ai/chapter_convolutional-modern/googlenet.html">Dive into Deep Learning</a>, <a href="https://d2l.ai/_images/inception-full-90.svg">Fig. 8.4.2</a>.
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
@@ -3520,7 +3510,7 @@ $$</p>
 </div>
 <h2 id="residual-network">Residual Network<a class="anchor-link" href="#residual-network">¶</a></h2><p><a href="https://en.wikipedia.org/wiki/Residual_neural_network">Residual neural network (ResNet)</a> consists of repeated <strong>residual blocks</strong>. Each residual block consists of a residual <em>skip (shortcut) connection</em>.</p>
 <figure>
-<img alt="Residual Block" src="../../assets/images/cnn_architectures/residual-block.svg" style="max-width: 100%; height: auto;"/>
+<img alt="Residual Block" decoding="async" loading="lazy" src="../../assets/images/cnn_architectures/residual-block.svg" style="max-width: 100%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     Residual block ~ Zhang et al., <a href="https://d2l.ai/chapter_convolutional-modern/resnet.html">Dive into Deep Learning</a>, <a href="https://d2l.ai/_images/residual-block.svg">Fig. 8.6.2</a>.
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
@@ -3619,7 +3609,7 @@ y = x + \sum_{i=1}^{g} T_i(x),
 $$</p>
 <p>where $x$ is the input, $T_i$ are parallel transformations, and $g$ is the <em>cardinality</em> (the number of groups). The outputs of these transformations are aggregated and then added to the input through the residual connection.</p>
 <figure>
-<img alt="ResNeXt block" src="../../assets/images/cnn_architectures/resnext-block.svg" style="max-width: 100%; height: auto;"/>
+<img alt="ResNeXt block" decoding="async" loading="lazy" src="../../assets/images/cnn_architectures/resnext-block.svg" style="max-width: 100%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
   A ResNeXt block aggregates multiple parallel transformations using grouped convolutions.~ Zhang et al., <a href="https://d2l.ai/chapter_convolutional-modern/resnet.html">Dive into Deep Learning</a>, <a href="https://d2l.ai/_images/resnext-block.svg">Fig. 8.6.5</a>.
     <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
@@ -3647,7 +3637,7 @@ channels. So the network grows gradually instead of exploding immediately.</p>
 <h2 id="anynet">AnyNet<a class="anchor-link" href="#anynet">¶</a></h2><p>Most early CNN architectures were designed largely through manual experimentation and intuition. However, the space of possible network architectures is extremely large, making it difficult to identify optimal designs by hand. One approach to this problem is <a href="https://en.wikipedia.org/wiki/Neural_architecture_search">Neural Architecture Search (NAS)</a>, which attempts to automatically discover good network architectures using optimization methods such as reinforcement learning, evolutionary algorithms, or gradient-based search. NAS methods evaluate many candidate architectures and select the one that performs best on a validation task. While this approach can produce strong models (for example EfficientNet), it often requires enormous computational resources.</p>
 <p>An alternative idea is to search not for a single best architecture but for a design space of good architectures. The AnyNet framework (<a href="https://arxiv.org/abs/2003.13678">Radosavovic et al., 2020</a>) defines such a space of CNNs with a simple template.</p>
 <figure>
-<img alt="AnyNet design space" src="https://d2l.ai/_images/anynet.svg" style="max-width: 100%; height: auto;"/>
+<img alt="AnyNet design space" decoding="async" loading="lazy" src="../../assets/images/cnn_architectures/anynet.svg" style="max-width: 100%; height: auto;"/>
 <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
   The AnyNet design space. Networks consist of a stem, body, and head. The body is organized into stages operating at progressively lower spatial resolutions. ~ Zhang et al., <a href="https://d2l.ai/chapter_convolutional-modern/cnn-design.html">Dive into Deep Learning</a>, Fig. 8.8.1.
   </figcaption>
@@ -4093,8 +4083,6 @@ Parameter-efficient methods such as LoRA (Low-Rank Adaptation) (<a href="https:/
 
 
 
-  
-
 
 
 
@@ -4226,11 +4214,11 @@ Parameter-efficient methods such as LoRA (Low-Rank Adaptation) (<a href="https:/
       
         <script src="../../assets/app/app.js"></script>
       
-        <script src="../../assets/app/katex.js"></script>
+        <script src="../../assets/vendor/katex/katex.min.js" defer></script>
       
-        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+        <script src="../../assets/vendor/katex/contrib/auto-render.min.js" defer></script>
       
-        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+        <script src="../../assets/app/katex.js" defer></script>
       
     
   </body>

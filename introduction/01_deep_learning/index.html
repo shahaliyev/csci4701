@@ -6,6 +6,8 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
+        <meta name="description" content="CSCI 4701 Deep Learning course website — roadmap, notebooks, and course materials.">
+      
       
       
         <link rel="canonical" href="https://shahaliyev.org/csci4701/introduction/01_deep_learning/">
@@ -51,23 +53,13 @@
       
     
     
-      <link rel="stylesheet" href="https://unpkg.com/katex@0/dist/katex.min.css">
+      <link rel="stylesheet" href="../../assets/vendor/katex/katex.min.css">
     
       <link rel="stylesheet" href="../../assets/styles/extra.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
-  
-
-
-  
-  
-
-<script id="__analytics">function __md_analytics(){function e(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],e("js",new Date),e("config","G-S1QRRQG9BM"),document.addEventListener("DOMContentLoaded",(function(){document.forms.search&&document.forms.search.query.addEventListener("blur",(function(){this.value&&e("event","search",{search_term:this.value})}));document$.subscribe((function(){var t=document.forms.feedback;if(void 0!==t)for(var a of t.querySelectorAll("[type=submit]"))a.addEventListener("click",(function(a){a.preventDefault();var n=document.location.pathname,d=this.getAttribute("data-md-value");e("event","feedback",{page:n,data:d}),t.firstElementChild.disabled=!0;var r=t.querySelector(".md-feedback__note [data-md-value='"+d+"']");r&&(r.hidden=!1)})),t.hidden=!1})),location$.subscribe((function(t){e("config","G-S1QRRQG9BM",{page_path:t.pathname})}))}));var t=document.createElement("script");t.async=!0,t.src="https://www.googletagmanager.com/gtag/js?id=G-S1QRRQG9BM",document.getElementById("__analytics").insertAdjacentElement("afterEnd",t)}</script>
-  
-    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
-  
 
     
     
@@ -2031,7 +2023,7 @@
 <p>AI initially focused on what is often called the knowledge-based approach, where intelligence was treated as something that could be explicitly written down. Researchers attempted to encode reasoning as rules, symbols, and logical statements. If a human expert knew how to solve a problem, the reasoning steps would be formalized and executed by a machine.</p>
 <p>This approach failed when faced with the ambiguity and variability of the real world. Tasks that humans perform effortlessly, such as recognizing faces or understanding speech, are precisely the tasks that are hardest to describe step by step. Human expertise in these domains is largely implicit rather than explicit. Rule-based systems therefore became brittle, difficult to scale, and expensive to maintain. Small changes in the environment often required rewriting large portions of the system, making progress slow and fragile.</p>
 <figure>
-  <img src="../../assets/images/overview/aimldl.png" alt="AI/ML/DL relation" style="max-width: 80%; height: auto;">
+  <img src="../../assets/images/overview/aimldl.png" alt="AI/ML/DL relation" style="max-width: 80%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     Deep Learning and AI ~ Goodfellow, I., Bengio, Y., & Courville, A. (2016). <a href='http://www.deeplearningbook.org'>Deep Learning</a>. MIT Press. 
   </figcaption>
@@ -2047,7 +2039,7 @@
 <h2 id="biological-and-artificial-neurons">Biological and Artificial Neurons</h2>
 <p>deep learning is <strong>not</strong> an attempt to simulate the brain. <a href="https://en.wikipedia.org/wiki/Neural_network_(machine_learning)">Artificial neural networks</a> are inspired by biological neurons, but the resemblance is conceptual rather than literal. </p>
 <figure>
-  <img src="../../assets/images/overview/neuron.svg" alt="biological neuron" style="max-width: 100%; height: auto;">
+  <img src="../../assets/images/overview/neuron.svg" alt="biological neuron" style="max-width: 100%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
       Structure of a typical neuron with Schwann cells in the peripheral nervous system ~ "Anatomy and Physiology" by the US National Cancer Institute's Surveillance | <a href='https://creativecommons.org/licenses/by-sa/3.0/'>CC BY-SA 3.0</a> | <a href='https://commons.wikimedia.org/wiki/File:Neuron.svg#/media/File:Neuron.svg'>Wikimedia Commons</a>
   </figcaption>
@@ -2055,7 +2047,7 @@
 
 <p>A <a href="https://en.wikipedia.org/wiki/Neuron">biological neuron</a> is a living cell designed for communication in a noisy, energy-constrained environment. It receives signals through <em>dendrites</em>, integrates them in the <em>soma</em> (cell body), and, if a threshold is reached, sends an electrical pulse along the <em>axon</em> to other neurons through <em>synapses</em>. Learning occurs locally by strengthening or weakening synaptic connections through repeated interaction with the environment.</p>
 <figure>
-  <img src="../../assets/images/overview/artificial_neuron.svg" alt="artificial neuron" style="max-width: 80%; height: auto;">
+  <img src="../../assets/images/overview/artificial_neuron.svg" alt="artificial neuron" style="max-width: 80%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
       Artificial Neuron ~ Funcs, Own work | <a href='https://creativecommons.org/public-domain/cc0/'>CC0</a> | <a href='https://commons.wikimedia.org/w/index.php?curid=148910507'>Wikimedia Commons</a>
   </figcaption>
@@ -2070,7 +2062,7 @@
 <p>The modern era began when data stopped being rare. This shift was driven by broader technological changes. Digital sensors replaced analog ones, smartphones placed cameras and microphones in billions of pockets, and the internet enabled continuous sharing of images, text, audio, and video. Companies began logging user interactions by default, storage became cheap, and bandwidth increased dramatically. Data was no longer collected deliberately, it was generated automatically as a byproduct of everyday life.</p>
 <p>Before large-scale datasets became feasible, progress relied on small, carefully curated benchmarks. The famous <a href="https://en.wikipedia.org/wiki/MNIST_database">MNIST</a> dataset was collected by the <a href="https://www.nist.gov/">National Institute of Standards and Technology</a> (NIST), and later was modified (hence the M before NIST) for simpler usage of machine learning algorithms<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>. MNIST is a simple dataset of handwritten digits that allowed researchers to isolate questions about optimization, architectures, and learning dynamics without the confounding effects of scale and noise. </p>
 <figure>
-  <img src="../../assets/images/overview/mnist.png" alt="MNIST dataset" style="max-width: 80%; height: auto;">
+  <img src="../../assets/images/overview/mnist.png" alt="MNIST dataset" style="max-width: 80%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     MNIST inputs ~ Goodfellow, I., Bengio, Y., & Courville, A. (2016). <a href='http://www.deeplearningbook.org'>Deep Learning</a>. MIT Press. 
   </figcaption>
@@ -2079,7 +2071,7 @@
 <p>A symbolic moment was the creation of <a href="https://www.image-net.org/">ImageNet</a> (Deng et al.). ImageNet contained roughly 14 million labeled images, with about 1.2 million training images across 1,000 categories used in its main benchmark. This scale exposed the limitations of hand-crafted features. Models that performed well on small datasets failed to generalize, while systems capable of learning representations directly from data improved reliably.</p>
 <p>In 2012, <a href="https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">AlexNet</a> (Krizhevsky et al.) won the ImageNet competition by a large margin. The model was unusually large and computationally demanding, and training it required GPUs rather than CPUs. This detail is crucialDeep learning did not succeed merely because sufficient data became available, it succeeded because the models finally fit within the limits of available hardware.<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
 <figure>
-  <img src="../../assets/images/overview/alexnet.png" alt="AI/ML/DL relation" style="max-width: 100%; height: auto;">
+  <img src="../../assets/images/overview/alexnet.png" alt="AI/ML/DL relation" style="max-width: 100%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
    "Eight ILSVRC-2010 test images and the five labels considered most probable by our model. The correct label is written under each image, and the probability assigned to the correct label is also shown with a red bar (if it happens to be in the top 5)." ~ Krizhevsky, A., Sutskever, I., & Hinton, G. E. (2012). <a href='https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf'>ImageNet Classification with Deep Convolutional Neural Networks</a>. Advances in Neural Information Processing Systems (NeurIPS)  
   </figcaption>
@@ -2121,8 +2113,6 @@
 
 
 
-
-  
 
 
 
@@ -2255,11 +2245,11 @@
       
         <script src="../../assets/app/app.js"></script>
       
-        <script src="../../assets/app/katex.js"></script>
+        <script src="../../assets/vendor/katex/katex.min.js" defer></script>
       
-        <script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+        <script src="../../assets/vendor/katex/contrib/auto-render.min.js" defer></script>
       
-        <script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+        <script src="../../assets/app/katex.js" defer></script>
       
     
   </body>
