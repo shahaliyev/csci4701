@@ -40,6 +40,8 @@ markdown_extensions:
       generic: true
   - footnotes
   - tables
+  - attr_list
+  - md_in_html
 
 extra_javascript:
   - assets/app/app.js
