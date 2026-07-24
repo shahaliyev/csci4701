@@ -22,7 +22,7 @@ Conceptually, integration means breaking an interval into many small pieces. For
 
 
 <figure>
-  <img src="../../assets/images/calculus/integration.gif" alt="Integration" style="max-width: 100%; height: auto;">
+  <img src="../../assets/images/calculus/integration.webp" alt="Integration" style="max-width: 100%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     Riemann Integration and Darboux Lower Sums. By <a href="//commons.wikimedia.org/wiki/User:IkamusumeFan" title="User:IkamusumeFan">IkamusumeFan</a> - <span class="int-own-work" lang="en">Own work</span><span typeof="mw:File"><a href="//commons.wikimedia.org/wiki/File:Matplotlib_icon.svg" class="mw-file-description"></a></span>&nbsp;This plot was created with <a href="https://en.wikipedia.org/wiki/en:Matplotlib" class="extiw" title="w:en:Matplotlib"><span title="comprehensive library for creating static, animated, and interactive visualizations in Python">Matplotlib</span></a>., <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=28296068">Link</a>
   </figcaption>
@@ -79,7 +79,7 @@ $$
 This formula should be read as a prediction: "start from the current value $f(x)$, then add the change suggested by the slope times the step size." The approximation becomes more accurate as the step $h$ becomes smaller. Geometrically, this means that near the point $x$, the function can be replaced by its tangent line. The tangent line touches the function at $x$ and has the same slope there. Over a very small region, the curve and the tangent line are almost indistinguishable, which is why the [linear approximation](https://en.wikipedia.org/wiki/Linear_approximation) works.
 
 <figure>
-  <img src="../../assets/images/calculus/tangent.svg" alt="Tangent line" style="max-width: 80%; height: auto;">
+  <img src="../../assets/images/calculus/tangent.svg" alt="Tangent line" style="max-width: 80%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     By Chorch - Own Work, Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=926971">Link</a>
   </figcaption>

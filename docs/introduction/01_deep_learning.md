@@ -35,7 +35,7 @@ AI initially focused on what is often called the knowledge-based approach, where
 This approach failed when faced with the ambiguity and variability of the real world. Tasks that humans perform effortlessly, such as recognizing faces or understanding speech, are precisely the tasks that are hardest to describe step by step. Human expertise in these domains is largely implicit rather than explicit. Rule-based systems therefore became brittle, difficult to scale, and expensive to maintain. Small changes in the environment often required rewriting large portions of the system, making progress slow and fragile.
 
 <figure>
-  <img src="../../assets/images/overview/aimldl.png" alt="AI/ML/DL relation" style="max-width: 80%; height: auto;">
+  <img src="../../assets/images/overview/aimldl.png" alt="AI/ML/DL relation" style="max-width: 80%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     Deep Learning and AI ~ Goodfellow, I., Bengio, Y., & Courville, A. (2016). <a href='http://www.deeplearningbook.org'>Deep Learning</a>. MIT Press. 
   </figcaption>
@@ -60,7 +60,7 @@ Interestingly, deep learning did not introduce fundamentally new mathematical id
 deep learning is **not** an attempt to simulate the brain. [Artificial neural networks](https://en.wikipedia.org/wiki/Neural_network_(machine_learning)) are inspired by biological neurons, but the resemblance is conceptual rather than literal. 
 
 <figure>
-  <img src="../../assets/images/overview/neuron.svg" alt="biological neuron" style="max-width: 100%; height: auto;">
+  <img src="../../assets/images/overview/neuron.svg" alt="biological neuron" style="max-width: 100%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
       Structure of a typical neuron with Schwann cells in the peripheral nervous system ~ "Anatomy and Physiology" by the US National Cancer Institute's Surveillance | <a href='https://creativecommons.org/licenses/by-sa/3.0/'>CC BY-SA 3.0</a> | <a href='https://commons.wikimedia.org/wiki/File:Neuron.svg#/media/File:Neuron.svg'>Wikimedia Commons</a>
   </figcaption>
@@ -70,7 +70,7 @@ deep learning is **not** an attempt to simulate the brain. [Artificial neural ne
 A [biological neuron](https://en.wikipedia.org/wiki/Neuron) is a living cell designed for communication in a noisy, energy-constrained environment. It receives signals through *dendrites*, integrates them in the *soma* (cell body), and, if a threshold is reached, sends an electrical pulse along the *axon* to other neurons through *synapses*. Learning occurs locally by strengthening or weakening synaptic connections through repeated interaction with the environment.
 
 <figure>
-  <img src="../../assets/images/overview/artificial_neuron.svg" alt="artificial neuron" style="max-width: 80%; height: auto;">
+  <img src="../../assets/images/overview/artificial_neuron.svg" alt="artificial neuron" style="max-width: 80%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
       Artificial Neuron ~ Funcs, Own work | <a href='https://creativecommons.org/public-domain/cc0/'>CC0</a> | <a href='https://commons.wikimedia.org/w/index.php?curid=148910507'>Wikimedia Commons</a>
   </figcaption>
@@ -93,7 +93,7 @@ The modern era began when data stopped being rare. This shift was driven by broa
 Before large-scale datasets became feasible, progress relied on small, carefully curated benchmarks. The famous [MNIST](https://en.wikipedia.org/wiki/MNIST_database) dataset was collected by the [National Institute of Standards and Technology](https://www.nist.gov/) (NIST), and later was modified (hence the M before NIST) for simpler usage of machine learning algorithms[^2]. MNIST is a simple dataset of handwritten digits that allowed researchers to isolate questions about optimization, architectures, and learning dynamics without the confounding effects of scale and noise. 
 
 <figure>
-  <img src="../../assets/images/overview/mnist.png" alt="MNIST dataset" style="max-width: 80%; height: auto;">
+  <img src="../../assets/images/overview/mnist.png" alt="MNIST dataset" style="max-width: 80%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     MNIST inputs ~ Goodfellow, I., Bengio, Y., & Courville, A. (2016). <a href='http://www.deeplearningbook.org'>Deep Learning</a>. MIT Press. 
   </figcaption>
@@ -106,7 +106,7 @@ In 2012, [AlexNet](https://proceedings.neurips.cc/paper_files/paper/2012/file/c3
 
 
 <figure>
-  <img src="../../assets/images/overview/alexnet.png" alt="AI/ML/DL relation" style="max-width: 100%; height: auto;">
+  <img src="../../assets/images/overview/alexnet.png" alt="AI/ML/DL relation" style="max-width: 100%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
    "Eight ILSVRC-2010 test images and the five labels considered most probable by our model. The correct label is written under each image, and the probability assigned to the correct label is also shown with a red bar (if it happens to be in the top 5)." ~ Krizhevsky, A., Sutskever, I., & Hinton, G. E. (2012). <a href='https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf'>ImageNet Classification with Deep Convolutional Neural Networks</a>. Advances in Neural Information Processing Systems (NeurIPS)  
   </figcaption>

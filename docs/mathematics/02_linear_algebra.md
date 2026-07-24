@@ -397,7 +397,7 @@ The scalar $\lambda$ is the corresponding **eigenvalue**.
 Illustrated below is the impact of the transformation matrix $\mathbf{A}=\begin{bmatrix}2&1\\1&2\end{bmatrix}$ on different vectors.
 
 <figure>
-  <img src="../../assets/images/linear_algebra/eigenvectors.gif" alt="Eigenvectors and eigenvlues" style="max-width: 100%; height: auto;">
+  <img src="../../assets/images/linear_algebra/eigenvectors.gif" alt="Eigenvectors and eigenvlues" style="max-width: 100%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     The transformation matrix preserves the directions of the magenta vectors parallel to $\mathbf{v}_{\lambda=1}=[\,1\;\;-1\,]^\top$ and the blue vectors parallel to $\mathbf{v}_{\lambda=3}=[\,1\;\;1\,]^\top$. Red vectors are not parallel to either eigenvector, so their directions change under the transformation. Magenta vectors keep the same length (eigenvalue $1$), while blue vectors become three times longer (eigenvalue $3$). By <a href="//commons.wikimedia.org/wiki/User:LucasVB" title="User:LucasVB">Lucas Vieira</a> - <span class="int-own-work" lang="en">Own work</span>, Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=19449791">Link</a>
   </figcaption>
@@ -523,7 +523,7 @@ $$
 where $\mathbf{U}\in\mathbb{R}^{m\times m}$ and $\mathbf{V}\in\mathbb{R}^{n\times n}$ are orthogonal matrices, and $\boldsymbol{\Sigma}\in\mathbb{R}^{m\times n}$ is diagonal (not necessarily square). The diagonal entries of $\boldsymbol{\Sigma}$ are called the **singular values** of $\mathbf{A}$. The columns of $\mathbf{U}$ are the **left singular vectors**, and the columns of $\mathbf{V}$ are the **right singular vectors**.
 
 <figure>
-  <img src="../../assets/images/linear_algebra/svd.svg" alt="Singular Value Decomposition (SVD)" style="max-width: 100%; height: auto;">
+  <img src="../../assets/images/linear_algebra/svd.svg" alt="Singular Value Decomposition (SVD)" style="max-width: 100%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     Illustration of the singular value decomposition $U\Sigma V^{*}$ of a real $2 \times 2$ matrix $M$. Top: The action of $M$, indicated by its effect on the unit disc $D$ and the two canonical unit vectors $e_1$ and $e_2$. Left: The action of $V^{*}$, a rotation, on $D$, $e_1$, and $e_2$. Bottom: The action of $\Sigma$, a scaling by the singular values $\sigma_1$ horizontally and $\sigma_2$ vertically. Right: The action of $U$, another rotation. By <a href="//commons.wikimedia.org/wiki/User:Georg-Johann" title="User:Georg-Johann">Georg-Johann</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=11342212">Link</a>
   </figcaption>

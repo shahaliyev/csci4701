@@ -574,7 +574,7 @@ $$
 Here, $\mu$ is the mean (center), $\sigma^2$ is the variance (spread), and $\sigma$ is the standard deviation of the distribution.
 
 <figure>
-  <img src="../../assets/images/probability/normal_std.svg" alt="Normal (Gaussian) distribution standard deviation" style="max-width: 100%; height: auto;">
+  <img src="../../assets/images/probability/normal_std.svg" alt="Normal (Gaussian) distribution standard deviation" style="max-width: 100%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     For the normal distribution, the values less than one standard deviation from the mean account for 68.27% of the set; while two standard deviations from the mean account for 95.45%; and three standard deviations account for 99.73% ~ <a href="//commons.wikimedia.org/wiki/User:Mwtoews" title="User:Mwtoews">M. W. Toews</a> - <span class="int-own-work" lang="en">Own work</span>, based (in concept) on figure by Jeremy Kemp, on 2005-02-09, <a href="https://creativecommons.org/licenses/by/2.5" title="Creative Commons Attribution 2.5">CC BY 2.5</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=1903871">Link</a>
   </figcaption>
@@ -680,7 +680,7 @@ In deep learning, we often treat a dataset as if it defines a probability distri
 
 
 <figure>
-  <img src="../../assets/images/probability/dirac.png" alt="Dirac delta distribution standard deviation" style="max-width: 80%; height: auto;">
+  <img src="../../assets/images/probability/dirac.png" alt="Dirac delta distribution standard deviation" style="max-width: 80%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     Schematic representation of the Dirac delta function. The height of the arrow is usually meant to specify the value of any multiplicative constant, which will give the area under the function. ~ <a href="//commons.wikimedia.org/wiki/User:Qef" title="User:Qef">Qef</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=4308538">Link</a>
   </figcaption>
@@ -786,7 +786,7 @@ This can be interpreted as a two-step sampling process:
     Mixture models are widely used in probabilistic modeling because many real-world datasets are multi-modal. For example, the distribution of human heights in a population is not perfectly Gaussian, because it is better approximated as a mixture of two Gaussians (male and female). Similarly, pixel intensities in images often come from mixtures of different object materials, lighting conditions, and textures.
 
 <figure>
-  <img src="../../assets/images/probability/gmm.gif" alt="Gaussian Mixture Model (GMM)" style="max-width: 100%; height: auto;">
+  <img src="../../assets/images/probability/gmm.webp" alt="Gaussian Mixture Model (GMM)" style="max-width: 100%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     An example of Gaussian Mixture in image segmentation with grey histogram ~ <a href="//commons.wikimedia.org/w/index.php?title=User:KazukiAmakawa&amp;action=edit&amp;redlink=1" class="new" title="User:KazukiAmakawa (page does not exist)">KazukiAmakawa</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=75542622">Link</a>
   </figcaption>
@@ -828,7 +828,7 @@ Y \sim \mathrm{Bernoulli}(\phi).
 $$
 
 <figure>
-  <img src="../../assets/images/probability/sigmoid.svg" alt="Sigmoid function" style="max-width: 80%; height: auto;">
+  <img src="../../assets/images/probability/sigmoid.svg" alt="Sigmoid function" style="max-width: 80%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
    The logistic (sigmoid) curve ~ <a href="//commons.wikimedia.org/wiki/User:Qef" title="User:Qef">Qef</a> (<a href="//commons.wikimedia.org/wiki/User_talk:Qef" title="User talk:Qef">talk</a>) - Created from scratch with gnuplot, Public Domain, <a href="https://commons.wikimedia.org/w/index.php?curid=4310325">Link</a>
   </figcaption>
@@ -867,7 +867,7 @@ $$
 ReLU is popular because it is simple, fast to compute, and avoids the strong saturation effect of sigmoid and [tanh](https://en.wikipedia.org/wiki/Activation_function).
 
 <figure>
-  <img src="../../assets/images/probability/relu.svg" alt="ReLU function" style="max-width: 80%; height: auto;">
+  <img src="../../assets/images/probability/relu.svg" alt="ReLU function" style="max-width: 80%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     Plot of the ReLU (blue) and <a href='https://en.wikipedia.org/wiki/Rectified_linear_unit#Gaussian-error_linear_unit_(GELU)'>GELU</a> (green) functions near x = 0 ~ <a href="//commons.wikimedia.org/w/index.php?title=User:Ringdongdang&amp;action=edit&amp;redlink=1" class="new" title="User:Ringdongdang (page does not exist)">Ringdongdang</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=95947821">Link</a>
   </figcaption>
@@ -902,7 +902,7 @@ $$
     Softplus is useful when a model parameter must be strictly positive (e.g variance $\sigma^2 > 0$).
 
 <figure>
-  <img src="../../assets/images/probability/softplus.svg" alt="Softplus function" style="max-width: 80%; height: auto;">
+  <img src="../../assets/images/probability/softplus.svg" alt="Softplus function" style="max-width: 80%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     Plot of the softplus function and the <a href='https://en.wikipedia.org/wiki/Ramp_function'>ramp function</a> ~ <a href="//commons.wikimedia.org/wiki/User:Nbarth" title="User:Nbarth">Nbarth</a> - This <a href="https://en.wikipedia.org/wiki/vector_image" class="extiw" title="w:vector image">vector image</a> includes elements that have been taken or adapted from this file:, <a href="http://creativecommons.org/publicdomain/zero/1.0/deed.en" title="Creative Commons Zero, Public Domain Dedication">CC0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=150411524">Link</a>
   </figcaption>
@@ -1005,7 +1005,7 @@ $$
     $$
 
 <figure>
-  <img src="../../assets/images/probability/log.png" alt="Log functions" style="max-width: 80%; height: auto;">
+  <img src="../../assets/images/probability/log.png" alt="Log functions" style="max-width: 80%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     Plots of logarithm functions, with three commonly used bases. ~ Richard F. Lyon - made myself, alt version of Logarithm plots.svg with better text, <a href="https://creativecommons.org/licenses/by-sa/3.0" title="Creative Commons Attribution-Share Alike 3.0">CC BY-SA 3.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=13257335">Link</a>
   </figcaption>

@@ -508,7 +508,7 @@ $$
 where $\mathrm{Pa}(x_i)$ denotes the parents of $x_i$ in the graph.
 
 <figure>
-  <img src="../../assets/images/prob_modeling/directed.svg" alt="Example of a directed graphical model (Bayesian network)" style="max-width: 100%; height: auto;">
+  <img src="../../assets/images/prob_modeling/directed.svg" alt="Example of a directed graphical model (Bayesian network)" style="max-width: 100%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     An example of a directed acyclic graphical model (Bayesian network). In this example, $A$ is a parent of $B$, $C$, and $D$, and $C$ is also a parent of $D$, so the factorization is $p(A,B,C,D)=p(A)\,p(B\mid A)\,p(C\mid A)\,p(D\mid A,C)$. ~ <a href="//commons.wikimedia.org/w/index.php?title=User:RJE42&amp;action=edit&amp;redlink=1" class="new" title="User:RJE42 (page does not exist)">RJE42</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=105416431">Link</a>
   </figcaption>
@@ -525,7 +525,7 @@ $$
 where each $\phi^{(i)}$ is a potential function over a clique $C^{(i)}$, and $Z$ is a normalizing constant called the _partition function_. Unlike conditional probabilities, potential functions are not required to sum to $1$. They only need to be non-negative.
 
 <figure>
-  <img src="../../assets/images/prob_modeling/undirected.svg" alt="Example of an undirected graphical model (Markov random field)" style="max-width: 100%; height: auto;">
+  <img src="../../assets/images/prob_modeling/undirected.svg" alt="Example of an undirected graphical model (Markov random field)" style="max-width: 100%; height: auto;" loading="lazy" decoding="async">
   <figcaption style="margin-top: 0.5em; font-size: 0.9em; opacity: 0.85;">
     Example of an undirected graphical model. For example, the edge $A-B$ indicates that $A$ and $B$ are not independent. Since there are no edges between $B$, $C$, and $D$, the model assumes they are conditionally independent given $A$. ~ <a href="//commons.wikimedia.org/w/index.php?title=User:RJE42&amp;action=edit&amp;redlink=1" class="new" title="User:RJE42 (page does not exist)">RJE42</a> - <span class="int-own-work" lang="en">Own work</span>, <a href="https://creativecommons.org/licenses/by-sa/4.0" title="Creative Commons Attribution-Share Alike 4.0">CC BY-SA 4.0</a>, <a href="https://commons.wikimedia.org/w/index.php?curid=105416381">Link</a>
   </figcaption>

@@ -1,5 +1,6 @@
 site_name: CSCI 4701 Deep Learning
 site_url: https://shahaliyev.org/csci4701/
+site_description: CSCI 4701 Deep Learning course website — roadmap, notebooks, and course materials.
 
 theme:
   name: material
@@ -41,14 +42,17 @@ markdown_extensions:
 
 extra_javascript:
   - assets/app/app.js
-  - assets/app/katex.js
-  - https://unpkg.com/katex@0/dist/katex.min.js
-  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+  - path: assets/vendor/katex/katex.min.js
+    defer: true
+  - path: assets/vendor/katex/contrib/auto-render.min.js
+    defer: true
+  - path: assets/app/katex.js
+    defer: true
   # - javascripts/mathjax.js
   # - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
 
 extra_css:
-  - https://unpkg.com/katex@0/dist/katex.min.css
+  - assets/vendor/katex/katex.min.css
   - assets/styles/extra.css
 
 # extra_javascript:
@@ -61,9 +65,6 @@ plugins:
   - meta
 
 extra:
-  analytics:
-    provider: google
-    property: G-S1QRRQG9BM
   social:
     - icon: fontawesome/solid/circle-user
       link: https://shahaliyev.org/
