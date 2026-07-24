@@ -5320,11 +5320,11 @@ optimizer = torch.optim.Adam(params, lr=lr)</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p style="margin: 1em 0;">
-    We have already menioned mini-batches when discussing <a href="../notebooks/04_regul_optim/#stochastic-gradient-descent">stochastic gradient descent</a>.
+    We have already menioned mini-batches when discussing <a href="../04_regul_optim/#stochastic-gradient-descent">stochastic gradient descent</a>.
   </p>
 </div>
 <p>If the full dataset contains $N$ examples and the mini-batch contains only $B \ll N$ examples, then each training step requires much less computation. This makes each update faster and reduces memory usage. In practice, this is one of the main reasons neural networks can be trained efficiently on large datasets.</p>
-<p>Recall that mini-batch training also introduces a small amount of randomness into the gradient. Since each batch is only an approximation of the full dataset, the gradient is noisy rather than exact. This may seem undesirable at first, but in practice it is often helpful: the noise can prevent the optimization from getting stuck in poor <a href="../notebooks/04_regul_optim/#local-minima-and-saddle-points">local minima</a> and usually leads to faster overall training.</p>
+<p>Recall that mini-batch training also introduces a small amount of randomness into the gradient. Since each batch is only an approximation of the full dataset, the gradient is noisy rather than exact. This may seem undesirable at first, but in practice it is often helpful: the noise can prevent the optimization from getting stuck in poor <a href="../04_regul_optim/#local-minima-and-saddle-points">local minima</a> and usually leads to faster overall training.</p>
 </div>
 </div>
 </div>
@@ -8298,7 +8298,7 @@ for epoch in range(epochs):
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="bleu">BLEU<a class="anchor-link" href="#bleu">¶</a></h3><p>So far, we have evaluated the model qualitatively by inspecting generated translations. While this is useful, it is subjective and does not scale. We need a way to compare predicted sequences with ground-truth translations more systematically. A common approach is the <a href="BLEU%5D(https://en.wikipedia.org/wiki/BLEU">BLEU (Bilingual Evaluation Understudy)</a>) score. Instead of checking whether the entire sentence matches exactly, BLEU measures how many short subsequences (n-grams) in the predicted sentence also appear in the reference sentence. For example, unigrams check individual words, bigrams check pairs of consecutive words, and so on. This allows us to reward partial correctness rather than requiring exact matches.</p>
+<h3 id="bleu">BLEU<a class="anchor-link" href="#bleu">¶</a></h3><p>So far, we have evaluated the model qualitatively by inspecting generated translations. While this is useful, it is subjective and does not scale. We need a way to compare predicted sequences with ground-truth translations more systematically. A common approach is the <a href="https://en.wikipedia.org/wiki/BLEU">BLEU (Bilingual Evaluation Understudy)</a> score. Instead of checking whether the entire sentence matches exactly, BLEU measures how many short subsequences (n-grams) in the predicted sentence also appear in the reference sentence. For example, unigrams check individual words, bigrams check pairs of consecutive words, and so on. This allows us to reward partial correctness rather than requiring exact matches.</p>
 <p>BLEU computes a weighted product of n-gram precisions, while also applying a penalty if the predicted sentence is too short. This is important because very short predictions can achieve artificially high precision by matching only a few tokens. A perfect match between prediction and reference yields a BLEU score of 1, while completely unrelated sentences yield a score close to 0. Formally, it is defined as
 $$
 \text{BLEU} = \text{BP} \cdot \exp\left( \sum_{n=1}^{N} w_n \log p_n \right),

@@ -2698,7 +2698,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     The <a href="https://www.cs.toronto.edu/~kriz/">codebase written in C++</a> by <a href="https://en.wikipedia.org/wiki/Alex_Krizhevsky">Alexei Krizhevsky</a> was used for a few following years to train major CNN models. Today, deep learning frameworks handle GPU parallelism automatically. We usually define a single model and the framework distributes computation across devices using techniques such as data parallelism. Manually splitting a network across GPUs, as done in AlexNet, is rarely necessary today.
   </p>
 </div>
-<p>AlexNet made heavy use of <a href="../04_regul_optim#dropout">dropout</a> in the fully connected layers to reduce overfitting, and <a href="04_regul_optim#data-augmentation">data augmentation</a> to effectively enlarge the training set.</p>
+<p>AlexNet made heavy use of <a href="../04_regul_optim#dropout">dropout</a> in the fully connected layers to reduce overfitting, and <a href="../04_regul_optim/#data-augmentation">data augmentation</a> to effectively enlarge the training set.</p>
 <p>AlexNet also replaced the average pooling with max pooling. Max pooling outputs the largest activation in the window, preserving the strongest detected feature rather than averaging responses together. This helps the network retain the most salient signals during downsampling. AlexNet also introduced overlapping pooling, using $3 \times 3$ pooling windows with stride $2$. Because the windows overlap, adjacent pooling regions share some pixels. The authors reported that this design slightly reduced overfitting and improved classification performance.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

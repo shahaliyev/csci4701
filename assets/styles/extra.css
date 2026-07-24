@@ -4,6 +4,45 @@
   --md-code-font: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
 }
 
+/* Home navigation grid: 3×2 on desktop, 2 columns on narrow screens */
+.home-nav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.home-nav__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.85rem 1rem;
+  border: 0.05rem solid var(--md-default-fg-color--lightest);
+  border-radius: 0.2rem;
+  color: var(--md-default-fg-color);
+  text-decoration: none !important;
+  transition: border-color 0.12s ease, background-color 0.12s ease;
+}
+
+.home-nav__item:hover {
+  border-color: var(--md-accent-fg-color);
+  background-color: var(--md-accent-fg-color--transparent);
+}
+
+.home-nav__item strong {
+  font-weight: 700;
+}
+
+.home-nav__item span {
+  color: var(--md-default-fg-color--light);
+}
+
+@media screen and (max-width: 30em) {
+  .home-nav {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Center images / plots produced from converted notebooks */
 .md-typeset img.jp-RenderedImage,
 .md-typeset img.output_png,
