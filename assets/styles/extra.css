@@ -1,3 +1,9 @@
+/* System font stack when Material Google Fonts are disabled (theme.font: false) */
+:root {
+  --md-text-font: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --md-code-font: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
+}
+
 /* Center images / plots produced from converted notebooks */
 .md-typeset img.jp-RenderedImage,
 .md-typeset img.output_png,
