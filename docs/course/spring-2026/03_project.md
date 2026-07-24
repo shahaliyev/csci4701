@@ -82,4 +82,4 @@ The README must also describe how to install dependencies, how to run the graded
 !!! warning "Important"
     You may use an LLM to assist with brainstorming throughout the project. However, you are fully responsible for understanding, implementing, and defending all aspects of your project. Any explanation, result, or conclusion included in your submissions must be something you can justify. Work that is generic, poorly grounded, or inconsistent with the submitted results will be penalized regardless of how it was generated. Clear structure and concise explanations are expected, but grading focuses on content and correctness.
 
-Deadline policy is noted in the [assessments](02_assessments.md) page.
+Deadline policy is noted in the [assessments](../02_assessments/) page.

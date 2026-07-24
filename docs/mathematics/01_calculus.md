@@ -125,7 +125,7 @@ $$
 where $\eta$ is the learning rate. Each update makes a small change. Over many updates, these small changes accumulate and reduce the overall loss.
 
 !!! tip
-    The learning rate update through backward pass is discussed in the notebook dedicated to [backpropagation](../notebooks/01_backprop.ipynb).
+    The learning rate update through backward pass is discussed in the notebook dedicated to [backpropagation](../../notebooks/01_backprop/).
 
 ## Jacobian
 
@@ -195,7 +195,7 @@ This approximation assumes that, for small updates, the function behaves almost 
 This local linear approximation relies on an important assumption: the function must be **smooth enough** near the point of expansion. Smoothness means that small changes in the input lead to small, predictable changes in the output, and that derivatives do not change abruptly.
 
 !!! note
-    Indeep learning, loss functions are often not perfectly smooth everywhere, but they are typically **piecewise smooth**. This is sufficient. Taylor expansions and gradient-based updates only rely on local behavior along the training trajectory, not on global smoothness of the loss surface. A common example is the [ReLU activation](../notebooks/02_neural_network.ipynb), which is not differentiable at zero but is differentiable almost everywhere else. Gradient-based methods rely on this local behavior and use subgradients at nondifferentiable points.
+    Indeep learning, loss functions are often not perfectly smooth everywhere, but they are typically **piecewise smooth**. This is sufficient. Taylor expansions and gradient-based updates only rely on local behavior along the training trajectory, not on global smoothness of the loss surface. A common example is the [ReLU activation](../../notebooks/02_neural_network/), which is not differentiable at zero but is differentiable almost everywhere else. Gradient-based methods rely on this local behavior and use subgradients at nondifferentiable points.
 
 Keeping second-order terms reveals that this linear behavior is only approximate. These higher-order terms explain why the slope itself can change as we move, motivating the need to understand second-order structure.
 

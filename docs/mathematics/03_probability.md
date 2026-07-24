@@ -543,7 +543,7 @@ $$
     $$
     For example, if the model outputs $\hat{p}_3(x)=0.85$, this means the model assigns an $85\%$ probability that the image is the digit $3$.
 
-    Now suppose we take a [mini-batch](../../04_regul_optim) of $n=100$ MNIST images and count how many of each digit appear in the batch. We might obtain a count vector such as:
+    Now suppose we take a [mini-batch](../../notebooks/04_regul_optim/) of $n=100$ MNIST images and count how many of each digit appear in the batch. We might obtain a count vector such as:
     $$
     (c_0,c_1,\dots,c_9) = (8,11,9,7,10,12,6,14,13,10),
     $$

@@ -308,7 +308,7 @@ The course roadmap for **CSCI 4701: Deep Learning**. Every node is a link — ho
   <div class="rm-block">
     <div class="rm-grid-row">
 
-      <a class="rm-node rm-phase rm-phase-card rm-col-phase" data-id="pre-midterm" href="spring-2026/01_syllabus">Pre-midterm</a>
+      <a class="rm-node rm-phase rm-phase-card rm-col-phase" data-id="pre-midterm" href="../spring-2026/01_syllabus/">Pre-midterm</a>
 
       <div class="rm-cluster rm-col-wide">
         <div class="rm-label">Foundations</div>
@@ -333,7 +333,7 @@ The course roadmap for **CSCI 4701: Deep Learning**. Every node is a link — ho
   <div class="rm-block">
     <div class="rm-grid-row">
 
-      <a class="rm-node rm-phase rm-phase-card rm-col-phase" data-id="post-midterm" href="spring-2026/01_syllabus">Post-midterm</a>
+      <a class="rm-node rm-phase rm-phase-card rm-col-phase" data-id="post-midterm" href="../spring-2026/01_syllabus/">Post-midterm</a>
 
       <div class="rm-cluster rm-col-narrow">
         <div class="rm-label">Neural Language Processing</div>

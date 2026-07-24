@@ -16,7 +16,7 @@ Deadlines will never be extended. When submitting, a student must consider possi
 
 You will form teams of up to three members at the start of the semester. A project proposal that passes receives 10%. A proposal marked revise receives a provisional 0% until the required changes are submitted and approved, after which full credit is awarded. A proposal that is rejected and resubmitted as a substantially different proposal is eligible for a maximum of 5%.
 
-In addition to the proposal, there will be two further project milestones, scheduled before the midterm and final exam periods. Each milestone accounts for 45% of the total project grade. See the [project](03_project.md) page for further details.
+In addition to the proposal, there will be two further project milestones, scheduled before the midterm and final exam periods. Each milestone accounts for 45% of the total project grade. See the [project](../03_project/) page for further details.
 
 ## Quizzes
 
